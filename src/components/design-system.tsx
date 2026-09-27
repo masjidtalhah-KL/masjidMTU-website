@@ -217,7 +217,7 @@ export function Navbar() {
   return (
     <header className="site-header">
       <Container className="site-header__inner" width="wide">
-        <Link className="brand" href="/design-system" aria-label="Masjid Talhah, halaman sistem reka bentuk">
+        <Link className="brand" href="/design-system" aria-label="Masjid Talhah Bin Ubaidillah, halaman sistem reka bentuk">
           <Image
             src="/brand/logo-masjid.png"
             alt=""
@@ -227,7 +227,7 @@ export function Navbar() {
             priority
           />
           <span className="brand__text">
-            <strong>Masjid Talhah</strong>
+            <strong>Masjid Talhah Bin Ubaidillah</strong>
             <small>BUKIT JALIL · KUALA LUMPUR</small>
           </span>
         </Link>

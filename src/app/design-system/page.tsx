@@ -14,7 +14,7 @@ import {
   Textarea,
 } from "@/components/design-system";
 import { Reveal } from "@/components/reveal";
-import { BrandPattern, MihrabMark } from "@/components/brand-motifs";
+import { MihrabMark } from "@/components/brand-motifs";
 
 export const metadata: Metadata = {
   title: "Sistem Reka Bentuk",
@@ -41,7 +41,7 @@ export default function DesignSystemPage() {
       <Navbar />
       <main>
         <section className="design-hero">
-          <BrandPattern className="design-hero__pattern" />
+          <div className="design-hero__pattern" aria-hidden="true" />
           <Container className="design-hero__inner" width="wide">
             <Reveal className="design-hero__copy">
               <p className="eyebrow eyebrow--gold">Panduan visual · Fasa 1</p>
@@ -66,10 +66,7 @@ export default function DesignSystemPage() {
             </Reveal>
 
             <Reveal className="hero-emblem-wrap">
-              <div className="hero-emblem" aria-hidden="true">
-                <MihrabMark className="hero-emblem__mark" />
-                <span className="hero-emblem__caption">TALHAH · BUKIT JALIL</span>
-              </div>
+              <MihrabMark className="hero-emblem__mark" />
             </Reveal>
           </Container>
           <div className="design-hero__bottom-line" aria-hidden="true" />
@@ -79,61 +76,52 @@ export default function DesignSystemPage() {
           <Container width="wide">
             <Reveal>
               <SectionHeading
-                eyebrow="Semakan Fasa 1.2 · Pattern fidelity"
-                title="Rujukan rasmi, corak semasa dan refinement."
-                description="SVG rasmi mengandungi imej corak terbenam, bukan path geometri yang boleh dipisahkan. Bentuk akhir di bawah dilukis semula sebagai SVG berdasarkan roset dan gelung bersambung yang kelihatan pada rujukan itu."
+                eyebrow="Semakan Fasa 1.2 · Pattern rasmi"
+                title="Corak rasmi, dalam konteks website."
+                description="Fail PNG yang dibekalkan ialah sumber tunggal pattern geometri. Contoh di bawah hanya mengubah saiz, posisi dan lapisan warna; bentuk pattern kekal asal."
               />
             </Reveal>
             <div className="pattern-comparison__grid">
               <article className="pattern-comparison__panel">
-                <div className="pattern-comparison__preview pattern-comparison__preview--official">
-                  <figure>
-                    <Image
-                      src="/brand/banner-reference-01.svg"
-                      alt="Rujukan rasmi SVG Masjid Talhah dengan corak bunga bersambung dan lengkung emas"
-                      width={1080}
-                      height={1920}
-                      sizes="(max-width: 48rem) 42vw, 18vw"
-                    />
-                    <figcaption>SVG · roset dan gelung floral</figcaption>
-                  </figure>
-                  <figure>
-                    <Image
-                      src="/brand/banner-reference-01.png"
-                      alt="Rujukan rasmi PNG dengan lattice bintang pada latar navy"
-                      width={1920}
-                      height={1080}
-                      sizes="(max-width: 48rem) 42vw, 18vw"
-                    />
-                    <figcaption>PNG · bintang berjalin</figcaption>
-                  </figure>
+                <div className="pattern-demo pattern-demo--asset">
+                  <Image
+                    src="/brand/brand-pattern-official.png"
+                    alt="Pattern geometri rasmi Masjid Talhah Bin Ubaidillah tanpa overlay"
+                    width={1920}
+                    height={1080}
+                    sizes="(max-width: 48rem) 100vw, 34vw"
+                    className="pattern-demo__asset"
+                  />
                 </div>
                 <div className="pattern-comparison__copy">
                   <p className="eyebrow">01 · Rujukan rasmi</p>
-                  <h3>Banner SVG dan PNG</h3>
-                  <p>SVG menyimpan pattern sebagai raster terbenam; PNG memperlihatkan lattice latar navy.</p>
+                  <h3>Aset rasmi sahaja</h3>
+                  <p>Pattern PNG asal dipaparkan tanpa lukisan semula atau overlay warna.</p>
                 </div>
               </article>
 
               <article className="pattern-comparison__panel">
-                <div className="pattern-comparison__preview pattern-comparison__preview--navy">
-                  <BrandPattern variant="previous" />
-                </div>
+                <div className="pattern-demo pattern-demo--overlay" role="img" aria-label="Pattern rasmi dengan overlay navy lembut" />
                 <div className="pattern-comparison__copy">
-                  <p className="eyebrow">02 · Sebelum</p>
-                  <h3>Implementasi semasa</h3>
-                  <p>Bintang bersudut generik dengan garis silang berulang.</p>
+                  <p className="eyebrow">02 · Overlay navy</p>
+                  <h3>Kontras lebih lembut</h3>
+                  <p>Lapisan navy nipis meredakan corak sambil mengekalkan geometri asal.</p>
                 </div>
               </article>
 
               <article className="pattern-comparison__panel">
-                <div className="pattern-comparison__preview pattern-comparison__preview--navy">
-                  <BrandPattern />
+                <div className="pattern-demo pattern-demo--content">
+                  <div className="pattern-demo__content">
+                    <span>MASJID TALHAH BIN UBAIDILLAH · BUKIT JALIL</span>
+                    <strong>Ilmu, ibadah dan khidmat.</strong>
+                    <p>Ruang yang tenang untuk jemaah dan komuniti setempat.</p>
+                    <Button size="sm">Kenali masjid</Button>
+                  </div>
                 </div>
                 <div className="pattern-comparison__copy">
-                  <p className="eyebrow">03 · Refinement</p>
-                  <h3>Roset bersambung</h3>
-                  <p>Kelopak berjejari dan gelung melengkung membentuk lattice kecil, berterusan dan rendah kontras.</p>
+                  <p className="eyebrow">03 · Di sebalik kandungan</p>
+                  <h3>Contoh bersama teks</h3>
+                  <p>Pattern kekal dikenali di belakang kandungan dengan overlay navy untuk kebolehbacaan.</p>
                 </div>
               </article>
             </div>
@@ -356,19 +344,16 @@ export default function DesignSystemPage() {
             </Reveal>
             <div className="navy-showcase__grid">
               <div className="navy-surface navy-surface--midnight">
-                <BrandPattern />
                 <span>Midnight · asas utama</span>
                 <strong>Ruang yang tenang</strong>
                 <i aria-hidden="true" />
               </div>
               <div className="navy-surface navy-surface--royal">
-                <BrandPattern />
                 <span>Royal · sorotan sekunder</span>
                 <strong>Aktiviti bersama</strong>
                 <i aria-hidden="true" />
               </div>
               <div className="navy-surface navy-surface--deep">
-                <BrandPattern />
                 <span>Deep · lapisan berbingkai</span>
                 <strong>Ilmu dan khidmat</strong>
                 <i aria-hidden="true" />
@@ -377,24 +362,19 @@ export default function DesignSystemPage() {
           </Container>
         </Section>
 
-        <Section tone="navy" className="motif-section section--navy-pattern">
-          <BrandPattern />
+        <Section tone="navy" className="motif-section">
           <Container className="motif-section__inner" width="wide">
             <Reveal className="motif-section__copy">
               <p className="eyebrow eyebrow--gold">06 · Perincian hiasan</p>
-              <Heading>Roset bersambung dan lengkung mihrab, dengan ruang untuk bernafas.</Heading>
+              <Heading>Corak geometri rasmi dan lengkung mihrab, dengan ruang untuk bernafas.</Heading>
               <p>
-                Corak kelopak dan gelung mengambil bentuk daripada rujukan banner
-                rasmi, dalam skala kecil yang menyokong kandungan tanpa bersaing dengannya.
+                Pattern asal digunakan terus sebagai tekstur latar dengan overlay navy,
+                skala dan crop yang sesuai untuk kandungan.
               </p>
             </Reveal>
             <Reveal className="ornament-reveal">
-              <div className="ornament-stage" role="img" aria-label="Contoh motif roset bersambung, lengkung mihrab runcing dan bingkai emas">
-                <BrandPattern className="ornament-stage__grid" />
-                <div className="ornament-stage__frame">
-                  <MihrabMark className="ornament-arch" />
-                </div>
-                <div className="ornament-stage__caption">BINGKAI MIHRAB · ROSET BERSAMBUNG</div>
+              <div className="ornament-stage" role="img" aria-label="Motif garis mihrab yang minimal di atas pattern rasmi">
+                <MihrabMark className="ornament-arch" />
               </div>
             </Reveal>
           </Container>

@@ -49,14 +49,19 @@ Komponen React berada dalam `src/components/design-system.tsx`:
 - `Card`: light, navy dan highlighted.
 - `Input` dan `Textarea` dengan label serta hint yang dikaitkan secara semantik.
 - `Navbar` dan `Footer` menggunakan logo rasmi.
-- `BrandPattern` dan `MihrabMark` dalam `src/components/brand-motifs.tsx` ialah hiasan SVG yang boleh diguna semula. `BrandPattern` boleh menerima varian `previous` untuk membandingkan motif geometri lama dengan roset baharu.
+- `MihrabMark` dalam `src/components/brand-motifs.tsx` ialah hiasan SVG mihrab yang boleh diguna semula. Pattern geometri menggunakan terus `public/brand/brand-pattern-official.png` sebagai sumber tunggal.
+- Nama yang dipaparkan pada website menggunakan nama penuh **Masjid Talhah Bin Ubaidillah**.
 
 `Reveal` dalam `src/components/reveal.tsx` menambah kemunculan fade-up apabila kandungan masuk ke viewport. Ia tidak menyembunyikan kandungan jika `IntersectionObserver` tiada dan menghormati tetapan `prefers-reduced-motion`.
 
 ## Perincian visual
 
-`banner-reference-01.svg` tiada path pattern yang boleh dipisahkan: kandungan visualnya menggunakan imej raster terbenam dan hanya mempunyai path untuk clipping. SVG menunjukkan roset berjejari dengan gelung kelopak bersambung pada latar biru; PNG rasmi pula mempunyai lattice bintang berjalin pada navy. `BrandPattern` melukis semula roset dan gelung daripada SVG sebagai tile vector ringan, berskala kecil dan rendah kontras. Halaman `/design-system` menunjukkan kedua-dua asset rasmi, corak lama dan refinement untuk perbandingan. Banner tidak digunakan sebagai background laman.
+`public/brand/brand-pattern-official.png` ialah satu-satunya sumber pattern geometri. Gunakan fail asal sebagai tekstur background; presentation boleh dilaras melalui opacity, overlay navy, gradient, saiz, posisi dan crop responsif sahaja. Jangan trace, lukis semula atau ubah geometri pattern. Halaman `/design-system` menunjukkan aset asal, overlay navy lembut dan contoh teks sebenar di atas pattern.
 
-Bentuk mihrab mengambil lengkung bertemu puncak dan jalur berlian daripada logo; garis emas berganda dan bingkai berlapis memberi detail tanpa mengganggu isi.
+Bentuk mihrab kini dipaparkan sebagai dua garis arch yang halus sahaja, tanpa bingkai atau label, untuk digunakan sebagai hiasan latar yang subtle.
 
-Halaman `/design-system` memaparkan variasi permukaan midnight, royal dan deep navy, contoh motif, dan kad terang untuk semakan kontras. Gunakan utility `section--navy-pattern` untuk seksyen navy bermotif dan `section--blue` untuk seksyen biru sekunder. Emas dalam (`gold-600`) sesuai untuk aksen atau detail kecil; teks isi kekal navy/charcoal atau putih dengan kontras yang jelas.
+Seksyen navy menggunakan aset rasmi sebagai background texture bersama overlay navy. Variasi permukaan midnight, royal dan deep navy mengekalkan pattern yang sama. Emas dalam (`gold-600`) sesuai untuk aksen atau detail kecil; teks isi kekal navy/charcoal atau putih dengan kontras yang jelas.
+
+## Borang
+
+Field nama dan emel menggunakan grid dua kolum sama lebar dengan gap 24 px (`--spacing-6`) pada skrin 768 px dan ke atas. Setiap field dan input dibenarkan mengecil supaya tidak melimpah; kawalan menggunakan lebar penuh. Di bawah 768 px, field disusun satu kolum. Helper text berada di bawah input emel dan textarea mesej menggunakan lebar penuh.
