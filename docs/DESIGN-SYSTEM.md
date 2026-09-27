@@ -49,12 +49,14 @@ Komponen React berada dalam `src/components/design-system.tsx`:
 - `Card`: light, navy dan highlighted.
 - `Input` dan `Textarea` dengan label serta hint yang dikaitkan secara semantik.
 - `Navbar` dan `Footer` menggunakan logo rasmi.
-- `IslamicPattern` dan `MihrabMark` dalam `src/components/brand-motifs.tsx` ialah hiasan SVG/CSS yang boleh diguna semula. Corak bintang berjalin diilhamkan oleh kisi geometri banner; mihrab runcing, garis emas, finial dan jalur berlian diilhamkan oleh logo serta seni bina masjid.
+- `BrandPattern` dan `MihrabMark` dalam `src/components/brand-motifs.tsx` ialah hiasan SVG yang boleh diguna semula. `BrandPattern` boleh menerima varian `previous` untuk membandingkan motif geometri lama dengan roset baharu.
 
 `Reveal` dalam `src/components/reveal.tsx` menambah kemunculan fade-up apabila kandungan masuk ke viewport. Ia tidak menyembunyikan kandungan jika `IntersectionObserver` tiada dan menghormati tetapan `prefers-reduced-motion`.
 
 ## Perincian visual
 
-Banner rasmi menunjukkan lattice bintang geometri berulang pada midnight navy. Motif itu diterjemahkan sebagai pattern SVG kecil dengan kelegapan terkawal, bukan imej banner penuh. Bentuk mihrab mengambil lengkung bertemu puncak dan jalur berlian daripada logo; garis emas berganda dan bingkai berlapis memberi detail tanpa mengganggu isi.
+`banner-reference-01.svg` tiada path pattern yang boleh dipisahkan: kandungan visualnya menggunakan imej raster terbenam dan hanya mempunyai path untuk clipping. SVG menunjukkan roset berjejari dengan gelung kelopak bersambung pada latar biru; PNG rasmi pula mempunyai lattice bintang berjalin pada navy. `BrandPattern` melukis semula roset dan gelung daripada SVG sebagai tile vector ringan, berskala kecil dan rendah kontras. Halaman `/design-system` menunjukkan kedua-dua asset rasmi, corak lama dan refinement untuk perbandingan. Banner tidak digunakan sebagai background laman.
+
+Bentuk mihrab mengambil lengkung bertemu puncak dan jalur berlian daripada logo; garis emas berganda dan bingkai berlapis memberi detail tanpa mengganggu isi.
 
 Halaman `/design-system` memaparkan variasi permukaan midnight, royal dan deep navy, contoh motif, dan kad terang untuk semakan kontras. Gunakan utility `section--navy-pattern` untuk seksyen navy bermotif dan `section--blue` untuk seksyen biru sekunder. Emas dalam (`gold-600`) sesuai untuk aksen atau detail kecil; teks isi kekal navy/charcoal atau putih dengan kontras yang jelas.

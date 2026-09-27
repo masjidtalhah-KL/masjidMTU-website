@@ -14,7 +14,7 @@ import {
   Textarea,
 } from "@/components/design-system";
 import { Reveal } from "@/components/reveal";
-import { IslamicPattern, MihrabMark } from "@/components/brand-motifs";
+import { BrandPattern, MihrabMark } from "@/components/brand-motifs";
 
 export const metadata: Metadata = {
   title: "Sistem Reka Bentuk",
@@ -41,7 +41,7 @@ export default function DesignSystemPage() {
       <Navbar />
       <main>
         <section className="design-hero">
-          <IslamicPattern className="design-hero__pattern" />
+          <BrandPattern className="design-hero__pattern" />
           <Container className="design-hero__inner" width="wide">
             <Reveal className="design-hero__copy">
               <p className="eyebrow eyebrow--gold">Panduan visual · Fasa 1</p>
@@ -74,6 +74,71 @@ export default function DesignSystemPage() {
           </Container>
           <div className="design-hero__bottom-line" aria-hidden="true" />
         </section>
+
+        <Section tone="ivory" className="pattern-comparison">
+          <Container width="wide">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Semakan Fasa 1.2 · Pattern fidelity"
+                title="Rujukan rasmi, corak semasa dan refinement."
+                description="SVG rasmi mengandungi imej corak terbenam, bukan path geometri yang boleh dipisahkan. Bentuk akhir di bawah dilukis semula sebagai SVG berdasarkan roset dan gelung bersambung yang kelihatan pada rujukan itu."
+              />
+            </Reveal>
+            <div className="pattern-comparison__grid">
+              <article className="pattern-comparison__panel">
+                <div className="pattern-comparison__preview pattern-comparison__preview--official">
+                  <figure>
+                    <Image
+                      src="/brand/banner-reference-01.svg"
+                      alt="Rujukan rasmi SVG Masjid Talhah dengan corak bunga bersambung dan lengkung emas"
+                      width={1080}
+                      height={1920}
+                      sizes="(max-width: 48rem) 42vw, 18vw"
+                    />
+                    <figcaption>SVG · roset dan gelung floral</figcaption>
+                  </figure>
+                  <figure>
+                    <Image
+                      src="/brand/banner-reference-01.png"
+                      alt="Rujukan rasmi PNG dengan lattice bintang pada latar navy"
+                      width={1920}
+                      height={1080}
+                      sizes="(max-width: 48rem) 42vw, 18vw"
+                    />
+                    <figcaption>PNG · bintang berjalin</figcaption>
+                  </figure>
+                </div>
+                <div className="pattern-comparison__copy">
+                  <p className="eyebrow">01 · Rujukan rasmi</p>
+                  <h3>Banner SVG dan PNG</h3>
+                  <p>SVG menyimpan pattern sebagai raster terbenam; PNG memperlihatkan lattice latar navy.</p>
+                </div>
+              </article>
+
+              <article className="pattern-comparison__panel">
+                <div className="pattern-comparison__preview pattern-comparison__preview--navy">
+                  <BrandPattern variant="previous" />
+                </div>
+                <div className="pattern-comparison__copy">
+                  <p className="eyebrow">02 · Sebelum</p>
+                  <h3>Implementasi semasa</h3>
+                  <p>Bintang bersudut generik dengan garis silang berulang.</p>
+                </div>
+              </article>
+
+              <article className="pattern-comparison__panel">
+                <div className="pattern-comparison__preview pattern-comparison__preview--navy">
+                  <BrandPattern />
+                </div>
+                <div className="pattern-comparison__copy">
+                  <p className="eyebrow">03 · Refinement</p>
+                  <h3>Roset bersambung</h3>
+                  <p>Kelopak berjejari dan gelung melengkung membentuk lattice kecil, berterusan dan rendah kontras.</p>
+                </div>
+              </article>
+            </div>
+          </Container>
+        </Section>
 
         <Section id="colors" tone="ivory">
           <Container width="wide">
@@ -291,19 +356,19 @@ export default function DesignSystemPage() {
             </Reveal>
             <div className="navy-showcase__grid">
               <div className="navy-surface navy-surface--midnight">
-                <IslamicPattern />
+                <BrandPattern />
                 <span>Midnight · asas utama</span>
                 <strong>Ruang yang tenang</strong>
                 <i aria-hidden="true" />
               </div>
               <div className="navy-surface navy-surface--royal">
-                <IslamicPattern />
+                <BrandPattern />
                 <span>Royal · sorotan sekunder</span>
                 <strong>Aktiviti bersama</strong>
                 <i aria-hidden="true" />
               </div>
               <div className="navy-surface navy-surface--deep">
-                <IslamicPattern />
+                <BrandPattern />
                 <span>Deep · lapisan berbingkai</span>
                 <strong>Ilmu dan khidmat</strong>
                 <i aria-hidden="true" />
@@ -313,23 +378,23 @@ export default function DesignSystemPage() {
         </Section>
 
         <Section tone="navy" className="motif-section section--navy-pattern">
-          <IslamicPattern />
+          <BrandPattern />
           <Container className="motif-section__inner" width="wide">
             <Reveal className="motif-section__copy">
               <p className="eyebrow eyebrow--gold">06 · Perincian hiasan</p>
-              <Heading>Motif Islamik dan lengkung mihrab, dengan ruang untuk bernafas.</Heading>
+              <Heading>Roset bersambung dan lengkung mihrab, dengan ruang untuk bernafas.</Heading>
               <p>
-                Lengkung dan geometri menjadi tekstur latar yang lembut. Ia
-                menyokong kandungan tanpa bersaing dengannya.
+                Corak kelopak dan gelung mengambil bentuk daripada rujukan banner
+                rasmi, dalam skala kecil yang menyokong kandungan tanpa bersaing dengannya.
               </p>
             </Reveal>
             <Reveal className="ornament-reveal">
-              <div className="ornament-stage" role="img" aria-label="Contoh motif bintang geometri, lengkung mihrab runcing dan bingkai emas">
-                <IslamicPattern className="ornament-stage__grid" />
+              <div className="ornament-stage" role="img" aria-label="Contoh motif roset bersambung, lengkung mihrab runcing dan bingkai emas">
+                <BrandPattern className="ornament-stage__grid" />
                 <div className="ornament-stage__frame">
                   <MihrabMark className="ornament-arch" />
                 </div>
-                <div className="ornament-stage__caption">BINGKAI MIHRAB · CORAK BINTANG</div>
+                <div className="ornament-stage__caption">BINGKAI MIHRAB · ROSET BERSAMBUNG</div>
               </div>
             </Reveal>
           </Container>
