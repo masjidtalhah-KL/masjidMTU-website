@@ -29,3 +29,7 @@ Payment gateway, resit dan email — fasa kemudian
 - Jangan letakkan credentials dalam kod atau commit fail `.env.local`.
 - Akses data operasi dan tindakan admin perlu disahkan serta diberi kebenaran apabila ciri itu dibina.
 - Jangan simpan maklumat kad pembayaran dalam aplikasi.
+
+## Lapisan reka bentuk
+
+Fasa 1 menetapkan token visual, komponen React yang boleh digunakan semula, dan route pratonton `/design-system`. Halaman ini ialah katalog komponen; ia bukan homepage awam. Token dan garis panduan terperinci berada dalam [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md).
