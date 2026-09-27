@@ -8,10 +8,14 @@ Panduan ini merekodkan token dan pilihan visual untuk website rasmi Masjid Talha
 | --- | --- | --- |
 | Latar utama gelap | `navy-950` | `#071A3E` |
 | Navy sekunder | `navy-900` | `#102B59` |
+| Navy royal | `navy-850` | `#0B214C` |
+| Navy berlapis | `navy-800` | `#17396E` |
 | Biru diraja | `blue-700` | `#254E8A` |
+| Biru diraja gelap | `blue-800` | `#1D3F78` |
 | Biru lembut | `blue-100` | `#E8EEF7` |
 | Emas aksen | `gold-400` | `#D7B75B` |
-| Emas gelap untuk teks kecil | `gold-500` | `#B79639` |
+| Emas sederhana | `gold-500` | `#B79639` |
+| Emas dalam | `gold-600` | `#9F7C27` |
 | Latar ivory | `ivory` | `#F7F4EC` |
 | Latar putih | `paper` | `#FFFFFF` |
 | Teks utama | `ink` | `#202938` |
@@ -21,8 +25,7 @@ Emas dikhaskan untuk butang tindakan utama, sempadan, lencana dan aksen hiasan. 
 
 ## Tipografi
 
-- **Tajuk:** `Iowan Old Style`, `Palatino Linotype` atau `Georgia`, dengan fallback serif sistem.
-- **Isi dan kawalan:** `Segoe UI` atau `Arial`, dengan fallback sans-serif sistem.
+- **Tajuk, isi dan kawalan:** `Segoe UI` atau `Arial`, dengan fallback sans-serif sistem. Berat tajuk sederhana-tebal dan bentuk huruf terbuka memberi rasa institusi yang jelas pada skrin telefon.
 - Fon sistem dipilih supaya teks pantas dimuatkan dan stabil tanpa sambungan fon luaran.
 
 ## Skala dan bentuk
@@ -46,9 +49,12 @@ Komponen React berada dalam `src/components/design-system.tsx`:
 - `Card`: light, navy dan highlighted.
 - `Input` dan `Textarea` dengan label serta hint yang dikaitkan secara semantik.
 - `Navbar` dan `Footer` menggunakan logo rasmi.
+- `IslamicPattern` dan `MihrabMark` dalam `src/components/brand-motifs.tsx` ialah hiasan SVG/CSS yang boleh diguna semula. Corak bintang berjalin diilhamkan oleh kisi geometri banner; mihrab runcing, garis emas, finial dan jalur berlian diilhamkan oleh logo serta seni bina masjid.
 
 `Reveal` dalam `src/components/reveal.tsx` menambah kemunculan fade-up apabila kandungan masuk ke viewport. Ia tidak menyembunyikan kandungan jika `IntersectionObserver` tiada dan menghormati tetapan `prefers-reduced-motion`.
 
 ## Perincian visual
 
-Lengkung mihrab dilukis sebagai hiasan CSS dan corak geometri pada latar ialah motif baharu yang halus. Logo, foto luar masjid dan warna banner rasmi digunakan untuk memahami identiti; banner tidak disalin sebagai layout laman.
+Banner rasmi menunjukkan lattice bintang geometri berulang pada midnight navy. Motif itu diterjemahkan sebagai pattern SVG kecil dengan kelegapan terkawal, bukan imej banner penuh. Bentuk mihrab mengambil lengkung bertemu puncak dan jalur berlian daripada logo; garis emas berganda dan bingkai berlapis memberi detail tanpa mengganggu isi.
+
+Halaman `/design-system` memaparkan variasi permukaan midnight, royal dan deep navy, contoh motif, dan kad terang untuk semakan kontras. Gunakan utility `section--navy-pattern` untuk seksyen navy bermotif dan `section--blue` untuk seksyen biru sekunder. Emas dalam (`gold-600`) sesuai untuk aksen atau detail kecil; teks isi kekal navy/charcoal atau putih dengan kontras yang jelas.

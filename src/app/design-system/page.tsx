@@ -14,6 +14,7 @@ import {
   Textarea,
 } from "@/components/design-system";
 import { Reveal } from "@/components/reveal";
+import { IslamicPattern, MihrabMark } from "@/components/brand-motifs";
 
 export const metadata: Metadata = {
   title: "Sistem Reka Bentuk",
@@ -23,8 +24,10 @@ export const metadata: Metadata = {
 
 const colors = [
   { name: "Midnight navy", hex: "#071A3E", token: "Navy 950", className: "swatch--navy" },
-  { name: "Deep navy", hex: "#102B59", token: "Navy 800", className: "swatch--deep" },
+  { name: "Deep navy", hex: "#102B59", token: "Navy 900", className: "swatch--deep" },
+  { name: "Royal navy", hex: "#0B214C", token: "Navy 850", className: "swatch--royal-navy" },
   { name: "Royal blue", hex: "#254E8A", token: "Blue 700", className: "swatch--blue" },
+  { name: "Deep gold", hex: "#9F7C27", token: "Gold 600", className: "swatch--deep-gold" },
   { name: "Warm gold", hex: "#D7B75B", token: "Gold 400", className: "swatch--gold" },
   { name: "Ivory", hex: "#F7F4EC", token: "Surface ivory", className: "swatch--ivory" },
   { name: "Pure white", hex: "#FFFFFF", token: "Surface white", className: "swatch--white" },
@@ -38,7 +41,7 @@ export default function DesignSystemPage() {
       <Navbar />
       <main>
         <section className="design-hero">
-          <div className="design-hero__pattern" aria-hidden="true" />
+          <IslamicPattern className="design-hero__pattern" />
           <Container className="design-hero__inner" width="wide">
             <Reveal className="design-hero__copy">
               <p className="eyebrow eyebrow--gold">Panduan visual · Fasa 1</p>
@@ -64,11 +67,8 @@ export default function DesignSystemPage() {
 
             <Reveal className="hero-emblem-wrap">
               <div className="hero-emblem" aria-hidden="true">
-                <div className="hero-emblem__arch">
-                  <span className="hero-emblem__diamond" />
-                  <span className="hero-emblem__line" />
-                  <span className="hero-emblem__caption">TALHAH · BUKIT JALIL</span>
-                </div>
+                <MihrabMark className="hero-emblem__mark" />
+                <span className="hero-emblem__caption">TALHAH · BUKIT JALIL</span>
               </div>
             </Reveal>
           </Container>
@@ -107,20 +107,20 @@ export default function DesignSystemPage() {
               <SectionHeading
                 eyebrow="02 · Tipografi"
                 title="Formal pada tajuk, mudah dibaca pada isi."
-                description="Tajuk menggunakan Georgia sebagai serif klasik yang tersedia pada peranti. Isi menggunakan system sans-serif yang jelas, pantas dan tidak memerlukan fon luaran."
+                description="Tajuk dan isi menggunakan sans-serif sistem yang jelas serta seirama dengan wordmark rasmi. Berat sederhana-tebal memberi rasa institusi yang mantap tanpa mengorbankan bacaan pada telefon."
               />
             </Reveal>
             <div className="type-specimen">
               <div className="type-specimen__sample">
-                <p className="type-specimen__label">Display · Georgia · 56 / 1.08</p>
+                <p className="type-specimen__label">Display · System UI · 56 / 1.08</p>
                 <p className="type-display">Rumah ibadah, rumah komuniti.</p>
               </div>
               <div className="type-specimen__sample">
-                <p className="type-specimen__label">Heading 1 · Georgia · 40 / 1.15</p>
+                <p className="type-specimen__label">Heading 1 · System UI · 40 / 1.15</p>
                 <Heading as="h1">Mendekatkan hati melalui ilmu.</Heading>
               </div>
               <div className="type-specimen__sample">
-                <p className="type-specimen__label">Heading 2 · Georgia · 32 / 1.2</p>
+                <p className="type-specimen__label">Heading 2 · System UI · 32 / 1.2</p>
                 <Heading>Ruang untuk beribadah dan bersama.</Heading>
               </div>
               <div className="type-specimen__sample type-specimen__sample--body">
@@ -279,10 +279,44 @@ export default function DesignSystemPage() {
           </Container>
         </Section>
 
-        <Section tone="navy" className="motif-section">
+        <Section tone="navy" className="navy-showcase">
+          <Container width="wide">
+            <Reveal>
+              <SectionHeading
+                eyebrow="05 · Permukaan navy"
+                title="Lebih daripada satu lapisan biru-gold."
+                description="Permukaan gelap memberi identiti yang konsisten untuk pengenalan, hebahan dan sorotan tanpa mengorbankan kontras teks."
+                tone="light"
+              />
+            </Reveal>
+            <div className="navy-showcase__grid">
+              <div className="navy-surface navy-surface--midnight">
+                <IslamicPattern />
+                <span>Midnight · asas utama</span>
+                <strong>Ruang yang tenang</strong>
+                <i aria-hidden="true" />
+              </div>
+              <div className="navy-surface navy-surface--royal">
+                <IslamicPattern />
+                <span>Royal · sorotan sekunder</span>
+                <strong>Aktiviti bersama</strong>
+                <i aria-hidden="true" />
+              </div>
+              <div className="navy-surface navy-surface--deep">
+                <IslamicPattern />
+                <span>Deep · lapisan berbingkai</span>
+                <strong>Ilmu dan khidmat</strong>
+                <i aria-hidden="true" />
+              </div>
+            </div>
+          </Container>
+        </Section>
+
+        <Section tone="navy" className="motif-section section--navy-pattern">
+          <IslamicPattern />
           <Container className="motif-section__inner" width="wide">
             <Reveal className="motif-section__copy">
-              <p className="eyebrow eyebrow--gold">05 · Perincian hiasan</p>
+              <p className="eyebrow eyebrow--gold">06 · Perincian hiasan</p>
               <Heading>Motif Islamik dan lengkung mihrab, dengan ruang untuk bernafas.</Heading>
               <p>
                 Lengkung dan geometri menjadi tekstur latar yang lembut. Ia
@@ -290,12 +324,12 @@ export default function DesignSystemPage() {
               </p>
             </Reveal>
             <Reveal className="ornament-reveal">
-              <div className="ornament-stage" role="img" aria-label="Contoh lengkung mihrab dan motif geometri">
-                <div className="ornament-stage__grid" aria-hidden="true" />
-                <div className="ornament-arch" aria-hidden="true">
-                  <span className="ornament-arch__inner" />
-                  <span className="ornament-arch__dot" />
+              <div className="ornament-stage" role="img" aria-label="Contoh motif bintang geometri, lengkung mihrab runcing dan bingkai emas">
+                <IslamicPattern className="ornament-stage__grid" />
+                <div className="ornament-stage__frame">
+                  <MihrabMark className="ornament-arch" />
                 </div>
+                <div className="ornament-stage__caption">BINGKAI MIHRAB · CORAK BINTANG</div>
               </div>
             </Reveal>
           </Container>
