@@ -21,7 +21,6 @@ export function Reveal({
       return;
     }
 
-    element.classList.add("reveal--hidden");
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry?.isIntersecting) {

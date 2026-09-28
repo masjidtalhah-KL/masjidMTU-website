@@ -52,7 +52,7 @@ Komponen React berada dalam `src/components/design-system.tsx`:
 - `MihrabMark` dalam `src/components/brand-motifs.tsx` ialah hiasan SVG mihrab yang boleh diguna semula. Pattern geometri menggunakan terus `public/brand/brand-pattern-official.png` sebagai sumber tunggal.
 - Nama yang dipaparkan pada website menggunakan nama penuh **Masjid Talhah Bin Ubaidillah**.
 
-`Reveal` dalam `src/components/reveal.tsx` menambah kemunculan fade-up apabila kandungan masuk ke viewport. Ia tidak menyembunyikan kandungan jika `IntersectionObserver` tiada dan menghormati tetapan `prefers-reduced-motion`.
+`Reveal` dalam `src/components/reveal.tsx` menambah gerakan masuk yang halus apabila kandungan masuk ke viewport. Kandungan sentiasa kelihatan walaupun JavaScript atau `IntersectionObserver` tidak berjalan; animasi menghormati tetapan `prefers-reduced-motion`.
 
 ## Perincian visual
 
@@ -60,7 +60,7 @@ Komponen React berada dalam `src/components/design-system.tsx`:
 
 Bentuk mihrab kini dipaparkan sebagai dua garis arch yang halus sahaja, tanpa bingkai atau label, untuk digunakan sebagai hiasan latar yang subtle.
 
-Seksyen navy menggunakan aset rasmi sebagai background texture bersama overlay navy. Variasi permukaan midnight, royal dan deep navy mengekalkan pattern yang sama. Emas dalam (`gold-600`) sesuai untuk aksen atau detail kecil; teks isi kekal navy/charcoal atau putih dengan kontras yang jelas.
+Pattern rasmi digunakan pada hero dan beberapa signature section sahaja. Section navy lain boleh menggunakan latar navy polos atau gradient supaya halaman mempunyai variasi. Emas dalam (`gold-600`) sesuai untuk aksen atau detail kecil; teks isi kekal navy/charcoal atau putih dengan kontras yang jelas.
 
 ## Borang
 

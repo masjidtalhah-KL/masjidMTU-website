@@ -6,7 +6,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | --- | --- | --- |
 | **0** | Project Foundation | **Siap** |
 | **1** | Design System | **Siap** |
-| 2 | Public Homepage | Belum bermula |
+| **2** | Public Homepage | **Siap** |
 | 3 | Public Pages | Belum bermula |
 | 4 | Sanity CMS | Belum bermula |
 | 5 | Dynamic Content | Belum bermula |
