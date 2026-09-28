@@ -213,11 +213,26 @@ const navItems = [
   ["Borang", "#forms"],
 ] as const;
 
-export function Navbar() {
+const publicNavItems = [
+  ["Utama", "#home"],
+  ["Waktu solat", "#prayer-times"],
+  ["Program", "#programs"],
+  ["Kuliah", "#lectures"],
+  ["Tentang", "#about"],
+] as const;
+
+type NavbarProps = {
+  variant?: "design-system" | "public";
+};
+
+export function Navbar({ variant = "design-system" }: NavbarProps) {
+  const isPublic = variant === "public";
+  const items = isPublic ? publicNavItems : navItems;
+
   return (
     <header className="site-header">
       <Container className="site-header__inner" width="wide">
-        <Link className="brand" href="/design-system" aria-label="Masjid Talhah Bin Ubaidillah, halaman sistem reka bentuk">
+        <Link className="brand" href={isPublic ? "/#home" : "/design-system"} aria-label="Masjid Talhah Bin Ubaidillah">
           <Image
             src="/brand/logo-masjid.png"
             alt=""
@@ -231,14 +246,14 @@ export function Navbar() {
             <small>BUKIT JALIL · KUALA LUMPUR</small>
           </span>
         </Link>
-        <nav className="site-nav" aria-label="Navigasi sistem reka bentuk">
-          {navItems.map(([label, href]) => (
+        <nav className="site-nav" aria-label={isPublic ? "Navigasi utama" : "Navigasi sistem reka bentuk"}>
+          {items.map(([label, href]) => (
             <Link className="site-nav__link" href={href} key={href}>
               {label}
             </Link>
           ))}
-          <Button href="#components" size="sm">
-            Lihat komponen
+          <Button href={isPublic ? "#donations" : "#components"} size="sm">
+            {isPublic ? "Sumbangan" : "Lihat komponen"}
           </Button>
         </nav>
       </Container>
@@ -246,7 +261,13 @@ export function Navbar() {
   );
 }
 
-export function Footer() {
+type FooterProps = {
+  variant?: "design-system" | "public";
+};
+
+export function Footer({ variant = "design-system" }: FooterProps) {
+  const isPublic = variant === "public";
+
   return (
     <footer className="site-footer">
       <Container className="site-footer__inner" width="wide">
@@ -264,7 +285,7 @@ export function Footer() {
           </div>
         </div>
         <p className="site-footer__note">
-          Sistem reka bentuk · Fasa 1
+          {isPublic ? "Website rasmi · Bukit Jalil, Kuala Lumpur" : "Sistem reka bentuk · Fasa 1"}
         </p>
       </Container>
     </footer>
