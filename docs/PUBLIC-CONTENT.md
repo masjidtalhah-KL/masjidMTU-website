@@ -1,7 +1,7 @@
 # Kandungan Tempatan & Aset Public — Fasa 3.1
 
-Fasa 3.1 menyediakan data dan production assets sahaja. Belum ada halaman baharu,
-perubahan Navbar/Footer atau integrasi CMS. Homepage dan design system kekal seperti Fasa 2.
+Fasa 3.1 menyediakan data dan production assets sahaja. Commit Fasa 3.1 tidak mengubah
+halaman, Navbar/Footer atau integrasi CMS. Homepage dan design system dikekalkan.
 
 ## Sumber kandungan
 
@@ -152,4 +152,6 @@ Keutuhan semua original disemak dengan SHA-256, saiz dan masa modification sebel
 serta selepas preparation. Lint, production build dan `git diff --check` dijalankan
 sebelum diserahkan untuk review.
 
-Langkah berikutnya ialah Fasa 3.2 selepas arahan baharu; data ini belum digunakan oleh UI.
+Fasa 3.1 telah diluluskan, dikomit dan dipush. Fasa 3.2 menyediakan navigation dan
+route shell sahaja; data ini masih belum digunakan oleh UI. Rujuk
+[PUBLIC-NAVIGATION.md](PUBLIC-NAVIGATION.md).

@@ -499,3 +499,175 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .donation-panel__aside { display: none; }
   .contact-card { padding: 1.25rem; }
 }
+
+/* Fasa 3.2: shared public navigation and compact page shells. */
+.site-header--public .site-header__inner {
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  gap: clamp(1rem, 2vw, var(--spacing-6));
+  padding-block: 0;
+}
+.site-header--public .brand,
+.site-header--public .brand__text { min-width: 0; }
+.public-desktop-nav {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: clamp(var(--spacing-2), 1.8vw, var(--spacing-6));
+  white-space: nowrap;
+}
+.public-mobile-menu { display: none; }
+.site-header--public summary { list-style: none; cursor: pointer; }
+.site-header--public summary::-webkit-details-marker { display: none; }
+.site-header--public summary:focus-visible {
+  outline: 3px solid var(--color-gold-500);
+  outline-offset: 3px;
+}
+.public-nav__link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: var(--spacing-2);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-2) var(--spacing-3);
+  color: var(--color-navy-900);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.public-nav__link:hover { background: var(--color-blue-100); }
+.public-nav__link[aria-current="page"],
+.public-nav__link[data-active="true"] {
+  background: var(--color-ivory);
+  box-shadow: inset 0 -2px var(--color-gold-500);
+  font-weight: 750;
+}
+.public-nav__donation { min-height: 2.75rem; }
+.public-nav__chevron { flex-shrink: 0; transition: transform 160ms ease; }
+.profile-navigation { position: relative; }
+.profile-navigation[open] > summary .public-nav__chevron { transform: rotate(180deg); }
+.profile-navigation__panel {
+  position: absolute;
+  z-index: 3;
+  top: calc(100% + var(--spacing-2));
+  left: 0;
+  width: 15rem;
+  border: 1px solid var(--color-gold-200);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2);
+  background: var(--color-paper);
+  box-shadow: var(--shadow-raised);
+}
+.public-desktop-nav .profile-navigation[open] > .profile-navigation__panel {
+  animation: public-nav-dropdown-enter 170ms cubic-bezier(0.2, 0.65, 0.3, 1);
+}
+@keyframes public-nav-dropdown-enter {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.profile-navigation__link {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-2) var(--spacing-3);
+  color: var(--color-navy-900);
+  font-size: 0.9rem;
+}
+.profile-navigation__link:hover { background: var(--color-blue-100); }
+.profile-navigation__link[aria-current="page"] {
+  background: var(--color-ivory);
+  box-shadow: inset 3px 0 var(--color-gold-500);
+  font-weight: 750;
+}
+.public-page-layout { display: flex; min-height: 100svh; flex-direction: column; }
+.public-page-main { display: flex; flex: 1; flex-direction: column; }
+.public-page-header {
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+  color: var(--color-paper);
+  background-color: var(--color-navy-950);
+  background-image:
+    linear-gradient(110deg, rgb(7 26 62 / 96%) 12%, rgb(7 26 62 / 82%) 100%),
+    url("/brand/brand-pattern-official.png");
+  background-position: center;
+  background-size: cover;
+}
+.public-page-header .heading { font-size: clamp(2rem, 3.5vw, 2.85rem); }
+.public-page-header__intro { max-width: 60ch; margin: var(--spacing-4) 0 0; color: rgb(255 255 255 / 78%); }
+.public-breadcrumb { margin-bottom: var(--spacing-6); font-size: 0.82rem; }
+.public-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.public-breadcrumb li { display: inline-flex; align-items: center; gap: var(--spacing-2); }
+.public-breadcrumb a { color: rgb(255 255 255 / 72%); }
+.public-breadcrumb a:hover { color: var(--color-gold-400); }
+.public-breadcrumb__separator { color: rgb(255 255 255 / 40%); }
+.public-page-body { flex: 1; padding-block: clamp(2rem, 5vw, 4rem); }
+.public-page-placeholder { max-width: var(--container-narrow); }
+.public-page-placeholder > p { margin: 0; color: var(--color-ink-muted); }
+
+@media (width < 50rem) {
+  .site-header--public .site-header__inner {
+    display: block;
+    min-height: 5rem;
+    padding-block: 0;
+  }
+  .site-header--public .brand {
+    width: calc(100% - 5.75rem);
+    min-width: 0;
+    min-height: 5rem;
+    padding-block: var(--spacing-4);
+  }
+  .site-header--public .brand__logo { width: 48px; height: 48px; }
+  .site-header--public .brand__text { min-width: 0; }
+  .site-header--public .brand__text strong { font-size: 0.88rem; }
+  .public-desktop-nav { display: none; }
+  .public-mobile-menu { display: block; width: 100%; }
+  .public-mobile-menu__trigger {
+    position: absolute;
+    top: 1.125rem;
+    right: 0;
+    display: inline-flex;
+    min-width: 5rem;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    border: 1px solid rgb(16 43 89 / 18%);
+    border-radius: var(--radius-sm);
+    color: var(--color-navy-950);
+    background: var(--color-paper);
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  .public-mobile-menu[open] > summary { background: var(--color-blue-100); }
+  .public-mobile-nav {
+    display: grid;
+    gap: var(--spacing-2);
+    border-top: 1px solid rgb(7 26 62 / 10%);
+    padding-block: var(--spacing-4);
+  }
+  .public-mobile-nav .public-nav__link { width: 100%; justify-content: space-between; }
+  .public-mobile-nav .profile-navigation__panel {
+    position: static;
+    width: auto;
+    margin: var(--spacing-2) 0 var(--spacing-2) var(--spacing-3);
+    border: 0;
+    border-left: 1px solid var(--color-gold-500);
+    border-radius: 0;
+    padding: var(--spacing-1) var(--spacing-2);
+    background: var(--color-ivory);
+    box-shadow: none;
+  }
+  .public-mobile-nav .public-nav__donation { margin-top: var(--spacing-2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .public-nav__chevron { transition: none; }
+  .public-desktop-nav .profile-navigation[open] > .profile-navigation__panel { animation: none; }
+}

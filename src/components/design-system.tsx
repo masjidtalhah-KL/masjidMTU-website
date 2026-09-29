@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PublicNavigation } from "./public/public-navigation";
 import type {
   ButtonHTMLAttributes,
   InputHTMLAttributes,
@@ -213,26 +214,17 @@ const navItems = [
   ["Borang", "#forms"],
 ] as const;
 
-const publicNavItems = [
-  ["Utama", "#home"],
-  ["Waktu solat", "#prayer-times"],
-  ["Program", "#programs"],
-  ["Kuliah", "#lectures"],
-  ["Tentang", "#about"],
-] as const;
-
 type NavbarProps = {
   variant?: "design-system" | "public";
 };
 
 export function Navbar({ variant = "design-system" }: NavbarProps) {
   const isPublic = variant === "public";
-  const items = isPublic ? publicNavItems : navItems;
 
   return (
-    <header className="site-header">
+    <header className={isPublic ? "site-header site-header--public" : "site-header"}>
       <Container className="site-header__inner" width="wide">
-        <Link className="brand" href={isPublic ? "/#home" : "/design-system"} aria-label="Masjid Talhah Bin Ubaidillah">
+        <Link className="brand" href={isPublic ? "/" : "/design-system"} aria-label="Masjid Talhah Bin Ubaidillah">
           <Image
             src="/brand/logo-masjid.png"
             alt=""
@@ -246,16 +238,20 @@ export function Navbar({ variant = "design-system" }: NavbarProps) {
             <small>BUKIT JALIL · KUALA LUMPUR</small>
           </span>
         </Link>
-        <nav className="site-nav" aria-label={isPublic ? "Navigasi utama" : "Navigasi sistem reka bentuk"}>
-          {items.map(([label, href]) => (
-            <Link className="site-nav__link" href={href} key={href}>
-              {label}
-            </Link>
-          ))}
-          <Button href={isPublic ? "#donations" : "#components"} size="sm">
-            {isPublic ? "Sumbangan" : "Lihat komponen"}
-          </Button>
-        </nav>
+        {isPublic ? (
+          <PublicNavigation />
+        ) : (
+          <nav className="site-nav" aria-label="Navigasi sistem reka bentuk">
+            {navItems.map(([label, href]) => (
+              <Link className="site-nav__link" href={href} key={href}>
+                {label}
+              </Link>
+            ))}
+            <Button href="#components" size="sm">
+              Lihat komponen
+            </Button>
+          </nav>
+        )}
       </Container>
     </header>
   );

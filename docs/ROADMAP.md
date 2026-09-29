@@ -18,6 +18,16 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | 11 | Security & Production Hardening | Belum bermula |
 | 12 | Production Launch | Belum bermula |
 
-Fasa 3.1 menyediakan data tempatan dan production assets. Halaman public serta navigation
-baharu belum dibina. Rujuk [PUBLIC-CONTENT.md](PUBLIC-CONTENT.md) untuk sumber kandungan,
-manifest dan mapping aset. Fasa 3.2 menunggu arahan seterusnya.
+## Pecahan Fasa 3
+
+| Langkah | Fokus | Status |
+| --- | --- | --- |
+| 3.0 | Planning & Asset Mapping | Diluluskan |
+| 3.1 | Content & Asset Preparation | **Siap** — dikomit dan dipush |
+| 3.2 | Shared Navigation & Public Page Shell | **Siap** — diluluskan |
+| 3.3 dan seterusnya | Kandungan halaman public | Belum bermula |
+
+Rujuk [PUBLIC-CONTENT.md](PUBLIC-CONTENT.md) untuk sumber kandungan, manifest dan
+mapping aset. Navigation serta lima route shell Fasa 3.2 direkodkan dalam
+[PUBLIC-NAVIGATION.md](PUBLIC-NAVIGATION.md). Shell masih memaparkan placeholder;
+data tempatan Fasa 3.1 belum digunakan oleh UI.
