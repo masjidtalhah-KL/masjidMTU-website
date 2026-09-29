@@ -7,7 +7,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **0** | Project Foundation | **Siap** |
 | **1** | Design System | **Siap** |
 | **2** | Public Homepage | **Siap** |
-| 3 | Public Pages | Belum bermula |
+| **3** | Public Pages | **Semasa** |
 | 4 | Sanity CMS | Belum bermula |
 | 5 | Dynamic Content | Belum bermula |
 | 6 | Admin Foundation | Belum bermula |
@@ -17,3 +17,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | 10 | Ramadan Iftar | Belum bermula |
 | 11 | Security & Production Hardening | Belum bermula |
 | 12 | Production Launch | Belum bermula |
+
+Fasa 3.1 menyediakan data tempatan dan production assets. Halaman public serta navigation
+baharu belum dibina. Rujuk [PUBLIC-CONTENT.md](PUBLIC-CONTENT.md) untuk sumber kandungan,
+manifest dan mapping aset. Fasa 3.2 menunggu arahan seterusnya.
