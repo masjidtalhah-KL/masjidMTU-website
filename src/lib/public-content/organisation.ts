@@ -206,7 +206,7 @@ export const organisationSlots = [
     "appointment": null,
     "status": "occupied",
     "photoId": "person-imam-01",
-    "order": 1
+    "order": 5
   },
   {
     "id": "imam-02",
@@ -236,7 +236,7 @@ export const organisationSlots = [
     "appointment": "Pegawai Hal Ehwal Islam (S9)",
     "status": "occupied",
     "photoId": "person-imam-04",
-    "order": 4
+    "order": 1
   },
   {
     "id": "imam-05",
@@ -246,7 +246,7 @@ export const organisationSlots = [
     "appointment": null,
     "status": "occupied",
     "photoId": "person-imam-05",
-    "order": 5
+    "order": 4
   },
   {
     "id": "bilal-01",
@@ -256,7 +256,7 @@ export const organisationSlots = [
     "appointment": null,
     "status": "occupied",
     "photoId": "person-bilal-01",
-    "order": 1
+    "order": 3
   },
   {
     "id": "bilal-02",
@@ -266,7 +266,7 @@ export const organisationSlots = [
     "appointment": "Pem. Hal Ehwal Islam (S1)",
     "status": "occupied",
     "photoId": "person-bilal-02",
-    "order": 2
+    "order": 1
   },
   {
     "id": "bilal-03",
@@ -276,7 +276,7 @@ export const organisationSlots = [
     "appointment": null,
     "status": "occupied",
     "photoId": "person-bilal-03",
-    "order": 3
+    "order": 4
   },
   {
     "id": "bilal-04",
@@ -286,7 +286,7 @@ export const organisationSlots = [
     "appointment": null,
     "status": "occupied",
     "photoId": "person-bilal-04",
-    "order": 4
+    "order": 2
   },
   {
     "id": "noja-01",

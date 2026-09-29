@@ -25,11 +25,13 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | 3.0 | Planning & Asset Mapping | Diluluskan |
 | 3.1 | Content & Asset Preparation | **Siap** — dikomit dan dipush |
 | 3.2 | Shared Navigation & Public Page Shell | **Siap** — diluluskan |
-| 3.3 | Halaman Profil | **Semasa** — siap untuk review, belum dikomit |
-| 3.4 dan seterusnya | Halaman public lain | Belum bermula |
+| 3.3 | Halaman Profil | **Siap** — dikomit dan dipush |
+| 3.4 | Carta Organisasi | **Siap** — dikomit dan dipush |
+| 3.5 dan seterusnya | Halaman public lain | Belum bermula |
 
 Rujuk [PUBLIC-CONTENT.md](PUBLIC-CONTENT.md) untuk sumber kandungan, manifest dan
 mapping aset. Navigation serta lima route shell Fasa 3.2 direkodkan dalam
 [PUBLIC-NAVIGATION.md](PUBLIC-NAVIGATION.md). Halaman `/profil` menggunakan data
-tempatan Fasa 3.1; rujuk [PUBLIC-PROFILE.md](PUBLIC-PROFILE.md). Empat halaman lain
-masih memaparkan placeholder.
+tempatan Fasa 3.1; rujuk [PUBLIC-PROFILE.md](PUBLIC-PROFILE.md). Halaman organisasi
+direkodkan dalam [PUBLIC-ORGANISATION.md](PUBLIC-ORGANISATION.md). Surau Kariah,
+Galeri dan Hubungi masih memaparkan placeholder.
