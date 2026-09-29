@@ -6,18 +6,24 @@ import type { PublicPageHeaderProps } from "./public-page-header";
 /** Shared shell for Phase 3 pages; homepage keeps its approved composition. */
 export function PublicPageLayout({
   children,
+  contentLayout = "placeholder",
   ...headerProps
-}: PublicPageHeaderProps & { children: ReactNode }) {
+}: PublicPageHeaderProps & {
+  children: ReactNode;
+  contentLayout?: "placeholder" | "sections";
+}) {
   return (
     <div className="public-page-layout">
       <Navbar variant="public" />
       <main className="public-page-main">
         <PublicPageHeader {...headerProps} />
-        <Section tone="ivory" className="public-page-body">
-          <Container width="wide">
-            <Card className="public-page-placeholder">{children}</Card>
-          </Container>
-        </Section>
+        {contentLayout === "sections" ? children : (
+          <Section tone="ivory" className="public-page-body">
+            <Container width="wide">
+              <Card className="public-page-placeholder">{children}</Card>
+            </Container>
+          </Section>
+        )}
       </main>
       <Footer variant="public" />
     </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PublicRouteTransition } from "@/components/public/public-route-transition";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ms">
-      <body>{children}</body>
+      <body><PublicRouteTransition>{children}</PublicRouteTransition></body>
     </html>
   );
 }

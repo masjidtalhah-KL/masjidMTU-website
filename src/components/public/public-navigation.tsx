@@ -102,6 +102,80 @@ function ProfileDropdown({
   );
 }
 
+function DesktopProfileNavigation({ pathname }: { pathname: string }) {
+  const triggerRef = useRef<HTMLAnchorElement>(null);
+  const dismissedRef = useRef(false);
+  const [hovered, setHovered] = useState(false);
+  const [focusWithin, setFocusWithin] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const isActive = pathname === "/profil" || pathname.startsWith("/profil/");
+  const isOpen = (hovered || focusWithin) && !dismissed;
+
+  return (
+    <div
+      className="profile-navigation profile-navigation--desktop"
+      data-open={isOpen ? "true" : "false"}
+      onPointerEnter={() => {
+        setHovered(true);
+        dismissedRef.current = false;
+        setDismissed(false);
+      }}
+      onPointerLeave={() => {
+        setHovered(false);
+        dismissedRef.current = false;
+        setDismissed(false);
+      }}
+      onFocusCapture={() => {
+        setFocusWithin(true);
+        if (document.activeElement !== triggerRef.current || !dismissedRef.current) {
+          dismissedRef.current = false;
+          setDismissed(false);
+        }
+      }}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setFocusWithin(false);
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && isOpen) {
+          event.preventDefault();
+          event.stopPropagation();
+          dismissedRef.current = true;
+          triggerRef.current?.focus();
+          setDismissed(true);
+        }
+      }}
+    >
+      <Link
+        ref={triggerRef}
+        className="public-nav__link profile-navigation__trigger"
+        href="/profil"
+        aria-expanded={isOpen}
+        aria-controls="desktop-profile-links"
+        data-active={isActive ? "true" : undefined}
+      >
+        Profil <Chevron />
+      </Link>
+      <nav
+        className="profile-navigation__panel"
+        id="desktop-profile-links"
+        aria-label="Halaman profil"
+        aria-hidden={!isOpen}
+      >
+        {profileLinks.map(({ label, href }) => (
+          <Link
+            key={href}
+            className="profile-navigation__link"
+            href={href}
+            aria-current={pathname === href ? "page" : undefined}
+          >
+            {label}
+          </Link>
+        ))}
+      </nav>
+    </div>
+  );
+}
+
 function NavigationLinks({
   pathname,
   prefix,
@@ -172,7 +246,20 @@ export function PublicNavigation() {
   return (
     <>
       <nav className="public-desktop-nav" aria-label="Navigasi utama">
-        <NavigationLinks pathname={pathname} prefix="desktop" />
+        <DesktopProfileNavigation pathname={pathname} />
+        {mainLinks.map(({ label, href }) => (
+          <Link
+            key={href}
+            className="public-nav__link"
+            href={href}
+            aria-current={pathname === href ? "page" : undefined}
+          >
+            {label}
+          </Link>
+        ))}
+        <Link className="button button--primary button--sm public-nav__donation" href="/#donations">
+          Sumbangan
+        </Link>
       </nav>
       <details
         className="public-mobile-menu"

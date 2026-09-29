@@ -153,5 +153,7 @@ serta selepas preparation. Lint, production build dan `git diff --check` dijalan
 sebelum diserahkan untuk review.
 
 Fasa 3.1 telah diluluskan, dikomit dan dipush. Fasa 3.2 menyediakan navigation dan
-route shell sahaja; data ini masih belum digunakan oleh UI. Rujuk
-[PUBLIC-NAVIGATION.md](PUBLIC-NAVIGATION.md).
+route shell; rujuk [PUBLIC-NAVIGATION.md](PUBLIC-NAVIGATION.md). Dalam Fasa 3.3,
+`/profil` menggunakan `profile.ts` dan manifest aset. Data organisasi, surau,
+galeri dan hubungan masih belum digunakan oleh UI. Rujuk
+[PUBLIC-PROFILE.md](PUBLIC-PROFILE.md).
