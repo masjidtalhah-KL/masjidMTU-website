@@ -9,11 +9,13 @@ Project ini ialah asas website rasmi masjid yang dibangunkan secara berfasa. Fas
 - Tailwind CSS
 - ESLint
 
-Sanity, Supabase/PostgreSQL, email dan payment gateway belum disambungkan.
+Sanity Studio tersedia pada `/studio` untuk Fasa 4.1. Public pages masih
+menggunakan data tempatan. Supabase/PostgreSQL, email dan payment belum disambungkan.
 
 ## Keperluan
 
-Pasang Node.js versi 20.9 atau lebih baharu dan npm. Untuk projek ini, gunakan arahan npm di bawah.
+Pasang Node.js versi 22.12 atau lebih baharu dan npm (Node 24 LTS disyorkan).
+Versi ini diperlukan oleh Sanity 6. Untuk projek ini, gunakan arahan npm di bawah.
 
 ## Mula menggunakan projek
 
@@ -41,7 +43,11 @@ npm run start
 
 ## Tetapan persekitaran
 
-`.env.example` menyenaraikan nama tetapan yang mungkin diperlukan pada fasa kemudian. Ia tidak mengandungi credentials. Salin sebagai `.env.local` hanya apabila integrasi berkaitan dimulakan, dan masukkan nilai sebenar pada komputer sendiri. Jangan commit `.env.local`.
+Salin `.env.example` sebagai `.env.local` sebelum menjalankan aplikasi atau build.
+Tiga tetapan `NEXT_PUBLIC_SANITY_*` diperlukan untuk Studio; nilai contoh ialah
+identifier public projek yang diluluskan, bukan credentials. Service lain masih
+placeholder. Jangan commit `.env.local`. Rujuk [docs/SANITY.md](docs/SANITY.md)
+untuk login, CORS dan konfigurasi `/studio`.
 
 ## Struktur asas
 
@@ -51,6 +57,7 @@ src/components/   Komponen yang boleh digunakan semula
 src/lib/          Fungsi bantuan dan sambungan service
 src/config/       Tetapan aplikasi
 src/types/        Jenis TypeScript bersama
+src/sanity/       Konfigurasi, client dan schema Sanity
 public/           Fail statik seperti imej dan ikon
 docs/             Architecture dan roadmap projek
 ```

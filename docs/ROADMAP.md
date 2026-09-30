@@ -7,8 +7,8 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **0** | Project Foundation | **Siap** |
 | **1** | Design System | **Siap** |
 | **2** | Public Homepage | **Siap** |
-| **3** | Public Pages | **Semasa** |
-| 4 | Sanity CMS | Belum bermula |
+| **3** | Public Pages | **Siap** |
+| **4** | Sanity CMS | **Semasa** |
 | 5 | Dynamic Content | Belum bermula |
 | 6 | Admin Foundation | Belum bermula |
 | 7 | Feature Flags & Campaign Engine | Belum bermula |
@@ -39,3 +39,13 @@ direkodkan dalam [PUBLIC-ORGANISATION.md](PUBLIC-ORGANISATION.md). Surau Kariah
 direkodkan dalam [PUBLIC-SURAU.md](PUBLIC-SURAU.md). Galeri direkodkan dalam
 [PUBLIC-GALLERY.md](PUBLIC-GALLERY.md). Halaman Hubungi direkodkan dalam
 [PUBLIC-CONTACT.md](PUBLIC-CONTACT.md).
+
+## Pecahan Fasa 4
+
+| Langkah | Fokus | Status |
+| --- | --- | --- |
+| 4.1 | Sanity CMS Foundation — embedded Studio dan Site Settings singleton | **Semasa** — menunggu review |
+| 4.2 | Content Models | Belum bermula |
+
+Rujuk [SANITY.md](SANITY.md). Halaman public kekal menggunakan data tempatan;
+migration dan frontend CMS fetch belum dimulakan.

@@ -1,17 +1,19 @@
 # Architecture Projek
 
-Dokumen ini merekodkan susunan yang dirancang. Sambungan CMS, pangkalan data, dashboard, kempen dan pembayaran belum dibina dalam Fasa 0.
+Dokumen ini merekodkan architecture semasa dan susunan fasa berikutnya.
+Fasa 4.1 menyediakan embedded Sanity Studio; public pages masih menggunakan data
+tempatan. Pangkalan data operasi, dashboard, kempen dan pembayaran belum dibina.
 
 ```text
 Pengunjung
    ↓
 Public Website — Next.js
-   ├── Kandungan — Sanity CMS (kemudian)
+   ├── Kandungan — static/local (CMS fetch kemudian)
    ├── Data operasi — Supabase / PostgreSQL (kemudian)
    └── Kempen — Qurban / Ramadan / Wakaf / Sumbangan (kemudian)
 
 Admin operasi — /admin (kemudian)
-Pengurusan kandungan — /studio (Sanity Studio, kemudian)
+Pengurusan kandungan — /studio (Sanity Studio, Fasa 4.1)
 Payment gateway, resit dan email — fasa kemudian
 ```
 
@@ -36,4 +38,15 @@ Fasa 1 menetapkan token visual, komponen React yang boleh digunakan semula, dan 
 
 ## Homepage awam
 
-Homepage Fasa 2 menggunakan imej rasmi `public/brand/masjid-dome.jpg` untuk visual kubah dalam hero dan `public/brand/masjid-exterior.jpg` untuk foto bahagian luar. Homepage memaparkan foto exterior melalui derivative WebP `public/brand/masjid-exterior.webp`; JPG asal dikekalkan. Kandungan waktu solat, pengumuman, program, kuliah dan berita datang daripada mock data dalam `src/lib/homepage-content.ts`. Tiada CMS atau pangkalan data disambungkan.
+Homepage Fasa 2 menggunakan imej rasmi `public/brand/masjid-dome.jpg` untuk visual kubah dalam hero dan `public/brand/masjid-exterior.jpg` untuk foto bahagian luar. Homepage memaparkan foto exterior melalui derivative WebP `public/brand/masjid-exterior.webp`; JPG asal dikekalkan. Kandungan waktu solat, pengumuman, program, kuliah dan berita datang daripada mock data dalam `src/lib/homepage-content.ts`. Homepage tidak membuat fetch CMS atau pangkalan data.
+
+## Sanity Foundation
+
+`/studio` menggunakan official NextStudio dan Sanity authentication. Config,
+client dan schema berkongsi env di `src/sanity/env.ts`. Singleton `siteSettings`
+ialah schema pertama tanpa migration data. Tiada page public disambung ke client.
+Rujuk [SANITY.md](SANITY.md) untuk configuration, singleton dan CORS.
+
+Sanity hanya untuk kandungan editorial/public. Registrations, peserta Qurban,
+bayaran, resit dan transaksi Ramadan ialah data operasi Supabase/PostgreSQL
+dengan `/admin` berasingan pada fasa kemudian.
