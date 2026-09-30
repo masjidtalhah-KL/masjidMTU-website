@@ -1,0 +1,2 @@
+.section { padding-block: clamp(3rem, 6vw, 5rem); }
+.heading { margin-bottom: var(--spacing-8); }
