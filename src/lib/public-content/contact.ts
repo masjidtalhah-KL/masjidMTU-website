@@ -1,10 +1,11 @@
-/** Kandungan tempatan Fasa 3.1; UI dan integrasi CMS belum dibina. */
+/** Kandungan tempatan Fasa 3.1 dengan tambahan yang diluluskan dalam Fasa 3.7. */
 export interface ContactDetails {
   readonly source: string;
   readonly addressLines: readonly string[];
   readonly phone: { readonly label: string; readonly href: `tel:${string}` };
   readonly email: { readonly label: string; readonly href: `mailto:${string}` };
   readonly facebook: { readonly href: `https://${string}` };
+  readonly instagram: { readonly href: `https://${string}` };
   readonly officeHours: readonly { readonly days: string; readonly hours: string }[];
 }
 
@@ -27,10 +28,17 @@ export const contact = {
   "facebook": {
     "href": "https://www.facebook.com/masjidtalhahkl"
   },
+  "instagram": {
+    "href": "https://www.instagram.com/masjidtalhahubaidillahofficial/"
+  },
   "officeHours": [
     {
       "days": "Isnin – Jumaat",
       "hours": "9:00 pagi – 5:00 petang"
+    },
+    {
+      "days": "Sabtu, Ahad dan Cuti Umum",
+      "hours": "Tutup"
     }
   ]
 } as const satisfies ContactDetails;
