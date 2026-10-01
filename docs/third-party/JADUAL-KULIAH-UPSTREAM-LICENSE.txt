@@ -1,0 +1,20 @@
+Jadual Kuliah Generator
+Copyright (c) 2026
+
+This project is licensed under the GNU General Public License v3.0
+
+For the full license text, visit: https://www.gnu.org/licenses/gpl-3.0.html
+
+SUMMARY:
+- You are free to use, modify, and distribute this software
+- If you distribute modified versions, you must also license them under GPLv3
+- Source code must be made available when distributed
+- No warranty is provided
+
+KEY TERMS (GPLv3):
+1. FREEDOM: Users have the freedom to run, copy, distribute, study, change and improve the software
+2. COPYLEFT: Any derivative work must be licensed under the same GPLv3 license
+3. TRANSPARENCY: Source code must be available to all users of the software
+4. NO WARRANTY: The software is provided "as is" without any warranty
+
+For detailed terms, see: https://www.gnu.org/licenses/gpl-3.0.txt

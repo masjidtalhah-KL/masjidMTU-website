@@ -1,0 +1,124 @@
+# Penjana Jadual Kuliah — Prototype Fasa 4.2A
+
+Diluluskan untuk checkpoint `phase-4.2-sanity-content-model` pada 2026-10-01.
+Model/renderer tersedia sebagai prototype; Save/Publish sebenar belum dibina.
+
+## Scope dan akses
+
+Tool native Sanity di `/studio/penjana-jadual-kuliah`, dalam navigation atas
+Studio. Structure asal mengekalkan Site Settings, Profil, Pengumuman, Program,
+Berita, Organisasi, Surau dan Galeri. Model kuliah ringkas terdahulu diganti;
+schema editorial lain tidak diubah oleh Fasa 4.2A.
+
+Tool menggunakan React, CSS module dan SVG tanpa dependency baharu. Editor
+dimuatkan secara lazy supaya konfigurasi/schema CLI tidak bergantung kepada
+CSS atau API browser. Authentication Studio asal dikekalkan.
+
+## Prototype dalam memori
+
+- Bulan permulaan Oktober 2026 mempunyai 29 tarikh berisi, 33 sesi dan tiga
+  penceramah fiksyen yang dibentuk daripada aturan serta override manual.
+  Tiada nama atau jadual sebenar dimigrasikan ke Sanity.
+- Tukar bulan/tahun; jadual bulan baharu dijana daripada aturan. Bulan yang
+  telah diedit dikekalkan sepanjang sesi tool yang sama.
+- Penceramah reusable mempunyai nama, tajuk lalai dan aktif/tidak aktif.
+  Tiga portrait rujukan upstream digunakan di bawah label fiksyen A/B/C untuk
+  QA visual sahaja. Tiada portrait atau data sebenar dimuat naik ke Sanity.
+- Aturan memilih hari, setiap minggu atau minggu pertama hingga kelima,
+  jenis sesi, penceramah dan tajuk/kitab. Perubahan aturan diterapkan melalui
+  **Terapkan ke bulan ini**. Penceramah tidak aktif kekal pada jadual/aturan
+  lama tetapi tidak ditawarkan untuk pemilihan baharu.
+- Kalendar Isnin–Ahad; editor tarikh menyokong maksimum dua sesi.
+  Sunting sesi terus mengemas kini poster dan menandakan tarikh sebagai manual.
+- Aturan tidak menggantikan override manual, termasuk tarikh yang dikosongkan.
+  **Kembali ke aturan** memulihkan tarikh tertentu. Konflik lebih dua sesi
+  dilaporkan dan tidak mengubah jadual semasa.
+- Semua data demo ialah React state: tiada Sanity client, fetch dataset,
+  mutation, localStorage, token, upload atau Save draft sebenar. Refresh atau
+  meninggalkan tool mengosongkan demo. **Publish Jadual** disabled secara nyata.
+
+## Model yang dicadangkan
+
+| Type | Peranan | Medan |
+| --- | --- | --- |
+| `lectureSpeaker` | Penceramah reusable | Nama, foto pilihan, tajuk/kitab lalai pilihan, aktif |
+| `lectureRule` | Aturan berulang | Hari 0–6 (Ahad–Sabtu), occurrence 0–5 (setiap/pertama–kelima), empat jenis sesi, ref penceramah pilihan, tajuk pilihan, aktif |
+| `lectureMonth` | Satu dokumen sebulan | Tahun 2020–2100, bulan 1–12, entries ordered |
+| `lectureDay` | Object embedded, satu tarikh | Tarikh ISO unik dan sah dalam bulan, 0–2 sesi, flag manual |
+| `lectureSession` | Object embedded | Jenis sesi, ref penceramah pilihan, nama/tajuk/foto snapshot pilihan, ref aturan asal pilihan |
+
+Jenis sesi: Kuliah Subuh, Kuliah Maghrib, Tazkirah Jumaat dan Bacaan Yasin & Tahlil.
+Tiada dokumen berasingan untuk setiap sesi/tarikh. Draft menggunakan lifecycle
+Sanity, tanpa duplicate custom status. Snapshot nama/foto pada sesi menjaga
+poster published apabila profil penceramah berubah kemudian.
+
+Tiga document types disembunyikan daripada Structure, templates dan Create new,
+read-only, serta tanpa document actions semasa prototype. Ini guardrail UI;
+permissions dataset Sanity tetap sempadan bagi API luar. Tiada dokumen kuliah
+production dicipta oleh implementation ini.
+
+## Rujukan workflow dan visual
+
+Diperiksa: [JadualKuliahBulanan](https://github.com/masjidtalhah-KL/JadualKuliahBulanan),
+commit `378b1bbb4084b4f7b6c55ac70a5c4f769d221d28`:
+
+- `app-core.js`: pengiraan hari/minggu, aturan, dua slot dan changed-day override.
+- `app-ui.js`: library penceramah, editor bulanan, preview dan export.
+- `profile.js` / `app.css`: hierarchy header, grid Isnin–Ahad, label hari,
+  badge tarikh kuning, band sesi berwarna dan bacaan Yasin berwarna teal.
+- JSON: bentuk monthly entries/changed days diperiksa; Oktober sebenar digunakan
+  kemudian dalam harness QA read-only sahaja, tidak diimport ke runtime/dataset.
+
+Renderer React/SVG mengadaptasi geometri, visual dan tingkah laku legacy tanpa
+iframe atau HTML bundle penuh. Enam aset poster rujukan dipakai semula melalui
+`public/lecture-demo/`; source upstream dan GPL direkodkan dalam
+[third-party/JADUAL-KULIAH-NOTICE.md](third-party/JADUAL-KULIAH-NOTICE.md).
+Keputusan lesen derivative/combined application dan hak aset sebelum production
+masih terbuka. Poster gradient legacy tidak mengubah pattern rasmi website.
+
+## Export asas untuk review
+
+Preview ialah SVG responsive. Download mengembedded aset same-origin yang digunakan
+ke salinan SVG, render canvas A4 3508 × 2480 atau A3 4961 × 3508 dan muat turun PNG,
+atau JPEG berkualiti tinggi dalam satu halaman PDF A4/A3 landscape. UI memaparkan ralat jika aset
+gagal dibaca; poster tidak diexport dengan identiti yang hilang secara senyap.
+
+Export berlabel prototype/data contoh, bukan jadual rasmi. Text fitting mengukur
+fon browser, wrap dan menyesuaikan saiz mengikut kumpulan single/dual. Nama/topik
+tidak dipendekkan secara senyap; overflow memaparkan amaran dan menolak eksport.
+Target pixel sekitar 300dpi mengikut paper size; metadata DPI PNG, proof cetakan,
+vector PDF dan cross-platform font parity belum diselesaikan.
+
+## Penerbitan sebenar kemudian
+
+1. Load penceramah/aturan/draft melalui authenticated Studio client.
+2. Edit dan preview dalam state editor; Save draft menulis satu dokumen bulanan
+   dengan ID stabil seperti `lectureMonth-2026-10`, melalui permissions Sanity.
+3. Validate tarikh, dua sesi, konflik dan kandungan; resolve snapshot penceramah.
+4. Publish menggunakan lifecycle Sanity, dengan pengendalian concurrency dan
+   ralat save supaya editing tidak tertindih.
+5. `/kuliah` dan homepage membaca dokumen published sahaja; export poster
+   menggunakan snapshot bulan yang sama.
+
+Aliran ini ialah rancangan sahaja. Belum ada save/publish/backend, migration,
+frontend CMS query, `/kuliah`, webhook atau draft preview. QR infaq, multi-profile,
+backup/import, event banners, foto adjustment dan full export parity ditangguhkan.
+Rekod operasi/transaksi kekal untuk Supabase/PostgreSQL + `/admin`.
+
+## Validation
+
+Jalankan lint, production build dan diff check. Semak Studio logged in, semua
+panel, pertukaran bulan, live preview, override, had sesi dan PNG/PDF. Ujian
+schema/recurrence menggunakan fixture dalam memori, tanpa production writes.
+Semak enam public routes kekal sepadan dengan baseline.
+
+Hasil review implementation: lint/build/diff check dan schema extraction lulus;
+51 kes validator Sanity dan 2,916 kombinasi recurrence lulus. Manual edit,
+cleared override, restore, dua sesi, live nama/tajuk dan bulan enam baris
+disemak dalam Studio authenticated. Tiada overflow pada 375/430/768/1440px.
+PNG serta PDF A4/A3 berjaya didownload; PDF A4 dirender dan disemak secara
+visual. Dua belas semakan public route/viewport sepadan dengan baseline.
+QA Oktober sebenar: 34 sesi, semua reference foto dipadankan, 63 elemen teks
+tanpa clipping dan tiada overflow; PNG/PDF A4/A3 lulus. Lihat
+[SANITY-OCTOBER-QA.md](SANITY-OCTOBER-QA.md). Tiada production writes;
+model/renderer akhir diluluskan untuk checkpoint. Publish kekal disabled.

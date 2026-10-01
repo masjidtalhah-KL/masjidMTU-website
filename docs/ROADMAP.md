@@ -44,8 +44,18 @@ direkodkan dalam [PUBLIC-SURAU.md](PUBLIC-SURAU.md). Galeri direkodkan dalam
 
 | Langkah | Fokus | Status |
 | --- | --- | --- |
-| 4.1 | Sanity CMS Foundation — embedded Studio dan Site Settings singleton | **Semasa** — menunggu review |
-| 4.2 | Content Models | Belum bermula |
+| 4.1 | Sanity CMS Foundation — embedded Studio dan Site Settings singleton | **Siap** — diluluskan, dikomit dan dipush |
+| 4.2 | Content Models — schema editorial dan singleton Profil | **Siap** — diluluskan untuk checkpoint |
+| 4.2A | Prototype Penjana Jadual Kuliah — tool native, model bulanan dan poster demo | **Siap sebagai prototype** — diluluskan untuk checkpoint; Publish disabled |
+| 4.3 | Scope implementation seterusnya | Belum bermula — menunggu arahan |
 
-Rujuk [SANITY.md](SANITY.md). Halaman public kekal menggunakan data tempatan;
+Rujuk [SANITY.md](SANITY.md) dan [SANITY-CONTENT-MODEL.md](SANITY-CONTENT-MODEL.md).
+Halaman public kekal menggunakan data tempatan;
 migration dan frontend CMS fetch belum dimulakan.
+
+Prototype kuliah direkodkan dalam [SANITY-LECTURE-GENERATOR.md](SANITY-LECTURE-GENERATOR.md).
+
+Checkpoint: `phase-4.2-sanity-content-model`. QA Oktober sebenar direkodkan dalam
+[SANITY-OCTOBER-QA.md](SANITY-OCTOBER-QA.md). Tiada content migration atau production
+writes. Keputusan lesen GPL adapted renderer/combined application masih terbuka
+sebelum production; rujuk [DECISIONS.md](DECISIONS.md).
