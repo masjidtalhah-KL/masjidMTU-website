@@ -1,8 +1,10 @@
 # Architecture Projek
 
 Dokumen ini merekodkan architecture semasa dan susunan fasa berikutnya.
-Fasa 4.1 menyediakan embedded Sanity Studio; public pages masih menggunakan data
-tempatan. Pangkalan data operasi, dashboard, kempen dan pembayaran belum dibina.
+Fasa 4.1 menyediakan embedded Sanity Studio; Fasa 4.2/4.2A menambah content
+model editorial dan prototype kuliah. Fasa 4.3A menyediakan mapping, validation
+dan dry-run migration sahaja. Public pages masih menggunakan data tempatan.
+Pangkalan data operasi, dashboard, kempen dan pembayaran belum dibina.
 
 ```text
 Pengunjung
@@ -50,3 +52,20 @@ Rujuk [SANITY.md](SANITY.md) untuk configuration, singleton dan CORS.
 Sanity hanya untuk kandungan editorial/public. Registrations, peserta Qurban,
 bayaran, resit dan transaksi Ramadan ialah data operasi Supabase/PostgreSQL
 dengan `/admin` berasingan pada fasa kemudian.
+
+## Content model dan migration preparation
+
+Registry akhir 4.2/4.2A mempunyai 11 document types dan 6 support types.
+Penjana Jadual Kuliah native ialah prototype dalam memori dengan Publish disabled.
+Public frontend tidak mengimport client CMS.
+
+`scripts/sanity-migration/` ialah utility Node berasingan daripada runtime
+website/Studio. Ia membaca sumber public diluluskan, membentuk 43 dokumen dengan
+ID deterministik, menyemak 50 fail imej dan menjalankan validator schema sebenar.
+Dry-run ialah default. Preflight raw/non-CDN menyemak ID known, singleton/slug
+conflicts dan reuse aset berdasarkan SHA-1. Mod write kelak create-only kepada
+draft IDs, tanpa replace/delete/purge/publish; payload sedia ada yang berbeza
+menghentikan writes. Review dan kelulusan Fasa 4.3B masih diperlukan.
+
+Butiran: [SANITY-MIGRATION.md](SANITY-MIGRATION.md). Tiada production migration,
+asset upload, frontend CMS fetch atau migration kuliah dibuat dalam 4.3A.

@@ -47,11 +47,14 @@ direkodkan dalam [PUBLIC-SURAU.md](PUBLIC-SURAU.md). Galeri direkodkan dalam
 | 4.1 | Sanity CMS Foundation — embedded Studio dan Site Settings singleton | **Siap** — diluluskan, dikomit dan dipush |
 | 4.2 | Content Models — schema editorial dan singleton Profil | **Siap** — diluluskan untuk checkpoint |
 | 4.2A | Prototype Penjana Jadual Kuliah — tool native, model bulanan dan poster demo | **Siap sebagai prototype** — diluluskan untuk checkpoint; Publish disabled |
-| 4.3 | Scope implementation seterusnya | Belum bermula — menunggu arahan |
+| 4.3 | Content Migration / Seeding | Preparation sahaja; tiada production migration |
+| 4.3A | Content Migration Preparation & Dry Run | Implementation untuk review — belum dikomit/dipush; tanpa upload/write |
+| 4.3B | Migration production sebenar | Belum bermula — menunggu review/kelulusan berasingan |
 
 Rujuk [SANITY.md](SANITY.md) dan [SANITY-CONTENT-MODEL.md](SANITY-CONTENT-MODEL.md).
 Halaman public kekal menggunakan data tempatan;
-migration dan frontend CMS fetch belum dimulakan.
+utility mapping/validation/dry-run tersedia dalam Fasa 4.3A. Migration production
+dan frontend CMS fetch belum dimulakan. Rujuk [SANITY-MIGRATION.md](SANITY-MIGRATION.md).
 
 Prototype kuliah direkodkan dalam [SANITY-LECTURE-GENERATOR.md](SANITY-LECTURE-GENERATOR.md).
 

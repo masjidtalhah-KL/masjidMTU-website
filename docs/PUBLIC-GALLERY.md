@@ -23,4 +23,6 @@ mengurus focus ketika dibuka; selepas ditutup focus pulang ke thumbnail asal.
 Tiada dependency galeri baharu atau motion berat. Caption hanya daripada data
 yang sudah disediakan; komponen juga menyokong foto tanpa title/caption.
 
-Fasa 3.6 menunggu visual review; belum dikomit atau dipush.
+Fasa 3.6 telah diluluskan, dikomit dan dipush melalui `5936bfd`,
+checkpoint `phase-3.6-gallery`. Galeri masih menggunakan source tempatan;
+Fasa 4.3A hanya menyediakan dry-run migration.

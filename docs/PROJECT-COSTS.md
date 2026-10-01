@@ -76,7 +76,7 @@ jarak antara timestamps Git menjadi timesheet.
 | EFF-003 | 2 — Homepage/foto/QA | `4ab8a03`, `d92a571` | Menunggu timesheet | Tidak dianggarkan | Menunggu keputusan |
 | EFF-004 | 3 — Content/assets/public pages | `12d8bc8` hingga `c9d0d20` | Menunggu timesheet | Tidak dianggarkan | Menunggu keputusan |
 | EFF-005 | 4.1 — Sanity Foundation | `d48e36c` | Menunggu timesheet | Tidak dianggarkan | Menunggu keputusan |
-| EFF-006 | 4.2/4.2A — Schemas/prototype kuliah | Working tree, belum commit | Menunggu timesheet | Tidak dianggarkan | Menunggu keputusan |
+| EFF-006 | 4.2/4.2A — Schemas/prototype kuliah | Commit `f2aa594`, tag `phase-4.2-sanity-content-model` | Menunggu timesheet | Tidak dianggarkan | Menunggu keputusan |
 | EFF-007 | Fasa akan datang | ROADMAP | Belum direkod | Menunggu scope/estimate berasingan | Menunggu keputusan |
 
 Timesheet minimum: tarikh, orang, aktiviti/fasa, masa mula/tamat, rehat dan jumlah

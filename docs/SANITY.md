@@ -103,6 +103,12 @@ Semua public routes masih menggunakan source tempatan asal.
 
 ## Ditangguhkan
 
+Fasa 4.3A kini menyediakan utility preparation/dry-run, bukan migration
+production. `npm run sanity:migrate -- --dry-run` memvalidasi 43 calon dokumen
+dan audit 50 fail imej tanpa upload/write. Dataset boleh diperiksa read-only
+melalui `--inspect-dataset` atau snapshot authenticated yang diaudit.
+Panduan lengkap: [SANITY-MIGRATION.md](SANITY-MIGRATION.md).
+
 - Migration kandungan/aset dan pengisian dokumen production.
 - Frontend fetch, dynamic content, preview, Presentation Tool dan Draft Mode.
 - Webhook, mutation endpoint, admin/auth custom, database dan payment.
@@ -172,7 +178,8 @@ dan public pages masih membaca data tempatan. QA October sebenar 34 sesi lulus,
 63 teks tiada clipping, eksport PNG/PDF A4/A3 lulus; keputusan lengkap:
 [SANITY-OCTOBER-QA.md](SANITY-OCTOBER-QA.md). Tiada production migration/writes.
 Keputusan GPL bagi adapted renderer/combined application dan hak aset sebelum
-production masih terbuka. Fasa 4.3 menunggu arahan.
+production masih terbuka. Fasa 4.3A preparation kini untuk review; Fasa 4.3B
+dan production migration menunggu kelulusan berasingan.
 
 Validation close-out: lint/build lulus; schema extraction dengan enforced
 required fields lulus; 51 kes validator sebenar (reference/uniqueness offline

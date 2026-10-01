@@ -41,7 +41,8 @@ Logo menggunakan aset sedia ada `/brand/logo-masjid.png` tanpa pengubahsuaian.
 ## Shared shell & semakan
 
 `PublicPageLayout` menerima `contentLayout="sections"` untuk Profil.
-Default placeholder bagi halaman lain dikekalkan. Pautan desktop Profil membuka
+Pada implementation asal Fasa 3.3, placeholder halaman lain dikekalkan;
+halaman-halaman tersebut kini telah siap dalam Fasa 3.4–3.7. Pautan desktop Profil membuka
 dropdown melalui hover/focus dan menuju `/profil` apabila diklik. Mobile kekal
 menggunakan menu tap. Route awam berkongsi transisi kandungan `main` selama 190ms;
 Navbar/Footer kekal stabil dan reduced motion memaparkan halaman tanpa animasi.
@@ -51,4 +52,6 @@ lebar teks, nisbah/alt foto, semua kandungan visible serta navigation.
 Screenshot penuh diambil selepas foto lazy-load dimuatkan. Lint, production build
 dan `git diff --check` dijalankan untuk review.
 
-Fasa 3.3 belum dikomit atau dipush. Fasa 3.4 belum bermula.
+Fasa 3.3 telah diluluskan, dikomit dan dipush melalui `9a9c0a3`.
+Fasa 3.4–3.7 turut selesai. Profil masih membaca data tempatan; migration
+production dan frontend CMS fetch belum dibuat.

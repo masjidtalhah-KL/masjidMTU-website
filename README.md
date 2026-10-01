@@ -9,8 +9,11 @@ Project ini ialah asas website rasmi masjid yang dibangunkan secara berfasa. Fas
 - Tailwind CSS
 - ESLint
 
-Sanity Studio tersedia pada `/studio` untuk Fasa 4.1. Public pages masih
-menggunakan data tempatan. Supabase/PostgreSQL, email dan payment belum disambungkan.
+Sanity Studio tersedia pada `/studio`; Foundation 4.1 serta content model dan
+prototype Penjana Jadual Kuliah 4.2/4.2A telah dikomit dan checkpointed.
+Fasa 4.3A menyediakan utility migration/dry-run untuk review sahaja.
+Public pages masih menggunakan data tempatan. Supabase/PostgreSQL, email dan
+payment belum disambungkan; Publish penjana kuliah kekal disabled.
 
 ## Keperluan
 
@@ -63,3 +66,16 @@ docs/             Architecture dan roadmap projek
 ```
 
 Lihat [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) untuk gambaran sistem dan [docs/ROADMAP.md](docs/ROADMAP.md) untuk susunan fasa.
+
+## Migration preparation — Fasa 4.3A
+
+`npm run sanity:migrate -- --dry-run` menyemak sumber diluluskan, 43 dokumen
+editorial dan 50 fail imej production tanpa upload/write. Tanpa flag juga
+default dry-run. `npm run sanity:migrate:test` menguji mapping, idempotency dan
+pengendalian konflik melalui client dalam memori sahaja.
+
+Rujuk [docs/SANITY-MIGRATION.md](docs/SANITY-MIGRATION.md) untuk pemetaan ID,
+audit dataset read-only dan draft-first strategy. Mod write kelak memerlukan
+command berasingan, target tepat, fingerprint pelan dan token server sahaja.
+Kewujudan command itu bukan kelulusan untuk Fasa 4.3B. Jangan jalankan write,
+upload atau publish sebelum review/kelulusan berasingan.

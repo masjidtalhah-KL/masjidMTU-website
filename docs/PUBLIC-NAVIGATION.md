@@ -1,18 +1,19 @@
 # Navigation & Shell Halaman Public — Fasa 3.2
 
-Fasa ini menyediakan navigation dan shell minimum untuk review. Kandungan penuh
-halaman, sambungan CMS dan data operasi belum dibina.
+Fasa 3.2 asal menyediakan navigation dan shell minimum untuk review.
+Kandungan penuh halaman kini telah siap melalui Fasa 3.3–3.7; semua route di
+bawah membaca source tempatan. Sambungan CMS dan data operasi belum dibina.
 
 ## Routes
 
 | Navigation | Destination | Paparan semasa |
 | --- | --- | --- |
 | Logo | `/` | Homepage Fasa 2 |
-| Profil → Pengenalan | `/profil` | Header + placeholder Fasa 3.3 |
-| Profil → Carta Organisasi | `/profil/organisasi` | Header + placeholder Fasa 3.4 |
-| Profil → Surau Kariah | `/profil/surau-kariah` | Header + placeholder Fasa 3.5 |
-| Galeri | `/galeri` | Header + placeholder Fasa 3.6 |
-| Hubungi | `/hubungi` | Header + placeholder Fasa 3.7 |
+| Profil → Pengenalan | `/profil` | Kandungan Profil siap — Fasa 3.3 |
+| Profil → Carta Organisasi | `/profil/organisasi` | 25 slot jawatan — Fasa 3.4 |
+| Profil → Surau Kariah | `/profil/surau-kariah` | 15 surau — Fasa 3.5 |
+| Galeri | `/galeri` | 12 foto interior — Fasa 3.6 |
+| Hubungi | `/hubungi` | Kandungan hubungan siap — Fasa 3.7 |
 | Sumbangan | `/#donations` | Section sumbangan homepage, termasuk dari subpage |
 
 ## Komponen
@@ -24,10 +25,10 @@ halaman, sambungan CMS dan data operasi belum dibina.
 - `PublicPageHeader` menerima `title`, optional `eyebrow`, `introduction` dan
   `breadcrumbs`. Header ringkas menggunakan navy dan pattern rasmi
   `/brand/brand-pattern-official.png` dengan overlay navy.
-- `PublicPageLayout` menyatukan Navbar, header, ruang placeholder dan Footer.
+- `PublicPageLayout` menyatukan Navbar, header, kandungan halaman dan Footer.
   Homepage mengekalkan komposisinya sendiri.
-- Lima route shell menggunakan metadata tajuk, breadcrumb dan placeholder sahaja.
-  Tiada import daripada `src/lib/public-content/`.
+- Pada checkpoint Fasa 3.2, lima route ialah shell metadata/breadcrumb/placeholder.
+  Implementation Fasa 3.3–3.7 kemudian menggunakan `src/lib/public-content/`.
 
 ## Behaviour navigation
 

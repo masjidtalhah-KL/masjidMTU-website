@@ -106,10 +106,25 @@ stabil tarikh keputusan kerana boleh berubah ketika copy/checkout/edit.
 
 ## Had rekonstruksi dan cara mengemas kini
 
-Sebahagian dokumen PUBLIC masih mempunyai ayat status lama seperti “belum dikomit”
-atau “placeholder”. Itu snapshot fasa terdahulu; commit/ROADMAP semasa membuktikan
-halaman telah siap. Dokumen memory ini menyelesaikan perbezaan itu tanpa mengubah
-kod atau nota lama dalam tugas ini.
+### Sambungan kerja Fasa 4.3A — 1 Oktober 2026
+
+Bootstrap repository diluluskan, kemudian preparation/dry-run sahaja diminta.
+Utility ber-ID deterministik menyediakan 43 dokumen editorial, 50 fail imej
+unik/55 penggunaan dan draft-first workflow kelak. 16 ujian dalam memori serta
+lint/build, enforced-required schema extraction, whitespace check dan enam
+public runtime smoke checks lulus; source public, schemas dan penjana tidak diubah.
+
+Dataset raw diperiksa melalui Sanity MCP secara authenticated/read-only pada
+16:18:13 +08:00: 12 dokumen sistem, tiada editorial/draft/aset. Tiada upload,
+mutation/publish, commit/push atau Fasa 4.3B. Hasil preparation berada dalam
+working tree untuk review; ini bukan milestone Git baharu atau bukti jam kerja.
+Rujuk [SANITY-MIGRATION.md](SANITY-MIGRATION.md). Nota status docs public/ledger
+yang lapuk diperbetulkan; anomaly dua tag lama tidak diubah.
+
+Semasa rekonstruksi asal, sebahagian dokumen PUBLIC masih mempunyai ayat status
+lama seperti “belum dikomit” atau “placeholder”. Itu snapshot fasa terdahulu;
+commit/ROADMAP membuktikan halaman telah siap. Housekeeping Fasa 4.3A kemudian
+memperjelas status semasa sambil mengekalkan konteks implementation asal.
 
 Waktu push, approval, sesi kerja, login/CORS dashboard dan deployment tidak boleh
 dipulihkan tepat daripada Git tempatan sahaja. Screenshot/QA di luar repo tidak

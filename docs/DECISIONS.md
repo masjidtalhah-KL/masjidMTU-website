@@ -132,7 +132,7 @@ Model dan prototype akhir Fasa 4.2/4.2A diluluskan untuk checkpoint pada
 - **Tarikh/bukti:** 2026-09-30, `d48e36c`; [SANITY.md](SANITY.md).
 - **Keputusan:** Official NextStudio `/studio`, Sanity authentication, env berpusat,
   fixed API `2026-09-01`, project `2o95jmms` / dataset `production`.
-  Site Settings singleton; Profil singleton ditambah dalam working tree Fasa 4.2.
+  Site Settings singleton; Profil singleton ditambah dalam checkpoint Fasa 4.2.
 - **Rasional:** Editing standard tanpa custom login serta configuration yang tidak berulang.
 - **Kesan:** Tiada write token browser/public mutation endpoint. Filter singleton
   menghalang pendua melalui Studio biasa, bukan constraint keselamatan API.
@@ -141,7 +141,7 @@ Model dan prototype akhir Fasa 4.2/4.2A diluluskan untuk checkpoint pada
 
 ## D15 — Model dahulu, migration kemudian
 
-- **Tarikh/bukti:** boundary 2026-09-30, `d48e36c`; model diperiksa 2026-10-01 dalam working tree.
+- **Tarikh/bukti:** boundary 2026-09-30, `d48e36c`; model diperiksa 2026-10-01 dan dikomit dalam checkpoint `f2aa594`.
 - **Keputusan:** Fasa 4.2 menyediakan schema editorial tanpa seeds, initial content,
   uploads atau fetch CMS pada halaman public.
 - **Rasional:** Review model dahulu sambil menjaga public website yang telah diluluskan.
@@ -199,6 +199,26 @@ Model dan prototype akhir Fasa 4.2/4.2A diluluskan untuk checkpoint pada
   Oktober diselesaikan. Publish kekal disabled. Tiada JSON sebenar, portrait QA
   tambahan atau jadual dimigrasikan ke Sanity; tiada inferens bulan berikutnya.
   Synthetic long-copy, print proof dan cross-platform fonts kekal had prototype.
+
+## D20 — Preparation migration deterministik, draft-first dan create-only
+
+- **Tarikh/bukti:** 2026-10-01, arahan Fasa 4.3A; implementation belum dikomit.
+  [SANITY-MIGRATION.md](SANITY-MIGRATION.md), `scripts/sanity-migration/`.
+- **Keputusan:** 43 dokumen daripada source public diluluskan, ID tetap berasaskan
+  slot/source, 50 fail imej tanpa recompression. Default dry-run; production
+  upload/write/publish dilarang dalam 4.3A. Ketetapan ID deterministik mengikuti
+  arahan eksplisit pengguna, walaupun panduan import umum Sanity mengutamakan ID generated.
+- **Rasional:** Audit boleh diulang, vacancy/multiple positions dipelihara,
+  dan source/editor content tidak ditindih secara senyap.
+- **Kesan:** Mod write kelak hanya create drafts dengan target tepat,
+  fingerprint dan token server; preflight raw/non-CDN sebelum upload dan sebelum
+  atomic create. Payload identical di-skip; unexpected content menghentikan
+  writes. Tiada replace/delete/purge/publish. Aset reuse melalui hash dan _id
+  sebenar hasil query/upload. Upload terdahulu boleh tinggal jika write gagal;
+  tool tidak memadamnya.
+- **Boundary:** Short name tiada source; logo kekal website. Mock homepage dan
+  semua lecture/demo/QA/legacy dikecualikan. Frontend CMS integration dan
+  penerbitan kuliah memerlukan scope berasingan. Fasa 4.3B menunggu kelulusan.
 
 ## Cara menambah rekod
 

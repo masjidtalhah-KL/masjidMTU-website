@@ -8,7 +8,9 @@ perlu diperiksa semula; snapshot ini bukan kebenaran automatik untuk fasa beriku
 
 **Fasa semasa: 4 — Sanity CMS.** Fasa 4.1, model Fasa 4.2 dan prototype
 Fasa 4.2A telah diluluskan. Checkpoint akhir 4.2/4.2A ialah
-`phase-4.2-sanity-content-model`. **Fasa 4.3 belum bermula.**
+`phase-4.2-sanity-content-model` (`f2aa594`).
+**Fasa 4.3A preparation/dry-run tersedia untuk review dalam working tree;
+belum dikomit/dipush. Fasa 4.3B dan migration production belum bermula.**
 
 Repository rasmi: <https://github.com/masjidtalhah-KL/masjidMTU-website>.
 Commit Fasa 4.1 ialah `d48e36c7c5b43f8d934b3e9ee89ab6aa5785f2b1`.
@@ -162,18 +164,43 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
 
 ## Keputusan belum selesai dan langkah terdekat
 
-1. Tunggu scope dan arahan Fasa 4.3; jangan mulakan secara automatik.
-   Save/publish, snapshot, concurrency dan print QA memerlukan scope lanjut.
+1. Review hasil Fasa 4.3A preparation/dry-run. Jangan mulakan Fasa 4.3B,
+   upload/write/publish tanpa kelulusan berasingan. Save/publish kuliah,
+   snapshot, concurrency dan print QA memerlukan scope lanjut.
 2. **Keputusan pre-production masih terbuka:** tentukan pematuhan GPL-3.0 bagi
    adapted renderer/combined application dan hak aset sebelum pengedaran produksi.
    Provenance telah direkodkan; approval checkpoint tidak menyelesaikan lesen.
-3. Selepas kelulusan scope seterusnya, rancang migration/editorial workflow;
-   jadual sebenar, pemilik kandungan dan proses kelulusan belum diisi di CMS.
+3. Cadangan migration ialah draft dahulu → review Studio → publish selepas
+   approval. Jadual sebenar dan content lecture kekal di luar scope migration ini.
 4. Keputusan domain/hosting/production origins, plan/billing service, kos dan
    usaha kerja menunggu bukti. Catat dalam [PROJECT-COSTS.md](PROJECT-COSTS.md).
 5. Ketidakpadanan dua tag lama memerlukan keputusan berasingan jika mahu dibetulkan.
-   Sebahagian nota akhir PUBLIC docs masih snapshot review lama; status semasa
-   diselesaikan melalui Git + ROADMAP, bukan ayat “belum dikomit” yang lapuk.
+   Nota status public-page/ledger yang lapuk diperbetulkan dalam preparation
+   4.3A tanpa mengubah sejarah Git atau anomaly tag.
+
+## Fasa 4.3A — preparation/dry-run untuk review
+
+- Utility: `scripts/sanity-migration/`; default dry-run, explicit future
+  write-drafts memerlukan target tepat/fingerprint/token. Tiada command write
+  production dilaksanakan dalam sesi ini.
+- Pelan: 43 dokumen — 1 settings, 1 Profil, 25 slot organisasi, 15 surau
+  (3 Jumaat/12 Biasa), 1 koleksi Interior Masjid dengan 12 foto.
+- 50 fail imej unik/55 penggunaan; lima imej Profil menggunakan semula aset
+  Galeri. Logo rasmi tidak diupload. Tiada aset hilang atau validation failure.
+- ID tetap singleton, ID slot organisasi, ID source surau, dan
+  `galleryCollection-interior-masjid`. Array keys stabil; source text kekal.
+- Authenticated read-only raw dataset pada 2026-10-01 16:18:13 +08:00:
+  11 `system.group` + 1 `system.retention`; 0 editorial/draft/image/file assets.
+  Snapshot ini bukan jaminan keadaan dataset pada masa migration kelak.
+- Validator schema sebenar lulus untuk 43 calon; reference placeholders disemak
+  offline, bukan dakwaan aset telah wujud. 16 ujian mapping/conflict/idempotency
+  lulus menggunakan client dalam memori. Lint/build, schema extraction dengan
+  enforced required fields dan whitespace check lulus. Enam public routes
+  HTTP 200; H1/navigation/footer/images disemak. Tiada diff source runtime/aset.
+- Public source/components/assets, schemas dan penjana kuliah tidak diubah;
+  Publish disabled. Mock homepage, semua lecture demo/QA/legacy dikecualikan.
+- Panduan/audit: [SANITY-MIGRATION.md](SANITY-MIGRATION.md). Tiada production
+  migration, frontend CMS fetch, upload, publish, commit atau push.
 
 ## New Work Session Bootstrap
 

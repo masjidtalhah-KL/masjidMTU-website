@@ -9,7 +9,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sanity:migrate": "node scripts/sanity-migration/cli.mjs",
+    "sanity:migrate:write-drafts": "node scripts/sanity-migration/cli.mjs --write-drafts",
+    "sanity:migrate:test": "node --test scripts/sanity-migration/migration.test.mjs"
   },
   "dependencies": {
     "@sanity/client": "8.9.0",

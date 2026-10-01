@@ -155,5 +155,9 @@ sebelum diserahkan untuk review.
 Fasa 3.1 telah diluluskan, dikomit dan dipush. Fasa 3.2 menyediakan navigation dan
 route shell; rujuk [PUBLIC-NAVIGATION.md](PUBLIC-NAVIGATION.md). Dalam Fasa 3.3,
 `/profil` menggunakan `profile.ts` dan manifest aset. Data organisasi, surau,
-galeri dan hubungan masih belum digunakan oleh UI. Rujuk
+galeri dan hubungan kini digunakan oleh halaman Fasa 3.4–3.7 yang telah siap. Rujuk
 [PUBLIC-PROFILE.md](PUBLIC-PROFILE.md).
+
+Fasa 4.3A menyediakan mapping/dry-run daripada source ini kepada schema Sanity;
+data runtime dan production assets asal tidak diubah. Tiada upload atau dataset
+write dibuat. Rujuk [SANITY-MIGRATION.md](SANITY-MIGRATION.md).
