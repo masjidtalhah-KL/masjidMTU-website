@@ -12,8 +12,11 @@ Fasa 4.2A telah diluluskan. Checkpoint akhir 4.2/4.2A ialah
 **Fasa 4.3A preparation/dry-run siap, dikomit/dipush sebagai `ea8dd09`,
 checkpoint `phase-4.3a-migration-dry-run`. Fasa 4.3B draft-only production
 migration siap: 43 draft, 50 aset imej unik, 0 konflik, 43 `skip-identical`.
-Tiada migrated content published. Checkpoint penutupan:
-`phase-4.3b-draft-migration`. Fasa 4.3C dan Fasa 5 belum bermula.**
+Checkpoint draft: `phase-4.3b-draft-migration`. Controlled Publication 4.3C
+selesai: 43 published editorial, 0 draft, 50 aset imej, 55 references kepada
+50 aset unik, 0 konflik. Checkpoint penutupan
+`phase-4.3c-controlled-publication`. Frontend masih local/static;
+Lecture Generator Publish disabled. Fasa 5 belum bermula.**
 
 Repository rasmi: <https://github.com/masjidtalhah-KL/masjidMTU-website>.
 Commit Fasa 4.1 ialah `d48e36c7c5b43f8d934b3e9ee89ab6aa5785f2b1`.
@@ -38,6 +41,7 @@ ke dokumen dalam commit yang sama.
 | 4.2 / 4.2A — Content Model & prototype kuliah | Commit yang dirujuk tag checkpoint | `phase-4.2-sanity-content-model` |
 | 4.3A — Migration preparation/dry-run | `ea8dd09` | `phase-4.3a-migration-dry-run` |
 | 4.3B — Draft-only production migration & review | Resolve tag untuk commit penutupan | `phase-4.3b-draft-migration` |
+| 4.3C — Controlled Publication & closeout | Resolve tag untuk commit penutupan | `phase-4.3c-controlled-publication` |
 
 **Ketidakpadanan tag lama:** kedua-dua tag Fasa 1/2 sebenarnya menunjuk ke
 `19f3c6c` (penjelasan pattern rasmi), sebelum penutupan Fasa 1 dan implementation
@@ -169,9 +173,9 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
 
 ## Keputusan belum selesai dan langkah terdekat
 
-1. Fasa 4.3A dan migration draft Fasa 4.3B siap. Jangan mulakan Fasa 4.3C,
-   publish atau integrasi frontend tanpa scope/kelulusan berasingan. Save/publish kuliah,
-   snapshot, concurrency dan print QA memerlukan scope lanjut.
+1. Fasa 4.3A, migration draft 4.3B dan Controlled Publication 4.3C siap.
+   Jangan mulakan Fasa 5/integrasi frontend tanpa arahan berasingan.
+   Save/publish kuliah, snapshot dan print QA memerlukan scope lanjut.
 2. **Keputusan pre-production masih terbuka:** tentukan pematuhan GPL-3.0 bagi
    adapted renderer/combined application dan hak aset sebelum pengedaran produksi.
    Provenance telah direkodkan; approval checkpoint tidak menyelesaikan lesen.
@@ -236,6 +240,42 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
   diubah. Lecture Generator Publish disabled. Mock homepage/lecture/QA
   tidak dimigrasikan; GPL/provenance kekal terbuka sebelum production.
 
+## Fasa 4.3C — Controlled Publication selesai
+
+- Baseline diperiksa sebelum edit: branch `main`, working tree bersih, HEAD
+  `156cdf542c5a44ca9006222dbd30eb40ffc2ebb2` / `phase-4.3b-draft-migration`.
+- Authenticated raw preflight pada **2026-10-02T08:59:45.674Z**
+  (16:59:45 +08:00): 105 rekod = 43 draft + 50 imej + 12 sistem;
+  0 published editorial, 0 konflik, semua 43 payload/revisi sepadan,
+  55 references kepada 50 aset unik. Edge cases 4.3B kekal.
+- Manifest exact ID/type/revisi/aset dalam
+  `scripts/sanity-migration/approved-publication.json`. Default publication CLI
+  ialah read-only; target, fingerprint pelan dan fingerprint publication wajib
+  untuk tindakan write. Snapshot tidak boleh authorize publication.
+- Publish action rasmi dengan revision locks, absence guards dan atomic batch;
+  tiada upload, manual replace/delete, purge atau automatic retry.
+- Linux (Hermes sebagai execution agent sahaja) melakukan publication; Work
+  mengemas repository dan membaca remote secara read-only. Percubaan awal
+  HTTP 400 kerana ID `mtu-4.3c-*` tidak sah; pengguna mengesahkan tiada mutation.
+  Prefix diperbetul kepada `mtu-4-3c-`; transaksi mesti `[a-zA-Z0-9_-]+`.
+- Transaksi berjaya: `mtu-4-3c-6a191d7e-4169-419b-91d2-4def7a024fcb`.
+  Request `2026-10-02T11:48:30.173Z`, response `11:48:31.971Z`, acknowledged
+  `11:48:33.137Z` (19:48 +08:00). API dry-run dan atomic retry berjaya.
+  Retry ini tindakan operator selepas fix; tiada automatic mutation retry.
+- Read-back bebas authenticated/raw `2026-10-02T11:59:03.021Z`:
+  105 rekod = 43 published + 50 imej + 12 sistem, 0 draft/konflik/unexpected
+  editorial. Semua payload identical; 55 references/50 aset diselesaikan.
+  Metadata bukan sasaran tidak berubah. Published `_updatedAt=11:48:30Z`.
+- Gallery list “0 foto” dibetulkan melalui override preview dalam
+  `sanity.config.ts`: count scalar `items.length` berasingan daripada thumbnail
+  `items.0.image`. Schema source/model, payload dan fingerprints asal tidak berubah.
+- QA Studio menggunakan perspektif Published; lima foto Profil, 25 slot,
+  vacancy/Soffan, 15 surau dan 12 galeri disemak. Public frontend local/static,
+  Lecture Generator Publish disabled. Tiada content lecture/mock/QA diterbitkan.
+- Rekod timestamp, exact IDs/types, safety gates dan semakan:
+  [SANITY-PUBLICATION.md](SANITY-PUBLICATION.md). Checkpoint
+  `phase-4.3c-controlled-publication`; Fasa 5 belum bermula.
+
 ## New Work Session Bootstrap
 
 1. Baca dokumen ini, `README.md`, `ARCHITECTURE.md`, `ROADMAP.md`,
@@ -243,8 +283,8 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
 2. Sahkan repository rasmi/remote, folder aktif, branch, HEAD, tags,
    `git status` dan diff termasuk fail untracked. Jangan reset/clean/stash atau
    membuang kerja Fasa 4.2/4.2A tanpa arahan pengguna. Pada mesin baharu, clone
-   gunakan checkpoint `phase-4.3b-draft-migration` untuk kod/docs penutupan
-   terkini. Git tidak menyimpan dataset remote; sahkan draft/aset melalui raw
+   gunakan checkpoint `phase-4.3c-controlled-publication` untuk kod/docs penutupan
+   terkini. Git tidak menyimpan dataset remote; sahkan published/draft/aset melalui raw
    read-back. Checkpoint `phase-4.2-sanity-content-model` ialah baseline prototype.
 3. Inspect kod sebenar: public-content, route/components, schema registry,
    Studio structure dan generator jika relevan. Jangan bergantung pada chat lama,

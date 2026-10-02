@@ -110,7 +110,8 @@ dan audit 50 fail imej tanpa upload/write. Dataset boleh diperiksa read-only
 melalui `--inspect-dataset` atau snapshot authenticated yang diaudit.
 Panduan lengkap: [SANITY-MIGRATION.md](SANITY-MIGRATION.md).
 
-- Penerbitan kandungan, migration lecture dan langkah Fasa 4.3C.
+- Migration lecture. Controlled Publication 4.3C bagi 43 draft diluluskan
+  telah selesai; 43 published/0 draft, frontend masih local/static.
 - Frontend fetch, dynamic content, preview, Presentation Tool dan Draft Mode.
 - Webhook, mutation endpoint, admin/auth custom, database dan payment.
 
@@ -201,6 +202,19 @@ dan Lecture Generator Publish disabled. Laporan write menggunakan mode sebenar
 `WRITE-DRAFTS` / preflight; safety model kekal.
 Rujuk [SANITY-MIGRATION.md](SANITY-MIGRATION.md) untuk bukti dan pemetaan.
 Checkpoint: `phase-4.3b-draft-migration`; Fasa 4.3C dan Fasa 5 belum bermula.
+
+## Fasa 4.3C — Controlled Publication selesai
+
+Publication Linux terhad kepada 43 deterministic IDs 4.3B. Read-back Work
+authenticated/raw mengesahkan 43 published, 0 draft, 50 aset, 55 references,
+0 konflik; tiada upload baharu atau frontend fetch. Percubaan awal HTTP 400
+kerana dot dalam transaction ID selamat tanpa mutation menurut laporan pengguna.
+Prefix `mtu-4-3c-` serta local ID guard membetulkan isu; atomic retry operator berjaya.
+Studio Published QA dan pembetulan subtitle galeri kepada 12 foto selesai.
+Preview override pada config mengekalkan schema bytes/payload/fingerprints.
+Rujuk [SANITY-PUBLICATION.md](SANITY-PUBLICATION.md) untuk transaksi/manifest/audit.
+Checkpoint `phase-4.3c-controlled-publication`; Lecture Generator Publish disabled;
+Fasa 5 belum bermula.
 
 ### Dependency audit
 

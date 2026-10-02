@@ -12,7 +12,9 @@
     "lint": "eslint",
     "sanity:migrate": "node scripts/sanity-migration/cli.mjs",
     "sanity:migrate:write-drafts": "node scripts/sanity-migration/cli.mjs --write-drafts",
-    "sanity:migrate:test": "node --test scripts/sanity-migration/migration.test.mjs"
+    "sanity:migrate:test": "node --test scripts/sanity-migration/migration.test.mjs",
+    "sanity:publish": "node scripts/sanity-migration/publication-cli.mjs",
+    "sanity:publish:test": "node --test scripts/sanity-migration/publication.test.mjs"
   },
   "dependencies": {
     "@sanity/client": "8.9.0",

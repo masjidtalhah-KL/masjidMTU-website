@@ -47,22 +47,25 @@ direkodkan dalam [PUBLIC-SURAU.md](PUBLIC-SURAU.md). Galeri direkodkan dalam
 | 4.1 | Sanity CMS Foundation — embedded Studio dan Site Settings singleton | **Siap** — diluluskan, dikomit dan dipush |
 | 4.2 | Content Models — schema editorial dan singleton Profil | **Siap** — diluluskan untuk checkpoint |
 | 4.2A | Prototype Penjana Jadual Kuliah — tool native, model bulanan dan poster demo | **Siap sebagai prototype** — diluluskan untuk checkpoint; Publish disabled |
-| 4.3 | Content Migration / Seeding | Migration draft siap; penerbitan/integrasi belum bermula |
+| 4.3 | Content Migration / Seeding | **Siap** — preparation, draft migration dan controlled publication; frontend integration belum bermula |
 | 4.3A | Content Migration Preparation & Dry Run | **Siap** — `ea8dd09`, checkpoint `phase-4.3a-migration-dry-run`; tanpa upload/write |
 | 4.3B | Migration production sebagai draft sahaja | **Siap** — 43 draft, 50 aset imej unik, 0 konflik; checkpoint `phase-4.3b-draft-migration` |
-| 4.3C | Langkah selepas review migration | Belum bermula — menunggu scope/kelulusan berasingan |
+| 4.3C | Controlled Publication bagi 43 draft diluluskan | **Siap** — 43 published, 0 draft, 50 aset, 0 konflik; `phase-4.3c-controlled-publication` |
 
 Rujuk [SANITY.md](SANITY.md) dan [SANITY-CONTENT-MODEL.md](SANITY-CONTENT-MODEL.md).
 Halaman public kekal menggunakan data tempatan;
 utility mapping/validation/dry-run tersedia dalam Fasa 4.3A. Fasa 4.3B telah
 memigrasikan draft production sahaja; frontend CMS fetch belum dimulakan.
-Tiada migrated content published; Publish penjana kuliah kekal disabled.
+Fasa 4.3C menerbitkan tepat 43 dokumen itu; Publish penjana kuliah kekal disabled.
 Rujuk [SANITY-MIGRATION.md](SANITY-MIGRATION.md).
+Publication dilaksanakan di Linux dan independently verified oleh Work;
+rekod transaksi, safe HTTP 400 failure/fix dan QA berada dalam
+[SANITY-PUBLICATION.md](SANITY-PUBLICATION.md). Fasa 5 belum bermula.
 
 Prototype kuliah direkodkan dalam [SANITY-LECTURE-GENERATOR.md](SANITY-LECTURE-GENERATOR.md).
 
 Checkpoint model: `phase-4.2-sanity-content-model`; checkpoint migration:
-`phase-4.3b-draft-migration`. QA Oktober sebenar direkodkan dalam
+`phase-4.3c-controlled-publication`. QA Oktober sebenar direkodkan dalam
 [SANITY-OCTOBER-QA.md](SANITY-OCTOBER-QA.md) dan kekal dikecualikan daripada migration.
 Keputusan lesen GPL adapted renderer/combined application masih terbuka
 sebelum production; rujuk [DECISIONS.md](DECISIONS.md).

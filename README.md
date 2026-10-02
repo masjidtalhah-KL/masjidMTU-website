@@ -14,6 +14,9 @@ prototype Penjana Jadual Kuliah 4.2/4.2A telah dikomit dan checkpointed.
 Fasa 4.3A preparation/dry-run siap pada checkpoint `phase-4.3a-migration-dry-run`.
 Fasa 4.3B memigrasikan 43 draft dan 50 aset imej unik ke Sanity production,
 tanpa konflik atau penerbitan kandungan.
+Fasa 4.3C Controlled Publication selesai: 43 published, 0 draft, 50 aset dan
+0 konflik. Checkpoint `phase-4.3c-controlled-publication`;
+rujuk [rekod publication](docs/SANITY-PUBLICATION.md). Fasa 5 belum bermula.
 Public pages masih menggunakan data tempatan. Supabase/PostgreSQL, email dan
 payment belum disambungkan; Publish penjana kuliah kekal disabled.
 
@@ -79,8 +82,10 @@ pengendalian konflik melalui client dalam memori sahaja.
 Rujuk [docs/SANITY-MIGRATION.md](docs/SANITY-MIGRATION.md) untuk pemetaan ID,
 audit dataset read-only dan draft-first strategy. Mod write memerlukan
 command berasingan, target tepat, fingerprint pelan dan token server sahaja.
-Migration Fasa 4.3B telah disahkan: semua 43 sasaran `skip-identical`,
-50 aset boleh digunakan semula, tanpa reference rosak atau dokumen published.
+Migration draft Fasa 4.3B kemudian diterbitkan dalam Fasa 4.3C:
+semua 43 published payload `skip-identical`, 0 draft, 50 aset tersedia,
+55 references kepada 50 aset unik, tanpa konflik/reference rosak.
 Laporan write menggunakan label `WRITE-DRAFTS` pada tahap preflight; ia bukan
 bukti operasi selesai. Frontend kekal local/static dan Publish penjana kuliah
-kekal disabled. Penerbitan, Fasa 4.3C dan Fasa 5 memerlukan arahan berasingan.
+kekal disabled. `npm run sanity:publish` ialah authenticated read-only verification;
+`npm run sanity:publish:test` menguji publication dalam memori. Fasa 5 belum bermula.

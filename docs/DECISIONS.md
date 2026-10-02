@@ -236,6 +236,27 @@ Model dan prototype akhir Fasa 4.2/4.2A diluluskan untuk checkpoint pada
   dan create-only transaction tidak diubah. Public frontend kekal local/static;
   Lecture Generator Publish disabled. Fasa 4.3C dan Fasa 5 belum bermula.
 
+## D22 — Controlled Publication terhad kepada set migration yang diluluskan
+
+- **Tarikh/bukti:** 2026-10-02, arahan eksplisit Fasa 4.3C dan authenticated
+  preflight; [SANITY-PUBLICATION.md](SANITY-PUBLICATION.md).
+- **Keputusan:** Publish hanya 43 deterministic draft 4.3B ke
+  `2o95jmms/production`. Manifest mengikat ID/type/revisi/aset dan pelan yang
+  diluluskan; confirmations wajib. Supported Actions API, atomic absence/revision
+  guards, API dry-run terlebih dahulu, tiada silent overwrite/automatic retry.
+- **Kesan:** Tool migration create-only asal kekal. Public frontend local/static,
+  mock/lecture/QA/legacy dikecualikan; Lecture Generator Publish disabled.
+- **Status:** Selesai. Linux melakukan publication; Work melakukan read-back/QA
+  dan repository closeout. 43 published, 0 draft, 50 aset, 55 references,
+  0 konflik. Checkpoint `phase-4.3c-controlled-publication`; Fasa 5 belum bermula.
+- **Insiden/fix:** Percubaan awal HTTP 400 kerana `mtu-4.3c-*` mengandungi dot;
+  tiada mutation menurut verifikasi Linux pengguna. Prefix `mtu-4-3c-` dan
+  local ID regex guard digunakan; atomic retry operator berjaya. Safety gates,
+  manifest dan kedua-dua fingerprint diluluskan tidak berubah.
+- **Preview:** `sanity.config.ts` memilih `items.length` berasingan daripada
+  thumbnail. Fix Studio-only mengelakkan array path object yang menghasilkan
+  false “0 foto”; fields/validations/schema source/public rendering kekal.
+
 ## Cara menambah rekod
 
 Tambah ID seterusnya bersama tarikh, status, bukti, rasional dan kesan. Jika

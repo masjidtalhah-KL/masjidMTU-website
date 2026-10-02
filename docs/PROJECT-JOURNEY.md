@@ -140,6 +140,50 @@ tidak diubah; frontend masih local/static, Publish penjana kuliah disabled.
 Checkpoint penutupan `phase-4.3b-draft-migration`; resolve tag untuk hash dan
 timestamp Git tepat. Fasa 4.3C dan Fasa 5 belum bermula.
 
+### Controlled Publication 4.3C diluluskan; persediaan sahaja — 2 Oktober 2026
+
+Baseline `main` bersih dan HEAD/tag 4.3B `156cdf542c5a44ca9006222dbd30eb40ffc2ebb2`
+disahkan sebelum perubahan. Authenticated raw preflight pada
+2026-10-02T08:59:45.674Z mengesahkan 43 draft, 50 imej, 12 sistem,
+0 published editorial dan 0 konflik. Semua 43 payload/revisi dan 55 references
+kepada 50 aset sepadan. Timestamp ini ialah pemeriksaan, bukan publication.
+
+Arahan pengguna membenarkan controlled publication hanya untuk 43 ID migration.
+Work tidak mempunyai credential tulis setempat, maka tooling, manifest dan
+preflight disediakan untuk Linux. Tiada Work mutation/upload/publication,
+commit/push atau tag 4.3C; read-back/QA selepas publication belum boleh direkodkan.
+Frontend local/static dan Publish penjana disabled. Subtitle gallery “0 foto”
+ditangguh kerana pembetulan schema preview mengubah fingerprint yang dikunci.
+Rujuk [SANITY-PUBLICATION.md](SANITY-PUBLICATION.md); Fasa 5 belum bermula.
+
+### Publication Linux dan penutupan 4.3C — 2 Oktober 2026
+
+Hermes digunakan sebagai Linux execution agent sahaja; perubahan repository
+penutupan dilakukan oleh Work. Menurut laporan pengguna, percubaan awal HTTP 400
+kerana prefix `mtu-4.3c-*` mengandungi dot tidak melakukan mutation. Timestamp
+percubaan gagal tidak diberikan; jangan menganggarkannya. Prefix dibetulkan
+kepada `mtu-4-3c-`; selepas API dry-run lulus, operator melakukan atomic retry.
+
+Transaksi `mtu-4-3c-6a191d7e-4169-419b-91d2-4def7a024fcb` request
+`2026-10-02T11:48:30.173Z`, response `11:48:31.971Z`, acknowledged
+`11:48:33.137Z` (19:48 +08:00), daripada rekod Linux yang disahkan pengguna.
+Metadata published remote secara bebas menunjukkan `_updatedAt=11:48:30Z`;
+ini bukan ukuran jam kerja atau timestamp respons client.
+
+Read-back Work authenticated/raw `2026-10-02T11:59:03.021Z` mengesahkan
+43 published, 0 draft, 50 aset, 55 references kepada 50 aset unik, 0 konflik;
+semua 43 payload identical, inventory bukan sasaran tidak berubah.
+QA Studio dalam perspektif Published menyemak settings/profile/organisasi/surau/
+galeri dan imej. Subtitle “0 foto” diperbetul melalui scalar length selection
+dalam config Studio; schema meaning/bytes, payload dan fingerprints tidak berubah.
+Local transaction ID regex guard menghalang insiden dot berulang sebelum API call.
+
+Checkpoint `phase-4.3c-controlled-publication`; resolve tag untuk commit/tarikh
+Git penutupan. Public frontend masih local/static, Publish penjana kuliah disabled,
+Fasa 5 belum bermula. Butiran dan exact target IDs/types:
+[SANITY-PUBLICATION.md](SANITY-PUBLICATION.md). Tiada token/audit directories/log
+atau salinan execution Linux dikomit.
+
 Semasa rekonstruksi asal, sebahagian dokumen PUBLIC masih mempunyai ayat status
 lama seperti “belum dikomit” atau “placeholder”. Itu snapshot fasa terdahulu;
 commit/ROADMAP membuktikan halaman telah siap. Housekeeping Fasa 4.3A kemudian

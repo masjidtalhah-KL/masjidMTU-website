@@ -5,7 +5,12 @@ dan checkpoint `phase-4.3a-migration-dry-run`, tanpa upload/write.
 **Fasa 4.3B draft-only production migration siap dan disemak pada 2 Oktober 2026:
 43 draft, 50 aset imej unik, 0 konflik, 0 published editorial.**
 Public frontend masih local/static; Lecture Generator Publish disabled.
-Checkpoint penutupan: `phase-4.3b-draft-migration`. Fasa 4.3C/Fasa 5 belum bermula.
+Checkpoint draft: `phase-4.3b-draft-migration`. Controlled Publication 4.3C
+kemudian selesai: 43 published, 0 draft, 50 aset, 55 references, 0 konflik.
+Publication dilakukan di Linux; Work independently verified remote/Studio dan
+menutup repository pada `phase-4.3c-controlled-publication`. Fasa 5 belum bermula.
+Rujuk [SANITY-PUBLICATION.md](SANITY-PUBLICATION.md). Writer migration asal dan
+safety model create-only draft tidak diubah.
 
 ## Architecture
 

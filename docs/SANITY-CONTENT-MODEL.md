@@ -149,6 +149,7 @@ Model Fasa 4.2 dan prototype 4.2A diluluskan pada 2026-10-01 untuk checkpoint
 6 support types. Model bulanan kuliah kekal read-only dengan Publish disabled;
 ini bukan workflow penerbitan produksi. Fasa 4.3A preparation dan Fasa 4.3B
 draft-only migration kemudian disiapkan; model schema ini tidak diubah.
+Fasa 4.3C Controlled Publication juga selesai pada 2 Oktober 2026.
 
 Sanity hanya untuk kandungan editorial/public. Peserta Qurban, registrations,
 payments, receipts dan transaksi Ramadan kekal dirancang untuk
@@ -156,6 +157,10 @@ Supabase/PostgreSQL + `/admin`.
 
 Fasa 4.3B mengisi 43 draft dan 50 aset imej unik, tanpa konflik/publish;
 rujuk [SANITY-MIGRATION.md](SANITY-MIGRATION.md).
+Keadaan selepas 4.3C: 43 published editorial, 0 draft, 50 aset unik dan 0 konflik;
+rujuk [SANITY-PUBLICATION.md](SANITY-PUBLICATION.md). Preview count galeri
+dibetulkan dalam config Studio sahaja; fields/model/payload kekal. Frontend
+masih local/static dan Fasa 5 belum bermula.
 Public CMS queries, draft preview, Presentation Tool dan webhook belum dilaksanakan. Authentication Studio asal
 kekal. Tiada dependency baharu diperlukan untuk model ini.
 

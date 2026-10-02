@@ -73,4 +73,9 @@ JSON merekod mode/stage sebenar. Safety model tidak berubah.
 
 Butiran: [SANITY-MIGRATION.md](SANITY-MIGRATION.md). Tiada production migration
 atau asset upload dibuat dalam 4.3A; migration draft dilaksanakan dalam 4.3B.
-Frontend CMS fetch, publish editorial dan migration kuliah belum dibuat.
+Controlled Publication editorial selesai dalam 4.3C: 43 published, 0 draft,
+50 aset; frontend CMS fetch dan migration kuliah belum dibuat. Tool publication
+berasingan menggunakan supported publish actions/atomic guards dan explicit
+target/set confirmations. Preview galeri dibetulkan dalam config Studio sahaja,
+tanpa perubahan schema source atau payload. Rujuk [SANITY-PUBLICATION.md](SANITY-PUBLICATION.md).
+Lecture Generator Publish disabled; Fasa 5 belum bermula.
