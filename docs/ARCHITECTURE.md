@@ -3,7 +3,8 @@
 Dokumen ini merekodkan architecture semasa dan susunan fasa berikutnya.
 Fasa 4.1 menyediakan embedded Sanity Studio; Fasa 4.2/4.2A menambah content
 model editorial dan prototype kuliah. Fasa 4.3A menyediakan mapping, validation
-dan dry-run migration sahaja. Public pages masih menggunakan data tempatan.
+dan dry-run migration. Fasa 4.3B menambah 43 draft editorial dan 50 aset imej
+unik dalam production, tanpa konflik atau penerbitan. Public pages masih menggunakan data tempatan.
 Pangkalan data operasi, dashboard, kempen dan pembayaran belum dibina.
 
 ```text
@@ -46,7 +47,8 @@ Homepage Fasa 2 menggunakan imej rasmi `public/brand/masjid-dome.jpg` untuk visu
 
 `/studio` menggunakan official NextStudio dan Sanity authentication. Config,
 client dan schema berkongsi env di `src/sanity/env.ts`. Singleton `siteSettings`
-ialah schema pertama tanpa migration data. Tiada page public disambung ke client.
+ialah schema pertama; pengisian draft berlaku dalam Fasa 4.3B.
+Tiada page public disambung ke client.
 Rujuk [SANITY.md](SANITY.md) untuk configuration, singleton dan CORS.
 
 Sanity hanya untuk kandungan editorial/public. Registrations, peserta Qurban,
@@ -63,9 +65,12 @@ Public frontend tidak mengimport client CMS.
 website/Studio. Ia membaca sumber public diluluskan, membentuk 43 dokumen dengan
 ID deterministik, menyemak 50 fail imej dan menjalankan validator schema sebenar.
 Dry-run ialah default. Preflight raw/non-CDN menyemak ID known, singleton/slug
-conflicts dan reuse aset berdasarkan SHA-1. Mod write kelak create-only kepada
+conflicts dan reuse aset berdasarkan SHA-1. Mod write create-only kepada
 draft IDs, tanpa replace/delete/purge/publish; payload sedia ada yang berbeza
-menghentikan writes. Review dan kelulusan Fasa 4.3B masih diperlukan.
+menghentikan writes. Semua 43 sasaran remote kini `skip-identical`.
+Laporan mod write berlabel `WRITE-DRAFTS`, tahap preflight sebelum operasi;
+JSON merekod mode/stage sebenar. Safety model tidak berubah.
 
-Butiran: [SANITY-MIGRATION.md](SANITY-MIGRATION.md). Tiada production migration,
-asset upload, frontend CMS fetch atau migration kuliah dibuat dalam 4.3A.
+Butiran: [SANITY-MIGRATION.md](SANITY-MIGRATION.md). Tiada production migration
+atau asset upload dibuat dalam 4.3A; migration draft dilaksanakan dalam 4.3B.
+Frontend CMS fetch, publish editorial dan migration kuliah belum dibuat.

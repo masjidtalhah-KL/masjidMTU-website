@@ -1,5 +1,10 @@
-export function report(plan, validation, dataset) {
-  const lines = ["# Fasa 4.3A — Laporan dry-run", "", "Mod: DRY-RUN. Tiada upload, mutation atau publish.", "", "Target: " + plan.target.projectId + "/" + plan.target.dataset, "Fingerprint pelan: " + plan.fingerprint, "", "## Dokumen"];
+export function report(plan, validation, dataset, mode = "dry-run") {
+  if (!["dry-run", "write-drafts"].includes(mode)) throw new Error("Mod laporan tidak dikenali: " + mode);
+  const heading = mode === "write-drafts" ? "# Fasa 4.3B — Preflight penulisan draft" : "# Fasa 4.3A — Laporan dry-run";
+  const status = mode === "write-drafts"
+    ? "Mod: WRITE-DRAFTS. Tahap: preflight sebelum upload/penulisan; laporan ini belum membuktikan migration selesai. Hasil penulisan dilaporkan selepas operasi berjaya. Tiada publish."
+    : "Mod: DRY-RUN. Tiada upload, mutation atau publish dalam run ini.";
+  const lines = [heading, "", status, "", "Target: " + plan.target.projectId + "/" + plan.target.dataset, "Fingerprint pelan: " + plan.fingerprint, "", "## Dokumen"];
   const counts = {};
   for (const document of plan.documents) counts[document._type] = (counts[document._type] || 0) + 1;
   lines.push("| Schema | Bilangan |", "| --- | ---: |");

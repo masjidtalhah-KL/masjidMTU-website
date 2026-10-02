@@ -31,4 +31,5 @@ halaman tidak memaparkan peta terbenam atau mendakwa titik lokasi yang tepat.
 Tiada borang hubungan atau integrasi API ditambah.
 
 Fasa 3.7 telah diluluskan. Checkpoint: `phase-3.7-contact`.
-Fasa 4 belum dimulakan; kandungan kekal static/local tanpa integrasi CMS.
+Fasa 4.3B telah mengisi Site Settings sebagai draft production;
+kandungan halaman kekal static/local tanpa integrasi CMS atau publish.

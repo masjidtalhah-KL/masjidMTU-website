@@ -1,8 +1,11 @@
-# Content Migration Preparation — Fasa 4.3A
+# Content Migration — Fasa 4.3A / 4.3B
 
-Disediakan pada **1 Oktober 2026 (+08:00)** untuk review sahaja. Bootstrap dan
-preparation/dry-run diluluskan; **Fasa 4.3B, production writes, asset uploads,
-publish, commit dan push belum diluluskan/dijalankan**.
+Preparation Fasa 4.3A siap pada **1 Oktober 2026 (+08:00)**, commit `ea8dd09`
+dan checkpoint `phase-4.3a-migration-dry-run`, tanpa upload/write.
+**Fasa 4.3B draft-only production migration siap dan disemak pada 2 Oktober 2026:
+43 draft, 50 aset imej unik, 0 konflik, 0 published editorial.**
+Public frontend masih local/static; Lecture Generator Publish disabled.
+Checkpoint penutupan: `phase-4.3b-draft-migration`. Fasa 4.3C/Fasa 5 belum bermula.
 
 ## Architecture
 
@@ -32,7 +35,7 @@ imej sahaja. Tiada resize/recompression/regeneration.
 | `organisationMember` | 25 | `organisationMember-<slot.id>` |
 | `surau` | 15 | `surau.id` asal, contoh `surau-darul-jalil` |
 | `galleryCollection` | 1 | `galleryCollection-interior-masjid` |
-| **Jumlah** | **43** | Draft kelak memakai prefix `drafts.` |
+| **Jumlah** | **43** | Draft production memakai prefix `drafts.` |
 
 - Site Settings: nama penuh daripada `profile.name`, alamat/telefon/email/
   Facebook/Instagram/waktu pejabat daripada `contact.ts`. Instagram dikekalkan.
@@ -178,5 +181,82 @@ offline placeholders bukan dakwaan uploaded assets/remote reference existence.
 
 Short name tiada tetapi pilihan: tidak menghalang preparation. Tiada hard
 source/schema mismatch atau kandungan tambahan yang memerlukan rekaan.
-Kelulusan 4.3B serta cara review/publish diperlukan sebelum migration sebenar.
+Kelulusan 4.3B berikutnya membenarkan migration draft sahaja; publish tetap
+memerlukan kelulusan berasingan.
 Provenance/GPL penjana kekal open pre-production dan tidak diubah oleh utility ini.
+
+## Read-back dan penutupan Fasa 4.3B — 2 Oktober 2026
+
+Pengguna mengesahkan migration remote telah berjaya. Read-back authenticated
+melalui Sanity MCP, perspective `raw`, mengesahkan project `2o95jmms`,
+dataset `production`. Draft remote mempunyai `_createdAt`
+`2026-10-02T01:43:46Z` (09:43:46 +08:00); ini timestamp dokumen remote,
+bukan anggaran masa mula kerja/upload.
+
+Fingerprint diluluskan:
+`cbe642f6bdc5265705dbe6079d64dfa2243c83f369a1f32690a5cf83ee30cbae`.
+Perbandingan penuh hanya mengabaikan `_rev`, `_createdAt`, `_updatedAt`:
+**43 `skip-identical`, 0 create candidates, 0 konflik**.
+
+| Keadaan remote | Bilangan |
+| --- | ---: |
+| Site Settings draft | 1 |
+| Profil draft | 1 |
+| Organisation slot drafts | 25 |
+| Surau drafts (3 Jumaat + 12 Biasa) | 15 |
+| Gallery draft (12 ordered items) | 1 |
+| Jumlah draft editorial | 43 |
+| Unique image assets | 50 |
+| Published editorial / file assets / unexpected editorial | 0 |
+| System documents | 12 |
+| Jumlah dataset | 105 |
+
+Semua 50 fail source dipadankan melalui SHA-1/saiz kepada asset IDs sebenar;
+semua 55 penggunaan resolve. Profil memakai lima shared gallery asset IDs.
+Timbalan Pengerusi vacant tanpa nama/foto; Soffan occupied tanpa foto.
+23 slot lain mempunyai foto; semua 15 logo surau diselesaikan.
+Susunan slot dalam kumpulan/kategori dan keys/order galeri tepat mengikut source,
+termasuk pemegang berbilang jawatan sebagai slot berasingan.
+
+Sesi closeout hanya read-back dan QA: **0 upload, 0 document mutation,
+0 publish**. Ia mengesahkan 50 aset sedia ada boleh digunakan semula; tidak
+mendakwa menjalankan semula upload atau mengetahui pecahan created/reused
+setiap cubaan migration terdahulu tanpa log asal.
+
+### Label laporan
+
+Laporan Markdown/JSON sebelum operasi write kini merekod `write-drafts`
+dan tahap `preflight`. Tajuk/label `WRITE-DRAFTS` tidak lagi menyebut run
+sebagai `DRY-RUN`; laporan preflight tidak membuktikan write selesai.
+Stdout hasil writer dikeluarkan selepas berjaya. Run default kekal dry-run
+dan ayat “tiada upload/mutation” merujuk run itu sahaja, bukan sejarah dataset.
+Perubahan ini tidak mengubah guard, conflict handling atau atomic create-only writer.
+
+### Bukti review
+
+QA visual Studio meliputi Site Settings, Profil/lima foto, organisasi dan
+foto ahli, Timbalan kosong, Soffan tanpa foto, surau/logo dan Interior Masjid.
+Studio sort sedia ada “Kumpulan, kemudian susunan” menyusun group IDs secara
+abjad; ia bukan rank hierarchical carta public. `displayOrder` dalam setiap
+kumpulan/kategori kekal tepat. Tiada schema atau kandungan diubah untuk view ini.
+Screenshot, JSON read-back dan mapping local → actual Sanity asset IDs disimpan
+di luar repo sebagai bukti review, tanpa secrets.
+
+Read-back akhir: **2026-10-02 16:18:56 +08:00**. Semua payload/revisions
+editorial sama sebelum/selepas QA; jumlah remote kekal 105.
+Validator schema pada 43 payload remote lulus, menggunakan references daripada
+snapshot authenticated; uniqueness callback distub dalam validator dan slug
+conflicts disemak oleh `analyseDataset`. Tiada reference hilang.
+
+**Isu preview sedia ada:** subtitle senarai Galeri memaparkan “0 foto”,
+walaupun editor `Show all 12 items`, semua 12 thumbnail, array remote dan
+perbandingan source membuktikan 12 foto tepat. Isu label preview direkod untuk
+pembaikan berasingan; tiada kandungan hilang dan schema tidak diubah dalam closeout.
+
+Validation closeout lulus: lint, build (10 static routes), `git diff --check`,
+17 migration tests, schema extraction dengan enforced required fields dan
+authenticated remote verification. Semua 50 unique asset hashes diperhatikan
+sebagai imej berjaya dimuatkan dalam Studio. Enam public routes HTTP 200,
+satu H1 setiap route, imej dimuatkan dan tiada horizontal overflow.
+Semakan visual serta diff mengesahkan public source/aset/rendering tidak berubah;
+ini bukan pengukuran pixel-diff baseline lama.

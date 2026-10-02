@@ -202,7 +202,8 @@ Model dan prototype akhir Fasa 4.2/4.2A diluluskan untuk checkpoint pada
 
 ## D20 — Preparation migration deterministik, draft-first dan create-only
 
-- **Tarikh/bukti:** 2026-10-01, arahan Fasa 4.3A; implementation belum dikomit.
+- **Tarikh/bukti:** 2026-10-01, arahan Fasa 4.3A; commit `ea8dd09`,
+  checkpoint `phase-4.3a-migration-dry-run`.
   [SANITY-MIGRATION.md](SANITY-MIGRATION.md), `scripts/sanity-migration/`.
 - **Keputusan:** 43 dokumen daripada source public diluluskan, ID tetap berasaskan
   slot/source, 50 fail imej tanpa recompression. Default dry-run; production
@@ -218,7 +219,22 @@ Model dan prototype akhir Fasa 4.2/4.2A diluluskan untuk checkpoint pada
   tool tidak memadamnya.
 - **Boundary:** Short name tiada source; logo kekal website. Mock homepage dan
   semua lecture/demo/QA/legacy dikecualikan. Frontend CMS integration dan
-  penerbitan kuliah memerlukan scope berasingan. Fasa 4.3B menunggu kelulusan.
+  penerbitan kuliah memerlukan scope berasingan. Kelulusan draft migration
+  Fasa 4.3B direkodkan dalam D21.
+
+## D21 — Penutupan migration production sebagai draft sahaja
+
+- **Tarikh/bukti:** 2026-10-02, arahan pengguna dan authenticated raw read-back
+  project `2o95jmms` / dataset `production`; [SANITY-MIGRATION.md](SANITY-MIGRATION.md).
+- **Keputusan:** 43 draft, 50 aset imej unik, 0 konflik; semua sasaran
+  `skip-identical`. Tiada migrated content published. Review ini tidak
+  menjalankan write/upload semula; draft tidak diedit semasa QA Studio.
+- **Rasional:** Sahkan payload, imej, susunan dan references sebelum sebarang
+  penerbitan atau frontend integration yang memerlukan kelulusan berasingan.
+- **Kesan:** Laporan write menggunakan `WRITE-DRAFTS` dan tahap preflight,
+  bukan label `DRY-RUN`. Guard target/fingerprint/token, conflict detection
+  dan create-only transaction tidak diubah. Public frontend kekal local/static;
+  Lecture Generator Publish disabled. Fasa 4.3C dan Fasa 5 belum bermula.
 
 ## Cara menambah rekod
 

@@ -5,6 +5,7 @@ import { buildPlan, loadSources, TARGET, resolveImages, hash } from "./plan.mjs"
 import { validatePlan } from "./validation.mjs";
 import { analyseDataset, validateSnapshot, writeDrafts } from "./dataset.mjs";
 import { parseOptions } from "./cli.mjs";
+import { report } from "./report.mjs";
 
 const sources = await loadSources();
 const plan = await buildPlan(sources);
@@ -93,6 +94,15 @@ test("all seeded drafts skip identically on rerun, reusing 50 asset references",
   assert.equal(result.actions.filter((item) => item.action === "skip-identical").length, 43);
   assert.equal(result.reusedAssets, 50);
   assert.deepEqual(result.conflicts, []);
+});
+test("reports distinguish dry-run from write preflight without claiming completed writes", () => {
+  const dataset = analyseDataset(plan, snapshotFor(seeded, assetDocs));
+  assert.match(report(plan, validation, dataset), /Mod: DRY-RUN/);
+  const writeReport = report(plan, validation, dataset, "write-drafts");
+  assert.match(writeReport, /Mod: WRITE-DRAFTS/);
+  assert.match(writeReport, /belum membuktikan migration selesai/);
+  assert.doesNotMatch(writeReport, /Mod: DRY-RUN|Laporan dry-run/);
+  assert.throws(() => report(plan, validation, dataset, "unknown"));
 });
 test("editor field changes, extra fields and published/draft divergence produce conflicts", () => {
   for (const document of [{ ...seeded[0], mosqueName: "Editor change" }, { ...seeded[0], editorNote: "Do not overwrite" }, { ...seeded[0], _type: "unexpectedType" }]) {

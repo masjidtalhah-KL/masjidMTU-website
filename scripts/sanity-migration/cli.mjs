@@ -59,10 +59,11 @@ export async function main(args = process.argv.slice(2)) {
     snapshot = await inspectDataset(client, plan);
   }
   const dataset = analyseDataset(plan, snapshot);
-  const summary = report(plan, validation, dataset);
+  const mode = options.write ? "write-drafts" : "dry-run";
+  const summary = report(plan, validation, dataset, mode);
   console.log(summary);
   if (options.report) await writeFile(path.resolve(options.report), summary, { flag: "wx" });
-  if (options.json) await writeFile(path.resolve(options.json), JSON.stringify({ mode: "dry-run", plan, validation, dataset }, null, 2) + "\n", { flag: "wx" });
+  if (options.json) await writeFile(path.resolve(options.json), JSON.stringify({ mode, stage: "preflight", plan, validation, dataset }, null, 2) + "\n", { flag: "wx" });
   if (validation.errors.length || dataset.conflicts.length) { process.exitCode = 1; return; }
   if (options.write) {
     const result = await writeDrafts(client, plan, validation);

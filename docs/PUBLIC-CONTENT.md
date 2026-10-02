@@ -159,5 +159,7 @@ galeri dan hubungan kini digunakan oleh halaman Fasa 3.4–3.7 yang telah siap. 
 [PUBLIC-PROFILE.md](PUBLIC-PROFILE.md).
 
 Fasa 4.3A menyediakan mapping/dry-run daripada source ini kepada schema Sanity;
-data runtime dan production assets asal tidak diubah. Tiada upload atau dataset
-write dibuat. Rujuk [SANITY-MIGRATION.md](SANITY-MIGRATION.md).
+data runtime dan production assets asal tidak diubah. Tiada upload/write dalam
+4.3A; Fasa 4.3B kemudian memigrasikan 43 draft dan 50 aset imej unik,
+tanpa konflik atau publish. Runtime public masih local/static.
+Rujuk [SANITY-MIGRATION.md](SANITY-MIGRATION.md).

@@ -1,6 +1,6 @@
 # Project State — Masjid Talhah Bin Ubaidillah
 
-Snapshot disemak pada **1 Oktober 2026 (+08:00)**. Dokumen ini ialah ringkasan
+Snapshot disemak pada **2 Oktober 2026 (+08:00)**. Dokumen ini ialah ringkasan
 keadaan semasa untuk sambungan kerja. Arahan pengguna terkini dan keadaan Git/kod
 perlu diperiksa semula; snapshot ini bukan kebenaran automatik untuk fasa berikutnya.
 
@@ -9,8 +9,11 @@ perlu diperiksa semula; snapshot ini bukan kebenaran automatik untuk fasa beriku
 **Fasa semasa: 4 — Sanity CMS.** Fasa 4.1, model Fasa 4.2 dan prototype
 Fasa 4.2A telah diluluskan. Checkpoint akhir 4.2/4.2A ialah
 `phase-4.2-sanity-content-model` (`f2aa594`).
-**Fasa 4.3A preparation/dry-run tersedia untuk review dalam working tree;
-belum dikomit/dipush. Fasa 4.3B dan migration production belum bermula.**
+**Fasa 4.3A preparation/dry-run siap, dikomit/dipush sebagai `ea8dd09`,
+checkpoint `phase-4.3a-migration-dry-run`. Fasa 4.3B draft-only production
+migration siap: 43 draft, 50 aset imej unik, 0 konflik, 43 `skip-identical`.
+Tiada migrated content published. Checkpoint penutupan:
+`phase-4.3b-draft-migration`. Fasa 4.3C dan Fasa 5 belum bermula.**
 
 Repository rasmi: <https://github.com/masjidtalhah-KL/masjidMTU-website>.
 Commit Fasa 4.1 ialah `d48e36c7c5b43f8d934b3e9ee89ab6aa5785f2b1`.
@@ -33,6 +36,8 @@ ke dokumen dalam commit yang sama.
 | 3.7 — Hubungi | `c9d0d20` | `phase-3.7-contact` |
 | 4.1 — Sanity Foundation | `d48e36c` | `phase-4.1-sanity-foundation` |
 | 4.2 / 4.2A — Content Model & prototype kuliah | Commit yang dirujuk tag checkpoint | `phase-4.2-sanity-content-model` |
+| 4.3A — Migration preparation/dry-run | `ea8dd09` | `phase-4.3a-migration-dry-run` |
+| 4.3B — Draft-only production migration & review | Resolve tag untuk commit penutupan | `phase-4.3b-draft-migration` |
 
 **Ketidakpadanan tag lama:** kedua-dua tag Fasa 1/2 sebenarnya menunjuk ke
 `19f3c6c` (penjelasan pattern rasmi), sebelum penutupan Fasa 1 dan implementation
@@ -164,8 +169,8 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
 
 ## Keputusan belum selesai dan langkah terdekat
 
-1. Review hasil Fasa 4.3A preparation/dry-run. Jangan mulakan Fasa 4.3B,
-   upload/write/publish tanpa kelulusan berasingan. Save/publish kuliah,
+1. Fasa 4.3A dan migration draft Fasa 4.3B siap. Jangan mulakan Fasa 4.3C,
+   publish atau integrasi frontend tanpa scope/kelulusan berasingan. Save/publish kuliah,
    snapshot, concurrency dan print QA memerlukan scope lanjut.
 2. **Keputusan pre-production masih terbuka:** tentukan pematuhan GPL-3.0 bagi
    adapted renderer/combined application dan hak aset sebelum pengedaran produksi.
@@ -178,7 +183,7 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
    Nota status public-page/ledger yang lapuk diperbetulkan dalam preparation
    4.3A tanpa mengubah sejarah Git atau anomaly tag.
 
-## Fasa 4.3A — preparation/dry-run untuk review
+## Fasa 4.3A — preparation/dry-run siap
 
 - Utility: `scripts/sanity-migration/`; default dry-run, explicit future
   write-drafts memerlukan target tepat/fingerprint/token. Tiada command write
@@ -199,8 +204,37 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
   HTTP 200; H1/navigation/footer/images disemak. Tiada diff source runtime/aset.
 - Public source/components/assets, schemas dan penjana kuliah tidak diubah;
   Publish disabled. Mock homepage, semua lecture demo/QA/legacy dikecualikan.
-- Panduan/audit: [SANITY-MIGRATION.md](SANITY-MIGRATION.md). Tiada production
-  migration, frontend CMS fetch, upload, publish, commit atau push.
+- Panduan/audit: [SANITY-MIGRATION.md](SANITY-MIGRATION.md). Preparation
+  tidak melakukan production migration/upload/publish; commit dan push
+  penutupan `ea8dd09` disahkan pada 1 Oktober 2026.
+
+## Fasa 4.3B — migration draft production dan review
+
+- Pengguna mengesahkan migration sebenar; authenticated raw read-back pada
+  2 Oktober 2026 mengesahkan 105 rekod: 12 sistem, 43 draft editorial,
+  50 `sanity.imageAsset`, 0 file assets, 0 published editorial.
+- Draft: 1 Site Settings, 1 Profil, 25 slot organisasi, 15 surau
+  (3 Jumaat/12 Biasa), 1 Interior Masjid dengan 12 foto berurutan.
+- Fingerprint diluluskan kekal
+  `cbe642f6bdc5265705dbe6079d64dfa2243c83f369a1f32690a5cf83ee30cbae`.
+  Semua 43 sasaran `skip-identical`, 50 aset boleh digunakan semula,
+  55 references diselesaikan; tiada konflik atau reference hilang.
+- Lima foto Profil berkongsi references Galeri. Timbalan Pengerusi kosong,
+  Soffan tanpa foto dan pemegang berbilang jawatan kekal slot berasingan.
+- QA Studio menggunakan sesi login pada origin sedia ada
+  `http://127.0.0.1:3002`; tiada edit atau Publish dibuat.
+  Susunan dalam kumpulan/kategori sama dengan source. Studio menggunakan
+  pilihan sort sedia ada; rank kumpulan organisasi kekal tanggungjawab adapter.
+- Isu sedia ada: subtitle preview Galeri menyebut “0 foto”; editor dan raw
+  array membuktikan 12 foto. Pembaikan preview ditangguhkan untuk scope berasingan.
+- Closeout lulus lint/build/diff check, 17 migration tests, schema extraction,
+  validator 43 payload remote, 50 imej Studio dan enam public routes HTTP 200.
+- Laporan write berlabel `WRITE-DRAFTS`, tahap preflight; JSON mode/stage
+  tepat. Safety model dan writer tidak diubah. Review closeout tidak
+  menjalankan write/upload semula.
+- Public frontend kekal local/static; schema, aset public dan renderer tidak
+  diubah. Lecture Generator Publish disabled. Mock homepage/lecture/QA
+  tidak dimigrasikan; GPL/provenance kekal terbuka sebelum production.
 
 ## New Work Session Bootstrap
 
@@ -209,8 +243,9 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
 2. Sahkan repository rasmi/remote, folder aktif, branch, HEAD, tags,
    `git status` dan diff termasuk fail untracked. Jangan reset/clean/stash atau
    membuang kerja Fasa 4.2/4.2A tanpa arahan pengguna. Pada mesin baharu, clone
-   Gunakan checkpoint `phase-4.2-sanity-content-model` untuk memulihkan prototype
-   yang diluluskan; HEAD Fasa 4.1 sahaja tidak mengandunginya.
+   gunakan checkpoint `phase-4.3b-draft-migration` untuk kod/docs penutupan
+   terkini. Git tidak menyimpan dataset remote; sahkan draft/aset melalui raw
+   read-back. Checkpoint `phase-4.2-sanity-content-model` ialah baseline prototype.
 3. Inspect kod sebenar: public-content, route/components, schema registry,
    Studio structure dan generator jika relevan. Jangan bergantung pada chat lama,
    port server atau screenshot QA di luar repo sebagai satu-satunya bukti.

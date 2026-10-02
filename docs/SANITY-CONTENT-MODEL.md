@@ -147,14 +147,16 @@ abjad nama individu.
 Model Fasa 4.2 dan prototype 4.2A diluluskan pada 2026-10-01 untuk checkpoint
 `phase-4.2-sanity-content-model`. Registry akhir mempunyai 11 document types dan
 6 support types. Model bulanan kuliah kekal read-only dengan Publish disabled;
-ini bukan workflow penerbitan produksi. Fasa 4.3 belum bermula.
+ini bukan workflow penerbitan produksi. Fasa 4.3A preparation dan Fasa 4.3B
+draft-only migration kemudian disiapkan; model schema ini tidak diubah.
 
 Sanity hanya untuk kandungan editorial/public. Peserta Qurban, registrations,
 payments, receipts dan transaksi Ramadan kekal dirancang untuk
 Supabase/PostgreSQL + `/admin`.
 
-Migration, pengisian production, asset uploads, public CMS queries, draft preview,
-Presentation Tool dan webhook belum dilaksanakan. Authentication Studio asal
+Fasa 4.3B mengisi 43 draft dan 50 aset imej unik, tanpa konflik/publish;
+rujuk [SANITY-MIGRATION.md](SANITY-MIGRATION.md).
+Public CMS queries, draft preview, Presentation Tool dan webhook belum dilaksanakan. Authentication Studio asal
 kekal. Tiada dependency baharu diperlukan untuk model ini.
 
 Rujukan API: [validation Sanity](https://www.sanity.io/docs/studio/validation),

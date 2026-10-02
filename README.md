@@ -11,7 +11,9 @@ Project ini ialah asas website rasmi masjid yang dibangunkan secara berfasa. Fas
 
 Sanity Studio tersedia pada `/studio`; Foundation 4.1 serta content model dan
 prototype Penjana Jadual Kuliah 4.2/4.2A telah dikomit dan checkpointed.
-Fasa 4.3A menyediakan utility migration/dry-run untuk review sahaja.
+Fasa 4.3A preparation/dry-run siap pada checkpoint `phase-4.3a-migration-dry-run`.
+Fasa 4.3B memigrasikan 43 draft dan 50 aset imej unik ke Sanity production,
+tanpa konflik atau penerbitan kandungan.
 Public pages masih menggunakan data tempatan. Supabase/PostgreSQL, email dan
 payment belum disambungkan; Publish penjana kuliah kekal disabled.
 
@@ -75,7 +77,10 @@ default dry-run. `npm run sanity:migrate:test` menguji mapping, idempotency dan
 pengendalian konflik melalui client dalam memori sahaja.
 
 Rujuk [docs/SANITY-MIGRATION.md](docs/SANITY-MIGRATION.md) untuk pemetaan ID,
-audit dataset read-only dan draft-first strategy. Mod write kelak memerlukan
+audit dataset read-only dan draft-first strategy. Mod write memerlukan
 command berasingan, target tepat, fingerprint pelan dan token server sahaja.
-Kewujudan command itu bukan kelulusan untuk Fasa 4.3B. Jangan jalankan write,
-upload atau publish sebelum review/kelulusan berasingan.
+Migration Fasa 4.3B telah disahkan: semua 43 sasaran `skip-identical`,
+50 aset boleh digunakan semula, tanpa reference rosak atau dokumen published.
+Laporan write menggunakan label `WRITE-DRAFTS` pada tahap preflight; ia bukan
+bukti operasi selesai. Frontend kekal local/static dan Publish penjana kuliah
+kekal disabled. Penerbitan, Fasa 4.3C dan Fasa 5 memerlukan arahan berasingan.

@@ -25,4 +25,5 @@ yang sudah disediakan; komponen juga menyokong foto tanpa title/caption.
 
 Fasa 3.6 telah diluluskan, dikomit dan dipush melalui `5936bfd`,
 checkpoint `phase-3.6-gallery`. Galeri masih menggunakan source tempatan;
-Fasa 4.3A hanya menyediakan dry-run migration.
+Fasa 4.3A menyediakan dry-run; Fasa 4.3B memigrasikan 12 imej sebagai satu
+koleksi draft production. Tiada publish atau frontend CMS fetch.

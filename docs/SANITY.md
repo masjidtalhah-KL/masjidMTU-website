@@ -71,8 +71,8 @@ disembunyikan. Publish, discard changes dan restore dikekalkan.
 
 Site Settings menyediakan identiti/contact global, termasuk Facebook, Instagram
 dan waktu pejabat. Profil Masjid mengekalkan section halaman yang telah diluluskan.
-Tiada initial values, seed, upload atau migration. Membuka borang kosong untuk
-review tidak memerlukan editor menyimpan atau mempublish dokumen.
+Tiada initial values automatik. Fasa 4.3B mengisi singleton sebagai draft
+melalui migration diluluskan; QA tidak memerlukan editor mempublish dokumen.
 Singleton ialah guardrail Studio, bukan constraint uniqueness pada seluruh API;
 project permissions kekal mengawal siapa boleh menulis.
 
@@ -103,13 +103,14 @@ Semua public routes masih menggunakan source tempatan asal.
 
 ## Ditangguhkan
 
-Fasa 4.3A kini menyediakan utility preparation/dry-run, bukan migration
-production. `npm run sanity:migrate -- --dry-run` memvalidasi 43 calon dokumen
+Fasa 4.3A menyediakan utility preparation/dry-run. Fasa 4.3B telah
+memigrasikan 43 draft dan 50 aset imej unik ke production, tanpa konflik/publish.
+`npm run sanity:migrate -- --dry-run` memvalidasi 43 calon dokumen
 dan audit 50 fail imej tanpa upload/write. Dataset boleh diperiksa read-only
 melalui `--inspect-dataset` atau snapshot authenticated yang diaudit.
 Panduan lengkap: [SANITY-MIGRATION.md](SANITY-MIGRATION.md).
 
-- Migration kandungan/aset dan pengisian dokumen production.
+- Penerbitan kandungan, migration lecture dan langkah Fasa 4.3C.
 - Frontend fetch, dynamic content, preview, Presentation Tool dan Draft Mode.
 - Webhook, mutation endpoint, admin/auth custom, database dan payment.
 
@@ -178,8 +179,8 @@ dan public pages masih membaca data tempatan. QA October sebenar 34 sesi lulus,
 63 teks tiada clipping, eksport PNG/PDF A4/A3 lulus; keputusan lengkap:
 [SANITY-OCTOBER-QA.md](SANITY-OCTOBER-QA.md). Tiada production migration/writes.
 Keputusan GPL bagi adapted renderer/combined application dan hak aset sebelum
-production masih terbuka. Fasa 4.3A preparation kini untuk review; Fasa 4.3B
-dan production migration menunggu kelulusan berasingan.
+production masih terbuka. Preparation Fasa 4.3A kemudian ditutup pada `ea8dd09`;
+draft migration Fasa 4.3B direkodkan di bawah.
 
 Validation close-out: lint/build lulus; schema extraction dengan enforced
 required fields lulus; 51 kes validator sebenar (reference/uniqueness offline
@@ -187,6 +188,19 @@ di-stub), 11 empty previews, 2 singleton guards, 2,916 recurrence combinations
 dan 1,944 calendar comparisons lulus. 12 stored public visual comparisons lulus;
 public source/assets tiada diff. Renderer tool disahkan sama hash sebelum/selepas
 housekeeping. Whitespace diff seluruh checkpoint disemak sebelum commit.
+
+## Penutupan Fasa 4.3B
+
+Read-back authenticated raw pada 2 Oktober 2026 mengesahkan **43 draft,
+50 unique image assets, 0 konflik, 43 skip-identical, 0 published editorial**.
+Dataset mempunyai 12 dokumen sistem, jumlah 105; tiada editorial tidak dijangka
+atau file asset. Semua references imej diselesaikan.
+QA Studio menggunakan origin sedia ada `http://127.0.0.1:3002`, tanpa
+menukar CORS, mengedit draft atau Publish. Public frontend kekal local/static
+dan Lecture Generator Publish disabled. Laporan write menggunakan mode sebenar
+`WRITE-DRAFTS` / preflight; safety model kekal.
+Rujuk [SANITY-MIGRATION.md](SANITY-MIGRATION.md) untuk bukti dan pemetaan.
+Checkpoint: `phase-4.3b-draft-migration`; Fasa 4.3C dan Fasa 5 belum bermula.
 
 ### Dependency audit
 

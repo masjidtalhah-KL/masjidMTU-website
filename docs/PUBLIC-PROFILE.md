@@ -53,5 +53,5 @@ Screenshot penuh diambil selepas foto lazy-load dimuatkan. Lint, production buil
 dan `git diff --check` dijalankan untuk review.
 
 Fasa 3.3 telah diluluskan, dikomit dan dipush melalui `9a9c0a3`.
-Fasa 3.4–3.7 turut selesai. Profil masih membaca data tempatan; migration
-production dan frontend CMS fetch belum dibuat.
+Fasa 3.4–3.7 turut selesai. Profil masih membaca data tempatan; Fasa 4.3B
+memigrasikan draft production sahaja. Frontend CMS fetch/publish belum dibuat.

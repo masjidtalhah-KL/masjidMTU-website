@@ -1,4 +1,4 @@
-# Perjalanan Projek — Fasa 0 hingga 4.2A
+# Perjalanan Projek — Fasa 0 hingga 4.3B
 
 Rekonstruksi pada **1 Oktober 2026** daripada `git log --all`, refs/tags,
 ROADMAP dan dokumen fasa. GitHub `main`/tag refs turut disemak secara read-only.
@@ -101,7 +101,8 @@ stabil tarikh keputusan kerana boleh berubah ketika copy/checkout/edit.
   penjana kuliah dalam memori dan renderer berdasarkan legacy yang dipin.
   QA Oktober sebenar 34 sesi/63 elemen teks lulus; PNG dan PDF A4/A3 dieksport.
   Fixture tidak dimigrasikan. Tiada save/publish atau production writes.
-  Fasa 4.3 belum bermula; keputusan GPL sebelum production masih terbuka.
+  Pada checkpoint model ini Fasa 4.3 belum bermula; kemajuan berikutnya direkod
+  di bawah. Keputusan GPL sebelum production masih terbuka.
   Rujuk [PROJECT-STATE.md](PROJECT-STATE.md) untuk sempadan semasa.
 
 ## Had rekonstruksi dan cara mengemas kini
@@ -117,9 +118,27 @@ public runtime smoke checks lulus; source public, schemas dan penjana tidak diub
 Dataset raw diperiksa melalui Sanity MCP secara authenticated/read-only pada
 16:18:13 +08:00: 12 dokumen sistem, tiada editorial/draft/aset. Tiada upload,
 mutation/publish, commit/push atau Fasa 4.3B. Hasil preparation berada dalam
-working tree untuk review; ini bukan milestone Git baharu atau bukti jam kerja.
+working tree untuk review ketika snapshot preparation ini dibuat; penutupan
+kemudian dikomit sebagai `ea8dd09` pada 17:39:33 +08:00 dan dipush ke main,
+tag `phase-4.3a-migration-dry-run` pada 17:39:41 +08:00.
+Tiada write/upload berlaku dalam Fasa 4.3A; milestone Git bukan bukti jam kerja.
 Rujuk [SANITY-MIGRATION.md](SANITY-MIGRATION.md). Nota status docs public/ledger
 yang lapuk diperbetulkan; anomaly dua tag lama tidak diubah.
+
+### Migration draft dan penutupan Fasa 4.3B — 2 Oktober 2026
+
+Pengguna mengesahkan remote migration berjaya. Metadata 43 draft merekod
+`_createdAt=2026-10-02T01:43:46Z` (09:43:46 +08:00); timestamp ini ialah
+bukti creation remote, bukan masa mula/end sesi kerja. Closeout membaca remote
+secara authenticated/raw: 43 draft, 50 imej unik, 12 sistem, 0 published editorial.
+Semua sasaran `skip-identical`, tiada konflik atau references hilang.
+
+QA visual Studio menggunakan login/origin review sedia ada dan tidak mengedit
+atau mempublish draft. Laporan write dibetulkan untuk label `WRITE-DRAFTS`
+dan tahap preflight tanpa menukar safety model. Public source/schema/aset
+tidak diubah; frontend masih local/static, Publish penjana kuliah disabled.
+Checkpoint penutupan `phase-4.3b-draft-migration`; resolve tag untuk hash dan
+timestamp Git tepat. Fasa 4.3C dan Fasa 5 belum bermula.
 
 Semasa rekonstruksi asal, sebahagian dokumen PUBLIC masih mempunyai ayat status
 lama seperti “belum dikomit” atau “placeholder”. Itu snapshot fasa terdahulu;
