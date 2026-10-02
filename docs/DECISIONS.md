@@ -257,6 +257,24 @@ Model dan prototype akhir Fasa 4.2/4.2A diluluskan untuk checkpoint pada
   thumbnail. Fix Studio-only mengelakkan array path object yang menghasilkan
   false “0 foto”; fields/validations/schema source/public rendering kekal.
 
+## D23 — Published public reads dengan bounded freshness dan explicit fallback
+
+- **Tarikh/bukti:** 2026-10-02, arahan Fasa 5.1 dan kelulusan checkpoint selepas
+  review; `phase-5.1-sanity-public-content`.
+  [SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md).
+- **Keputusan:** Lima route approved sahaja membaca published perspective
+  melalui server-only typed queries/adapters. Next cache/route revalidation
+  300 saat, Sanity non-CDN API, tiada token, webhook atau mutation endpoint.
+- **Rasional:** Source editorial hidup tanpa mengubah visual/layout approved;
+  API requests dikawal dan CMS changes muncul selepas request-driven refresh.
+- **Kesan:** Temporary network/timeout/408/429/5xx menggunakan local snapshot
+  approved dengan server warning. Schema/reference/config/access mismatch tidak
+  menjadi fallback. CMS photos diresize sekali pada Sanity CDN tanpa crop/upscale;
+  logo asal dan local fallback image rendering dikekalkan. Homepage mock dan
+  Lecture Generator Publish disabled; tiada admin/operasi/campaign/payment scope.
+- **Status:** Fasa 5.1 siap dan diluluskan; commit/push checkpoint dibenarkan
+  selepas final validation. Fasa 5.2 belum bermula.
+
 ## Cara menambah rekod
 
 Tambah ID seterusnya bersama tarikh, status, bukti, rasional dan kesan. Jika

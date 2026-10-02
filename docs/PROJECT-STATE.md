@@ -6,7 +6,16 @@ perlu diperiksa semula; snapshot ini bukan kebenaran automatik untuk fasa beriku
 
 ## Fasa dan checkpoint
 
-**Fasa semasa: 4 — Sanity CMS.** Fasa 4.1, model Fasa 4.2 dan prototype
+**Fasa semasa: 5 — Dynamic Content; Fasa 5.1 siap dan diluluskan. Fasa 5.2 belum bermula.**
+Lima route Profil/Organisasi/Surau/Galeri/Hubungi membaca published Sanity,
+dengan revalidation lima minit dan explicit local fallback untuk temporary outage.
+Checkpoint: `phase-5.1-sanity-public-content`; resolve tag untuk hash commit akhir.
+Baseline sebelum integrasi: `5303a7a` / `phase-4.3c-controlled-publication`.
+Local editorial content lima route kekal hanya sebagai explicit fallback.
+Homepage pengumuman/program/berita/kuliah kekal mock/local; Publish penjana kuliah disabled.
+Rujuk [SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md).
+
+Fasa 4.1, model Fasa 4.2 dan prototype
 Fasa 4.2A telah diluluskan. Checkpoint akhir 4.2/4.2A ialah
 `phase-4.2-sanity-content-model` (`f2aa594`).
 **Fasa 4.3A preparation/dry-run siap, dikomit/dipush sebagai `ea8dd09`,
@@ -15,8 +24,8 @@ migration siap: 43 draft, 50 aset imej unik, 0 konflik, 43 `skip-identical`.
 Checkpoint draft: `phase-4.3b-draft-migration`. Controlled Publication 4.3C
 selesai: 43 published editorial, 0 draft, 50 aset imej, 55 references kepada
 50 aset unik, 0 konflik. Checkpoint penutupan
-`phase-4.3c-controlled-publication`. Frontend masih local/static;
-Lecture Generator Publish disabled. Fasa 5 belum bermula.**
+`phase-4.3c-controlled-publication`. Pada checkpoint 4.3C frontend masih
+local/static dan Lecture Generator Publish disabled.**
 
 Repository rasmi: <https://github.com/masjidtalhah-KL/masjidMTU-website>.
 Commit Fasa 4.1 ialah `d48e36c7c5b43f8d934b3e9ee89ab6aa5785f2b1`.
@@ -42,12 +51,13 @@ ke dokumen dalam commit yang sama.
 | 4.3A — Migration preparation/dry-run | `ea8dd09` | `phase-4.3a-migration-dry-run` |
 | 4.3B — Draft-only production migration & review | Resolve tag untuk commit penutupan | `phase-4.3b-draft-migration` |
 | 4.3C — Controlled Publication & closeout | Resolve tag untuk commit penutupan | `phase-4.3c-controlled-publication` |
+| 5.1 — Published Sanity public content | Resolve tag untuk commit penutupan | `phase-5.1-sanity-public-content` |
 
 **Ketidakpadanan tag lama:** kedua-dua tag Fasa 1/2 sebenarnya menunjuk ke
 `19f3c6c` (penjelasan pattern rasmi), sebelum penutupan Fasa 1 dan implementation
 homepage. Jangan gunakan tag itu sebagai snapshot akhir fasa. Tag tidak diubah
 dalam tugas ini. Tarikh/rujukan penuh berada dalam [PROJECT-JOURNEY.md](PROJECT-JOURNEY.md).
-Fasa 5–12 belum bermula.
+Fasa 5.1 siap; Fasa 5.2 dan Fasa 6–12 belum bermula.
 
 ## Architecture semasa
 
@@ -55,7 +65,8 @@ Fasa 5–12 belum bermula.
   ESLint; versi tepat dikawal oleh `package.json` dan lockfile. Node >=22.12.
 - Route awam: `/`, `/profil`, `/profil/organisasi`, `/profil/surau-kariah`,
   `/galeri`, `/hubungi`. `/design-system` ialah katalog reka bentuk.
-- Public pages menggunakan `src/lib/public-content/*`. Homepage menggunakan
+- Lima public pages menggunakan `src/lib/public-content/cms/server.ts` dan
+  adapter typed; modul tempatan/aset approved kekal fallback. Homepage menggunakan
   **mock data** `src/lib/homepage-content.ts`; waktu solat/program/kuliah contoh
   belum menjadi maklumat rasmi atau data CMS.
 - Embedded Studio rasmi pada `/studio/[[...tool]]`, menggunakan NextStudio dan
@@ -174,7 +185,8 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
 ## Keputusan belum selesai dan langkah terdekat
 
 1. Fasa 4.3A, migration draft 4.3B dan Controlled Publication 4.3C siap.
-   Jangan mulakan Fasa 5/integrasi frontend tanpa arahan berasingan.
+   Fasa 5.1 siap dan diluluskan untuk checkpoint. Fasa 5.2 belum bermula;
+   scope homepage/lecture dynamic memerlukan arahan lanjut.
    Save/publish kuliah, snapshot dan print QA memerlukan scope lanjut.
 2. **Keputusan pre-production masih terbuka:** tentukan pematuhan GPL-3.0 bagi
    adapted renderer/combined application dan hak aset sebelum pengedaran produksi.
@@ -283,7 +295,7 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
 2. Sahkan repository rasmi/remote, folder aktif, branch, HEAD, tags,
    `git status` dan diff termasuk fail untracked. Jangan reset/clean/stash atau
    membuang kerja Fasa 4.2/4.2A tanpa arahan pengguna. Pada mesin baharu, clone
-   gunakan checkpoint `phase-4.3c-controlled-publication` untuk kod/docs penutupan
+   gunakan checkpoint `phase-5.1-sanity-public-content` untuk kod/docs penutupan
    terkini. Git tidak menyimpan dataset remote; sahkan published/draft/aset melalui raw
    read-back. Checkpoint `phase-4.2-sanity-content-model` ialah baseline prototype.
 3. Inspect kod sebenar: public-content, route/components, schema registry,

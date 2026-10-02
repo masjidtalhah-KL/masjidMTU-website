@@ -1,6 +1,5 @@
-import Image from "next/image";
-import { publicAssets } from "@/lib/public-content/assets";
-import type { OrganisationSlot } from "@/lib/public-content/organisation";
+import { PublicImage as Image } from "./public-image";
+import type { PublicOrganisationSlot } from "@/lib/public-content/cms/types";
 import styles from "./person-card.module.css";
 
 /** One card per role slot; people holding two roles keep both mapped portraits. */
@@ -9,11 +8,11 @@ export function PersonCard({
   prominent = false,
   reserveAppointment = false,
 }: {
-  slot: OrganisationSlot;
+  slot: PublicOrganisationSlot;
   prominent?: boolean;
   reserveAppointment?: boolean;
 }) {
-  const photo = slot.photoId ? publicAssets[slot.photoId] : null;
+  const photo = slot.photo;
   const vacant = slot.status === "vacant";
   const role = vacant ? slot.role.replace(/\s*\(Kosong\)$/, "") : slot.role;
 

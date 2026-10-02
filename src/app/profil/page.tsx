@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { PublicImage as Image } from "@/components/public/public-image";
 import Link from "next/link";
 import { Card, Container, Heading, Section } from "@/components/design-system";
 import { PublicPageLayout } from "@/components/public/public-page-layout";
 import { publicAssets } from "@/lib/public-content/assets";
-import type { PublicAsset } from "@/lib/public-content/assets";
 import { profile } from "@/lib/public-content/profile";
+import { getProfileContent } from "@/lib/public-content/cms/server";
+import type { PublicImage } from "@/lib/public-content/cms/types";
 
 export const metadata: Metadata = { title: "Profil Masjid" };
+export const revalidate = 300;
 
 const spaceCaptions: Record<(typeof profile.spacePhotoIds)[number], string> = {
   "interior-dewan-solat-utama": "Dewan solat",
@@ -24,8 +26,8 @@ const nextPages = [
 ] as const;
 
 function ProfilePhoto({ asset, caption, index }: {
-  asset: PublicAsset;
-  caption: string;
+  asset: PublicImage;
+  caption: string | null;
   index: number;
 }) {
   return (
@@ -44,12 +46,13 @@ function ProfilePhoto({ asset, caption, index }: {
               : "(max-width: 767px) calc(100vw - 32px), (max-width: 1192px) 48vw, 564px"}
         className="profile-photo__image"
       />
-      <figcaption>{caption}</figcaption>
+      {caption ? <figcaption>{caption}</figcaption> : null}
     </figure>
   );
 }
 
-export default function Page() {
+export default async function Page() {
+  const content = await getProfileContent(spaceCaptions);
   const logo = publicAssets[profile.logo.assetId];
 
   return (
@@ -65,10 +68,10 @@ export default function Page() {
         <Container className="profile-introduction">
           <Heading>Pengenalan</Heading>
           <div className="profile-prose">
-            {profile.introduction.paragraphs.map((paragraph) => (
+            {content.introduction.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
-            <p className="profile-source-note">{profile.introduction.sourceNote}</p>
+            {content.sourceNote ? <p className="profile-source-note">{content.sourceNote}</p> : null}
           </div>
         </Container>
       </Section>
@@ -78,8 +81,8 @@ export default function Page() {
           <Heading className="profile-section-title">Visi &amp; Misi</Heading>
           <div className="profile-purpose-grid">
             {[
-              { title: "Visi", text: profile.vision },
-              { title: "Misi", text: profile.mission },
+              { title: "Visi", text: content.vision },
+              { title: "Misi", text: content.mission },
             ].map(({ title, text }) => (
               <Card key={title} className="profile-purpose-card">
                 <Heading as="h3">{title}</Heading>
@@ -93,7 +96,7 @@ export default function Page() {
       <Section id="moto" tone="navy" className="profile-motto">
         <Container width="narrow">
           <Heading className="profile-motto__label">Moto</Heading>
-          <p>{profile.motto}</p>
+          <p>{content.motto}</p>
         </Container>
       </Section>
 
@@ -112,7 +115,7 @@ export default function Page() {
               />
             </div>
             <div className="profile-prose">
-              {profile.logo.paragraphs.map((paragraph) => (
+              {content.logoRationale.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
@@ -124,11 +127,11 @@ export default function Page() {
         <Container>
           <Heading className="profile-section-title">Ruang &amp; Seni Bina Masjid</Heading>
           <div className="profile-spaces">
-            {profile.spacePhotoIds.map((assetId, index) => (
+            {content.spaces.map(({ id, image, caption }, index) => (
               <ProfilePhoto
-                key={assetId}
-                asset={publicAssets[assetId]}
-                caption={spaceCaptions[assetId]}
+                key={id}
+                asset={image}
+                caption={caption}
                 index={index}
               />
             ))}

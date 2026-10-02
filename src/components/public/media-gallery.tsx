@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
+import { PublicImage as Image } from "./public-image";
 import { useLayoutEffect, useRef, useState } from "react";
 import type { KeyboardEvent, MouseEvent } from "react";
 import styles from "./media-gallery.module.css";
 
-/** Presentation data can come from local content or a CMS later. */
+/** Source-independent presentation data for local fallback and published CMS content. */
 export type MediaGalleryItem = {
   id: string;
   src: string;

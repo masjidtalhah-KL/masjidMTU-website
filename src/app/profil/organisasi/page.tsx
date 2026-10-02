@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { Container, Heading, Section } from "@/components/design-system";
 import { PersonCard } from "@/components/public/person-card";
 import { PublicPageLayout } from "@/components/public/public-page-layout";
-import { organisationGroups, organisationSlots } from "@/lib/public-content/organisation";
+import { organisationGroups } from "@/lib/public-content/organisation";
 import type { OrganisationGroupId } from "@/lib/public-content/organisation";
+import { getOrganisationContent } from "@/lib/public-content/cms/server";
+import type { PublicOrganisationSlot } from "@/lib/public-content/cms/types";
 import styles from "./organisation.module.css";
 
 export const metadata: Metadata = { title: "Carta Organisasi" };
+export const revalidate = 300;
 
 const sectionLinks = [
   { href: "#jawatankuasa-utama", label: "Jawatankuasa Utama" },
@@ -16,7 +19,7 @@ const sectionLinks = [
   { href: "#noja-pembantu-tadbir", label: "Noja & Pembantu Tadbir" },
 ] as const;
 
-function OrganisationGroup({ id }: { id: OrganisationGroupId }) {
+function OrganisationGroup({ id, organisationSlots }: { id: OrganisationGroupId; organisationSlots: readonly PublicOrganisationSlot[] }) {
   const group = organisationGroups.find((item) => item.id === id)!;
   const prominent = id === "jawatankuasa-utama";
   const slots = organisationSlots
@@ -42,7 +45,8 @@ function OrganisationGroup({ id }: { id: OrganisationGroupId }) {
   );
 }
 
-export default function Page() {
+export default async function Page() {
+  const organisationSlots = await getOrganisationContent();
   return (
     <PublicPageLayout
       title="Carta Organisasi"
@@ -65,8 +69,8 @@ export default function Page() {
       <Section className={styles.committee}>
         <Container>
           <Heading className={styles.majorHeading}>Ahli Jawatankuasa Kariah</Heading>
-          <OrganisationGroup id="jawatankuasa-utama" />
-          <OrganisationGroup id="ajk-biro" />
+          <OrganisationGroup id="jawatankuasa-utama" organisationSlots={organisationSlots} />
+          <OrganisationGroup id="ajk-biro" organisationSlots={organisationSlots} />
         </Container>
       </Section>
 
@@ -75,11 +79,11 @@ export default function Page() {
           <Container><Heading>Pegawai Masjid</Heading></Container>
         </header>
         <Container>
-          <OrganisationGroup id="imam" />
-          <OrganisationGroup id="bilal" />
+          <OrganisationGroup id="imam" organisationSlots={organisationSlots} />
+          <OrganisationGroup id="bilal" organisationSlots={organisationSlots} />
           <div id="noja-pembantu-tadbir" className={styles.supportGroups}>
-            <OrganisationGroup id="noja" />
-            <OrganisationGroup id="pembantu-tadbir" />
+            <OrganisationGroup id="noja" organisationSlots={organisationSlots} />
+            <OrganisationGroup id="pembantu-tadbir" organisationSlots={organisationSlots} />
           </div>
         </Container>
       </Section>

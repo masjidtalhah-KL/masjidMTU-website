@@ -2,18 +2,19 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Container, Heading, Section } from "@/components/design-system";
 import { PublicPageLayout } from "@/components/public/public-page-layout";
-import { publicAssets } from "@/lib/public-content/assets";
-import { surauCategories, surauList } from "@/lib/public-content/surau";
-import type { Surau } from "@/lib/public-content/surau";
+import { surauCategories } from "@/lib/public-content/surau";
+import { getSurauContent } from "@/lib/public-content/cms/server";
+import type { PublicSurau } from "@/lib/public-content/cms/types";
 import styles from "./surau.module.css";
 
 export const metadata: Metadata = { title: "Surau Kariah" };
+export const revalidate = 300;
 
-function SurauCard({ surau }: { surau: Surau }) {
-  const logo = publicAssets[surau.logoId];
+function SurauCard({ surau }: { surau: PublicSurau }) {
+  const logo = surau.logo;
   const prominent = surau.category === "jumaat";
   // Fit within a shared logo area without enlarging any source logo.
-  const scale = Math.min(1, (prominent ? 160 : 144) / logo.width, (prominent ? 132 : 112) / logo.height);
+  const scale = logo ? Math.min(1, (prominent ? 160 : 144) / logo.width, (prominent ? 132 : 112) / logo.height) : 1;
 
   return (
     <article
@@ -22,7 +23,7 @@ function SurauCard({ surau }: { surau: Surau }) {
       aria-labelledby={`${surau.id}-name`}
     >
       <div className={styles.logoArea}>
-        <Image
+        {logo ? <Image
           src={logo.src}
           alt={logo.alt}
           width={logo.width}
@@ -30,14 +31,15 @@ function SurauCard({ surau }: { surau: Surau }) {
           unoptimized
           className={styles.logo}
           style={{ width: logo.width * scale }}
-        />
+        /> : null}
       </div>
       <h3 className={styles.name} id={`${surau.id}-name`}>{surau.name}</h3>
     </article>
   );
 }
 
-export default function Page() {
+export default async function Page() {
+  const surauList = await getSurauContent();
   const groups = surauCategories.map((category) => ({
     ...category,
     entries: surauList.filter((surau) => surau.category === category.id)

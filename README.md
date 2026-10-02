@@ -16,8 +16,14 @@ Fasa 4.3B memigrasikan 43 draft dan 50 aset imej unik ke Sanity production,
 tanpa konflik atau penerbitan kandungan.
 Fasa 4.3C Controlled Publication selesai: 43 published, 0 draft, 50 aset dan
 0 konflik. Checkpoint `phase-4.3c-controlled-publication`;
-rujuk [rekod publication](docs/SANITY-PUBLICATION.md). Fasa 5 belum bermula.
-Public pages masih menggunakan data tempatan. Supabase/PostgreSQL, email dan
+rujuk [rekod publication](docs/SANITY-PUBLICATION.md).
+Fasa 5.1 siap dan diluluskan untuk checkpoint `phase-5.1-sanity-public-content`:
+lima route Profil,
+Organisasi, Surau, Galeri dan Hubungi membaca published Sanity dengan revalidation
+lima minit dan explicit local fallback bagi temporary outage. Homepage editorial
+kekal mock/local. Local editorial content lima route kekal hanya sebagai explicit
+fallback; Fasa 5.2 belum bermula. Rujuk [public read layer](docs/SANITY-PUBLIC-CONTENT.md).
+Supabase/PostgreSQL, email dan
 payment belum disambungkan; Publish penjana kuliah kekal disabled.
 
 ## Keperluan
@@ -86,6 +92,15 @@ Migration draft Fasa 4.3B kemudian diterbitkan dalam Fasa 4.3C:
 semua 43 published payload `skip-identical`, 0 draft, 50 aset tersedia,
 55 references kepada 50 aset unik, tanpa konflik/reference rosak.
 Laporan write menggunakan label `WRITE-DRAFTS` pada tahap preflight; ia bukan
-bukti operasi selesai. Frontend kekal local/static dan Publish penjana kuliah
+bukti operasi selesai. Frontend pada checkpoint 4.3C kekal local/static dan Publish penjana kuliah
 kekal disabled. `npm run sanity:publish` ialah authenticated read-only verification;
-`npm run sanity:publish:test` menguji publication dalam memori. Fasa 5 belum bermula.
+`npm run sanity:publish:test` menguji publication dalam memori.
+
+## Public content — Fasa 5.1
+
+`npm run public-content:test` menguji published query boundaries, adapters,
+content parity dan kegagalan/fallback tanpa network atau writes.
+`npm run public-content:verify` melakukan read-only production parity check,
+tanpa token, upload atau mutation. Selepas editorial CMS berubah, review
+perbezaan kepada local checkpoint secara eksplisit. Lint/build/diff check tetap
+diperlukan; rujuk [architecture dan QA](docs/SANITY-PUBLIC-CONTENT.md).

@@ -14,8 +14,13 @@ dikongsi oleh Studio, CLI dan client melalui `src/sanity/env.ts`.
 
 `sanity.config.ts` mendaftarkan Structure Tool dan schema registry.
 `sanity.cli.ts` membolehkan arahan CLI dalam repo yang sama.
-`src/sanity/client.ts` menyediakan client read-only tanpa token untuk fasa
-kemudian; tiada halaman public mengimport atau membuat query dengannya sekarang.
+`src/sanity/client.ts` menyediakan base client read-only tanpa token.
+Fasa 5.1 siap menggunakan server-only public read layer bagi lima route approved;
+query boundaries, cache/fallback dan QA: [SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md).
+Checkpoint `phase-5.1-sanity-public-content`: revalidation lima minit,
+local editorial content lima route hanya explicit fallback. Homepage
+pengumuman/program/berita/kuliah kekal local/mock, Publish penjana disabled.
+Fasa 5.2 belum bermula.
 Studio dikecualikan daripada public route transition supaya editor tidak
 diduplikasi semasa navigation dalaman. Public transition asal dikekalkan.
 
@@ -99,7 +104,9 @@ berita/aktiviti, profil, galeri dan contact/site information pada fasa kemudian.
 resit, transaksi Ramadan dan rekod operasi. Jangan simpan rekod ini dalam Sanity.
 
 Fasa 4.1–4.2 tidak mengubah `src/lib/public-content/*` atau mock homepage.
-Semua public routes masih menggunakan source tempatan asal.
+Pada checkpoint Fasa 4 semua public routes menggunakan source tempatan asal.
+Dalam implementation 5.1 lima route menggunakan published CMS; source tempatan
+asal kekal fallback dan homepage editorial tidak dimigrasikan.
 
 ## Ditangguhkan
 
@@ -112,7 +119,7 @@ Panduan lengkap: [SANITY-MIGRATION.md](SANITY-MIGRATION.md).
 
 - Migration lecture. Controlled Publication 4.3C bagi 43 draft diluluskan
   telah selesai; 43 published/0 draft, frontend masih local/static.
-- Frontend fetch, dynamic content, preview, Presentation Tool dan Draft Mode.
+- Frontend homepage/lecture dynamic, preview, Presentation Tool dan Draft Mode.
 - Webhook, mutation endpoint, admin/auth custom, database dan payment.
 
 ## Semakan

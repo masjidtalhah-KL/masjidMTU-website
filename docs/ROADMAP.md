@@ -8,8 +8,8 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **1** | Design System | **Siap** |
 | **2** | Public Homepage | **Siap** |
 | **3** | Public Pages | **Siap** |
-| **4** | Sanity CMS | **Semasa** |
-| 5 | Dynamic Content | Belum bermula |
+| **4** | Sanity CMS | **Siap** — checkpoint 4.3C |
+| **5** | Dynamic Content | **Semasa** — 5.1 siap; 5.2 belum bermula |
 | 6 | Admin Foundation | Belum bermula |
 | 7 | Feature Flags & Campaign Engine | Belum bermula |
 | 8 | Qurban MVP | Belum bermula |
@@ -17,6 +17,19 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | 10 | Ramadan Iftar | Belum bermula |
 | 11 | Security & Production Hardening | Belum bermula |
 | 12 | Production Launch | Belum bermula |
+
+## Pecahan Fasa 5
+
+| Langkah | Fokus | Status |
+| --- | --- | --- |
+| 5.1 | Published public read layer: Profil, Organisasi, Surau, Galeri, Hubungi | **Siap** — diluluskan; `phase-5.1-sanity-public-content`, cache 5 minit dan explicit fallback |
+| 5.2 | Dynamic content seterusnya; scope belum diluluskan | **Belum bermula**; memerlukan arahan berasingan |
+
+Rujuk [SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md). Tiada production
+content writes, redesign atau operasi/admin dalam scope 5.1 ini. Pengguna
+meluluskan commit/push dan checkpoint selepas final closeout lulus.
+Local editorial content lima route kekal explicit fallback sahaja;
+homepage pengumuman/program/berita/kuliah kekal local/mock dan Publish penjana disabled.
 
 ## Pecahan Fasa 3
 
@@ -53,14 +66,14 @@ direkodkan dalam [PUBLIC-SURAU.md](PUBLIC-SURAU.md). Galeri direkodkan dalam
 | 4.3C | Controlled Publication bagi 43 draft diluluskan | **Siap** — 43 published, 0 draft, 50 aset, 0 konflik; `phase-4.3c-controlled-publication` |
 
 Rujuk [SANITY.md](SANITY.md) dan [SANITY-CONTENT-MODEL.md](SANITY-CONTENT-MODEL.md).
-Halaman public kekal menggunakan data tempatan;
+Pada checkpoint Fasa 4 halaman public kekal menggunakan data tempatan;
 utility mapping/validation/dry-run tersedia dalam Fasa 4.3A. Fasa 4.3B telah
 memigrasikan draft production sahaja; frontend CMS fetch belum dimulakan.
 Fasa 4.3C menerbitkan tepat 43 dokumen itu; Publish penjana kuliah kekal disabled.
 Rujuk [SANITY-MIGRATION.md](SANITY-MIGRATION.md).
 Publication dilaksanakan di Linux dan independently verified oleh Work;
 rekod transaksi, safe HTTP 400 failure/fix dan QA berada dalam
-[SANITY-PUBLICATION.md](SANITY-PUBLICATION.md). Fasa 5 belum bermula.
+[SANITY-PUBLICATION.md](SANITY-PUBLICATION.md). Integrasi 5.1 semasa direkodkan di atas.
 
 Prototype kuliah direkodkan dalam [SANITY-LECTURE-GENERATOR.md](SANITY-LECTURE-GENERATOR.md).
 

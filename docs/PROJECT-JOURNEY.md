@@ -194,5 +194,34 @@ dipulihkan tepat daripada Git tempatan sahaja. Screenshot/QA di luar repo tidak
 semestinya tersedia pada mesin baharu. Tiada invoices, usage ledger atau timesheet
 yang mengesahkan kos/usaha kerja; rujuk [PROJECT-COSTS.md](PROJECT-COSTS.md).
 
+### Dynamic Content Integration 5.1 untuk review — 2 Oktober 2026
+
+Bootstrap memulihkan main bersih pada `5303a7a` dan tag
+`phase-4.3c-controlled-publication`. Arahan pengguna membenarkan integration
+lima route approved tanpa redesign/content writes/commit/push. Public read
+baharu mengesahkan 43 published payload dan 50 hash imej identical kepada
+sumber approved; public perspective tidak digunakan untuk mendakwa audit draft.
+
+Typed server-only query/adapter layer, Next revalidation 300 saat dan explicit
+temporary-outage fallback diimplement. CSS/aset source/homepage editorial dan
+lecture publication tidak berubah. QA responsive, production rendering dan
+fallback direkodkan dalam [SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md).
+Ini implementation untuk review; tiada commit/tag/push atau production mutation.
+
+### Kelulusan dan penutupan Fasa 5.1 — 2 Oktober 2026
+
+Pengguna meluluskan implementation sedia ada untuk checkpoint, dengan final
+closeout sebelum commit/push. Lima route public menggunakan published Sanity
+melalui server-only read layer; local editorial content kekal explicit fallback
+bagi temporary outage dan revalidation kekal lima minit. Approved parity,
+lint/build, 58 relevant automated tests, query/content checks, outage/fallback
+dan public smoke disemak semula. Rekod penuh dalam
+[SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md).
+
+Fasa 5.1 siap; checkpoint `phase-5.1-sanity-public-content`, resolve tag untuk
+hash/timestamp Git sebenar. Homepage pengumuman/program/berita/kuliah masih
+local/mock; Lecture Generator Publish disabled. Tiada production content writes.
+Fasa 5.2 belum bermula; sesi penutupan berhenti selepas checkpoint.
+
 Apabila fasa berikutnya dikomit, tambah commit/date/tag sebenar dan pautan bukti
 review jika tersedia. Kekalkan label inferens pada peristiwa yang tiada bukti tepat.

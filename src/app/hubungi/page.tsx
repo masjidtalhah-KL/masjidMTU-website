@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { ContactDetailsView } from "@/components/public/contact-details";
 import { PublicPageLayout } from "@/components/public/public-page-layout";
-import { contact } from "@/lib/public-content/contact";
+import { getContactContent } from "@/lib/public-content/cms/server";
 
 export const metadata: Metadata = { title: "Hubungi" };
+export const revalidate = 300;
 
-export default function Page() {
+export default async function Page() {
+  const contact = await getContactContent();
   return (
     <PublicPageLayout
       title="Hubungi"
