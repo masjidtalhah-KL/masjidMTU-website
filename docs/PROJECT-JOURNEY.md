@@ -225,3 +225,42 @@ Fasa 5.2 belum bermula; sesi penutupan berhenti selepas checkpoint.
 
 Apabila fasa berikutnya dikomit, tambah commit/date/tag sebenar dan pautan bukti
 review jika tersedia. Kekalkan label inferens pada peristiwa yang tiada bukti tepat.
+
+### Fasa 5.2 — Homepage editorial frontend untuk review, 2 Oktober 2026
+
+Baseline 5.1 disahkan pada `5125ba46a52ddfd2a7d790fc8c490b427662133a`,
+tag `phase-5.1-sanity-public-content`. Pengguna memberi scope khusus Pengumuman,
+Program dan Berita & Aktiviti; Jadual Kuliah dikecualikan untuk Fasa 5.3.
+Fresh published read mendapati 0 announcement, 0 program dan 0 newsPost.
+Tiada approved published content tersedia; private drafts tidak dapat diaudit
+melalui public read. Mock homepage tidak dijadikan production content.
+
+Architecture/frontend menggunakan typed server-only published bundle,
+revalidation 300 saat, strict projected-content validation dan neutral empty
+states. Temporary outage fallback ialah UI kosong yang jelas unavailable;
+tiada editorial mock facts. Existing layout/card/design source dikekalkan.
+Lima route 5.1, schema, Lecture Generator dan operasi tidak diubah.
+Butiran/checks: [SANITY-HOMEPAGE-CONTENT.md](SANITY-HOMEPAGE-CONTENT.md).
+Berhenti untuk review sebelum seeding/publication/commit/push; tiada checkpoint
+5.2 atau claim content completion. Fasa 5.3 belum bermula, Publish disabled.
+
+### Kelulusan dan penutupan Fasa 5.2 — 2 Oktober 2026
+
+Pengguna meluluskan technical review, kemudian manual browser visual review
+bagi homepage empty-state Pengumuman, Program dan Berita & Aktiviti. Empty-state
+ini disengajakan: production masih 0 announcement, 0 program dan 0 newsPost
+published. Existing mocks tidak diseed atau diterbitkan. Automated browser
+launch disekat sandbox; kelulusan visual ialah review manual pengguna.
+
+Fasa 5.2 siap dengan typed server-only published bundle, revalidation lima minit,
+healthy empty states, explicit temporary-outage UI tanpa editorial rekaan dan
+visible malformed/auth/query errors. Final lint/build, 99 automated tests,
+Sanity parity/query, public route smoke, outage/malformed runtime checks dan
+whitespace/scope checks direkodkan dalam
+[SANITY-HOMEPAGE-CONTENT.md](SANITY-HOMEPAGE-CONTENT.md).
+
+Pengguna meluluskan commit/push origin/main dan checkpoint
+`phase-5.2-homepage-editorial-integration` selepas checks lulus; resolve tag
+untuk hash/timestamp sebenar. Jadual Kuliah kekal di luar 5.2; Lecture Generator
+Publish disabled. Tiada seeding/publication/production writes. Fasa 5.2A content
+preparation dan Fasa 5.3 belum bermula. Berhenti selepas checkpoint.

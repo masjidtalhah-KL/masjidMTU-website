@@ -14,12 +14,14 @@ import {
 } from "@/components/design-system";
 import { Reveal } from "@/components/reveal";
 import {
-  announcement,
-  communityUpdates,
   lectureSchedule,
   prayerTimes,
-  upcomingPrograms,
 } from "@/lib/homepage-content";
+
+import { HomepageAnnouncementSection, HomepageProgramSection, HomepageNewsSection } from "@/components/public/homepage-editorial";
+import { getHomepageEditorial } from "@/lib/public-content/cms/homepage-server";
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Masjid Talhah Bin Ubaidillah",
@@ -27,7 +29,8 @@ export const metadata: Metadata = {
     "Laman rasmi Masjid Talhah Bin Ubaidillah, Bukit Jalil, Kuala Lumpur. Dapatkan maklumat waktu solat, program, kuliah dan aktiviti komuniti.",
 };
 
-export default function Home() {
+export default async function Home() {
+  const editorial = await getHomepageEditorial();
   return (
     <>
       <Navbar variant="public" />
@@ -110,55 +113,9 @@ export default function Home() {
           </Container>
         </Section>
 
-        <Section id="announcements" tone="white" className="announcement-section">
-          <Container width="wide">
-            <div className="announcement-panel">
-              <div className="announcement-panel__mark" aria-hidden="true">!</div>
-              <div className="announcement-panel__copy">
-                <div className="announcement-panel__meta">
-                  <Badge variant="gold">{announcement.label}</Badge>
-                  <span>{announcement.date}</span>
-                </div>
-                <Heading as="h2">{announcement.title}</Heading>
-                <p>{announcement.description}</p>
-              </div>
-              <a className="announcement-panel__link" href="#contact" aria-label="Pergi ke maklumat hubungan">
-                <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </Container>
-        </Section>
+        <HomepageAnnouncementSection editorial={editorial} />
 
-        <Section id="programs" tone="ivory" className="program-section">
-          <Container width="wide">
-            <Reveal>
-              <SectionHeading
-                eyebrow="Bersama komuniti"
-                title="Program akan datang"
-                description="Ruang untuk belajar, berkhidmat dan mengeratkan hubungan sesama jemaah. Maklumat di bawah ialah contoh kandungan."
-              />
-            </Reveal>
-            <div className="home-card-grid">
-              {upcomingPrograms.map((program, index) => (
-                <Reveal key={program.title}>
-                  <Card className="program-card">
-                    <div className="program-card__topline">
-                      <Badge variant={index === 1 ? "gold" : "blue"}>{program.category}</Badge>
-                      <span className="program-card__number">0{index + 1}</span>
-                    </div>
-                    <Heading as="h3">{program.title}</Heading>
-                    <p>{program.description}</p>
-                    <div className="program-card__details">
-                      <span><i aria-hidden="true">◷</i>{program.date}</span>
-                      <span><i aria-hidden="true">⌁</i>{program.time}</span>
-                    </div>
-                  </Card>
-                </Reveal>
-              ))}
-            </div>
-            <p className="content-note">Semua program di bahagian ini ialah mock data, bukan hebahan rasmi.</p>
-          </Container>
-        </Section>
+        <HomepageProgramSection editorial={editorial} />
 
         <Section id="lectures" tone="navy" className="lecture-section">
           <Container width="wide">
@@ -210,38 +167,7 @@ export default function Home() {
           </Container>
         </Section>
 
-        <Section id="updates" tone="ivory" className="updates-section">
-          <Container width="wide">
-            <Reveal>
-              <SectionHeading
-                eyebrow="Cerita komuniti"
-                title="Berita dan aktiviti"
-                description="Sorotan daripada masjid dan komuniti setempat akan dikumpulkan di sini."
-              />
-            </Reveal>
-            <div className="home-card-grid">
-              {communityUpdates.map((item, index) => (
-                <Reveal key={item.title}>
-                  <Card className="update-card">
-                    <div className={`update-card__visual update-card__visual--${index + 1}`} aria-hidden="true">
-                      <span>MTU</span>
-                      <i />
-                    </div>
-                    <div className="update-card__body">
-                      <div className="update-card__meta">
-                        <Badge variant="blue">{item.category}</Badge>
-                        <span>{item.date}</span>
-                      </div>
-                      <Heading as="h3">{item.title}</Heading>
-                      <p>{item.description}</p>
-                    </div>
-                  </Card>
-                </Reveal>
-              ))}
-            </div>
-            <p className="content-note">Berita dan aktiviti yang dipaparkan juga ialah mock data.</p>
-          </Container>
-        </Section>
+        <HomepageNewsSection editorial={editorial} />
 
         <Section id="about" tone="white" className="about-section">
           <Container className="about-section__inner" width="wide">

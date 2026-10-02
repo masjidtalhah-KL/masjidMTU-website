@@ -20,9 +20,19 @@ rujuk [rekod publication](docs/SANITY-PUBLICATION.md).
 Fasa 5.1 siap dan diluluskan untuk checkpoint `phase-5.1-sanity-public-content`:
 lima route Profil,
 Organisasi, Surau, Galeri dan Hubungi membaca published Sanity dengan revalidation
-lima minit dan explicit local fallback bagi temporary outage. Homepage editorial
-kekal mock/local. Local editorial content lima route kekal hanya sebagai explicit
-fallback; Fasa 5.2 belum bermula. Rujuk [public read layer](docs/SANITY-PUBLIC-CONTENT.md).
+lima minit dan explicit local fallback bagi temporary outage. Local editorial
+content lima route kekal hanya sebagai explicit fallback.
+Fasa 5.2 homepage Pengumuman, Program dan Berita & Aktiviti siap dan diluluskan,
+menggunakan published Sanity. Ketiga-tiga jenis mempunyai
+0 published documents; paparan menggunakan neutral empty states tanpa mock cards.
+Fallback outage ialah UI kosong dengan mesej unavailable, bukan editorial mock.
+Empty-state ini disengajakan dan diluluskan melalui manual visual review pengguna.
+Mock sedia ada tidak diseed atau diterbitkan. Checkpoint:
+`phase-5.2-homepage-editorial-integration`.
+Jadual Kuliah/waktu solat kekal local/mock; Fasa 5.2A content preparation dan
+Fasa 5.3 belum bermula.
+Rujuk [public read layer](docs/SANITY-PUBLIC-CONTENT.md) dan
+[homepage editorial](docs/SANITY-HOMEPAGE-CONTENT.md).
 Supabase/PostgreSQL, email dan
 payment belum disambungkan; Publish penjana kuliah kekal disabled.
 

@@ -6,14 +6,23 @@ perlu diperiksa semula; snapshot ini bukan kebenaran automatik untuk fasa beriku
 
 ## Fasa dan checkpoint
 
-**Fasa semasa: 5 — Dynamic Content; Fasa 5.1 siap dan diluluskan. Fasa 5.2 belum bermula.**
+**Fasa semasa: 5 — Dynamic Content; Fasa 5.1 dan Fasa 5.2 siap dan diluluskan.**
 Lima route Profil/Organisasi/Surau/Galeri/Hubungi membaca published Sanity,
 dengan revalidation lima minit dan explicit local fallback untuk temporary outage.
 Checkpoint: `phase-5.1-sanity-public-content`; resolve tag untuk hash commit akhir.
 Baseline sebelum integrasi: `5303a7a` / `phase-4.3c-controlled-publication`.
 Local editorial content lima route kekal hanya sebagai explicit fallback.
-Homepage pengumuman/program/berita/kuliah kekal mock/local; Publish penjana kuliah disabled.
-Rujuk [SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md).
+Baseline 5.1: `5125ba46a52ddfd2a7d790fc8c490b427662133a`.
+Homepage Pengumuman/Program/Berita & Aktiviti kini membaca published Sanity;
+0 published documents bagi setiap jenis, maka neutral empty states dipaparkan.
+Mock editorial tidak dimigrasi atau digunakan sebagai outage fallback.
+Jadual Kuliah/waktu solat kekal local/mock; Publish penjana kuliah disabled.
+Empty-state disengajakan dan diluluskan oleh pengguna melalui manual visual review.
+Checkpoint 5.2: `phase-5.2-homepage-editorial-integration`; resolve tag untuk hash akhir.
+Tiada seeding atau production content writes/publication; existing mocks kekal excluded.
+Fasa 5.2A content preparation dan Fasa 5.3 belum bermula.
+Rujuk [SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md)
+dan [SANITY-HOMEPAGE-CONTENT.md](SANITY-HOMEPAGE-CONTENT.md).
 
 Fasa 4.1, model Fasa 4.2 dan prototype
 Fasa 4.2A telah diluluskan. Checkpoint akhir 4.2/4.2A ialah
@@ -52,12 +61,13 @@ ke dokumen dalam commit yang sama.
 | 4.3B — Draft-only production migration & review | Resolve tag untuk commit penutupan | `phase-4.3b-draft-migration` |
 | 4.3C — Controlled Publication & closeout | Resolve tag untuk commit penutupan | `phase-4.3c-controlled-publication` |
 | 5.1 — Published Sanity public content | Resolve tag untuk commit penutupan | `phase-5.1-sanity-public-content` |
+| 5.2 — Homepage editorial published read integration | Resolve tag untuk commit penutupan | `phase-5.2-homepage-editorial-integration` |
 
 **Ketidakpadanan tag lama:** kedua-dua tag Fasa 1/2 sebenarnya menunjuk ke
 `19f3c6c` (penjelasan pattern rasmi), sebelum penutupan Fasa 1 dan implementation
 homepage. Jangan gunakan tag itu sebagai snapshot akhir fasa. Tag tidak diubah
 dalam tugas ini. Tarikh/rujukan penuh berada dalam [PROJECT-JOURNEY.md](PROJECT-JOURNEY.md).
-Fasa 5.1 siap; Fasa 5.2 dan Fasa 6–12 belum bermula.
+Fasa 5.1 dan 5.2 siap; Fasa 5.2A, Fasa 5.3 dan Fasa 6–12 belum bermula.
 
 ## Architecture semasa
 
@@ -66,9 +76,11 @@ Fasa 5.1 siap; Fasa 5.2 dan Fasa 6–12 belum bermula.
 - Route awam: `/`, `/profil`, `/profil/organisasi`, `/profil/surau-kariah`,
   `/galeri`, `/hubungi`. `/design-system` ialah katalog reka bentuk.
 - Lima public pages menggunakan `src/lib/public-content/cms/server.ts` dan
-  adapter typed; modul tempatan/aset approved kekal fallback. Homepage menggunakan
-  **mock data** `src/lib/homepage-content.ts`; waktu solat/program/kuliah contoh
-  belum menjadi maklumat rasmi atau data CMS.
+  adapter typed; modul tempatan/aset approved kekal fallback. Homepage editorial
+  menggunakan `cms/homepage-server.ts`, bundle typed dan cache lima minit.
+  Dataset editorial kosong: paparan neutral empty; temporary outage menggunakan
+  explicit UI fallback kosong. Waktu solat/kuliah masih mock data daripada
+  `src/lib/homepage-content.ts`; editorial mocks lain tidak lagi dirender.
 - Embedded Studio rasmi pada `/studio/[[...tool]]`, menggunakan NextStudio dan
   Sanity authentication. Ia tidak menggunakan custom login atau route transition awam.
 - Sanity **6.17.0**, next-sanity **13.3.4**, @sanity/client **8.9.0**.
@@ -185,8 +197,10 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
 ## Keputusan belum selesai dan langkah terdekat
 
 1. Fasa 4.3A, migration draft 4.3B dan Controlled Publication 4.3C siap.
-   Fasa 5.1 siap dan diluluskan untuk checkpoint. Fasa 5.2 belum bermula;
-   scope homepage/lecture dynamic memerlukan arahan lanjut.
+   Fasa 5.1 dan Fasa 5.2 Pengumuman/Program/Berita & Aktiviti siap dan diluluskan.
+   Real content memerlukan controlled preparation/seeding/approval berasingan;
+   Fasa 5.2A belum bermula. Tiada production content writes/publication.
+   Jadual Kuliah dikecualikan; Fasa 5.3 belum bermula.
    Save/publish kuliah, snapshot dan print QA memerlukan scope lanjut.
 2. **Keputusan pre-production masih terbuka:** tentukan pematuhan GPL-3.0 bagi
    adapted renderer/combined application dan hak aset sebelum pengedaran produksi.

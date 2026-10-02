@@ -12,6 +12,8 @@
     "lint": "eslint",
     "public-content:test": "node --test scripts/public-content/public-content.test.mjs",
     "public-content:verify": "node scripts/public-content/verify.mjs",
+    "homepage-content:test": "node --test scripts/public-content/homepage-content.test.mjs",
+    "homepage-content:verify": "node scripts/public-content/homepage-verify.mjs",
     "sanity:migrate": "node scripts/sanity-migration/cli.mjs",
     "sanity:migrate:write-drafts": "node scripts/sanity-migration/cli.mjs --write-drafts",
     "sanity:migrate:test": "node --test scripts/sanity-migration/migration.test.mjs",

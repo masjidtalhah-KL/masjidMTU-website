@@ -9,7 +9,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **2** | Public Homepage | **Siap** |
 | **3** | Public Pages | **Siap** |
 | **4** | Sanity CMS | **Siap** — checkpoint 4.3C |
-| **5** | Dynamic Content | **Semasa** — 5.1 siap; 5.2 belum bermula |
+| **5** | Dynamic Content | **Semasa** — 5.1 dan 5.2 siap; 5.2A/5.3 belum bermula |
 | 6 | Admin Foundation | Belum bermula |
 | 7 | Feature Flags & Campaign Engine | Belum bermula |
 | 8 | Qurban MVP | Belum bermula |
@@ -23,13 +23,21 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | Langkah | Fokus | Status |
 | --- | --- | --- |
 | 5.1 | Published public read layer: Profil, Organisasi, Surau, Galeri, Hubungi | **Siap** — diluluskan; `phase-5.1-sanity-public-content`, cache 5 minit dan explicit fallback |
-| 5.2 | Dynamic content seterusnya; scope belum diluluskan | **Belum bermula**; memerlukan arahan berasingan |
+| 5.2 | Homepage Pengumuman, Program, Berita & Aktiviti | **Siap** — manual visual approval; `phase-5.2-homepage-editorial-integration`; 0 published documents bagi setiap jenis |
+| 5.2A | Homepage editorial content preparation | **Belum bermula** — tiada seeding atau production writes |
+| 5.3 | Jadual Kuliah integration | **Belum bermula** — scope berasingan |
 
 Rujuk [SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md). Tiada production
 content writes, redesign atau operasi/admin dalam scope 5.1 ini. Pengguna
 meluluskan commit/push dan checkpoint selepas final closeout lulus.
 Local editorial content lima route kekal explicit fallback sahaja;
-homepage pengumuman/program/berita/kuliah kekal local/mock dan Publish penjana disabled.
+Homepage Pengumuman/Program/Berita & Aktiviti kini disambung melalui published
+read layer Fasa 5.2 dengan cache 5 minit dan neutral empty states; tiada
+editorial mock digunakan sebagai fallback. Rujuk
+[SANITY-HOMEPAGE-CONTENT.md](SANITY-HOMEPAGE-CONTENT.md).
+Jadual Kuliah/waktu solat kekal local/mock dan Publish penjana disabled.
+Empty-state 5.2 disengajakan dan telah diluluskan oleh pengguna secara manual.
+Existing mocks tidak diseed. Fasa 5.2A dan Fasa 5.3 tidak dimulakan dalam closeout.
 
 ## Pecahan Fasa 3
 

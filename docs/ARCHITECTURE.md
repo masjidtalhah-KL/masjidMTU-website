@@ -8,8 +8,15 @@ unik dalam production, tanpa konflik atau penerbitan. Fasa 4.3C kemudian
 menerbitkan 43 dokumen approved. Fasa 5.1 siap menyambungkan lima route
 kepada published Sanity melalui typed server read layer, cache lima minit dan
 explicit local fallback bagi temporary outage. Local editorial data lima route
-kekal fallback sahaja; homepage pengumuman/program/berita/kuliah kekal mock.
-Lecture Generator Publish disabled; Fasa 5.2 belum bermula.
+kekal fallback sahaja. Fasa 5.2 siap menyambungkan homepage Pengumuman,
+Program dan Berita & Aktiviti kepada published Sanity; setiap
+jenis mempunyai 0 published documents. Neutral empty states dan explicit
+empty UI fallback outage tidak mempromosikan mock editorial.
+Jadual Kuliah/waktu solat kekal mock; Lecture Generator Publish disabled.
+Empty-state disengajakan dan manual visual review pengguna telah diluluskan.
+Mock tidak diseed; tiada production content writes/publication dalam Fasa 5.2.
+Checkpoint `phase-5.2-homepage-editorial-integration`.
+Fasa 5.2A content preparation dan Fasa 5.3 belum bermula.
 Pangkalan data operasi, dashboard, kempen dan pembayaran belum dibina.
 
 ```text
@@ -18,7 +25,9 @@ Pengunjung
 Public Website — Next.js
    ├── Lima public pages — published Sanity → typed adapter → presentation
    │   └── Next cache 5 minit; local fallback bagi temporary outage
-   ├── Homepage editorial — mock/local
+   ├── Homepage editorial — published Sanity → typed adapter → presentation
+   │   └── Next cache 5 minit; neutral empty states / explicit outage UI fallback
+   ├── Homepage Jadual Kuliah / waktu solat — mock/local
    ├── Data operasi — Supabase / PostgreSQL (kemudian)
    └── Kempen — Qurban / Ramadan / Wakaf / Sumbangan (kemudian)
 
@@ -48,7 +57,12 @@ Fasa 1 menetapkan token visual, komponen React yang boleh digunakan semula, dan 
 
 ## Homepage awam
 
-Homepage Fasa 2 menggunakan imej rasmi `public/brand/masjid-dome.jpg` untuk visual kubah dalam hero dan `public/brand/masjid-exterior.jpg` untuk foto bahagian luar. Homepage memaparkan foto exterior melalui derivative WebP `public/brand/masjid-exterior.webp`; JPG asal dikekalkan. Kandungan waktu solat, pengumuman, program, kuliah dan berita datang daripada mock data dalam `src/lib/homepage-content.ts`. Homepage tidak membuat fetch CMS atau pangkalan data.
+Homepage menggunakan imej rasmi `public/brand/masjid-dome.jpg` untuk visual kubah
+dan derivative `public/brand/masjid-exterior.webp` untuk exterior; JPG asal
+dikekalkan. Fasa 5.2 mengubah hanya sumber tiga section editorial kepada typed
+server-only published Sanity. Waktu solat dan Jadual Kuliah terus membaca
+`src/lib/homepage-content.ts`; mocks editorial asal tidak lagi dirender.
+Markup/design tokens/card visuals sedia ada dikekalkan; tiada fetch operasi.
 
 ## Sanity Foundation
 
@@ -74,8 +88,11 @@ Integrasi 5.1 menggunakan server-only boundary; query/token tidak masuk browser.
 Query, mapping, visibility/order, original-image composition, caching dan
 fallback/error policy berada dalam [SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md).
 Fetch berpusat di `src/lib/public-content/cms/server.ts`, presentation menerima
-model source-independent. Homepage, Navbar/Footer dan prototype kuliah kekal
-source asal. Tiada webhook, mutation endpoint atau preview ditambah.
+model source-independent. Navbar/Footer dan prototype kuliah kekal source asal.
+Homepage editorial Fasa 5.2 menggunakan `cms/homepage-server.ts`, query bundle,
+strict adapter dan explicit empty UI fallback, dengan policy/interval 5.1.
+Rujuk [SANITY-HOMEPAGE-CONTENT.md](SANITY-HOMEPAGE-CONTENT.md).
+Tiada webhook, mutation endpoint atau preview ditambah.
 
 `scripts/sanity-migration/` ialah utility Node berasingan daripada runtime
 website/Studio. Ia membaca sumber public diluluskan, membentuk 43 dokumen dengan
