@@ -1,11 +1,24 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
 import test from "node:test";
-import { buildPlan, resolveImages, TARGET } from "./plan.mjs";
+import { buildPlan, canonical, hash, resolveImages, ROOT, TARGET } from "./plan.mjs";
 import { APPROVED_PLAN, CHECKPOINT_PLANS, assertApproval, publicationActions, publicationDigest, publishApproved, reviewPublication } from "./publication.mjs";
 import { parsePublicationOptions } from "./publication-cli.mjs";
 
-const plan = await buildPlan();
+const currentPlan = await buildPlan();
+// Publication 4.3 is immutable historical evidence. Verify the exact tagged LF bytes,
+// then reconstruct the separately locked CRLF test fixture. This conversion is test-only;
+// production CLI still hashes current raw bytes and never normalizes approval fingerprints.
+const checkpoint = "phase-4.3c-controlled-publication";
+const schemaPaths = execFileSync("git", ["ls-tree", "-r", "--name-only", checkpoint, "src/sanity/schemaTypes"], { cwd: ROOT, encoding: "utf8" }).trim().split("\n").filter((file) => file.endsWith(".ts")).sort();
+assert.equal(schemaPaths.length, 16);
+const historicalFiles = schemaPaths.map((file) => ({ name: file.split("/").at(-1), bytes: execFileSync("git", ["show", checkpoint + ":" + file], { cwd: ROOT }) }));
+assert.equal(hash(historicalFiles.map(({ name, bytes }) => name + ":" + hash(bytes)).join("\n")), "b41ca23623dbf7094e0a15221874afa1f82ee547ecc1049432cdbad2a15996c6");
+const schemaHash = hash(historicalFiles.map(({ name, bytes }) => name + ":" + hash(bytes.toString("utf8").replace(/\n/g, "\r\n"))).join("\n"));
+assert.equal(schemaHash, "abfe970927799477132eabbf7ca16fc6326b906343cb96b4332fe2b596ac0b7a");
+const plan = { ...currentPlan, schemaHash };
+plan.fingerprint = hash(JSON.stringify(canonical({ documents: plan.documents, assets: plan.assets, schemaHash, target: plan.target })));
 const approval = JSON.parse(await readFile(new URL("./approved-publication.json", import.meta.url), "utf8"));
 const assetIds = Object.fromEntries(plan.assets.map((asset) => [asset.assetId, approval.assets.find((item) => item.sha1hash === asset.sha1)._id]));
 const drafts = plan.documents.map((doc) => ({ ...resolveImages(doc, assetIds), _id: "drafts." + doc._id, _rev: approval.documents.find((item) => item.publishedId === doc._id).draftRevision }));
@@ -63,6 +76,10 @@ function harness({ before = snapshotFor(), race, dryRunFails = false, responseLo
   };
 }
 const run = (mock, overrides = {}) => publishApproved({ ...options, client: mock.client, plan, approval, audit: mock.audit, validate: successfulValidation, inspect: mock.inspect, ...overrides });
+
+test("current schema changes cannot reuse historical 4.3 publication approval", () => {
+  assert.throws(() => assertApproval(currentPlan, approval), /checkpoint 4.3B/);
+});
 
 test("approval binds the exact checkpoint, 43 IDs/types/revisions and 50 actual assets", () => {
   assertApproval(plan, approval);

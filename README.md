@@ -23,14 +23,26 @@ Organisasi, Surau, Galeri dan Hubungi membaca published Sanity dengan revalidati
 lima minit dan explicit local fallback bagi temporary outage. Local editorial
 content lima route kekal hanya sebagai explicit fallback.
 Fasa 5.2 homepage Pengumuman, Program dan Berita & Aktiviti siap dan diluluskan,
-menggunakan published Sanity. Ketiga-tiga jenis mempunyai
-0 published documents; paparan menggunakan neutral empty states tanpa mock cards.
+menggunakan published Sanity. Pada checkpoint 5.2 ketiga-tiga jenis mempunyai
+0 published documents; empty states diluluskan tanpa mock cards. Keadaan semasa 5.2A: Program 1, Announcement 0, News 0.
 Fallback outage ialah UI kosong dengan mesej unavailable, bukan editorial mock.
 Empty-state ini disengajakan dan diluluskan melalui manual visual review pengguna.
 Mock sedia ada tidak diseed atau diterbitkan. Checkpoint:
 `phase-5.2-homepage-editorial-integration`.
-Jadual Kuliah/waktu solat kekal local/mock; Fasa 5.2A content preparation dan
-Fasa 5.3 belum bermula.
+Fasa 5.2A completed pada 3 Oktober 2026. Checkpoint: `phase-5.2a-editorial-public-information`; resolve tag untuk hash commit akhir.
+Published Sanity: 0 drafts, 1 Program, 0 Announcement, 0 News, 53 image assets.
+Dapur Zohor Barakah ialah Program pertama, active dan ongoing tanpa tarikh tamat rekaan.
+NCR evergreen dan general mosque DuitNow QR published melalui siteSettings.
+Typed server-only read layer kekal published-only, token-free dan revalidate 300 saat.
+Healthy empty Announcement/News disengajakan; outage tidak mencipta editorial/QR/contact fakta,
+dan malformed/auth/query failures kekal visible errors. Mock editorial tidak diseed.
+Genius Aulad pending required publishedAt; Qiam/Bubur Asyura HOLD.
+Dapur-specific QR kekal berasingan; QR-only asset excluded/unclassified.
+Facebook curated/manual, tiada importer. Jadual Kuliah local/mock;
+Lecture Generator Publish disabled dan Fasa 5.3 belum bermula.
+Historical Fasa 4.3 manifests, approval payloads dan mutation guards kekal immutable.
+Rujuk [closeout/publication](docs/EDITORIAL-PUBLICATION-CLOSEOUT.md) dan
+[editorial preparation history](docs/EDITORIAL-CONTENT-PREPARATION.md).
 Rujuk [public read layer](docs/SANITY-PUBLIC-CONTENT.md) dan
 [homepage editorial](docs/SANITY-HOMEPAGE-CONTENT.md).
 Supabase/PostgreSQL, email dan
@@ -114,3 +126,23 @@ content parity dan kegagalan/fallback tanpa network atau writes.
 tanpa token, upload atau mutation. Selepas editorial CMS berubah, review
 perbezaan kepada local checkpoint secara eksplisit. Lint/build/diff check tetap
 diperlukan; rujuk [architecture dan QA](docs/SANITY-PUBLIC-CONTENT.md).
+
+Untuk current approved Fasa 5.2A state, gunakan `npm run public-content:verify:current`
+dan `npm run homepage-content:verify`. Current verifier validates the new settings
+groups separately while preserving all 43 historical base payloads and 50 source hashes.
+Exact historical parity/approval evidence kekal immutable; full settings kini berbeza
+secara intentional kerana NCR/donation additions yang diluluskan. Jangan ubah manifest
+asal untuk membuat current publication kelihatan identical kepada checkpoint 4.3.
+
+## Final donation presentation — Fasa 5.2A
+
+Final public donation copy:
+
+- Presentation eyebrow: **Salurkan sumbangan anda**.
+- CMS `donationInfo.heading`: **Moga menjadi saham akhirat dan rezeki diberkati**.
+- CMS `donationInfo.copy`, paragraph 1: **Sumbangan anda akan digunakan untuk pengimarahan masjid, saguhati penceramah, pembangunan & pembaikan masjid, alatan & kemudahan para jemaah.**
+- CMS copy, paragraph 2: **Semak nama penerima sebelum mengesahkan transaksi dalam aplikasi bank atau e-dompet anda.**
+
+Copy uses the existing text field with a blank-line paragraph separator. No decorative CMS field added.
+The reminder is a separate 14px paragraph; description stays 16px. Existing heading sizes,
+navy/gold layout, QR artwork/reference/alt/caption and both actions remain intact.

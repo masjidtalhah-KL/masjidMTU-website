@@ -275,8 +275,104 @@ Model dan prototype akhir Fasa 4.2/4.2A diluluskan untuk checkpoint pada
 - **Status:** Fasa 5.1 siap dan diluluskan; commit/push checkpoint dibenarkan
   selepas final validation. Fasa 5.2 belum bermula.
 
+## D24 — Website curated dan Facebook melalui review manusia
+
+- **Tarikh/bukti:** 2026-10-03 (+08:00), arahan pengguna Fasa 5.2A;
+  [EDITORIAL-CONTENT-PREPARATION.md](EDITORIAL-CONTENT-PREPARATION.md).
+- **Keputusan pengguna:** Facebook kekal saluran pantas/social; website rasmi
+  kekal curated, structured dan mudah dirujuk. Tiada full automatic mirror
+  atau direct Facebook-to-website publishing.
+- **Klasifikasi:** Official notice → Pengumuman; upcoming program/campaign
+  atau ongoing Dapur Zohor Barakah → Program/inisiatif; completed event/visit/
+  appreciation/report → Berita & Aktiviti. Kuliah kekal dedicated module.
+  NCR ialah evergreen public information; Sumbangan/QR ialah presentation
+  public khusus, bukan news atau payment gateway.
+- **Workflow masa hadapan:** Facebook Page → import/inbox → suggested category
+  → human source/fact/category review → Sanity draft → manual publish → website.
+  #MTUPengumuman/#MTUProgram/#MTUBerita/#MTUKuliah hanya category hints;
+  hints tidak memberikan kebenaran publish. Menu harian dan routine livestream
+  tidak automatik menjadi berita kekal.
+- **Status:** Polisi ini dipersetujui pengguna. Placement/schema/copy/asset
+  proposals masih untuk review. Tiada automation, source import, asset upload,
+  draft creation atau publication dilaksanakan dalam preparation ini.
+
 ## Cara menambah rekod
 
 Tambah ID seterusnya bersama tarikh, status, bukti, rasional dan kesan. Jika
 keputusan berubah, nyatakan keputusan yang diganti; jangan padam provenance lama.
 Pisahkan cadangan/prototype daripada keputusan yang telah diluluskan.
+
+## D25 — Fasa 5.2A source-backed public information architecture
+3 Oktober 2026: user authorizes implementation, but no Sanity asset upload,
+mutation, draft, publication, commit or push. Keep Program scheduled/ongoing minimal;
+legacy means scheduled, ongoing needs no invented datetime/recurrence/end date.
+NCR is evergreen optional settings → /hubungi#nikah-cerai-ruju. General donation
+is optional settings → /#donations, full unoptimized branded general artwork only.
+Dapur-specific QR stays separate; QR-only purpose remains owner-unconfirmed.
+Missing optional objects fabricate nothing; malformed objects are errors.
+Historical 4.3 manifest is immutable. Current verification and historical publication
+tests have separate purposes; new schemas cannot reuse old publication approval.
+Genius Aulad is the recommended first News. Qiam source is an invitation and
+cannot substantiate a completed Qiam/Bubur Asyura report. Website publishedAt
+must not substitute event/source dates. Exact batch requires owner review.
+No filler Pengumuman, monthly kuliah, Facebook automation, payment gateway,
+Lecture Generator changes or Fasa 5.3 work.
+
+## D26 — Owner-confirmed facts and exact first draft-only boundary
+3 October 2026: owner approves Fasa 5.2A architecture/content preparation,
+both NCR names/phones under **Penolong Pendaftar Nikah, Cerai & Ruju’ (NCR)**,
+Dapur launch/operating/price/refill/payment facts and the proposed general
+donation presentation. Dapur remains ongoing with no invented end date.
+Genius Aulad is approved as the first News candidate, but required website
+publishedAt has no source/explicit approval. Exclude its draft and image until
+the date is resolved; source Facebook date remains separate provenance.
+Qiam/Bubur Asyura stays HOLD; no source-to-completion inference.
+The exact dry-run proposes only `drafts.program-dapur-zohor-barakah`,
+`drafts.siteSettings` and three unchanged original assets S01/S02/S03.
+Published singleton revision and every existing field are frozen in
+[the JSON review plan](EDITORIAL-DRAFT-SEEDING-DRY-RUN.json); raw read found
+no existing target drafts or editorial documents. Recheck before future uploads
+or creates and stop on drift/collisions. Never overwrite a draft or patch published
+settings. Draft creation/upload needs explicit approval of this exact dry-run;
+publication and Git checkpoint remain separate and unauthorized.
+
+Subsequent explicit owner authorization allowed execution of exactly that draft-only
+batch. On 2026-10-03 05:03:06 UTC, both drafts were created. Authenticated read-back
+confirmed 2 total drafts, 3 approved assets added (53 total), 43 published documents
+and all 50 pre-existing assets unchanged, exact payloads and 3 resolved references.
+Current schema validation has 0 errors/warnings. Published program/announcement/newsPost
+counts remain 0. General QR source and Sanity SHA-1 match approval; CDN PNG container
+encoding differs but all decoded pixels match. See [execution result](EDITORIAL-DRAFT-SEEDING-RESULT.md).
+Stop for Studio review; no publication/commit/push or Fasa 5.3.
+
+## D27 — Owner-approved controlled publication and Fasa 5.2A checkpoint
+
+Fasa 5.2A completed pada 3 Oktober 2026. Checkpoint: `phase-5.2a-editorial-public-information`; resolve tag untuk hash commit akhir.
+Published Sanity: 0 drafts, 1 Program, 0 Announcement, 0 News, 53 image assets.
+Dapur Zohor Barakah ialah Program pertama, active dan ongoing tanpa tarikh tamat rekaan.
+NCR evergreen dan general mosque DuitNow QR published melalui siteSettings.
+Typed server-only read layer kekal published-only, token-free dan revalidate 300 saat.
+Healthy empty Announcement/News disengajakan; outage tidak mencipta editorial/QR/contact fakta,
+dan malformed/auth/query failures kekal visible errors. Mock editorial tidak diseed.
+Genius Aulad pending required publishedAt; Qiam/Bubur Asyura HOLD.
+Dapur-specific QR kekal berasingan; QR-only asset excluded/unclassified.
+Facebook curated/manual, tiada importer. Jadual Kuliah local/mock;
+Lecture Generator Publish disabled dan Fasa 5.3 belum bermula.
+Historical Fasa 4.3 manifests, approval payloads dan mutation guards kekal immutable.
+
+The historical draft-only boundaries in D25/D26 were superseded only by subsequent explicit owner approvals. Publish only the two reviewed documents, then the final donation copy via a single settings draft. No additional editorial seeding. Historical publication fingerprints/approval files remain locked; use current-state verification for the intentional optional settings extensions. Evidence: [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md).
+
+## D28 — Donation copy remains CMS-led with a presentation eyebrow
+
+Final public donation copy:
+
+- Presentation eyebrow: **Salurkan sumbangan anda**.
+- CMS `donationInfo.heading`: **Moga menjadi saham akhirat dan rezeki diberkati**.
+- CMS `donationInfo.copy`, paragraph 1: **Sumbangan anda akan digunakan untuk pengimarahan masjid, saguhati penceramah, pembangunan & pembaikan masjid, alatan & kemudahan para jemaah.**
+- CMS copy, paragraph 2: **Semak nama penerima sebelum mengesahkan transaksi dalam aplikasi bank atau e-dompet anda.**
+
+Copy uses the existing text field with a blank-line paragraph separator. No decorative CMS field added.
+The reminder is a separate 14px paragraph; description stays 16px. Existing heading sizes,
+navy/gold layout, QR artwork/reference/alt/caption and both actions remain intact.
+
+Only donationInfo.heading/copy change remotely; preserve every other settings field. QR source/reference/recipient/NCR and Dapur are untouched. Full original general QR is separate from Dapur payment QR; no gateway or financial workflow is introduced.

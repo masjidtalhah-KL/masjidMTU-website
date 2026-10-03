@@ -7,12 +7,13 @@ export type HomepageAnnouncement = {
 };
 
 export type HomepageProgram = {
+  scheduleType: "scheduled" | "ongoing";
   id: string;
   title: string;
   description: string;
   category: string | null;
   date: string;
-  time: string;
+  time: string | null;
 };
 
 export type HomepageNews = {

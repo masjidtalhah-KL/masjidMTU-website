@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Container, Heading, Section } from "@/components/design-system";
 import type { ContactDetails } from "@/lib/public-content/contact";
+import { NcrServiceView } from "./ncr-service";
 import styles from "./contact-details.module.css";
 
 // Heroicons outline, MIT © Tailwind Labs. See docs/third-party/HEROICONS-LICENSE.txt.
@@ -93,6 +94,8 @@ export function ContactDetailsView({ details }: { details: ContactDetails }) {
           </div>
         </Container>
       </Section>
+
+      {details.ncrService && <NcrServiceView information={details.ncrService} />}
 
       <Section tone="navy" className={styles.locationSection}>
         <Container width="wide" className={styles.locationLayout}>

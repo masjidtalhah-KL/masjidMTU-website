@@ -78,12 +78,17 @@ export function mapHomepageEditorial(value: unknown, now = Date.now()): Homepage
     };
   });
   const programs = documents(bundle.programs, "program").map((doc) => {
-    const start = date(doc.startAt, "program.startAt");
+    const scheduleType = doc.scheduleType ?? "scheduled";
+    if (scheduleType !== "scheduled" && scheduleType !== "ongoing") return fail("program.scheduleType");
+    const start = scheduleType === "ongoing" && doc.startAt == null ? null : date(doc.startAt, "program.startAt");
+    const end = doc.endAt == null ? null : date(doc.endAt, "program.endAt");
+    if (start !== null && end !== null && end < start) return fail("program.endAt");
     return {
       id: doc._id as string, title: text(doc.title, "program.title", 160),
       description: text(doc.description, "program.description", 400), category: optionalText(doc.category, "program.category"),
-      date: dateFormat.format(start), time: timeFormat.format(start), start,
-      end: optionalEnd(doc.endAt, start, "program.endAt"), ...controls(doc, "program"),
+      date: scheduleType === "ongoing" ? "Inisiatif berterusan" : dateFormat.format(start!),
+      time: scheduleType === "ongoing" ? null : timeFormat.format(start!), start, end, scheduleType,
+      ...controls(doc, "program"),
     };
   });
   const news = documents(bundle.news, "newsPost").map((doc) => {
@@ -105,9 +110,11 @@ export function mapHomepageEditorial(value: unknown, now = Date.now()): Homepage
       id: selectedAnnouncement.id, title: selectedAnnouncement.title, description: selectedAnnouncement.description,
       date: selectedAnnouncement.date, cta: selectedAnnouncement.cta,
     } : null,
-    programs: programs.filter((item) => item.active && (item.start >= now || (item.end !== null && item.end > now)))
-      .sort((a, b) => a.order - b.order || a.start - b.start || compareId(a, b)).slice(0, 3)
-      .map(({ id, title, description, category, date, time }) => ({ id, title, description, category, date, time })),
+    programs: programs.filter((item) => item.active && (item.scheduleType === "ongoing"
+      ? (item.start === null || item.start <= now) && (item.end === null || item.end > now)
+      : item.start! >= now || (item.end !== null && item.end > now)))
+      .sort((a, b) => a.order - b.order || (a.start ?? 0) - (b.start ?? 0) || compareId(a, b)).slice(0, 3)
+      .map(({ id, title, description, category, date, time, scheduleType }) => ({ id, title, description, category, date, time, scheduleType: scheduleType as "scheduled" | "ongoing" })),
     news: news.filter((item) => item.published <= now)
       .sort((a, b) => b.published - a.published || compareId(a, b)).slice(0, 3)
       .map(({ id, title, description, category, date }) => ({ id, title, description, category, date })),

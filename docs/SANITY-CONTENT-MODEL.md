@@ -1,6 +1,6 @@
-# Sanity Content Model — Fasa 4.2
+# Sanity Content Model — Fasa 4.2 and Fasa 5.2A
 
-Fasa ini menyediakan schema editorial sahaja. Kandungan public terus datang
+Historical Fasa 4.2 snapshot below menyediakan schema editorial sahaja. Current Fasa 5.2A additions/publication are recorded at the end of this document. Kandungan public terus datang
 daripada `src/lib/public-content/*` dan `src/lib/homepage-content.ts`. Tiada nilai
 source tersebut disalin ke Sanity, tiada gambar diupload dan tiada query CMS
 ditambah pada halaman public.
@@ -167,3 +167,35 @@ kekal. Tiada dependency baharu diperlukan untuk model ini.
 Rujukan API: [validation Sanity](https://www.sanity.io/docs/studio/validation),
 [preview](https://www.sanity.io/docs/studio/previews-list-views) dan
 [image type](https://www.sanity.io/docs/studio/image-type).
+
+## Current Fasa 5.2A model and published state
+
+Program adds optional scheduleType (`scheduled` / `ongoing`). Missing means legacy scheduled; scheduled requires startAt. Ongoing may omit startAt/endAt, respects genuine supplied bounds and isActive, and invents no end date or clock time. Dapur is the first active ongoing published Program.
+
+siteSettings adds optional ncrService (heading, introduction, officers with name/role/phone, optional poster) and donationInfo (heading, copy, recipientLabel, primaryQr with alt). Populated objects validate strictly; QR crop/hotspot/transforms are rejected. No new decorative eyebrow field.
+
+Final public donation copy:
+
+- Presentation eyebrow: **Salurkan sumbangan anda**.
+- CMS `donationInfo.heading`: **Moga menjadi saham akhirat dan rezeki diberkati**.
+- CMS `donationInfo.copy`, paragraph 1: **Sumbangan anda akan digunakan untuk pengimarahan masjid, saguhati penceramah, pembangunan & pembaikan masjid, alatan & kemudahan para jemaah.**
+- CMS copy, paragraph 2: **Semak nama penerima sebelum mengesahkan transaksi dalam aplikasi bank atau e-dompet anda.**
+
+Copy uses the existing text field with a blank-line paragraph separator. No decorative CMS field added.
+The reminder is a separate 14px paragraph; description stays 16px. Existing heading sizes,
+navy/gold layout, QR artwork/reference/alt/caption and both actions remain intact.
+
+Fasa 5.2A completed pada 3 Oktober 2026. Checkpoint: `phase-5.2a-editorial-public-information`; resolve tag untuk hash commit akhir.
+Published Sanity: 0 drafts, 1 Program, 0 Announcement, 0 News, 53 image assets.
+Dapur Zohor Barakah ialah Program pertama, active dan ongoing tanpa tarikh tamat rekaan.
+NCR evergreen dan general mosque DuitNow QR published melalui siteSettings.
+Typed server-only read layer kekal published-only, token-free dan revalidate 300 saat.
+Healthy empty Announcement/News disengajakan; outage tidak mencipta editorial/QR/contact fakta,
+dan malformed/auth/query failures kekal visible errors. Mock editorial tidak diseed.
+Genius Aulad pending required publishedAt; Qiam/Bubur Asyura HOLD.
+Dapur-specific QR kekal berasingan; QR-only asset excluded/unclassified.
+Facebook curated/manual, tiada importer. Jadual Kuliah local/mock;
+Lecture Generator Publish disabled dan Fasa 5.3 belum bermula.
+Historical Fasa 4.3 manifests, approval payloads dan mutation guards kekal immutable.
+
+Historical Fasa 4.3 registry/evidence is frozen at its checkpoint; today's schemas cannot reuse that mutation approval. Current schema extraction and document validation passed. See [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md).

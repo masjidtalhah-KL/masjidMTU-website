@@ -19,6 +19,8 @@ import {
 } from "@/lib/homepage-content";
 
 import { HomepageAnnouncementSection, HomepageProgramSection, HomepageNewsSection } from "@/components/public/homepage-editorial";
+import { DonationSection } from "@/components/public/donation-section";
+import { getDonationContent } from "@/lib/public-content/cms/server";
 import { getHomepageEditorial } from "@/lib/public-content/cms/homepage-server";
 
 export const revalidate = 300;
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const editorial = await getHomepageEditorial();
+  const [editorial, donation] = await Promise.all([getHomepageEditorial(), getDonationContent()]);
   return (
     <>
       <Navbar variant="public" />
@@ -147,25 +149,7 @@ export default async function Home() {
           </Container>
         </Section>
 
-        <Section id="donations" tone="white" className="donation-section">
-          <Container width="wide">
-            <div className="donation-panel">
-              <div className="donation-panel__content">
-                <p className="eyebrow eyebrow--gold">Sokong rumah Allah</p>
-                <Heading as="h2">Sumbangan yang menguatkan khidmat komuniti.</Heading>
-                <p>
-                  Sumbangan menyokong keperluan dan aktiviti masjid. Hubungi pihak masjid untuk maklumat saluran sumbangan yang disahkan.
-                </p>
-                <Button href="#contact" size="lg">Hubungi pihak masjid</Button>
-              </div>
-              <div className="donation-panel__aside" aria-hidden="true">
-                <span>IKHLAS</span>
-                <i />
-                <strong>Khidmat<br />bersama</strong>
-              </div>
-            </div>
-          </Container>
-        </Section>
+        <DonationSection content={donation} />
 
         <HomepageNewsSection editorial={editorial} />
 

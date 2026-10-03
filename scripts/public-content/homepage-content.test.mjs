@@ -155,7 +155,7 @@ test("server boundary pins published token-free 300-second caching and homepage 
   assert.match(server, /revalidate: PUBLIC_CONTENT_REVALIDATE_SECONDS/);
   const page = await fs.readFile(path.join(ROOT, "src/app/page.tsx"), "utf8");
   assert.match(page, /export const revalidate = 300/);
-  assert.match(page, /await getHomepageEditorial/);
+  assert.match(page, /getHomepageEditorial\(\)/);
   assert.doesNotMatch(page, /upcomingPrograms|communityUpdates|announcement\./);
   assert.match(page, /lectureSchedule\.map/);
 });

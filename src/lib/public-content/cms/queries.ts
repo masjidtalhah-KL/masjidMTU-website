@@ -19,6 +19,8 @@ export const publicQueries = {
     _id, title, category, items[]{${media}}
   }`,
   settings: `*[_type == "siteSettings" && _id == "siteSettings" && ${published}][0]{
-    _id, mosqueName, address, phone, email, facebookUrl, instagramUrl, officeHours[]{days, hours}
+    _id, mosqueName, address, phone, email, facebookUrl, instagramUrl, officeHours[]{days, hours},
+    ncrService{heading, introduction, officers[]{name, role, phone}, poster{${image}}},
+    donationInfo{heading, copy, recipientLabel, primaryQr{${image}, crop, hotspot}}
   }`,
 } as const;

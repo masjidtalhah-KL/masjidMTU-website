@@ -1,5 +1,9 @@
 # Homepage editorial — Fasa 5.2
 
+**Current state: Fasa 5.2A completed, 1 ongoing Program / 0 Announcement / 0 News.**
+See the final section and [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md).
+The original Fasa 5.2 inspection/validation below records its historical empty-state checkpoint.
+
 Fasa 5.2 completed and approved, based on Fasa 5.1 commit
 `5125ba46a52ddfd2a7d790fc8c490b427662133a` and tag
 `phase-5.1-sanity-public-content`. This work connects only Pengumuman, Program
@@ -109,7 +113,7 @@ documents are created by Fasa 5.2 frontend integration.
 
 Fasa 5.1 routes and their approved fallback data remain unchanged. Jadual Kuliah
 and prayer times remain local/mock. Lecture Generator Publish stays disabled.
-Fasa 5.2A content preparation and Fasa 5.3 have not started. Supabase, admin,
+At the historical Fasa 5.2 checkpoint, Fasa 5.2A preparation and Fasa 5.3 had not started. Fasa 5.2A is now completed as recorded below. Supabase, admin,
 campaign and payment work is untouched. Existing homepage mocks remain excluded
 from CMS production.
 
@@ -149,3 +153,33 @@ QA, resolving the remaining visual gate without claiming automated screenshots.
   the sandbox denied both Playwright and native browser launch even after
   explicit browser read permission; no new visual screenshots are claimed.
   The user subsequently approved the current empty-state presentation manually.
+
+## Fasa 5.2A completed — current homepage contract
+
+Fasa 5.2A completed pada 3 Oktober 2026. Checkpoint: `phase-5.2a-editorial-public-information`; resolve tag untuk hash commit akhir.
+Published Sanity: 0 drafts, 1 Program, 0 Announcement, 0 News, 53 image assets.
+Dapur Zohor Barakah ialah Program pertama, active dan ongoing tanpa tarikh tamat rekaan.
+NCR evergreen dan general mosque DuitNow QR published melalui siteSettings.
+Typed server-only read layer kekal published-only, token-free dan revalidate 300 saat.
+Healthy empty Announcement/News disengajakan; outage tidak mencipta editorial/QR/contact fakta,
+dan malformed/auth/query failures kekal visible errors. Mock editorial tidak diseed.
+Genius Aulad pending required publishedAt; Qiam/Bubur Asyura HOLD.
+Dapur-specific QR kekal berasingan; QR-only asset excluded/unclassified.
+Facebook curated/manual, tiada importer. Jadual Kuliah local/mock;
+Lecture Generator Publish disabled dan Fasa 5.3 belum bermula.
+Historical Fasa 4.3 manifests, approval payloads dan mutation guards kekal immutable.
+
+Homepage Program heading is **Program dan inisiatif**; the first card is **Dapur Zohor Barakah** with **Inisiatif berterusan** and no invented time metadata. Announcement and News remain intentionally empty. The existing responsive card grid/order is preserved.
+
+Final public donation copy:
+
+- Presentation eyebrow: **Salurkan sumbangan anda**.
+- CMS `donationInfo.heading`: **Moga menjadi saham akhirat dan rezeki diberkati**.
+- CMS `donationInfo.copy`, paragraph 1: **Sumbangan anda akan digunakan untuk pengimarahan masjid, saguhati penceramah, pembangunan & pembaikan masjid, alatan & kemudahan para jemaah.**
+- CMS copy, paragraph 2: **Semak nama penerima sebelum mengesahkan transaksi dalam aplikasi bank atau e-dompet anda.**
+
+Copy uses the existing text field with a blank-line paragraph separator. No decorative CMS field added.
+The reminder is a separate 14px paragraph; description stays 16px. Existing heading sizes,
+navy/gold layout, QR artwork/reference/alt/caption and both actions remain intact.
+
+Controlled temporary outage tests retain explicit empty editorial/availability messages and no invented content; malformed/auth/query failures remain errors. Fasa 5.2 empty Announcement/News sections and protected prayer/lecture/about/contact HTML remain identical to the baseline. See [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md).

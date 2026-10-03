@@ -1,5 +1,8 @@
 /** Kandungan tempatan Fasa 3.1 dengan tambahan yang diluluskan dalam Fasa 3.7. */
+import type { NcrService } from "./cms/information-types";
+
 export interface ContactDetails {
+  readonly ncrService?: NcrService;
   readonly source: string;
   readonly addressLines: readonly string[];
   readonly phone: { readonly label: string; readonly href: `tel:${string}` };

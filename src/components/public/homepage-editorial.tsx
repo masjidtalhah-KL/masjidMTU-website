@@ -37,7 +37,7 @@ export function HomepageProgramSection({ editorial }: Props) {
         <Reveal>
           <SectionHeading
             eyebrow="Bersama komuniti"
-            title="Program akan datang"
+            title="Program dan inisiatif"
             description="Ruang untuk belajar, berkhidmat dan mengeratkan hubungan sesama jemaah."
           />
         </Reveal>
@@ -53,13 +53,13 @@ export function HomepageProgramSection({ editorial }: Props) {
                 <p>{program.description}</p>
                 <div className="program-card__details">
                   <span><i aria-hidden="true">◷</i>{program.date}</span>
-                  <span><i aria-hidden="true">⌁</i>{program.time}</span>
+                  {program.time && <span><i aria-hidden="true">⌁</i>{program.time}</span>}
                 </div>
               </Card>
             </Reveal>
           ))}
         </div>
-        <p className="content-note">{unavailable ? "Maklumat program tidak tersedia buat sementara waktu." : editorial.programs.length ? "Maklumat program yang diterbitkan oleh pihak masjid." : "Belum ada program akan datang yang diterbitkan."}</p>
+        <p className="content-note">{unavailable ? "Maklumat program tidak tersedia buat sementara waktu." : editorial.programs.length ? "Maklumat program yang diterbitkan oleh pihak masjid." : "Belum ada program atau inisiatif yang diterbitkan."}</p>
       </Container>
     </Section>
   );

@@ -18,7 +18,10 @@
     "sanity:migrate:write-drafts": "node scripts/sanity-migration/cli.mjs --write-drafts",
     "sanity:migrate:test": "node --test scripts/sanity-migration/migration.test.mjs",
     "sanity:publish": "node scripts/sanity-migration/publication-cli.mjs",
-    "sanity:publish:test": "node --test scripts/sanity-migration/publication.test.mjs"
+    "sanity:publish:test": "node --test scripts/sanity-migration/publication.test.mjs",
+    "information-content:test": "node --test scripts/public-content/information-content.test.mjs",
+    "public-content:verify:checkpoint": "node scripts/public-content/verify.mjs",
+    "public-content:verify:current": "node scripts/public-content/current-verify.mjs"
   },
   "dependencies": {
     "@sanity/client": "8.9.0",

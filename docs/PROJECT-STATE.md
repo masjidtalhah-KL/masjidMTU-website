@@ -1,28 +1,33 @@
 # Project State — Masjid Talhah Bin Ubaidillah
 
-Snapshot disemak pada **2 Oktober 2026 (+08:00)**. Dokumen ini ialah ringkasan
+Snapshot disemak pada **3 Oktober 2026 (+08:00)**. Dokumen ini ialah ringkasan
 keadaan semasa untuk sambungan kerja. Arahan pengguna terkini dan keadaan Git/kod
 perlu diperiksa semula; snapshot ini bukan kebenaran automatik untuk fasa berikutnya.
 
 ## Fasa dan checkpoint
 
-**Fasa semasa: 5 — Dynamic Content; Fasa 5.1 dan Fasa 5.2 siap dan diluluskan.**
-Lima route Profil/Organisasi/Surau/Galeri/Hubungi membaca published Sanity,
-dengan revalidation lima minit dan explicit local fallback untuk temporary outage.
-Checkpoint: `phase-5.1-sanity-public-content`; resolve tag untuk hash commit akhir.
-Baseline sebelum integrasi: `5303a7a` / `phase-4.3c-controlled-publication`.
-Local editorial content lima route kekal hanya sebagai explicit fallback.
-Baseline 5.1: `5125ba46a52ddfd2a7d790fc8c490b427662133a`.
-Homepage Pengumuman/Program/Berita & Aktiviti kini membaca published Sanity;
-0 published documents bagi setiap jenis, maka neutral empty states dipaparkan.
-Mock editorial tidak dimigrasi atau digunakan sebagai outage fallback.
-Jadual Kuliah/waktu solat kekal local/mock; Publish penjana kuliah disabled.
-Empty-state disengajakan dan diluluskan oleh pengguna melalui manual visual review.
-Checkpoint 5.2: `phase-5.2-homepage-editorial-integration`; resolve tag untuk hash akhir.
-Tiada seeding atau production content writes/publication; existing mocks kekal excluded.
-Fasa 5.2A content preparation dan Fasa 5.3 belum bermula.
-Rujuk [SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md)
-dan [SANITY-HOMEPAGE-CONTENT.md](SANITY-HOMEPAGE-CONTENT.md).
+Fasa 5.2A completed pada 3 Oktober 2026. Checkpoint: `phase-5.2a-editorial-public-information`; resolve tag untuk hash commit akhir.
+Published Sanity: 0 drafts, 1 Program, 0 Announcement, 0 News, 53 image assets.
+Dapur Zohor Barakah ialah Program pertama, active dan ongoing tanpa tarikh tamat rekaan.
+NCR evergreen dan general mosque DuitNow QR published melalui siteSettings.
+Typed server-only read layer kekal published-only, token-free dan revalidate 300 saat.
+Healthy empty Announcement/News disengajakan; outage tidak mencipta editorial/QR/contact fakta,
+dan malformed/auth/query failures kekal visible errors. Mock editorial tidak diseed.
+Genius Aulad pending required publishedAt; Qiam/Bubur Asyura HOLD.
+Dapur-specific QR kekal berasingan; QR-only asset excluded/unclassified.
+Facebook curated/manual, tiada importer. Jadual Kuliah local/mock;
+Lecture Generator Publish disabled dan Fasa 5.3 belum bermula.
+Historical Fasa 4.3 manifests, approval payloads dan mutation guards kekal immutable.
+
+Baseline sebelum 5.2A: `72506d2f7b6d5fb7a176c7ac848beade4186bfd3` / `phase-5.2-homepage-editorial-integration`.
+Fasa 5.1: `5125ba46a52ddfd2a7d790fc8c490b427662133a` / `phase-5.1-sanity-public-content`.
+Lima route Profil/Organisasi/Surau/Galeri/Hubungi kekal published Sanity; approved local content hanya temporary-outage fallback.
+Studio review, controlled publication dan desktop/mobile QA telah diluluskan owner.
+Final donation copy melalui draft → exact review/schema validation → publish siteSettings sahaja.
+Published settings revision `SSdKRdF7e0XIFT3zzGU8xL`; Program revision `SSdKRdF7e0XIFT3zzFziKH`.
+43 other published records dan 53 assets unchanged dalam copy refinement.
+Rujuk [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md) untuk exact scope, copy, revisions, validation dan checkpoint.
+Draft-seeding JSON kekal historical approval evidence; ia bukan current-state inventory.
 
 Fasa 4.1, model Fasa 4.2 dan prototype
 Fasa 4.2A telah diluluskan. Checkpoint akhir 4.2/4.2A ialah
@@ -62,12 +67,13 @@ ke dokumen dalam commit yang sama.
 | 4.3C — Controlled Publication & closeout | Resolve tag untuk commit penutupan | `phase-4.3c-controlled-publication` |
 | 5.1 — Published Sanity public content | Resolve tag untuk commit penutupan | `phase-5.1-sanity-public-content` |
 | 5.2 — Homepage editorial published read integration | Resolve tag untuk commit penutupan | `phase-5.2-homepage-editorial-integration` |
+| 5.2A — Editorial public information | Resolve tag untuk commit penutupan | `phase-5.2a-editorial-public-information` |
 
 **Ketidakpadanan tag lama:** kedua-dua tag Fasa 1/2 sebenarnya menunjuk ke
 `19f3c6c` (penjelasan pattern rasmi), sebelum penutupan Fasa 1 dan implementation
 homepage. Jangan gunakan tag itu sebagai snapshot akhir fasa. Tag tidak diubah
 dalam tugas ini. Tarikh/rujukan penuh berada dalam [PROJECT-JOURNEY.md](PROJECT-JOURNEY.md).
-Fasa 5.1 dan 5.2 siap; Fasa 5.2A, Fasa 5.3 dan Fasa 6–12 belum bermula.
+Fasa 5.1/5.2/5.2A siap; Fasa 5.3 dan Fasa 6–12 belum bermula.
 
 ## Architecture semasa
 
@@ -78,7 +84,7 @@ Fasa 5.1 dan 5.2 siap; Fasa 5.2A, Fasa 5.3 dan Fasa 6–12 belum bermula.
 - Lima public pages menggunakan `src/lib/public-content/cms/server.ts` dan
   adapter typed; modul tempatan/aset approved kekal fallback. Homepage editorial
   menggunakan `cms/homepage-server.ts`, bundle typed dan cache lima minit.
-  Dataset editorial kosong: paparan neutral empty; temporary outage menggunakan
+  Dataset editorial: 1 ongoing Program, 0 Announcement/News; empty sections kekal neutral; temporary outage menggunakan
   explicit UI fallback kosong. Waktu solat/kuliah masih mock data daripada
   `src/lib/homepage-content.ts`; editorial mocks lain tidak lagi dirender.
 - Embedded Studio rasmi pada `/studio/[[...tool]]`, menggunakan NextStudio dan
@@ -198,8 +204,9 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
 
 1. Fasa 4.3A, migration draft 4.3B dan Controlled Publication 4.3C siap.
    Fasa 5.1 dan Fasa 5.2 Pengumuman/Program/Berita & Aktiviti siap dan diluluskan.
-   Real content memerlukan controlled preparation/seeding/approval berasingan;
-   Fasa 5.2A belum bermula. Tiada production content writes/publication.
+   Fasa 5.2A completed dengan Dapur/NCR/general QR published dan final copy approved.
+   Genius Aulad masih pending required publishedAt; Qiam/Bubur Asyura HOLD.
+   Tiada seeding lanjut atau scope fasa baharu diluluskan dalam checkpoint ini.
    Jadual Kuliah dikecualikan; Fasa 5.3 belum bermula.
    Save/publish kuliah, snapshot dan print QA memerlukan scope lanjut.
 2. **Keputusan pre-production masih terbuka:** tentukan pematuhan GPL-3.0 bagi
@@ -309,7 +316,7 @@ Npm advisories sedia ada kekal seperti didokumenkan; jangan `audit fix --force`.
 2. Sahkan repository rasmi/remote, folder aktif, branch, HEAD, tags,
    `git status` dan diff termasuk fail untracked. Jangan reset/clean/stash atau
    membuang kerja Fasa 4.2/4.2A tanpa arahan pengguna. Pada mesin baharu, clone
-   gunakan checkpoint `phase-5.1-sanity-public-content` untuk kod/docs penutupan
+   gunakan checkpoint `phase-5.2a-editorial-public-information` untuk kod/docs penutupan
    terkini. Git tidak menyimpan dataset remote; sahkan published/draft/aset melalui raw
    read-back. Checkpoint `phase-4.2-sanity-content-model` ialah baseline prototype.
 3. Inspect kod sebenar: public-content, route/components, schema registry,

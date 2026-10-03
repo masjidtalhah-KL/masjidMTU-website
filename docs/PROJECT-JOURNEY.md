@@ -264,3 +264,75 @@ Pengguna meluluskan commit/push origin/main dan checkpoint
 untuk hash/timestamp sebenar. Jadual Kuliah kekal di luar 5.2; Lecture Generator
 Publish disabled. Tiada seeding/publication/production writes. Fasa 5.2A content
 preparation dan Fasa 5.3 belum bermula. Berhenti selepas checkpoint.
+
+### Fasa 5.2A — source inspection dan preparation plan, 3 Oktober 2026
+
+Main bersih/synced pada `72506d2f7b6d5fb7a176c7ac848beade4186bfd3`;
+remote main dan tag `phase-5.2-homepage-editorial-integration` disahkan pada
+commit yang sama. Ini mengesahkan push checkpoint 5.2 kini selesai; semakan
+preparation tidak melakukan push semula. Fresh published reads masih 0
+announcement, 0 program dan 0 newsPost; baseline 43 public payload/50 hashes
+masih sepadan.
+
+Schema/read layer/navigation/Sumbangan sedia ada diperiksa. Program startAt
+wajib dan eligibility bertarikh tidak clean untuk ongoing Dapur; gap NCR/QR
+structured data juga dikenal pasti. Tiada schema/frontend changes.
+Attachment hanya mengandungi brief; original captions/posters, event report,
+NCR officer phones dan QR originals belum tersedia dalam source semasa.
+Tidak ada fakta tambahan atau CMS-ready report direka.
+
+Klasifikasi 10 contoh, Program/News candidate holds, evergreen NCR placement,
+QR presentation dan preparation → draft seeding → Studio review → controlled
+publication dicadangkan dalam
+[EDITORIAL-CONTENT-PREPARATION.md](EDITORIAL-CONTENT-PREPARATION.md).
+Polisi curated website/human-reviewed Facebook workflow direkodkan sebagai D24.
+Hanya dokumentasi tempatan diubah, belum dikomit. Berhenti untuk approval plan
+sebelum implementation/writes/uploads/draft creation/publication/commit/push.
+Tiada Facebook automation atau Fasa 5.3; Lecture Generator Publish disabled.
+
+### Fasa 5.2A — source reconciliation and architecture, 3 Oktober 2026
+Following the preparation-only pass above, the user supplied seven source images
+and explicitly approved low-risk implementation. Added ongoing Program support,
+optional structured NCR and general donation settings, strict typed published read
+mapping, accessible officers and original full branded QR presentation. Current
+published settings still omit both optional fields and all three editorial types
+remain zero; no production source was seeded. Existing public routes and protected
+homepage sections pass rendered-content regression checks. Historical publication
+tests now recover fixed tagged schema evidence and explicitly reject using old
+approval with current schemas; manifests/production mutation guards are unchanged.
+Source register and exact three-document/three-asset draft proposal prepared.
+The Qiam source only invites attendance; completed Qiam/Bubur Asyura candidate held.
+Genius Aulad report recommended first, with unknown event/source dates omitted and
+website timestamp still requiring owner approval. General and Dapur QR are separate;
+bare QR excluded. No uploads/writes/drafts/publication/Git checkpoint/Facebook API
+or Fasa 5.3. See the current preparation report for validation and review status.
+
+### Fasa 5.2A — controlled publication, final refinement and closeout, 3 Oktober 2026
+
+Fasa 5.2A completed pada 3 Oktober 2026. Checkpoint: `phase-5.2a-editorial-public-information`; resolve tag untuk hash commit akhir.
+Published Sanity: 0 drafts, 1 Program, 0 Announcement, 0 News, 53 image assets.
+Dapur Zohor Barakah ialah Program pertama, active dan ongoing tanpa tarikh tamat rekaan.
+NCR evergreen dan general mosque DuitNow QR published melalui siteSettings.
+Typed server-only read layer kekal published-only, token-free dan revalidate 300 saat.
+Healthy empty Announcement/News disengajakan; outage tidak mencipta editorial/QR/contact fakta,
+dan malformed/auth/query failures kekal visible errors. Mock editorial tidak diseed.
+Genius Aulad pending required publishedAt; Qiam/Bubur Asyura HOLD.
+Dapur-specific QR kekal berasingan; QR-only asset excluded/unclassified.
+Facebook curated/manual, tiada importer. Jadual Kuliah local/mock;
+Lecture Generator Publish disabled dan Fasa 5.3 belum bermula.
+Historical Fasa 4.3 manifests, approval payloads dan mutation guards kekal immutable.
+
+After exact three-asset/two-draft seeding, owner approved Studio review and published only siteSettings and program-dapur-zohor-barakah. Initial published revisions were `SSdKRdF7e0XIFT3zzFziKH`. Owner then approved the final donation copy; new `drafts.siteSettings` revision `chGo6kzbOkh09ebDsClON0` changed only heading/copy, passed exact review and schema/reference validation, and published as `SSdKRdF7e0XIFT3zzGU8xL`. Program unchanged.
+
+Final public donation copy:
+
+- Presentation eyebrow: **Salurkan sumbangan anda**.
+- CMS `donationInfo.heading`: **Moga menjadi saham akhirat dan rezeki diberkati**.
+- CMS `donationInfo.copy`, paragraph 1: **Sumbangan anda akan digunakan untuk pengimarahan masjid, saguhati penceramah, pembangunan & pembaikan masjid, alatan & kemudahan para jemaah.**
+- CMS copy, paragraph 2: **Semak nama penerima sebelum mengesahkan transaksi dalam aplikasi bank atau e-dompet anda.**
+
+Copy uses the existing text field with a blank-line paragraph separator. No decorative CMS field added.
+The reminder is a separate 14px paragraph; description stays 16px. Existing heading sizes,
+navy/gold layout, QR artwork/reference/alt/caption and both actions remain intact.
+
+Lint/build, 124 tests, schema extraction/current validation, current-state parity, six route smoke/regressions and desktop/mobile QA passed. Preview restarted to remove stale old-server ISR output; final review uses the current production build at port 3005. [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md) records the evidence.

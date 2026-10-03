@@ -7,7 +7,7 @@ export const homepageEditorialQuery = groq`{
     cta{label, url}
   },
   "programs": *[_type == "program" && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]{
-    _id, _type, title, description, category, startAt, endAt, displayOrder, isActive
+    _id, _type, title, description, category, scheduleType, startAt, endAt, displayOrder, isActive
   },
   "news": *[_type == "newsPost" && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]{
     _id, _type, title, excerpt, category, publishedAt

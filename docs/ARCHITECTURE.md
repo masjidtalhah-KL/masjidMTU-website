@@ -9,14 +9,21 @@ menerbitkan 43 dokumen approved. Fasa 5.1 siap menyambungkan lima route
 kepada published Sanity melalui typed server read layer, cache lima minit dan
 explicit local fallback bagi temporary outage. Local editorial data lima route
 kekal fallback sahaja. Fasa 5.2 siap menyambungkan homepage Pengumuman,
-Program dan Berita & Aktiviti kepada published Sanity; setiap
+Program dan Berita & Aktiviti kepada published Sanity; pada checkpoint 5.2 setiap
 jenis mempunyai 0 published documents. Neutral empty states dan explicit
 empty UI fallback outage tidak mempromosikan mock editorial.
 Jadual Kuliah/waktu solat kekal mock; Lecture Generator Publish disabled.
 Empty-state disengajakan dan manual visual review pengguna telah diluluskan.
 Mock tidak diseed; tiada production content writes/publication dalam Fasa 5.2.
 Checkpoint `phase-5.2-homepage-editorial-integration`.
-Fasa 5.2A content preparation dan Fasa 5.3 belum bermula.
+Fasa 5.2A completed: scheduled/ongoing Program, optional siteSettings.ncrService
+dan donationInfo, typed published mapping dan accessible presentation. Dapur ialah
+first published Program; NCR dan general mosque QR published. Current counts:
+0 drafts, 1 Program, 0 Announcement, 0 News, 53 assets. Checkpoint
+`phase-5.2a-editorial-public-information`; historical evidence remains unchanged.
+Fasa 5.3 belum bermula.
+Plan dan gaps ongoing Program/NCR/QR:
+[EDITORIAL-CONTENT-PREPARATION.md](EDITORIAL-CONTENT-PREPARATION.md).
 Pangkalan data operasi, dashboard, kempen dan pembayaran belum dibina.
 
 ```text
@@ -113,3 +120,62 @@ target/set confirmations. Preview galeri dibetulkan dalam config Studio sahaja,
 tanpa perubahan schema source atau payload. Rujuk [SANITY-PUBLICATION.md](SANITY-PUBLICATION.md).
 Lecture Generator Publish disabled. Integrasi frontend 5.1 semasa direkodkan di atas;
 migration/publication kuliah kekal ditangguhkan.
+
+## Fasa 5.2A — current architecture (3 Oktober 2026)
+Program.scheduleType is optional for legacy compatibility: missing means scheduled.
+Scheduled dates/eligibility remain as before. Ongoing may omit startAt/endAt;
+isActive controls visibility, with genuine supplied datetime boundaries respected.
+Homepage heading is Program dan inisiatif; ongoing cards use Inisiatif berterusan
+and no time label. Date-only Dapur launch remains in sourced description.
+
+The central published settings query projects optional ncrService and donationInfo.
+information-adapters strictly maps them and validates existing contact fields.
+getContactContent returns accessible NCR data for /hubungi#nikah-cerai-ruju;
+getDonationContent returns the general donation object for /#donations.
+Both stay server-only/token-free and reuse 300-second Next caching. Absent objects
+are healthy absent; transport outage never fabricates officers or QR artwork;
+populated malformed/auth/query failures remain errors. NCR appears between office
+information and Lokasi. No top-level navigation item or operational system added.
+
+General QR is a semantic white-surface figure using original src/dimensions and
+Next Image unoptimized, with meaningful alt/caption and Buka imej QR action.
+No photo loader, crop/hotspot, format/quality transform or payment processing.
+Only primary general artwork is modeled; secondary QR is unnecessary for current
+requirements. Dapur QR is reserved for a separate initiative detail context.
+
+Historical exact payload verifier remains unchanged, with explicit checkpoint alias.
+Current-contract verifier separately validates new information/editorial reads and
+checks all historical base payloads, allowing only the two declared settings keys.
+It reports extensions and does not certify editorial approval. Publication tests
+recover tagged schema bytes and verify locked fixture digests; production approval
+manifest and fingerprint guards remain unchanged and reject today's changed schema.
+See EDITORIAL-CONTENT-PREPARATION.md, EDITORIAL-SOURCE-REGISTER.md and
+EDITORIAL-FIRST-DRAFT-BATCH.md.
+
+## Fasa 5.2A closeout and final donation rendering
+
+Final public donation copy:
+
+- Presentation eyebrow: **Salurkan sumbangan anda**.
+- CMS `donationInfo.heading`: **Moga menjadi saham akhirat dan rezeki diberkati**.
+- CMS `donationInfo.copy`, paragraph 1: **Sumbangan anda akan digunakan untuk pengimarahan masjid, saguhati penceramah, pembangunan & pembaikan masjid, alatan & kemudahan para jemaah.**
+- CMS copy, paragraph 2: **Semak nama penerima sebelum mengesahkan transaksi dalam aplikasi bank atau e-dompet anda.**
+
+Copy uses the existing text field with a blank-line paragraph separator. No decorative CMS field added.
+The reminder is a separate 14px paragraph; description stays 16px. Existing heading sizes,
+navy/gold layout, QR artwork/reference/alt/caption and both actions remain intact.
+
+Fasa 5.2A completed pada 3 Oktober 2026. Checkpoint: `phase-5.2a-editorial-public-information`; resolve tag untuk hash commit akhir.
+Published Sanity: 0 drafts, 1 Program, 0 Announcement, 0 News, 53 image assets.
+Dapur Zohor Barakah ialah Program pertama, active dan ongoing tanpa tarikh tamat rekaan.
+NCR evergreen dan general mosque DuitNow QR published melalui siteSettings.
+Typed server-only read layer kekal published-only, token-free dan revalidate 300 saat.
+Healthy empty Announcement/News disengajakan; outage tidak mencipta editorial/QR/contact fakta,
+dan malformed/auth/query failures kekal visible errors. Mock editorial tidak diseed.
+Genius Aulad pending required publishedAt; Qiam/Bubur Asyura HOLD.
+Dapur-specific QR kekal berasingan; QR-only asset excluded/unclassified.
+Facebook curated/manual, tiada importer. Jadual Kuliah local/mock;
+Lecture Generator Publish disabled dan Fasa 5.3 belum bermula.
+Historical Fasa 4.3 manifests, approval payloads dan mutation guards kekal immutable.
+
+Evidence: [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md).

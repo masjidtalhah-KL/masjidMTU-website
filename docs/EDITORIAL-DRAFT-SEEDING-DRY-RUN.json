@@ -1,0 +1,248 @@
+{
+  "phase": "5.2A",
+  "mode": "dry-run-review-only",
+  "status": "awaiting-explicit-owner-approval-of-this-exact-plan",
+  "mutationsAuthorized": false,
+  "projectId": "2o95jmms",
+  "dataset": "production",
+  "apiVersion": "2026-09-01",
+  "observedAt": "2026-10-03T03:40:32Z",
+  "observedPerspective": "raw",
+  "observedState": {
+    "publishedEditorial": {
+      "announcement": 0,
+      "program": 0,
+      "newsPost": 0
+    },
+    "rawEditorialDocuments": 0,
+    "releases": 0,
+    "publishedBaseDocuments": 43,
+    "imageAssets": 50,
+    "settingsDraftExists": false,
+    "assetMatches": 0
+  },
+  "preconditions": {
+    "publishedSettingsId": "siteSettings",
+    "publishedSettingsRevision": "mtu-4-3c-6a191d7e-4169-419b-91d2-4def7a024fcb",
+    "publishedSettingsSnapshot": {
+      "_createdAt": "2026-10-02T01:43:46Z",
+      "_id": "siteSettings",
+      "_rev": "mtu-4-3c-6a191d7e-4169-419b-91d2-4def7a024fcb",
+      "_type": "siteSettings",
+      "_updatedAt": "2026-10-02T11:48:30Z",
+      "address": "MASJID TALHAH BIN UBAIDILLAH\nTAMAN ALAM SUTERA\n57000 BUKIT JALIL\nWILAYAH PERSEKUTUAN KUALA LUMPUR",
+      "email": "masjidtalhahubaidillah@gmail.com",
+      "facebookUrl": "https://www.facebook.com/masjidtalhahkl",
+      "instagramUrl": "https://www.instagram.com/masjidtalhahubaidillahofficial/",
+      "mosqueName": "Masjid Talhah Bin Ubaidillah",
+      "officeHours": [
+        {
+          "_key": "hours-1",
+          "_type": "officeHoursRow",
+          "days": "Isnin – Jumaat",
+          "hours": "9:00 pagi – 5:00 petang"
+        },
+        {
+          "_key": "hours-2",
+          "_type": "officeHoursRow",
+          "days": "Sabtu, Ahad dan Cuti Umum",
+          "hours": "Tutup"
+        }
+      ],
+      "phone": "+60 3-8074 7414"
+    },
+    "mustRemainAbsent": [
+      "drafts.siteSettings",
+      "program-dapur-zohor-barakah",
+      "drafts.program-dapur-zohor-barakah"
+    ],
+    "editorialSlugCollisions": [],
+    "abortOnChangedRevisionOrPayload": true,
+    "abortOnExistingTargetDraft": true,
+    "abortOnNewEditorialIdOrSlugCollision": true,
+    "verifyAssetBytesAndServerReturnedAssetIds": true
+  },
+  "assets": [
+    {
+      "sourceId": "S01",
+      "originalFilename": "codex-clipboard-06954715-856f-4e62-ac32-280a78778ea1.png",
+      "width": 1080,
+      "height": 761,
+      "size": 1159915,
+      "sha1": "62bee78573fc94f3a232528eefff834fa7ed11b4",
+      "sha256": "f6e5ea54b5899515438f24bbe2bd61f3194d9f709794f2eff7f0f72c9901e0db",
+      "usedBy": "drafts.siteSettings.ncrService.poster",
+      "alt": "Poster Penolong Pendaftar Nikah, Cerai & Ruju’ Masjid Talhah Bin Ubaidillah dengan dua pegawai dan nombor telefon.",
+      "mimeType": "image/png",
+      "localPath": "C:/Users/User/Documents/Codex/2026-10-02/files-pasted-by-the-user-mtu/outputs/phase-5.2a-sources/S01-codex-clipboard-06954715-856f-4e62-ac32-280a78778ea1.png",
+      "expectedAssetId": "image-62bee78573fc94f3a232528eefff834fa7ed11b4-1080x761-png",
+      "existingAssetMatches": []
+    },
+    {
+      "sourceId": "S02",
+      "originalFilename": "codex-clipboard-ca42a07a-0fad-4833-aa8a-0b8475ecb356.png",
+      "width": 1131,
+      "height": 1600,
+      "size": 2682866,
+      "sha1": "1a4abfdd734f4ef7b74aa4e8bdf3b0a5adb3d334",
+      "sha256": "b0b5781e2bbcd59fbd0f19d4059e50a608fd542525f89c6115325a48f3799daa",
+      "usedBy": "drafts.program-dapur-zohor-barakah.image",
+      "alt": "Poster Dapur Zohor Barakah, inisiatif Biro Muslimat MTU, dengan waktu operasi, harga makanan dan kaedah bayaran.",
+      "mimeType": "image/png",
+      "localPath": "C:/Users/User/Documents/Codex/2026-10-02/files-pasted-by-the-user-mtu/outputs/phase-5.2a-sources/S02-codex-clipboard-ca42a07a-0fad-4833-aa8a-0b8475ecb356.png",
+      "expectedAssetId": "image-1a4abfdd734f4ef7b74aa4e8bdf3b0a5adb3d334-1131x1600-png",
+      "existingAssetMatches": []
+    },
+    {
+      "sourceId": "S03",
+      "originalFilename": "qr full.png",
+      "width": 853,
+      "height": 853,
+      "size": 343402,
+      "sha1": "6ba112c3ffc0107ea20e277aa11ff0729eba926b",
+      "sha256": "8b9222e5b6385d72b1fa6c4a4372852bc4c838eb933de43b9f8412fa6b62b17e",
+      "usedBy": "drafts.siteSettings.donationInfo.primaryQr",
+      "alt": "Artwork penuh DuitNow QR sumbangan umum Masjid Talhah Bin 'Ubaidillah, Bukit Jalil, dengan jenama DuitNow dan Bank Islam.",
+      "mimeType": "image/png",
+      "localPath": "C:/Users/User/Documents/Codex/2026-10-02/files-pasted-by-the-user-mtu/outputs/phase-5.2a-sources/S03-qr full.png",
+      "expectedAssetId": "image-6ba112c3ffc0107ea20e277aa11ff0729eba926b-853x853-png",
+      "existingAssetMatches": []
+    }
+  ],
+  "proposedDraftDocuments": [
+    {
+      "_id": "drafts.program-dapur-zohor-barakah",
+      "_type": "program",
+      "title": "Dapur Zohor Barakah",
+      "slug": {
+        "_type": "slug",
+        "current": "dapur-zohor-barakah"
+      },
+      "category": "Inisiatif komuniti",
+      "scheduleType": "ongoing",
+      "description": "Dikendalikan oleh Biro Muslimat MTU sejak 28 September 2026 untuk menggalakkan solat Zohor berjemaah. Isnin–Khamis, 11.00 pagi–2.00 petang. Makan tengah hari bermula RM6: nasi putih, ayam seketul, air dan sayur. Nasi dan air boleh ditambah tanpa caj. Harga lauk tambahan mengikut harga semasa bahan mentah. Bayaran QR masjid sahaja; tunai tidak disediakan.",
+      "venue": "Masjid Talhah Bin Ubaidillah",
+      "isActive": true,
+      "displayOrder": 1,
+      "image": {
+        "_type": "editorialImage",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-1a4abfdd734f4ef7b74aa4e8bdf3b0a5adb3d334-1131x1600-png"
+        },
+        "alt": "Poster Dapur Zohor Barakah, inisiatif Biro Muslimat MTU, dengan waktu operasi, harga makanan dan kaedah bayaran."
+      }
+    },
+    {
+      "_id": "drafts.siteSettings",
+      "_type": "siteSettings",
+      "address": "MASJID TALHAH BIN UBAIDILLAH\nTAMAN ALAM SUTERA\n57000 BUKIT JALIL\nWILAYAH PERSEKUTUAN KUALA LUMPUR",
+      "email": "masjidtalhahubaidillah@gmail.com",
+      "facebookUrl": "https://www.facebook.com/masjidtalhahkl",
+      "instagramUrl": "https://www.instagram.com/masjidtalhahubaidillahofficial/",
+      "mosqueName": "Masjid Talhah Bin Ubaidillah",
+      "officeHours": [
+        {
+          "_key": "hours-1",
+          "_type": "officeHoursRow",
+          "days": "Isnin – Jumaat",
+          "hours": "9:00 pagi – 5:00 petang"
+        },
+        {
+          "_key": "hours-2",
+          "_type": "officeHoursRow",
+          "days": "Sabtu, Ahad dan Cuti Umum",
+          "hours": "Tutup"
+        }
+      ],
+      "phone": "+60 3-8074 7414",
+      "ncrService": {
+        "_type": "object",
+        "heading": "Penolong Pendaftar Nikah, Cerai & Ruju’ (NCR)",
+        "introduction": "Untuk pertanyaan berkaitan urusan nikah, cerai dan ruju’, hubungi pegawai yang disenaraikan.",
+        "officers": [
+          {
+            "_type": "object",
+            "_key": "ncr-wan-halim",
+            "name": "USTAZ WAN HALIM BIN MD.YUSOFF",
+            "role": "Penolong Pendaftar Nikah, Cerai & Ruju’ (NCR)",
+            "phone": "019 374 9937"
+          },
+          {
+            "_type": "object",
+            "_key": "ncr-nik-fadlan",
+            "name": "USTAZ NIK MUHAMMAD FADLAN BIN NIK MAHMOOD",
+            "role": "Penolong Pendaftar Nikah, Cerai & Ruju’ (NCR)",
+            "phone": "011 2937 8366"
+          }
+        ],
+        "poster": {
+          "_type": "editorialImage",
+          "asset": {
+            "_type": "reference",
+            "_ref": "image-62bee78573fc94f3a232528eefff834fa7ed11b4-1080x761-png"
+          },
+          "alt": "Poster Penolong Pendaftar Nikah, Cerai & Ruju’ Masjid Talhah Bin Ubaidillah dengan dua pegawai dan nombor telefon."
+        }
+      },
+      "donationInfo": {
+        "_type": "object",
+        "heading": "Sumbangan umum masjid",
+        "copy": "Gunakan DuitNow QR rasmi masjid untuk sumbangan umum. Semak nama penerima sebelum mengesahkan transaksi dalam aplikasi bank atau e-dompet anda.",
+        "recipientLabel": "Masjid Talhah Bin 'Ubaidillah, Bukit Jalil — sumbangan umum",
+        "primaryQr": {
+          "_type": "image",
+          "asset": {
+            "_type": "reference",
+            "_ref": "image-6ba112c3ffc0107ea20e277aa11ff0729eba926b-853x853-png"
+          },
+          "alt": "Artwork penuh DuitNow QR sumbangan umum Masjid Talhah Bin 'Ubaidillah, Bukit Jalil, dengan jenama DuitNow dan Bank Islam."
+        }
+      }
+    }
+  ],
+  "proposedOperations": {
+    "assetUploads": 3,
+    "draftCreates": 2,
+    "existingDocumentPatches": 0,
+    "publishedDocumentWrites": 0,
+    "documentDeletes": 0,
+    "publications": 0
+  },
+  "newsHold": {
+    "candidateId": "newsPost-lawatan-genius-aulad-bandar-kinrara",
+    "draftId": "drafts.newsPost-lawatan-genius-aulad-bandar-kinrara",
+    "title": "Lawatan Sambil Belajar Genius Aulad Bandar Kinrara",
+    "status": "excluded-pending-approved-publishedAt",
+    "requiredField": "publishedAt",
+    "eventDate": null,
+    "sourceFacebookDate": null,
+    "websitePublishedAt": null,
+    "reason": "The supplied S07 screenshot has no original Facebook timestamp; 'hari ini' is not an absolute date. No website publication timestamp has been explicitly approved.",
+    "createDraft": false,
+    "uploadImage": false
+  },
+  "excluded": [
+    "All announcement documents",
+    "All newsPost documents, including held Genius Aulad and Qiam/Bubur Asyura",
+    "S04 bare QR",
+    "S05 Dapur-specific QR asset",
+    "S06 invitation",
+    "S07 Genius Aulad screenshot/image",
+    "Existing homepage mocks",
+    "Historical content payloads/approval manifests",
+    "Lecture Generator and Jadual Kuliah",
+    "Supabase/admin/campaign/payment work",
+    "Commit/push/tag"
+  ],
+  "futureExecutionPolicy": [
+    "Only after explicit approval of this exact dry-run plan.",
+    "Repeat raw revision, target-ID, slug and asset-hash checks before any upload; stop if state differs.",
+    "Upload/reuse only S01/S02/S03 unchanged source bytes. Verify returned asset ID, SHA-1, size, MIME and dimensions before binding references; any mismatch requires review.",
+    "Immediately before draft creation, repeat settings revision/payload and absence/collision checks; stop on differences.",
+    "Create the two draft documents with create semantics, in one transaction; never createIfNotExists, createOrReplace, patch the published singleton, or overwrite an existing draft.",
+    "Sanity assigns new draft revisions/timestamps. They are not source/event/publication dates and are not sent in draft payloads.",
+    "Confirm exact draft fields, only three approved new/reused assets and unchanged published records after execution. Leave drafts unpublished.",
+    "A dataset read followed by draft creation is not an atomic lock on the published singleton. Preserve the captured source revision and detect/report intervening changes before any later publication."
+  ]
+}

@@ -1,4 +1,5 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { validateImage } from "./fields";
 
 export const SITE_SETTINGS_TYPE = "siteSettings";
 export const SITE_SETTINGS_ID = "siteSettings";
@@ -7,7 +8,7 @@ export const siteSettings = defineType({
   name: SITE_SETTINGS_TYPE,
   title: "Site Settings",
   type: "document",
-  description: "Identiti dan maklumat hubungan rasmi. Halaman public belum menggunakan data CMS ini.",
+  description: "Identiti, hubungan dan maklumat awam rasmi untuk halaman public. NCR dan sumbangan kekal pilihan sehingga sumber diluluskan.",
   fields: [
     defineField({ name: "mosqueName", title: "Nama penuh masjid", type: "string", validation: (rule) => rule.required() }),
     defineField({ name: "shortName", title: "Nama ringkas", type: "string", description: "Pilihan; nama penuh tetap diutamakan untuk paparan rasmi." }),
@@ -28,6 +29,24 @@ export const siteSettings = defineType({
         preview: { select: { title: "days", subtitle: "hours" } },
       })],
     }),
+    defineField({ name: "ncrService", title: "Nikah, Cerai & Ruju’ (pilihan)", type: "object", fields: [
+      defineField({ name: "heading", title: "Tajuk", type: "string", validation: (rule) => rule.required().max(160) }),
+      defineField({ name: "introduction", title: "Pengenalan", type: "text", validation: (rule) => rule.required().max(400) }),
+      defineField({ name: "officers", title: "Pegawai", type: "array", validation: (rule) => rule.required().min(1).max(10), of: [defineArrayMember({ type: "object", fields: [
+        defineField({ name: "name", title: "Nama seperti sumber", type: "string", validation: (rule) => rule.required().max(160) }),
+        defineField({ name: "role", title: "Peranan seperti sumber", type: "string", validation: (rule) => rule.required().max(160) }),
+        defineField({ name: "phone", title: "Telefon", type: "string", validation: (rule) => rule.required().max(40).custom((value) => value === undefined || /^\+?\d{7,15}$/.test(value.replace(/[\s()-]/g, "")) && /^\+?[\d\s()-]+$/.test(value) || "Masukkan nombor telefon yang sah.") }),
+      ] })] }),
+      defineField({ name: "poster", title: "Poster sokongan (pilihan)", type: "editorialImage" }),
+    ] }),
+    defineField({ name: "donationInfo", title: "Sumbangan umum masjid (pilihan)", type: "object", fields: [
+      defineField({ name: "heading", title: "Tajuk", type: "string", validation: (rule) => rule.required().max(160) }),
+      defineField({ name: "copy", title: "Penerangan", type: "text", validation: (rule) => rule.required().max(600) }),
+      defineField({ name: "recipientLabel", title: "Penerima / tujuan", type: "string", validation: (rule) => rule.required().max(200) }),
+      defineField({ name: "primaryQr", title: "Artwork QR sumbangan umum", type: "image", options: { hotspot: false }, description: "Artwork penuh berjenama masjid umum sahaja. Jangan gunakan QR Dapur Zohor atau potong/ubah artwork.", validation: (rule) => rule.required().custom(validateImage).custom((value) => !value?.crop && !value?.hotspot || "Artwork QR tidak boleh dipotong atau menggunakan hotspot."), fields: [
+        defineField({ name: "alt", title: "Penerangan imej", type: "string", validation: (rule) => rule.required() }),
+      ] }),
+    ] }),
   ],
   preview: { prepare: () => ({ title: "Site Settings", subtitle: "Tetapan global website" }) },
 });
