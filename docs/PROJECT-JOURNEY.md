@@ -336,3 +336,16 @@ The reminder is a separate 14px paragraph; description stays 16px. Existing head
 navy/gold layout, QR artwork/reference/alt/caption and both actions remain intact.
 
 Lint/build, 124 tests, schema extraction/current validation, current-state parity, six route smoke/regressions and desktop/mobile QA passed. Preview restarted to remove stale old-server ISR output; final review uses the current production build at port 3005. [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md) records the evidence.
+
+## Fasa 5.2B — first News publication and checkpoint, 3 Oktober 2026
+
+Fasa 5.2B completed pada **3 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.2b-first-news`; resolve tag untuk hash commit akhir.
+Genius Aulad ialah News pertama: 0 drafts / 1 Program / 0 Announcement / 1 News / 55 image assets.
+Optional newsPost.eventDate = 2026-05-14 dipaparkan sebagai **14 Mei 2026**; publishedAt = 2026-10-03T11:18:02Z ialah masa penerbitan website sebenar dan metadata eligibility/sorting.
+Homepage News kini memaparkan imej CMS dengan alt approved dan optional no-image fallback; eyebrow **BULETIN MTU**, heading **Berita dan aktiviti**, description **Sorotan program, aktiviti dan perkembangan semasa Masjid Talhah Bin Ubaidillah.**
+Read layer kekal typed/server-only, published-only, token-free, cache 300 saat. Healthy empty Announcement disengajakan; outage tidak mencipta editorial mock, malformed/auth/query errors kekal visible.
+Facebook curated/manual tanpa importer. Dapur/NCR/donation dan 44 published records sedia ada tidak berubah dalam publication News.
+Jadual Kuliah local/mock, Lecture Generator Publish disabled; **Fasa 5.3 belum bermula**.
+Rekod: [EDITORIAL-GENIUS-AULAD-PUBLICATION.md](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).
+
+Owner approved the supplied original photo #4, image/card integration and optional event date, then the exact section copy and single publication. The fresh approved draft revision was checked, only publishedAt was set to the real execution timestamp, validation passed, and exactly one News was published as revision zJzdY1EB95ZHrNvpJpZmOO. Authenticated snapshots prove no changes to other published documents/assets. Lint/build, 138 tests, schema extraction/current verification, six public-route smokes and real desktop/mobile QA passed.

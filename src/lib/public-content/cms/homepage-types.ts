@@ -1,3 +1,5 @@
+import type { PublicImage } from "./types";
+
 export type HomepageAnnouncement = {
   id: string;
   title: string;
@@ -22,6 +24,8 @@ export type HomepageNews = {
   description: string;
   category: string | null;
   date: string;
+  eventDate: string | null;
+  image: PublicImage | null;
 };
 
 export type HomepageEditorial = {

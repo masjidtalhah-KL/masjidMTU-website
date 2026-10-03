@@ -1,5 +1,21 @@
 # Fasa 5.2A — Preparation history and completed closeout
-**Current state: Fasa 5.2A completed.** Fasa 5.2A completed pada 3 Oktober 2026. Checkpoint: `phase-5.2a-editorial-public-information`; resolve tag untuk hash commit akhir.
+
+## Fasa 5.2B completed — current update
+
+Fasa 5.2B completed pada **3 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.2b-first-news`; resolve tag untuk hash commit akhir.
+Genius Aulad ialah News pertama: 0 drafts / 1 Program / 0 Announcement / 1 News / 55 image assets.
+Optional newsPost.eventDate = 2026-05-14 dipaparkan sebagai **14 Mei 2026**; publishedAt = 2026-10-03T11:18:02Z ialah masa penerbitan website sebenar dan metadata eligibility/sorting.
+Homepage News kini memaparkan imej CMS dengan alt approved dan optional no-image fallback; eyebrow **BULETIN MTU**, heading **Berita dan aktiviti**, description **Sorotan program, aktiviti dan perkembangan semasa Masjid Talhah Bin Ubaidillah.**
+Read layer kekal typed/server-only, published-only, token-free, cache 300 saat. Healthy empty Announcement disengajakan; outage tidak mencipta editorial mock, malformed/auth/query errors kekal visible.
+Facebook curated/manual tanpa importer. Dapur/NCR/donation dan 44 published records sedia ada tidak berubah dalam publication News.
+Jadual Kuliah local/mock, Lecture Generator Publish disabled; **Fasa 5.3 belum bermula**.
+Rekod: [EDITORIAL-GENIUS-AULAD-PUBLICATION.md](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).
+
+Owner-confirmed event and Facebook post dates resolved the earlier provenance hold. The exact approved article and original GA-P04 were reviewed in draft, then published with actual website time. The historical 5.2A preparation restrictions and prior draft-only stops below were superseded only by subsequent explicit owner approvals.
+
+## Historical Fasa 5.2A checkpoint and preparation
+
+**State at the Fasa 5.2A checkpoint.** Fasa 5.2A completed pada 3 Oktober 2026. Checkpoint: `phase-5.2a-editorial-public-information`; resolve tag untuk hash commit akhir.
 Published Sanity: 0 drafts, 1 Program, 0 Announcement, 0 News, 53 image assets.
 Dapur Zohor Barakah ialah Program pertama, active dan ongoing tanpa tarikh tamat rekaan.
 NCR evergreen dan general mosque DuitNow QR published melalui siteSettings.
@@ -138,7 +154,7 @@ Daily menus/routine promotions/every Friday stream may remain Facebook-only.
 Future persistent “Siaran Langsung Jumaat” CTA may link to the official Facebook page without claiming live status, khatib or time.
 Monthly lectures stay dedicated future scope. Religious program lifecycle: upcoming Program, then separately sourced post-event News. JAWI/MAIWP classification follows intent. No Facebook API/tokens/webhooks/import job/autopublication was implemented.
 
-## Final approved public copy and remaining content holds
+## Fasa 5.2A final approved public copy and historical content holds
 
 Final public donation copy:
 

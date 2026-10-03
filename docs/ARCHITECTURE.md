@@ -179,3 +179,20 @@ Lecture Generator Publish disabled dan Fasa 5.3 belum bermula.
 Historical Fasa 4.3 manifests, approval payloads dan mutation guards kekal immutable.
 
 Evidence: [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md).
+
+## Fasa 5.2B — published News images and separate event date
+
+The published-only homepage GROQ projects optional eventDate and image alt/dereferenced asset URL/ID/dimensions. The typed adapter reuses mapImage and a shared strict date-only parser. All candidates are validated before filtering/limiting. A malformed projected image is retained for validation, not silently dropped.
+
+Required publishedAt controls eligibility and latest-first ordering. Optional eventDate only changes the displayed Malay date; legacy articles fall back to publishedAt. A date-only value never implies a public event clock time. The CMS schema validates calendar dates and preserves existing publishedAt requirements.
+
+News uses the established PublicImage/Sanity width-only loader and centered object-fit cover inside a reserved 160px frame. No destructive crop or asset editing. Missing images keep the approved decorative frame. Server-only token-free reads, 300-second cache, explicit outage messages, healthy empty states and visible malformed/auth/query failures remain intact.
+
+Fasa 5.2B completed pada **3 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.2b-first-news`; resolve tag untuk hash commit akhir.
+Genius Aulad ialah News pertama: 0 drafts / 1 Program / 0 Announcement / 1 News / 55 image assets.
+Optional newsPost.eventDate = 2026-05-14 dipaparkan sebagai **14 Mei 2026**; publishedAt = 2026-10-03T11:18:02Z ialah masa penerbitan website sebenar dan metadata eligibility/sorting.
+Homepage News kini memaparkan imej CMS dengan alt approved dan optional no-image fallback; eyebrow **BULETIN MTU**, heading **Berita dan aktiviti**, description **Sorotan program, aktiviti dan perkembangan semasa Masjid Talhah Bin Ubaidillah.**
+Read layer kekal typed/server-only, published-only, token-free, cache 300 saat. Healthy empty Announcement disengajakan; outage tidak mencipta editorial mock, malformed/auth/query errors kekal visible.
+Facebook curated/manual tanpa importer. Dapur/NCR/donation dan 44 published records sedia ada tidak berubah dalam publication News.
+Jadual Kuliah local/mock, Lecture Generator Publish disabled; **Fasa 5.3 belum bermula**.
+Rekod: [EDITORIAL-GENIUS-AULAD-PUBLICATION.md](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).

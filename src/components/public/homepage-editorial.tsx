@@ -1,5 +1,6 @@
 import { Badge, Card, Container, Heading, Section, SectionHeading } from "@/components/design-system";
 import { Reveal } from "@/components/reveal";
+import { PublicImage } from "./public-image";
 import type { HomepageEditorial } from "@/lib/public-content/cms/homepage-types";
 
 type Props = { editorial: HomepageEditorial };
@@ -72,19 +73,31 @@ export function HomepageNewsSection({ editorial }: Props) {
       <Container width="wide">
         <Reveal>
           <SectionHeading
-            eyebrow="Cerita komuniti"
+            eyebrow="BULETIN MTU"
             title="Berita dan aktiviti"
-            description="Sorotan daripada masjid dan komuniti setempat akan dikumpulkan di sini."
+            description="Sorotan program, aktiviti dan perkembangan semasa Masjid Talhah Bin Ubaidillah."
           />
         </Reveal>
         <div className="home-card-grid">
           {editorial.news.map((item, index) => (
             <Reveal key={item.id}>
               <Card className="update-card">
-                <div className={`update-card__visual update-card__visual--${index + 1}`} aria-hidden="true">
-                  <span>MTU</span>
-                  <i />
-                </div>
+                {item.image ? (
+                  <div className="update-card__visual update-card__visual--photo">
+                    <PublicImage
+                      src={item.image.src}
+                      alt={item.image.alt}
+                      fill
+                      sizes="(max-width: 480px) calc(100vw - 24px), (max-width: 768px) 50vw, (max-width: 1192px) 33vw, 372px"
+                      className="update-card__image"
+                    />
+                  </div>
+                ) : (
+                  <div className={`update-card__visual update-card__visual--${index + 1}`} aria-hidden="true">
+                    <span>MTU</span>
+                    <i />
+                  </div>
+                )}
                 <div className="update-card__body">
                   <div className="update-card__meta">
                     {item.category && <Badge variant="blue">{item.category}</Badge>}

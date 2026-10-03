@@ -376,3 +376,18 @@ The reminder is a separate 14px paragraph; description stays 16px. Existing head
 navy/gold layout, QR artwork/reference/alt/caption and both actions remain intact.
 
 Only donationInfo.heading/copy change remotely; preserve every other settings field. QR source/reference/recipient/NCR and Dapur are untouched. Full original general QR is separate from Dapur payment QR; no gateway or financial workflow is introduced.
+
+## D29 — News event provenance, CMS image and BULETIN MTU
+
+eventDate is optional Sanity date for the actual activity; publishedAt remains required website publication datetime and sorting/eligibility metadata. Public label uses eventDate when present, otherwise publishedAt in Kuala Lumpur timezone. Source Facebook date stays documentation-only. Reject malformed calendar dates, broken image references and missing alt without hiding them as fallback. Missing image keeps the established MTU card.
+
+The News presentation label is BULETIN MTU with the exact owner-approved section description; no schema field or global terminology rewrite is added. Curated/manual Facebook workflow remains unchanged.
+
+Fasa 5.2B completed pada **3 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.2b-first-news`; resolve tag untuk hash commit akhir.
+Genius Aulad ialah News pertama: 0 drafts / 1 Program / 0 Announcement / 1 News / 55 image assets.
+Optional newsPost.eventDate = 2026-05-14 dipaparkan sebagai **14 Mei 2026**; publishedAt = 2026-10-03T11:18:02Z ialah masa penerbitan website sebenar dan metadata eligibility/sorting.
+Homepage News kini memaparkan imej CMS dengan alt approved dan optional no-image fallback; eyebrow **BULETIN MTU**, heading **Berita dan aktiviti**, description **Sorotan program, aktiviti dan perkembangan semasa Masjid Talhah Bin Ubaidillah.**
+Read layer kekal typed/server-only, published-only, token-free, cache 300 saat. Healthy empty Announcement disengajakan; outage tidak mencipta editorial mock, malformed/auth/query errors kekal visible.
+Facebook curated/manual tanpa importer. Dapur/NCR/donation dan 44 published records sedia ada tidak berubah dalam publication News.
+Jadual Kuliah local/mock, Lecture Generator Publish disabled; **Fasa 5.3 belum bermula**.
+Rekod: [EDITORIAL-GENIUS-AULAD-PUBLICATION.md](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).

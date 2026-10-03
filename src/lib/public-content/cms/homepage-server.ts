@@ -1,5 +1,6 @@
 import "server-only";
 import { client } from "../../../sanity/client";
+import { dataset, projectId } from "../../../sanity/env";
 import { PUBLIC_CONTENT_REVALIDATE_SECONDS } from "./server";
 import { mapHomepageEditorial, unavailableHomepageEditorial } from "./homepage-adapters";
 import { homepageEditorialQuery } from "./homepage-queries";
@@ -14,6 +15,6 @@ export const getHomepageEditorial = () => readWithFallback(
     cache: "force-cache",
     next: { revalidate: PUBLIC_CONTENT_REVALIDATE_SECONDS, tags: ["public-content:homepage-editorial"] },
   }),
-  mapHomepageEditorial,
+  (value) => mapHomepageEditorial(value, Date.now(), `https://cdn.sanity.io/images/${projectId}/${dataset}/`),
   unavailableHomepageEditorial,
 );

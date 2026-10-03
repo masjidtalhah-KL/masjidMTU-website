@@ -199,3 +199,14 @@ Lecture Generator Publish disabled dan Fasa 5.3 belum bermula.
 Historical Fasa 4.3 manifests, approval payloads dan mutation guards kekal immutable.
 
 Historical Fasa 4.3 registry/evidence is frozen at its checkpoint; today's schemas cannot reuse that mutation approval. Current schema extraction and document validation passed. See [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md).
+
+
+## Fasa 5.2B optional News event-date semantics
+
+newsPost.eventDate is an optional Sanity date (YYYY-MM-DD), the actual date an activity/event occurred. The owner-approved Genius Aulad draft stores 2026-05-14. Existing documents without the field remain valid.
+
+publishedAt remains required datetime: the actual website publication time. Homepage date display prefers eventDate and falls back to publishedAt; publishedAt continues to control eligibility/order. Facebook/source-post date/time remains provenance documentation only. A strict shared calendar parser prevents date rollover and malformed dates; no image/card redesign or historical evidence rewrite. The draft remains unpublished with publishedAt absent; its sole intended publication validation gate remains Required.
+
+## Fasa 5.2B completed — current News contract
+
+The optional newsPost.eventDate date and image contract described above are now used by the first published Genius Aulad record. eventDate records 2026-05-14; publishedAt is 2026-10-03T11:18:02Z, the actual website publication instant. Source Facebook post date remains provenance documentation only. Existing articles without eventDate/image stay valid. Required publishedAt is unchanged; it governs publication eligibility and ordering. Historical Fasa 4.2/4.3 tables and approval evidence remain snapshots. See [publication/closeout record](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).

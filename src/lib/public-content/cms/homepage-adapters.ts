@@ -1,5 +1,7 @@
 import { PublicContentError } from "./read-policy";
 import type { HomepageEditorial } from "./homepage-types";
+import { mapImage } from "./adapters";
+import { parseCalendarDate } from "../../calendar-date";
 
 type RecordValue = Record<string, unknown>;
 const fail = (field: string): never => { throw new PublicContentError(`homepage-editorial: invalid ${field}`); };
@@ -64,7 +66,15 @@ const timeFormat = new Intl.DateTimeFormat("ms-MY", { hour: "numeric", minute: "
 const compareId = (a: { id: string }, b: { id: string }) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
 const newsCategories: Record<string, string> = { news: "Berita", activity: "Aktiviti", announcement: "Pengumuman" };
 
-export function mapHomepageEditorial(value: unknown, now = Date.now()): HomepageEditorial {
+/** Public date label; publication eligibility/order still uses the separate publishedAt timestamp. */
+export function formatHomepageNewsDate(eventDate: unknown, publishedAt: unknown): string {
+  if (eventDate == null) return dateFormat.format(date(publishedAt, "newsPost.publishedAt"));
+  const timestamp = parseCalendarDate(eventDate);
+  if (timestamp === null) return fail("newsPost.eventDate");
+  return dateFormat.format(timestamp);
+}
+
+export function mapHomepageEditorial(value: unknown, now = Date.now(), assetBase?: string): HomepageEditorial {
   if (!Number.isFinite(now)) return fail("server clock");
   const bundle = record(value, "bundle");
   // Validate every projected candidate before filtering or limiting; broken data remains visible.
@@ -95,10 +105,13 @@ export function mapHomepageEditorial(value: unknown, now = Date.now()): Homepage
     const published = date(doc.publishedAt, "newsPost.publishedAt");
     const category = optionalText(doc.category, "newsPost.category");
     if (category !== null && !Object.hasOwn(newsCategories, category)) return fail("newsPost.category");
+    if (doc.image != null && !assetBase) return fail("newsPost.image configured asset base");
     return {
       id: doc._id as string, title: text(doc.title, "newsPost.title", 160),
       description: text(doc.excerpt, "newsPost.excerpt", 300), category: category === null ? null : newsCategories[category],
-      date: dateFormat.format(published), published,
+      date: formatHomepageNewsDate(doc.eventDate, doc.publishedAt), published,
+      eventDate: doc.eventDate == null ? null : doc.eventDate as string,
+      image: doc.image == null ? null : mapImage(doc.image, assetBase!, "newsPost.image"),
     };
   });
   const selectedAnnouncement = announcements
@@ -117,7 +130,7 @@ export function mapHomepageEditorial(value: unknown, now = Date.now()): Homepage
       .map(({ id, title, description, category, date, time, scheduleType }) => ({ id, title, description, category, date, time, scheduleType: scheduleType as "scheduled" | "ongoing" })),
     news: news.filter((item) => item.published <= now)
       .sort((a, b) => b.published - a.published || compareId(a, b)).slice(0, 3)
-      .map(({ id, title, description, category, date }) => ({ id, title, description, category, date })),
+      .map(({ id, title, description, category, date, eventDate, image }) => ({ id, title, description, category, date, eventDate, image })),
   };
 }
 

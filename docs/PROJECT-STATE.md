@@ -6,18 +6,16 @@ perlu diperiksa semula; snapshot ini bukan kebenaran automatik untuk fasa beriku
 
 ## Fasa dan checkpoint
 
-Fasa 5.2A completed pada 3 Oktober 2026. Checkpoint: `phase-5.2a-editorial-public-information`; resolve tag untuk hash commit akhir.
-Published Sanity: 0 drafts, 1 Program, 0 Announcement, 0 News, 53 image assets.
-Dapur Zohor Barakah ialah Program pertama, active dan ongoing tanpa tarikh tamat rekaan.
-NCR evergreen dan general mosque DuitNow QR published melalui siteSettings.
-Typed server-only read layer kekal published-only, token-free dan revalidate 300 saat.
-Healthy empty Announcement/News disengajakan; outage tidak mencipta editorial/QR/contact fakta,
-dan malformed/auth/query failures kekal visible errors. Mock editorial tidak diseed.
-Genius Aulad pending required publishedAt; Qiam/Bubur Asyura HOLD.
-Dapur-specific QR kekal berasingan; QR-only asset excluded/unclassified.
-Facebook curated/manual, tiada importer. Jadual Kuliah local/mock;
-Lecture Generator Publish disabled dan Fasa 5.3 belum bermula.
-Historical Fasa 4.3 manifests, approval payloads dan mutation guards kekal immutable.
+Fasa 5.2B completed pada **3 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.2b-first-news`; resolve tag untuk hash commit akhir.
+Genius Aulad ialah News pertama: 0 drafts / 1 Program / 0 Announcement / 1 News / 55 image assets.
+Optional newsPost.eventDate = 2026-05-14 dipaparkan sebagai **14 Mei 2026**; publishedAt = 2026-10-03T11:18:02Z ialah masa penerbitan website sebenar dan metadata eligibility/sorting.
+Homepage News kini memaparkan imej CMS dengan alt approved dan optional no-image fallback; eyebrow **BULETIN MTU**, heading **Berita dan aktiviti**, description **Sorotan program, aktiviti dan perkembangan semasa Masjid Talhah Bin Ubaidillah.**
+Read layer kekal typed/server-only, published-only, token-free, cache 300 saat. Healthy empty Announcement disengajakan; outage tidak mencipta editorial mock, malformed/auth/query errors kekal visible.
+Facebook curated/manual tanpa importer. Dapur/NCR/donation dan 44 published records sedia ada tidak berubah dalam publication News.
+Jadual Kuliah local/mock, Lecture Generator Publish disabled; **Fasa 5.3 belum bermula**.
+Rekod: [EDITORIAL-GENIUS-AULAD-PUBLICATION.md](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).
+
+### Rekod checkpoint terdahulu — Fasa 5.2A
 
 Baseline sebelum 5.2A: `72506d2f7b6d5fb7a176c7ac848beade4186bfd3` / `phase-5.2-homepage-editorial-integration`.
 Fasa 5.1: `5125ba46a52ddfd2a7d790fc8c490b427662133a` / `phase-5.1-sanity-public-content`.
@@ -67,13 +65,14 @@ ke dokumen dalam commit yang sama.
 | 4.3C — Controlled Publication & closeout | Resolve tag untuk commit penutupan | `phase-4.3c-controlled-publication` |
 | 5.1 — Published Sanity public content | Resolve tag untuk commit penutupan | `phase-5.1-sanity-public-content` |
 | 5.2 — Homepage editorial published read integration | Resolve tag untuk commit penutupan | `phase-5.2-homepage-editorial-integration` |
-| 5.2A — Editorial public information | Resolve tag untuk commit penutupan | `phase-5.2a-editorial-public-information` |
+| 5.2A — Editorial public information | `91ad9f2` | `phase-5.2a-editorial-public-information` |
+| 5.2B — First News, CMS image and event date | Resolve tag untuk commit penutupan | `phase-5.2b-first-news` |
 
 **Ketidakpadanan tag lama:** kedua-dua tag Fasa 1/2 sebenarnya menunjuk ke
 `19f3c6c` (penjelasan pattern rasmi), sebelum penutupan Fasa 1 dan implementation
 homepage. Jangan gunakan tag itu sebagai snapshot akhir fasa. Tag tidak diubah
 dalam tugas ini. Tarikh/rujukan penuh berada dalam [PROJECT-JOURNEY.md](PROJECT-JOURNEY.md).
-Fasa 5.1/5.2/5.2A siap; Fasa 5.3 dan Fasa 6–12 belum bermula.
+Fasa 5.1/5.2/5.2A/5.2B siap; Fasa 5.3 dan Fasa 6–12 belum bermula.
 
 ## Architecture semasa
 
@@ -84,7 +83,7 @@ Fasa 5.1/5.2/5.2A siap; Fasa 5.3 dan Fasa 6–12 belum bermula.
 - Lima public pages menggunakan `src/lib/public-content/cms/server.ts` dan
   adapter typed; modul tempatan/aset approved kekal fallback. Homepage editorial
   menggunakan `cms/homepage-server.ts`, bundle typed dan cache lima minit.
-  Dataset editorial: 1 ongoing Program, 0 Announcement/News; empty sections kekal neutral; temporary outage menggunakan
+  Dataset editorial: 1 ongoing Program, 0 Announcement, 1 News; eventDate mengatasi publishedAt untuk display, CMS image optional; empty sections kekal neutral; temporary outage menggunakan
   explicit UI fallback kosong. Waktu solat/kuliah masih mock data daripada
   `src/lib/homepage-content.ts`; editorial mocks lain tidak lagi dirender.
 - Embedded Studio rasmi pada `/studio/[[...tool]]`, menggunakan NextStudio dan

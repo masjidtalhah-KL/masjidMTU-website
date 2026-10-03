@@ -10,6 +10,7 @@ export const homepageEditorialQuery = groq`{
     _id, _type, title, description, category, scheduleType, startAt, endAt, displayOrder, isActive
   },
   "news": *[_type == "newsPost" && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]{
-    _id, _type, title, excerpt, category, publishedAt
+    _id, _type, title, excerpt, category, eventDate, publishedAt,
+    "image": coalesce(image{alt, "asset": asset->{_id, url, "width": metadata.dimensions.width, "height": metadata.dimensions.height}}, image)
   }
 }`;

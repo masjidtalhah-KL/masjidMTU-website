@@ -2,12 +2,25 @@
 
 Project ini ialah asas website rasmi masjid yang dibangunkan secara berfasa. Fasa 0 menyediakan aplikasi Next.js dan dokumentasi; kandungan sebenar, CMS, dashboard operasi serta transaksi akan ditambah dalam fasa masing-masing.
 
+## Keadaan semasa — Fasa 5.2B
+
+Fasa 5.2B completed pada **3 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.2b-first-news`; resolve tag untuk hash commit akhir.
+Genius Aulad ialah News pertama: 0 drafts / 1 Program / 0 Announcement / 1 News / 55 image assets.
+Optional newsPost.eventDate = 2026-05-14 dipaparkan sebagai **14 Mei 2026**; publishedAt = 2026-10-03T11:18:02Z ialah masa penerbitan website sebenar dan metadata eligibility/sorting.
+Homepage News kini memaparkan imej CMS dengan alt approved dan optional no-image fallback; eyebrow **BULETIN MTU**, heading **Berita dan aktiviti**, description **Sorotan program, aktiviti dan perkembangan semasa Masjid Talhah Bin Ubaidillah.**
+Read layer kekal typed/server-only, published-only, token-free, cache 300 saat. Healthy empty Announcement disengajakan; outage tidak mencipta editorial mock, malformed/auth/query errors kekal visible.
+Facebook curated/manual tanpa importer. Dapur/NCR/donation dan 44 published records sedia ada tidak berubah dalam publication News.
+Jadual Kuliah local/mock, Lecture Generator Publish disabled; **Fasa 5.3 belum bermula**.
+Rekod: [EDITORIAL-GENIUS-AULAD-PUBLICATION.md](docs/EDITORIAL-GENIUS-AULAD-PUBLICATION.md).
+
 ## Teknologi utama
 
 - Next.js dan React
 - TypeScript
 - Tailwind CSS
 - ESLint
+
+### Sejarah checkpoint hingga Fasa 5.2A
 
 Sanity Studio tersedia pada `/studio`; Foundation 4.1 serta content model dan
 prototype Penjana Jadual Kuliah 4.2/4.2A telah dikomit dan checkpointed.
@@ -24,7 +37,7 @@ lima minit dan explicit local fallback bagi temporary outage. Local editorial
 content lima route kekal hanya sebagai explicit fallback.
 Fasa 5.2 homepage Pengumuman, Program dan Berita & Aktiviti siap dan diluluskan,
 menggunakan published Sanity. Pada checkpoint 5.2 ketiga-tiga jenis mempunyai
-0 published documents; empty states diluluskan tanpa mock cards. Keadaan semasa 5.2A: Program 1, Announcement 0, News 0.
+0 published documents; empty states diluluskan tanpa mock cards. Keadaan pada checkpoint 5.2A: Program 1, Announcement 0, News 0.
 Fallback outage ialah UI kosong dengan mesej unavailable, bukan editorial mock.
 Empty-state ini disengajakan dan diluluskan melalui manual visual review pengguna.
 Mock sedia ada tidak diseed atau diterbitkan. Checkpoint:

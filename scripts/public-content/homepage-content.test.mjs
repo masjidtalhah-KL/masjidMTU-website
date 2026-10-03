@@ -8,7 +8,7 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { ROOT } from "../sanity-migration/plan.mjs";
 
-const jiti = createJiti(import.meta.url, { fsCache: false, moduleCache: true, jsx: { runtime: "automatic" }, alias: { "@": path.join(ROOT, "src") } });
+const jiti = createJiti(import.meta.url, { fsCache: false, moduleCache: true, jsx: { runtime: "automatic" }, alias: { "@": path.join(ROOT, "src"), "next/image": path.join(ROOT, "scripts/public-content/next-image-test-interop.mjs") } });
 const load = (name) => jiti.import(path.join(ROOT, "src/lib/public-content/cms", `${name}.ts`));
 const { mapHomepageEditorial: map, unavailableHomepageEditorial: fallback } = await load("homepage-adapters");
 const { PublicContentError, readWithFallback } = await load("read-policy");
@@ -23,6 +23,92 @@ const news = (id = "n", fields = {}) => ({ _id: id, _type: "newsPost", title: "T
 const populated = () => ({ announcements: [announcement()], programs: [program()], news: [news()] });
 const query = async (dataset) => (await evaluate(parse(homepageEditorialQuery), { dataset })).get();
 const render = (editorial) => Object.values(views).map((component) => renderToStaticMarkup(React.createElement(component, { editorial }))).join("");
+const assetBase = "https://cdn.sanity.io/images/2o95jmms/production/";
+const imageAsset = () => ({
+  _id: "image-abcdef-1280x963-png", _type: "sanity.imageAsset",
+  url: assetBase + "abcdef-1280x963.png",
+  metadata: { dimensions: { width: 1280, height: 963 } },
+});
+const projectedImage = () => ({
+  alt: "Children learning inside the mosque",
+  asset: { _id: imageAsset()._id, url: imageAsset().url, width: 1280, height: 963 },
+});
+
+test("News query resolves image alt, asset URL and dimensions without including draft/release News", async () => {
+  const withImage = news("photo", { image: { alt: projectedImage().alt, asset: { _type: "reference", _ref: imageAsset()._id } } });
+  const bundle = await query([imageAsset(), withImage, { ...withImage, _id: "drafts.photo" }, { ...withImage, _id: "versions.review.photo" }]);
+  assert.equal(bundle.news.length, 1);
+  assert.deepEqual(bundle.news[0].image, projectedImage());
+  assert.deepEqual(map(bundle, now, assetBase).news[0].image, {
+    src: imageAsset().url, alt: projectedImage().alt, width: 1280, height: 963,
+  });
+});
+
+test("News image renders using real Next Image with accessible alt, fill sizing and Sanity width-only loader", () => {
+  const editorial = map({ ...empty(), news: [news("photo", { image: projectedImage() })] }, now, assetBase);
+  const html = renderToStaticMarkup(React.createElement(views.HomepageNewsSection, { editorial }));
+  assert.match(html, /class="update-card__visual update-card__visual--photo"><img/);
+  assert.match(html, /alt="Children learning inside the mosque"/);
+  assert.match(html, /data-nimg="fill"/);
+  assert.match(html, /position:absolute;height:100%;width:100%/);
+  assert.match(html, /sizes="\(max-width: 480px\)/);
+  assert.match(html, /class="update-card__image"/);
+  assert.match(html, /fit=max/);
+  assert.doesNotMatch(html, /aria-hidden="true"|crop=|rect=/);
+});
+
+test("News images are optional: absent/null images retain the approved decorative MTU card", () => {
+  for (const image of [undefined, null]) {
+    const editorial = map({ ...empty(), news: [news("no-photo", { image })] }, now, assetBase);
+    assert.equal(editorial.news[0].image, null);
+    const html = renderToStaticMarkup(React.createElement(views.HomepageNewsSection, { editorial }));
+    assert.match(html, /update-card__visual--1/);
+    assert.match(html, /<span>MTU<\/span>/);
+    assert.match(html, /Test article/);
+    assert.doesNotMatch(html, /<img|update-card__visual--photo/);
+  }
+});
+
+test("dangling/malformed/foreign News images fail visibly instead of silently becoming image-less cards", async () => {
+  const inputs = [
+    {}, "broken", { ...projectedImage(), asset: null },
+    { ...projectedImage(), alt: " " },
+    { ...projectedImage(), asset: { ...projectedImage().asset, width: 0 } },
+    { ...projectedImage(), asset: { ...projectedImage().asset, height: 1.5 } },
+    { ...projectedImage(), asset: { ...projectedImage().asset, _id: "bad-id" } },
+    { ...projectedImage(), asset: { ...projectedImage().asset, url: "https://other.example/photo.png" } },
+    { ...projectedImage(), asset: { ...projectedImage().asset, url: imageAsset().url.replace("/production/", "/other/") } },
+    { ...projectedImage(), asset: { ...projectedImage().asset, url: imageAsset().url + "?token=secret" } },
+  ];
+  for (const image of inputs) {
+    const bundle = { ...empty(), news: [news("broken", { image })] };
+    assert.throws(() => map(bundle, now, assetBase), PublicContentError);
+    await assert.rejects(readWithFallback("homepage-editorial", async () => bundle,
+      (value) => map(value, now, assetBase), () => assert.fail("Malformed image must not invoke outage fallback")), PublicContentError);
+  }
+  const dangling = await query([news("dangling", { image: { alt: "Known alt", asset: { _ref: "missing", _type: "reference" } } })]);
+  assert.throws(() => map(dangling, now, assetBase), PublicContentError);
+  // GROQ object projection can turn a malformed scalar into null. Keep it visible to validation.
+  for (const image of ["broken", false, 42]) {
+    const projected = await query([news("scalar", { image })]);
+    assert.throws(() => map(projected, now, assetBase), PublicContentError);
+  }
+  assert.throws(() => map({ ...empty(), news: [news("photo", { image: projectedImage() })] }, now), PublicContentError);
+});
+
+test("image validation applies before future-date filtering or the three-News limit", () => {
+  for (const bundle of [
+    { ...empty(), news: [news("future", { publishedAt: "2026-10-03T04:00:00Z", image: {} })] },
+    { ...empty(), news: [news("a"), news("b"), news("c"), news("d", { image: {} })] },
+  ]) assert.throws(() => map(bundle, now, assetBase), PublicContentError);
+});
+
+test("News photo CSS reserves the existing visual height before loading and crops only in presentation", async () => {
+  const css = await fs.readFile(path.join(ROOT, "src/app/globals.css"), "utf8");
+  assert.match(css, /\.update-card__visual--photo \{ height: 10rem; padding: 0; \}/);
+  assert.match(css, /\.update-card__image \{ object-fit: cover; object-position: center; \}/);
+  assert.match(css, /\.update-card__visual--photo::before, \.update-card__visual--photo::after \{ content: none; \}/);
+});
 
 test("published query excludes drafts/releases, unrelated records and unused fields", async () => {
   const records = [announcement(), program(), news()];
@@ -118,7 +204,7 @@ test("temporary outage yields explicit empty UI fallback and safe warning, never
   assert.match(warnings[0], /homepage-editorial: temporary Sanity failure/);
   const html = render(result);
   assert.equal((html.match(/tidak tersedia buat sementara waktu/g) ?? []).length, 3);
-  assert.doesNotMatch(html, /Gotong-royong|Bicara keluarga|Sorotan program|mock data/);
+  assert.doesNotMatch(html, /Gotong-royong|Bicara keluarga|mock data/);
 });
 test("authentication/query errors and malformed content never invoke fallback", async () => {
   const never = () => assert.fail("Fallback must not run");
@@ -131,6 +217,9 @@ test("healthy empty presentation preserves section shells and distinguishes empt
   const html = render(map(empty(), now));
   for (const id of ["announcements", "programs", "updates"]) assert.ok(html.includes(`id="${id}"`));
   assert.equal((html.match(/Belum ada/g) ?? []).length, 3);
+  assert.match(html, /BULETIN MTU/);
+  assert.match(html, /Sorotan program, aktiviti dan perkembangan semasa Masjid Talhah Bin Ubaidillah\./);
+  assert.doesNotMatch(html, /Cerita komuniti|Sorotan daripada masjid dan komuniti setempat/);
   assert.doesNotMatch(html, /tidak tersedia|Test program|Kandungan contoh|mock data/);
 });
 test("populated presentation retains original card classes, headings, decorative visuals and grid", () => {

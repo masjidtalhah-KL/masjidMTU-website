@@ -1,0 +1,68 @@
+{
+  "_createdAt": "2026-10-03T08:37:38Z",
+  "_id": "newsPost-lawatan-genius-aulad-bandar-kinrara",
+  "_rev": "zJzdY1EB95ZHrNvpJpZmOO",
+  "_type": "newsPost",
+  "_updatedAt": "2026-10-03T11:18:49Z",
+  "body": [
+    {
+      "_key": "genius-paragraph-1",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "genius-span-1",
+          "_type": "span",
+          "marks": [],
+          "text": "Masjid Talhah Bin Ubaidillah menerima kunjungan kanak-kanak daripada Genius Aulad Bandar Kinrara dalam program Lawatan Sambil Belajar. Program ini memperkenalkan adab dan kepentingan ibadah kepada anak-anak."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "genius-paragraph-2",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "genius-span-2",
+          "_type": "span",
+          "marks": [],
+          "text": "Pengisian bersama Ustaz Irfan Muiz merangkumi adab memasuki masjid, berpakaian dan menjaga ketenangan ruang solat. Anak-anak turut mengikuti demonstrasi solat sunat Tahiyatul Masjid serta pengisian tentang amalan bersedekah."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "genius-paragraph-3",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "genius-span-3",
+          "_type": "span",
+          "marks": [],
+          "text": "Pihak masjid merakamkan penghargaan kepada pengurusan Genius Aulad Bandar Kinrara kerana memilih masjid sebagai destinasi lawatan."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    }
+  ],
+  "category": "activity",
+  "eventDate": "2026-05-14",
+  "excerpt": "Kanak-kanak Genius Aulad Bandar Kinrara mengikuti lawatan sambil belajar di Masjid Talhah Bin Ubaidillah, dengan pengisian adab di masjid, solat sunat Tahiyatul Masjid dan galakan bersedekah.",
+  "image": {
+    "_type": "editorialImage",
+    "alt": "Kanak-kanak Genius Aulad Bandar Kinrara mengikuti sesi lawatan sambil belajar di ruang solat Masjid Talhah Bin Ubaidillah.",
+    "asset": {
+      "_ref": "image-0bb5476f0d6726f01588ef6480e30d0750524f3a-1280x963-png",
+      "_type": "reference"
+    }
+  },
+  "publishedAt": "2026-10-03T11:18:02Z",
+  "slug": {
+    "_type": "slug",
+    "current": "lawatan-genius-aulad-bandar-kinrara"
+  },
+  "title": "Lawatan Sambil Belajar Genius Aulad Bandar Kinrara"
+}

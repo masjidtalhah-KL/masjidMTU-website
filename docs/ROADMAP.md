@@ -9,7 +9,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **2** | Public Homepage | **Siap** |
 | **3** | Public Pages | **Siap** |
 | **4** | Sanity CMS | **Siap** — checkpoint 4.3C |
-| **5** | Dynamic Content | **Semasa** — 5.1/5.2/5.2A siap; 5.3 belum bermula |
+| **5** | Dynamic Content | **Semasa** — 5.1/5.2/5.2A/5.2B siap; 5.3 belum bermula |
 | 6 | Admin Foundation | Belum bermula |
 | 7 | Feature Flags & Campaign Engine | Belum bermula |
 | 8 | Qurban MVP | Belum bermula |
@@ -25,6 +25,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | 5.1 | Published public read layer: Profil, Organisasi, Surau, Galeri, Hubungi | **Siap** — diluluskan; `phase-5.1-sanity-public-content`, cache 5 minit dan explicit fallback |
 | 5.2 | Homepage Pengumuman, Program, Berita & Aktiviti | **Siap** — manual visual approval; `phase-5.2-homepage-editorial-integration`; pada checkpoint asal 0 published documents bagi setiap jenis |
 | 5.2A | Source reconciliation dan public information architecture | **Siap** — published ongoing Dapur, evergreen NCR, general QR dan final donation copy; `phase-5.2a-editorial-public-information`; 0 drafts / 1 Program / 0 Announcement / 0 News / 53 assets |
+| 5.2B | First real News, CMS images and optional eventDate | **Siap** — Genius Aulad published; `phase-5.2b-first-news`; 0 drafts / 1 Program / 0 Announcement / 1 News / 55 assets |
 | 5.3 | Jadual Kuliah integration | **Belum bermula** — scope berasingan |
 
 Rujuk [SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md). Tiada production
@@ -45,7 +46,7 @@ Architecture diimplement dengan optional fields absent-safe; content facts/prese
 dan exact [draft-only batch](EDITORIAL-FIRST-DRAFT-BATCH.md) telah diluluskan.
 3 original assets dan 2 drafts kemudian melalui approved Studio review dan controlled publication.
 Final copy refinement republished siteSettings sahaja. Fasa 5.2A completed; rujuk [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md).
-Genius Aulad required publishedAt belum resolved; tiada News seeding atau fasa seterusnya.
+Pada checkpoint 5.2A, Genius Aulad required publishedAt belum resolved. Fasa 5.2B kemudian menyelesaikan provenance, menerbitkan artikel pertama dengan masa website sebenar dan menambah optional eventDate/CMS image. Rujuk [publication/closeout record](EDITORIAL-GENIUS-AULAD-PUBLICATION.md). Fasa 5.3 belum bermula.
 
 ## Pecahan Fasa 3
 

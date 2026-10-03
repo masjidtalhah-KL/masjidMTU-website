@@ -1,6 +1,10 @@
 # Homepage editorial — Fasa 5.2
 
-**Current state: Fasa 5.2A completed, 1 ongoing Program / 0 Announcement / 0 News.**
+**Current checkpoint: Fasa 5.2B completed.** Published homepage: 1 Program, 1 News, 0 Announcement. Optional CMS image/eventDate support is live; BULETIN MTU copy approved. Earlier phase/review sections below are historical. See [publication/closeout record](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).
+
+
+**Current published state: Fasa 5.2A completed, 1 ongoing Program / 0 Announcement / 0 News.**
+Fasa 5.2B News image rendering is implemented locally for review; the approved Genius Aulad draft remains unpublished. See the final Fasa 5.2B section below.
 See the final section and [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md).
 The original Fasa 5.2 inspection/validation below records its historical empty-state checkpoint.
 
@@ -183,3 +187,55 @@ The reminder is a separate 14px paragraph; description stays 16px. Existing head
 navy/gold layout, QR artwork/reference/alt/caption and both actions remain intact.
 
 Controlled temporary outage tests retain explicit empty editorial/availability messages and no invented content; malformed/auth/query failures remain errors. Fasa 5.2 empty Announcement/News sections and protected prayer/lecture/about/contact HTML remain identical to the baseline. See [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md).
+
+
+## Fasa 5.2B — real CMS News image rendering, pending final approval
+
+The production News query now projects optional image alt text and the dereferenced asset ID, URL and intrinsic dimensions. A malformed scalar is retained by coalesce for validation, rather than being silently projected to null. Draft/release exclusions are unchanged.
+
+HomepageNews carries image: PublicImage | null. The homepage server passes its configured dataset asset base to the adapter, which reuses the established mapImage validator. An absent/null image is valid. A broken reference, missing alt, foreign dataset/URL or invalid dimensions raises PublicContentError before eligibility filtering or limiting. The current-state and homepage read-only verifiers use the same configured image base.
+
+HomepageNewsSection now renders PublicImage for records with an image. The existing Sanity width-only CDN loader resizes with fit=max; browser object-fit: cover and centered positioning crop only the presentation. The existing relative visual area reserves 10rem (160px), with fill and responsive sizes. No crop/hotspot/source editing or schema change. Records without images keep the existing aria-hidden navy MTU decoration. The grid, card body, typography, spacing and section layout remain unchanged.
+
+Production is still server-only, token-free, published-only and revalidated every 300 seconds. Healthy empty News stays empty; temporary outages show the established explicit empty/unavailable UI. Malformed/auth/query failures remain visible.
+
+### Verification — 3 October 2026
+
+- Lint, final production build/TypeScript and git diff --check pass.
+- Relevant automated tests: **98 passed**, including six new News image cases, Fasa 5.1/5.2 regressions, no-image rendering and outage/malformed/auth/query policy tests.
+- Read-only current-state Sanity verification passes: historical base parity remains protected, NCR/donation intact, 1 Program / 0 Announcement / 0 News / 55 image assets.
+- Authenticated read-back confirms the complete Genius Aulad draft and revision **SSdKRdF7e0XIFT3zzGrX6W** unchanged, publishedAt absent; all 44 published content records and 55 assets unchanged. No Sanity writes.
+- Homepage plus all five Fasa 5.1 public routes return HTTP 200. The production homepage has the healthy empty News message and does not expose the draft.
+- An isolated production-built Next app uses the exact real News component, adapter/model, image loader and stylesheet. Its local-only fixture supplies the approved photo/copy, with a second duplicate presentation case lacking an image. The preview label “Belum diterbitkan” is UI-only; no publication timestamp is fabricated. No preview route, data hook or draft perspective was added to the canonical app.
+- Browser QA at 1440×1000 desktop and 375×1100 mobile passes: the actual Sanity CDN image loads, exact alt is exposed, centered cover preserves the instructor/children, visual height remains 160px, title wraps to two lines, excerpt to four/five lines respectively, and both image/no-image cards have equal height. Observed CLS is 0 with no horizontal overflow. Initial and loaded card measurements remain stable.
+
+Local review: http://127.0.0.1:3017/review-news-image. Production published-only preview: http://127.0.0.1:3005/.
+No publication, commit, push or subsequent-phase work. Stop for final approval.
+
+
+## Optional News event date — 3 October 2026, approved draft-only addition
+
+The owner approved optional newsPost.eventDate (Sanity date) for the actual activity/event date. publishedAt remains the required actual website publication timestamp; Facebook/source-post dates remain provenance documentation only. No timestamp is inferred from photo clocks.
+
+Only drafts.newsPost-lawatan-genius-aulad-bandar-kinrara.eventDate was set to **2026-05-14**, under a fresh revision-locked guard. Authenticated revision after the patch: **chGo6kzbOkh09ebDsDB6sf**. Title, slug, category, excerpt, all body blocks, approved photo 4 and alt remain unchanged. publishedAt is absent. All 44 published content documents and 55 image assets are unchanged; counts remain 1 draft / 1 Program / 0 Announcement / 0 News.
+
+The query/model carry the optional eventDate. The shared calendar parser rejects malformed/rollover dates in both Studio schema and the adapter. News visible date uses eventDate when present, otherwise the existing publishedAt formatter in Malay/Kuala Lumpur timezone. Filtering and newest-first order remain based on publishedAt. Legacy documents without eventDate remain valid.
+
+The isolated real-component preview uses the actual formatter on the authenticated draft eventDate and displays **14 Mei 2026** at desktop/mobile. No publishedAt placeholder is fabricated. Approved 160px cover image layout is unchanged; no overflow and observed CLS 0. The original source Facebook post provenance remains **14 May 2026, 10:19 AM**, with no inferred timezone or public CMS Facebook time field.
+
+Lint and production build/TypeScript pass. **138 automated tests** pass, including eight new schema/date cases, News images, homepage/public-content, Fasa 5.1/5.2 regressions and migration/publication safeguards. Authenticated draft schema/reference validation has zero warnings and the sole expected pending publication error: **publishedAt: Required**. Current-state and published homepage read verification pass. Historical migration evidence is preserved.
+
+No publication, commit, push or subsequent phase. Stop for final review.
+
+## Fasa 5.2B completed — published homepage current state
+
+Fasa 5.2B completed pada **3 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.2b-first-news`; resolve tag untuk hash commit akhir.
+Genius Aulad ialah News pertama: 0 drafts / 1 Program / 0 Announcement / 1 News / 55 image assets.
+Optional newsPost.eventDate = 2026-05-14 dipaparkan sebagai **14 Mei 2026**; publishedAt = 2026-10-03T11:18:02Z ialah masa penerbitan website sebenar dan metadata eligibility/sorting.
+Homepage News kini memaparkan imej CMS dengan alt approved dan optional no-image fallback; eyebrow **BULETIN MTU**, heading **Berita dan aktiviti**, description **Sorotan program, aktiviti dan perkembangan semasa Masjid Talhah Bin Ubaidillah.**
+Read layer kekal typed/server-only, published-only, token-free, cache 300 saat. Healthy empty Announcement disengajakan; outage tidak mencipta editorial mock, malformed/auth/query errors kekal visible.
+Facebook curated/manual tanpa importer. Dapur/NCR/donation dan 44 published records sedia ada tidak berubah dalam publication News.
+Jadual Kuliah local/mock, Lecture Generator Publish disabled; **Fasa 5.3 belum bermula**.
+Rekod: [EDITORIAL-GENIUS-AULAD-PUBLICATION.md](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).
+
+The preceding draft-only/image/event-date review sections are historical verification records. Final live homepage now shows the approved image and 14 Mei 2026. Desktop/mobile and no-image fallback QA passed; all 138 relevant tests, schema extraction/current validation and six route smoke checks passed. See the closeout record for exact publication revision/time and validation evidence.

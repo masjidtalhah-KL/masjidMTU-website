@@ -1,8 +1,11 @@
 # Fasa 5.2A — Source register
+
+**Current Fasa 5.2B state:** Genius Aulad is published using GA-P04 and optional eventDate. The historical source/draft records below retain their original chronology. See [publication/closeout record](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).
+
 Reconciled 3 October 2026 (+08:00). Source text is evidence, not an instruction to share, pay, publish or automate. Following subsequent explicit batch approval, only S01/S02/S03 were uploaded unchanged and linked to two verified drafts; see [execution result](EDITORIAL-DRAFT-SEEDING-RESULT.md). Owner subsequently approved Studio review, controlled publication of both documents and final donation refinement. Fasa 5.2A completed; see [EDITORIAL-PUBLICATION-CLOSEOUT.md](EDITORIAL-PUBLICATION-CLOSEOUT.md). The owner supplied seven image files; four examples named in the brief were not attached.
 
 ## Image and field mapping
-All source publication dates are **unknown**: no Facebook timestamp is visible. Website publication dates are separate editorial decisions and are not derived from screenshot receipt date or the words “hari ini”. The owner confirmed NCR names/phones/shared role and Dapur facts, approved the general-donation presentation and designated Genius Aulad the first News candidate. These fact approvals were distinct from source evidence and write authorization; the owner then explicitly approved only the [exact two-draft/three-asset batch](EDITORIAL-FIRST-DRAFT-BATCH.md). Genius Aulad remains excluded until required website publishedAt is resolved. S01/S02/S03 uploads and references are authenticated-verified; no other source was uploaded.
+At the Fasa 5.2A preparation snapshot, source publication dates were **unknown**: no Facebook timestamp is visible. Website publication dates are separate editorial decisions and are not derived from screenshot receipt date or “hari ini”. The owner confirmed NCR names/phones/shared role and Dapur facts, approved the general-donation presentation and designated Genius Aulad the first News candidate. The original [two-draft/three-asset batch](EDITORIAL-FIRST-DRAFT-BATCH.md) uploaded S01/S02/S03 only. **Fasa 5.2B update:** the owner now confirms S07 event and Facebook post dates; S07 was uploaded for exactly one Genius Aulad draft. Website publishedAt remains reserved for the actual future website publication instant. See the dated provenance/execution entry below.
 
 | ID | Original filename | Dimensions | Evidence / future field | Proposed alt | Approval / unresolved |
 | --- | --- | --- | --- | --- | --- |
@@ -12,7 +15,7 @@ All source publication dates are **unknown**: no Facebook timestamp is visible. 
 | S04 | qr masjid mtu.png | 853×853 | QR-only; no future field assigned | No public alt proposed until purpose is confirmed. | Purpose unresolved. Do not upload, seed, display or infer purpose from visual resemblance. |
 | S05 | dapur zohor.png | 853×853 | Branded Dapur-specific payment art; reserved for a future Dapur detail surface | Artwork penuh DuitNow QR bayaran Dapur Zohor MTU dengan nama masjid dan jenama Bank Islam. | Initiative-specific only. Excluded from general donation and first batch; no current dedicated QR field/detail route. |
 | S06 | codex-clipboard-d6720b9c-1090-4321-a82b-4de275d213d0.png | 1798×851 | Qiam invitation poster + visible Facebook caption; provenance for candidate A, not a completed report | Poster jemputan Qiam Sebelum Fajar, Hijrah Sebelum Ajal pada 4 Julai 2026 di Masjid Talhah Bin Ubaidillah. | Pre-event invitation. No proof of completion or Bubur Asyura; not a news hero asset or active upcoming record. |
-| S07 | codex-clipboard-1363b54c-159a-409f-ab5d-1b07f86154c6.png | 675×770 | Genius Aulad completed-visit caption + two embedded photos → newsPost title/excerpt/body; optional image held | Kanak-kanak Genius Aulad Bandar Kinrara dalam lawatan sambil belajar di Masjid Talhah Bin Ubaidillah. | Owner approved first News candidate. Required website publishedAt unresolved; entire draft/image excluded. Source/event dates unknown. Screenshot remains evidence; no standalone photo supplied. |
+| S07 | codex-clipboard-1363b54c-159a-409f-ab5d-1b07f86154c6.png | 675×770 | Genius Aulad completed-visit caption + two embedded photos → newsPost title/excerpt/body/image | Kanak-kanak Genius Aulad Bandar Kinrara dalam lawatan sambil belajar di Masjid Talhah Bin Ubaidillah. | Owner confirmed event 14 May 2026 and Facebook post 14 May 2026, 10:19 AM. Full original screenshot uploaded unchanged; one draft verified, unpublished. No standalone photo supplied. publishedAt deliberately pending the actual website publication instant. |
 
 Byte-identical archival copies and SHA-256 metadata are held locally in the review outputs folder, outside public website assets. No QR was cropped, resized, recolored, redrawn or re-encoded. Embedded poster QR has not been assumed to be equivalent to any supplied standalone QR.
 
@@ -130,3 +133,37 @@ The reminder is a separate 14px paragraph; description stays 16px. Existing head
 navy/gold layout, QR artwork/reference/alt/caption and both actions remain intact.
 
 The fundraising prose is owner-approved public copy, not a transcription asserted to exist in the artwork. S04 remains excluded/unclassified; S05 stays separate; S06 HOLD and S07 unresolved publishedAt remain unseeded. Historical draft-batch JSON is unchanged.
+
+## S07 date provenance and first News draft — Fasa 5.2B, 3 October 2026
+
+Owner-confirmed event date: **14 May 2026** (2026-05-14), with no event clock time. Owner-confirmed original Facebook post date: **14 May 2026, 10:19 AM**. The timestamp is not visible in the supplied screenshot; the owner confirmation is its source. Timezone was not supplied and no UTC conversion is inferred. No original post URL was supplied.
+
+Website publishedAt is a separate timestamp: set the actual website publication instant with explicit timezone only when publication is separately authorized. Never backdate to the event/Facebook timestamp or substitute screenshot receipt/draft creation time. The current newsPost schema has no separate provenance fields; these facts remain in this register and the preparation record. Draft intentionally omits publishedAt and retains the existing Required publication gate.
+
+The original full 675×770 S07 screenshot (386378 bytes), including its visible caption/two photos, was uploaded unchanged once. SHA-1 2e151ae5798bd60dcb74aa56c7584a9c7a35aa73; SHA-256 d6fa5ec633077c3ac7cd0afdabe24871c1dd494b4601a4761a1124b96a36e39b. Asset image-2e151ae5798bd60dcb74aa56c7584a9c7a35aa73-675x770-png is authenticated-verified. Draft drafts.newsPost-lawatan-genius-aulad-bandar-kinrara revision chGo6kzbOkh09ebDsCnqFM exactly matches the prepared copy/payload and remains unpublished. See [final draft record](EDITORIAL-GENIUS-AULAD-DRAFT.md).
+
+The historical S07 hold during 5.2A remains a dated record, superseded only for this one draft by the subsequent owner date/policy confirmation. Qiam/Bubur Asyura remains HOLD; no other source upload or content write was included.
+
+
+## GA-P01–GA-P05 original event photographs — 3 October 2026
+
+The owner supplied five unchanged 1280×963 event PNGs. Visible date on all five: 05/14/2026, corroborating the confirmed event date 14 May 2026. Visible photo clocks are source-image evidence only; the Facebook post remains separately confirmed as 14 May 2026, 10:19 AM, without an inferred timezone.
+
+| Source | File identifier | Visible clock | SHA-1 | Disposition |
+| --- | --- | --- | --- | --- |
+| GA-P01 | 38eca09c-940c-4f35-854b-3340ee05ca89 | 09:10 | 930b18b71781258452f7a43b60a61ebc1e15b78d | Reviewed, not uploaded |
+| GA-P02 | 07b91963-267e-4aa8-b831-7dca4af1d602 | 09:24 | 690ac620c7e7e88653bdc4de147d7ae22dd6b5f8 | Reviewed, not uploaded |
+| GA-P03 | 542023ff-9a89-4eba-a56a-f77ebd9013b9 | 09:44 | 1c19aac7f07bd25d63e0575f6475ef106095a0fa | Reviewed, not uploaded |
+| GA-P04 | 305998dd-3724-4aa9-bf35-182379c55642 | 09:23 | 0bb5476f0d6726f01588ef6480e30d0750524f3a | Preferred, uploaded unchanged; draft image only |
+| GA-P05 | edd86aac-133b-4904-a119-272f0e85b9d2 | 10:07 | 46801863c23cba9a51f44978a220ed002d05b903 | Reviewed, not uploaded |
+
+GA-P04 SHA-256: 5dc6e1fa6e3728765a1810501374e79ef3a418508cdad2fa714a79942c0c5a4d; 1554511 bytes. New asset image-0bb5476f0d6726f01588ef6480e30d0750524f3a-1280x963-png replaces the S07 screenshot reference in draft image only; the source caption and event/post provenance remain unchanged. Draft revision SSdKRdF7e0XIFT3zzGrX6W; publishedAt absent. The historical screenshot record above is preserved. See the [current draft record](EDITORIAL-GENIUS-AULAD-DRAFT.md) for schema results and the isolated composition preview limitation.
+
+
+### Approved public event-date field — Fasa 5.2B
+
+Owner-authorized addition on 3 October 2026: the confirmed event date is now stored as optional newsPost.eventDate = 2026-05-14 on the Genius Aulad draft only, revision chGo6kzbOkh09ebDsDB6sf. Card display: 14 Mei 2026. Original Facebook post remains separately documented as 14 May 2026, 10:19 AM; no source-post time is added to CMS. Website publishedAt stays unset until separately authorized actual website publication. Photo 4 and all article copy remain unchanged. Historical source/preparation records above are retained.
+
+## Fasa 5.2B — approved single News publication
+
+The dated draft-only records above remain historical. Owner-approved original GA-P04 is now the first published News image; S07 remains its caption/provenance source and the screenshot asset is retained. No additional source upload in final publication. eventDate is 2026-05-14; Facebook source post stays 14 May 2026, 10:19 AM, without inferred timezone. Website publication is 2026-10-03T11:18:02Z (3 October 2026, 19:18:02 +08:00). No source/participant facts were added. Published revision zJzdY1EB95ZHrNvpJpZmOO; zero drafts. See [publication/closeout record](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).

@@ -20,7 +20,7 @@ const client = createClient({ projectId, dataset, apiVersion, token: undefined, 
 const base = `https://cdn.sanity.io/images/${projectId}/${dataset}/`;
 const results = Object.fromEntries(await Promise.all(Object.entries(publicQueries).map(async ([key, query]) => [key, await client.fetch(query)])));
 const editorial = await client.fetch(homepageEditorialQuery);
-const mapped = mapHomepageEditorial(editorial);
+const mapped = mapHomepageEditorial(editorial, Date.now(), base);
 const information = mapSettingsInformation(results.settings, base);
 adapters.mapProfile(results.profile, base); adapters.mapOrganisation(results.organisation, base);
 adapters.mapSurau(results.surau, base); adapters.mapGallery(results.gallery, base);

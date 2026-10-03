@@ -12,7 +12,7 @@ const { homepageEditorialQuery } = await jiti.import(path.join(ROOT, "src/lib/pu
 const { mapHomepageEditorial } = await jiti.import(path.join(ROOT, "src/lib/public-content/cms/homepage-adapters.ts"));
 const client = createClient({ projectId, dataset, apiVersion, token: undefined, perspective: "published", useCdn: false, timeout: 15000, maxRetries: 0 });
 const bundle = await client.fetch(homepageEditorialQuery, {}, { perspective: "published" });
-const mapped = mapHomepageEditorial(bundle);
+const mapped = mapHomepageEditorial(bundle, Date.now(), `https://cdn.sanity.io/images/${projectId}/${dataset}/`);
 const counts = { announcement: bundle.announcements.length, program: bundle.programs.length, newsPost: bundle.news.length };
 console.log(JSON.stringify({
   mode: "READ-ONLY-PUBLISHED-HOMEPAGE", checkedAt: new Date().toISOString(),
