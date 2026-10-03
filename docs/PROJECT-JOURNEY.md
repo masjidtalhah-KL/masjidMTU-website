@@ -349,3 +349,77 @@ Jadual Kuliah local/mock, Lecture Generator Publish disabled; **Fasa 5.3 belum b
 Rekod: [EDITORIAL-GENIUS-AULAD-PUBLICATION.md](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).
 
 Owner approved the supplied original photo #4, image/card integration and optional event date, then the exact section copy and single publication. The fresh approved draft revision was checked, only publishedAt was set to the real execution timestamp, validation passed, and exactly one News was published as revision zJzdY1EB95ZHrNvpJpZmOO. Authenticated snapshots prove no changes to other published documents/assets. Lint/build, 138 tests, schema extraction/current verification, six public-route smokes and real desktop/mobile QA passed.
+
+## Fasa 5.3A — UX recovery implementation review, 3 Oktober 2026
+
+Fasa 5.3A calendar-first UX/model/renderer diimplement untuk **owner review**, belum checkpointed.
+Baseline main/tag: `f4b473b1df54af695599a735a1fb2d1c5d9fd372` / `phase-5.2b-first-news`.
+Klik petak poster sebenar memilih tarikh; Enter/Space, fokus dan selected state tersedia.
+Poster khas full kini full-bleed dengan cover default, contain alternatif dan posisi atas/tengah/bawah; badge tarikh overlay, sesi asal kekal tersimpan.
+Fixture 24/25 berkongsi satu artwork demo. Save Draft/Publish disabled; tiada production
+Sanity writes, lecture migration, public /kuliah atau homepage lecture feed. Tiada commit/push.
+Production kekal 45 published documents, 0 drafts, 1 Program, 0 Announcement, 1 News,
+55 image assets dan 0 lecture documents. Fasa 5.3B belum bermula.
+
+The owner requested the current reference workflow rather than the separate
+mini-calendar of 4.2A. Fresh remote-main audit recovered direct date-cell editing,
+non-destructive full banners, manual rule preservation and explicit restoration.
+Implementation uses native overlay buttons, the existing React/SVG poster and a
+local original-artwork catalog. Production snapshots remain unchanged. D18 licensing
+question stays open; [audit and evidence](LECTURE-GENERATOR-UX-RECOVERY.md).
+
+## Fasa 5.3A — adaptive infaq local review, 4 Oktober 2026
+
+Panel infaq adaptif kini tersedia untuk local review: kumpulan petak tanpa tarikh minimum 2, kumpulan terbesar dipilih dan seri mengutamakan awal bulan. Kandungan kumpulan 4–6 dipusatkan dengan lebar maksimum 3 petak. Toggle Papar ruang infaq ON secara lalai; QR umum asal setempat tidak diubah atau diupload. Cadangan persistence hanya lectureMonth.showInfaq; sumber QR mosque-wide, bukan lectureDay. Tiada Sanity writes/persistence/checkpoint; 5.3B belum bermula.
+
+20 lecture tests plus 138 existing regressions pass. Lint/build/diff-check and local schema extraction pass. October leading 3, April trailing 3, July 2/2 leading tie, September single leading ignored/trailing 4, June no leading/trailing 5, March six-row leading 6, February no group and synthetic single-only groups verified. 1,944 year/month/layout combinations preserve all valid dates. Actual PNG/PDF exports for October/April/March were read back and Poppler-rendered; QR scale-only and white-margin comparisons pass. Responsive 375/430/768/1440 retains 31 date controls and no horizontal overflow. No Sanity production mutations, staging, commit or push.
+
+## Fasa 5.3A final closeout — 4 October 2026 (+08:00)
+
+Owner approval locks the calendar/poster as primary date navigation, keyboard direct
+editing, maximum two sessions per date, recurring rules with preserved manual
+overrides, explicit one-date restore and reusable speaker architecture. Full-cell
+posters retain cover default, contain alternative and vertical position controls;
+underlying sessions remain stored and reappear after removal. One artwork can be
+reused across dates. No further UX features are added during closeout.
+
+Adaptive infaq uses actual leading/trailing no-date groups in the existing layout,
+minimum two contiguous cells, largest eligible group, leading on ties; a single
+cell never qualifies. Valid dates are never displaced. Content is centered/capped
+at approximately three-column width inside larger white merged groups. General
+mosque QR is reused, unchanged; Dapur QR is unrelated. Preview/PNG/PDF share the
+renderer contract. Optional lectureMonth.showInfaq is poster configuration only;
+full posters remain embedded lectureDay.specialPoster, not separate date documents.
+
+Monthly snapshots remain lectureMonth-YYYY-MM. Authenticated loading/persistence,
+real Save Draft/Publish, production lecture migration, public /kuliah and homepage
+lecture feed are not implemented. Save Draft and Publish remain disabled; lecture
+types remain read-only/hidden. Fasa 5.3B has not started. No Sanity production
+mutation, upload or schema deployment was performed during this closeout.
+
+GPL/SPDX notices, exact legacy source 378b1bbb4084b4f7b6c55ac70a5c4f769d221d28,
+upstream attribution and the independently implemented workflow provenance remain
+recorded. D18's GPL/combined-application distribution decision is unresolved;
+this owner UX approval makes no licensing/legal conclusion. Historical migration
+and publication evidence remains immutable.
+
+Final checks: lint (0 warnings), production build with published read-only Sanity,
+git diff --check, local schema extraction and 158 relevant tests pass (20 lecture,
+138 public/homepage/information/migration/publication regressions; fake-client
+writes in tests only). Coverage includes recurrence, keyboard cell semantics,
+special posters, shared artwork 24/25, restore/manual preservation, infaq selection
+over 1,944 calendar/layout combinations, outage and malformed/auth failures.
+Approved PNG/PDF proofs were revalidated: full-bleed cover/contain and infaq
+October/April/six-row March, 3508×2480 PNG and single landscape A4 PDF. Shared
+artwork, export pixels, QR source hash, scale-only rendering and white margins pass.
+Existing 375/430/768/1440 QA and owner visual approval stand; exact preview tool
+matches canonical sources. All six public routes return 200, Studio route 200,
+public /kuliah remains 404. Production published current-state parity passes:
+Program 1, Announcement 0, News 1, 55 image assets; NCR/donation unchanged.
+The public inventory fingerprint remains
+7fc9e5a0b248b2350576b9c291cd7ccf49d895d6ebfff5e48ce819328c7692ce.
+
+The isolated exact-component preview remains local QA only. The existing embedded
+Studio CORS registration gate was not bypassed or changed. The owner accepted the
+visual review; no additional Studio-shell capability is claimed by this checkpoint.
+Checkpoint: phase-5.3a-lecture-generator-ux. Stop after checkpoint; no 5.3B work.

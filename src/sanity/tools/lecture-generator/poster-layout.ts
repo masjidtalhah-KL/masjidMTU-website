@@ -9,6 +9,49 @@ export type PosterCell = { day: number; span: number };
 export type TextStyle = { size: number; family: string; weight?: number; italic?: boolean };
 export type MeasureText = (text: string, style: TextStyle) => number;
 
+/** Shared coordinates for the SVG artwork and its native HTML date buttons. */
+export function posterCellRects(year: number, month: number, compact = true, gridHeight: number = POSTER.gridHeight) {
+  const layout = posterMonthCells(year, month, compact);
+  const column = (POSTER.gridWidth - POSTER.columnGap * 6) / 7;
+  const row = (gridHeight - POSTER.rowGap * (layout.rows - 1)) / layout.rows;
+  let position = 0;
+  const cells = layout.cells.map((cell) => {
+    const value = { ...cell, x: POSTER.left + position % 7 * (column + POSTER.columnGap), y: POSTER.top + Math.floor(position / 7) * (row + POSTER.rowGap), width: cell.span * column + (cell.span - 1) * POSTER.columnGap, height: row };
+    position += cell.span;
+    return value;
+  });
+  return { cells, rows: layout.rows, height: POSTER.height + gridHeight - POSTER.gridHeight };
+}
+
+/** Pick only actual rendered no-date groups; compact mode never reserves raw offsets. */
+export function infaqPlacement(layout: ReturnType<typeof posterCellRects>) {
+  const leadingIndex = layout.cells.findIndex((cell, index) => cell.day === 0 && layout.cells[index + 1]?.day === 1);
+  const trailingIndex = layout.cells.at(-1)?.day === 0 ? layout.cells.length - 1 : -1;
+  const leading = leadingIndex >= 0 ? layout.cells[leadingIndex].span : 0;
+  const trailing = trailingIndex >= 0 ? layout.cells[trailingIndex].span : 0;
+  if (leading < 2 && trailing < 2) return { leading, trailing, panel: undefined };
+  const edge = leading >= 2 && leading >= trailing ? "leading" as const : "trailing" as const;
+  const index = edge === "leading" ? leadingIndex : trailingIndex;
+  return { leading, trailing, panel: { edge, index, cell: layout.cells[index] } };
+}
+
+/** Balanced horizontal content inside a white merged no-date group. */
+export function infaqGeometry(width: number, height: number) {
+  const column = (POSTER.gridWidth - POSTER.columnGap * 6) / 7;
+  const contentWidth = Math.min(width, 3 * column + 2 * POSTER.columnGap);
+  const qrSize = Math.min(100, height - 16, contentWidth * .33);
+  const left = (width - contentWidth) / 2 + 8;
+  return { left, qrSize, qrY: (height - qrSize) / 2, textX: left + qrSize + 14, textWidth: contentWidth - qrSize - 30, contentWidth };
+}
+
+/** Only the small-screen editing view gains vertical room; print/export geometry stays fixed. */
+export function editingGridHeight(year: number, month: number, compact: boolean, viewportWidth: number): number {
+  if (viewportWidth <= 0) return POSTER.gridHeight;
+  const rows = posterMonthCells(year, month, compact).rows;
+  // Include a subpixel margin so the browser's rounded boxes remain at least 44px tall.
+  return Math.max(POSTER.gridHeight, rows * 44.5 * POSTER.width / viewportWidth + POSTER.rowGap * (rows - 1));
+}
+
 /** Legacy compact month layout, independent of its workspace and DOM. */
 export function posterMonthCells(year: number, month: number, compact = true) {
   const offset = calendarOffset(year, month), days = daysInMonth(year, month);

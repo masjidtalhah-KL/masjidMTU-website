@@ -10,6 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "lecture-generator:test": "node --test scripts/lecture-generator/lecture-generator.test.mjs",
     "public-content:test": "node --test scripts/public-content/public-content.test.mjs",
     "public-content:verify": "node scripts/public-content/verify.mjs",
     "homepage-content:test": "node --test scripts/public-content/homepage-content.test.mjs",

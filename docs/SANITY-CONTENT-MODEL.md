@@ -210,3 +210,18 @@ publishedAt remains required datetime: the actual website publication time. Home
 ## Fasa 5.2B completed — current News contract
 
 The optional newsPost.eventDate date and image contract described above are now used by the first published Genius Aulad record. eventDate records 2026-05-14; publishedAt is 2026-10-03T11:18:02Z, the actual website publication instant. Source Facebook post date remains provenance documentation only. Existing articles without eventDate/image stay valid. Required publishedAt is unchanged; it governs publication eligibility and ordering. Historical Fasa 4.2/4.3 tables and approval evidence remain snapshots. See [publication/closeout record](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).
+
+## Fasa 5.3A — approved optional full date poster (not deployed)
+
+lectureDay.specialPoster is optional. When present it requires image: editorialImage
+(existing asset reference and alt validation), fit: cover/contain (default cover), optional position: top/center/bottom (default center),
+and mode: full (hidden fixed choice). Its containing day must be manual. Sessions
+remain 0–2 and are preserved beneath the visual override. Existing lectureSpeaker,
+lectureRule, lectureMonth, lectureDay and lectureSession stay authoritative; no new
+document/support type is added. Monthly ID is lectureMonth-YYYY-MM. Existing optional
+speakerName/photo fields retain snapshot semantics. No dataset migration, schema
+deployment or production documents were created. [Design/5.3B plan](LECTURE-GENERATOR-UX-RECOVERY.md).
+
+## Fasa 5.3A — approved optional poster-level infaq flag (not deployed)
+
+lectureMonth.showInfaq is an optional boolean with initialValue true. Legacy months without it remain valid; the runtime default is ON. No QR/image field is added to lectureMonth or lectureDay for this panel. Resolve the approved general mosque QR once from mosque-wide donation configuration in the future Studio adapter; repeated months do not require repeated uploads. The current owner-supplied QR is a byte-identical local review asset only. Document types remain read-only; no schema deployment, production mutation or persistence occurs.

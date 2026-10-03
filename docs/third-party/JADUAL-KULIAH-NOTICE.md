@@ -63,3 +63,25 @@ tidak dianggap memindahkan hak imej tersebut. Aset ini digunakan sebagai rujukan
 visual atas arahan pemilik projek. Jadual/nama A/B/C ialah **demo rekaan**, bukan
 identiti sebenar dalam foto, pengesahan kehadiran atau jadual rasmi individu itu.
 Label demo kekal pada UI dan export. QR infaq dan data jadual sebenar tidak disalin.
+
+## Fasa 5.3A workflow audit — 3 October 2026
+
+Fresh clone plus remote refs/heads/main check confirmed the exact review source
+378b1bbb4084b4f7b6c55ac70a5c4f769d221d28. LICENSE/README and app-core.js/app-ui.js/
+profile.js were inspected for provenance, direct cell selection, full/mixed banners,
+rule preservation, browser monthly storage and export.
+
+Native HTML overlay buttons, selected-day React state changes, original local raster
+reader and optional specialPoster model/validation are independently implemented
+from the observed workflow; no substantial legacy editor source was newly pasted.
+The existing adapted LecturePoster/poster-layout files keep their GPL-3.0-only
+notices when extended. special-event-demo.svg/png is independently authored
+non-production artwork, not an upstream/owner event poster.
+
+D18's derivative/combined-application licensing decision remains open. This review
+does not change the reference license, remove attribution, settle distribution
+obligations or claim rights over upstream portraits. [Review matrix](../LECTURE-GENERATOR-UX-RECOVERY.md).
+
+## Adaptive infaq follow-up — 4 October 2026
+
+Legacy behavior reviewed at the same exact source 378b1bbb4084b4f7b6c55ac70a5c4f769d221d28. New infaq eligibility, centered sizing and SVG composition are independently implemented from observed behavior and owner requirements; no substantial legacy donation implementation is pasted. Existing adapted file notices stay intact and D18 remains unresolved. The QR is supplied separately by the owner for local review, not extracted from legacy source. It is copied byte-for-byte without Sanity upload; historical source classifications remain unchanged.

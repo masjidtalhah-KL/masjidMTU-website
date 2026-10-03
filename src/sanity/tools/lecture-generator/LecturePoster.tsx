@@ -4,8 +4,8 @@
 // Rendering adapted from JadualKuliahBulanan (378b1bb), 2026-10-01.
 // See docs/third-party/JADUAL-KULIAH-NOTICE.md for upstream sources and changes.
 import { useEffect, useId, useState, type Ref } from "react";
-import { lectureMonths, sessionLabel, type MonthSchedule, type PosterSettings, type Session, type Speaker } from "./model";
-import { approximateText, fitPosterCopy, fitSingleLine, POSTER, POSTER_FONTS, portraitBounds, posterMonthCells, type MeasureText, type TextStyle } from "./poster-layout";
+import { lectureMonths, sessionLabel, type MonthSchedule, type PosterSettings, type PosterImage, type Session, type Speaker } from "./model";
+import { approximateText, fitPosterCopy, fitSingleLine, POSTER, POSTER_FONTS, portraitBounds, posterCellRects, infaqPlacement, infaqGeometry, type MeasureText, type TextStyle } from "./poster-layout";
 
 function Lines({ lines, x, y, style, lineHeight = 1.07, outline = false }: { lines: string[]; x: number; y: number; style: TextStyle; lineHeight?: number; outline?: boolean }) {
   return <text x={x} y={y + style.size * .85} fill="white" fontFamily={style.family} fontSize={style.size} fontWeight={style.weight} fontStyle={style.italic ? "italic" : "normal"} stroke={outline ? "#101a19" : undefined} strokeWidth={outline ? style.size * .07 : undefined} paintOrder="stroke fill" strokeLinejoin="round">
@@ -13,11 +13,32 @@ function Lines({ lines, x, y, style, lineHeight = 1.07, outline = false }: { lin
   </text>;
 }
 
+function InfaqPanel({ image, width, height, edge, measure }: { image: PosterImage; width: number; height: number; edge: "leading" | "trailing"; measure: MeasureText }) {
+  const box = infaqGeometry(width, height);
+  const heading = "INFAQ UNTUK MASJID", message = "Imbas untuk menyumbang";
+  const headingSize = fitSingleLine(heading, box.textWidth, { size: 24, family: POSTER_FONTS.title, weight: 900 }, measure, 14);
+  const messageSize = fitSingleLine(message, box.textWidth, { size: 19, family: POSTER_FONTS.name }, measure, 12);
+  const recipient = box.textWidth < 280 ? ["MASJID TALHAH BIN", "UBAIDILLAH"] : ["MASJID TALHAH BIN UBAIDILLAH"];
+  const nameSize = Math.min(...recipient.map(line => fitSingleLine(line, box.textWidth, { size: 15, family: POSTER_FONTS.name, weight: 700 }, measure, 11)));
+  const copyHeight = headingSize + 7 + messageSize + 10 + recipient.length * nameSize * 1.1;
+  const top = (height - copyHeight) / 2;
+  return <g data-infaq-panel={edge} role="group" aria-label="Ruang infaq Masjid Talhah Bin Ubaidillah">
+    <image data-infaq-qr="true" href={image.src} x={box.left} y={box.qrY} width={box.qrSize} height={box.qrSize} preserveAspectRatio="xMidYMid meet"><title>{image.alt}</title></image>
+    <text x={box.textX} y={top + headingSize * .85} fill="#102b47" fontFamily={POSTER_FONTS.title} fontWeight="900" fontSize={headingSize}>{heading}</text>
+    <text x={box.textX} y={top + headingSize + 7 + messageSize * .85} fill="#334f68" fontSize={messageSize}>{message}</text>
+    <text x={box.textX} y={top + headingSize + 7 + messageSize + 10 + nameSize * .85} fill="#102b47" fontSize={nameSize} fontWeight="700">{recipient.map((line,index)=><tspan key={line} x={box.textX} dy={index ? nameSize * 1.1 : 0}>{line}</tspan>)}</text>
+  </g>;
+}
+
 function sessionGeometry(session: Session, speakers: Speaker[], dual: boolean, slot: number, sixRows: boolean, width: number, height: number, measure: MeasureText) {
   const speaker = speakers.find(({ id }) => id === session.speakerId);
+  // Loaded month snapshots remain stable even if a reusable speaker is changed/deactivated.
+  // Unpersisted demo sessions still resolve their current library selection.
+  const hasSnapshot = session.speakerName !== undefined;
+  const name = hasSnapshot ? session.speakerName! : speaker?.name || "";
   const yasin = session.sessionType === "yasin", reverse = dual && slot === 1 && !yasin;
-  const pending = session.sessionType === "jumaat" && !speaker;
-  const photo = yasin ? undefined : speaker?.photo;
+  const pending = session.sessionType === "jumaat" && !name;
+  const photo = yasin ? undefined : hasSnapshot ? session.photo : speaker?.photo;
   const bandHeight = dual ? (sixRows ? 26 : 32) : (sixRows ? 35 : yasin ? 41 : 44);
   const bandBottom = dual ? (sixRows ? 1 : 2) : (sixRows ? 10 : yasin ? 16 : 18);
   const bandY = height - bandBottom - bandHeight;
@@ -28,12 +49,11 @@ function sessionGeometry(session: Session, speakers: Speaker[], dual: boolean, s
   const textLeft = !photo && !yasin ? 7 : reverse ? (sixRows ? 5 : 7) : dual ? (yasin ? 43 : sixRows ? 41 : 53) : sixRows ? 60 : yasin ? 70 : 67;
   const textRight = reverse && photo ? (sixRows ? 41 : 52) : dual ? 4 : 5;
   const topic = pending ? "Penceramah belum\nditetapkan" : session.topic || (yasin ? "BACAAN YASIN\n& TAHLIL" : "");
-  const name = speaker?.name || "";
   const copy = fitPosterCopy(topic, name, width - textLeft - textRight - 1.6, bandHeight - 1, dual ? 10.5 : yasin ? 12 : 10.8, dual ? 9 : 10.8, measure, pending);
   return { yasin, pending, topic, name, photo, bandHeight, bandY, photoBox: { x: photoX, y: height - photoBottom - photoHeight, width: photoWidth, height: photoHeight }, textLeft, textWidth: width - textLeft - textRight, copy };
 }
 
-export function LecturePoster({ schedule, speakers, settings, svgRef }: { schedule: MonthSchedule; speakers: Speaker[]; settings: PosterSettings; svgRef?: Ref<SVGSVGElement> }) {
+export function LecturePoster({ schedule, speakers, settings, svgRef, gridHeight = POSTER.gridHeight }: { schedule: MonthSchedule; speakers: Speaker[]; settings: PosterSettings; svgRef?: Ref<SVGSVGElement>; gridHeight?: number }) {
   const uid = useId().replaceAll(":", "");
   const [measure, setMeasure] = useState<MeasureText>(() => approximateText);
   const [fontsReady, setFontsReady] = useState(false);
@@ -51,23 +71,24 @@ export function LecturePoster({ schedule, speakers, settings, svgRef }: { schedu
     return () => { active = false; };
   }, []);
 
-  const layout = posterMonthCells(schedule.year, schedule.month, settings.compactCalendar ?? true);
+  const layout = posterCellRects(schedule.year, schedule.month, settings.compactCalendar ?? true, gridHeight);
+  const infaq = settings.showInfaq !== false && settings.generalDonationQr ? infaqPlacement(layout).panel : undefined;
   const column = (POSTER.gridWidth - POSTER.columnGap * 6) / 7;
-  const row = (POSTER.gridHeight - POSTER.rowGap * (layout.rows - 1)) / layout.rows;
+  const row = (gridHeight - POSTER.rowGap * (layout.rows - 1)) / layout.rows;
   const sixRows = layout.rows === 6;
   const identity = settings.identity;
   const title = settings.title.toUpperCase();
   const mosqueName = (identity?.name || "Masjid Talhah Bin Ubaidillah, Bukit Jalil").toUpperCase();
   const titleSize = fitSingleLine(title, 685, { size: 42, family: POSTER_FONTS.title, weight: 900 }, measure, 20);
   const nameSize = fitSingleLine(mosqueName, 650, { size: 26, family: POSTER_FONTS.name, weight: 700 }, measure, 13);
-  const cells = layout.cells.map((cell, index) => {
-    const position = layout.cells.slice(0, index).reduce((sum, item) => sum + item.span, 0);
-    const x = POSTER.left + position % 7 * (column + POSTER.columnGap), y = POSTER.top + Math.floor(position / 7) * (row + POSTER.rowGap);
-    const sessions = schedule.entries.find(({ day }) => day === cell.day)?.sessions || [];
-    const width = cell.span * column + (cell.span - 1) * POSTER.columnGap;
+  const cells = layout.cells.map((cell) => {
+    const { x, y, width } = cell;
+    const entry = schedule.entries.find(({ day }) => day === cell.day);
+    const specialPoster = entry?.specialPoster;
+    const sessions = specialPoster ? [] : entry?.sessions || [];
     const sessionHeight = row / (sessions.length || 1);
     const geometry = sessions.map((session, slot) => sessionGeometry(session, speakers, sessions.length === 2, slot, sixRows, width, sessionHeight, measure));
-    return { ...cell, x, y, width, sessions, sessionHeight, geometry };
+    return { ...cell, x, y, width, sessions, specialPoster, sessionHeight, geometry };
   });
   // Fit once per density group, so short copy never looks larger than its neighbours.
   // Yasin and the pending-speaker notice retain their separate existing treatments.
@@ -81,14 +102,14 @@ export function LecturePoster({ schedule, speakers, settings, svgRef }: { schedu
   const warnings = cells.filter(({ geometry }) => geometry.some(({ copy }) => !copy.fits)).map(({ day }) => day);
 
   return <>
-    <svg ref={svgRef} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 877" role="img" aria-label={`Poster contoh ${lectureMonths[schedule.month - 1]} ${schedule.year}. Foto rujukan untuk demo, bukan jadual rasmi.`} data-lecture-poster="true" data-fonts-ready={fontsReady} data-overflow={warnings.length ? warnings.join(", ") : undefined} style={{ display: "block", width: "100%", height: "auto", fontFamily: "Arial, sans-serif" }}>
+    <svg ref={svgRef} xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 1240 ${layout.height}`} role="img" aria-label={`Poster contoh ${lectureMonths[schedule.month - 1]} ${schedule.year}. Foto rujukan untuk demo, bukan jadual rasmi.`} data-lecture-poster="true" data-fonts-ready={fontsReady} data-overflow={warnings.length ? warnings.join(", ") : undefined} style={{ display: "block", width: "100%", height: "auto", fontFamily: "Arial, sans-serif" }}>
       <defs>
         <linearGradient id={`${uid}-bg`} x1="0" y1="0" x2="0" y2="1"><stop offset=".2" stopColor="#0e2642"/><stop offset="1" stopColor="#537793"/></linearGradient>
         <linearGradient id={`${uid}-address`}><stop stopColor="#00a99d" stopOpacity="0"/><stop offset=".42" stopColor="#00a99d"/></linearGradient>
         <filter id={`${uid}-shadow`} x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="2" stdDeviation="1.7" floodColor="#000" floodOpacity=".42"/></filter>
         <filter id={`${uid}-title-shadow`} x="-10%" y="-20%" width="120%" height="150%"><feDropShadow dx="0" dy="3" stdDeviation="2" floodOpacity=".6"/></filter>
       </defs>
-      <rect width="1240" height="877" fill={`url(#${uid}-bg)`}/>
+      <rect width="1240" height={layout.height} fill={`url(#${uid}-bg)`}/>
       <g data-poster-header="true">
         <image href={identity?.mosquePhoto || "/lecture-demo/mosque-cutout.webp"} x="163" y="17" width="434" height="212" preserveAspectRatio="xMidYMid meet"/>
         <image href={identity?.logos || "/lecture-demo/header-logos.webp"} x="26" y="17" width="169" height="93" preserveAspectRatio="xMidYMid meet"/>
@@ -105,12 +126,14 @@ export function LecturePoster({ schedule, speakers, settings, svgRef }: { schedu
         const x = POSTER.left + index * (column + POSTER.columnGap);
         return <g key={label}><rect x={x} y="201" width={column} height="28" rx="18" fill="#ed0b58"/><text x={x + column / 2} y="223" textAnchor="middle" fill="white" fontFamily={POSTER_FONTS.title} fontSize="27" fontWeight="900" letterSpacing="-1.1">{label}</text></g>;
       })}
-      {cells.map(({ day, x, y, width, sessions, sessionHeight, geometry }, index) => {
+      {cells.map(({ day, x, y, width, sessions, specialPoster, sessionHeight, geometry }, index) => {
         const clip = `${uid}-cell-${index}`, yasinOnly = sessions.length === 1 && sessions[0].sessionType === "yasin";
         return <g key={index} data-poster-day={day || undefined}>
           <defs><clipPath id={clip}><rect x="0" y="0" width={width} height={row} rx="10"/></clipPath></defs>
           <rect x={x} y={y} width={width} height={row} rx="10" fill={yasinOnly ? settings.colours.yasin : "white"} filter={day ? `url(#${uid}-shadow)` : undefined}/>
           <g transform={`translate(${x} ${y})`} clipPath={`url(#${clip})`}>
+            {infaq?.index === index && settings.generalDonationQr && <InfaqPanel image={settings.generalDonationQr} width={width} height={row} edge={infaq.edge} measure={measure}/>}
+            {specialPoster && <image data-special-poster="full" href={specialPoster.image.src} x="0" y="0" width={width} height={row} preserveAspectRatio={`xMid${specialPoster.fit === "cover" && specialPoster.position === "top" ? "YMin" : specialPoster.fit === "cover" && specialPoster.position === "bottom" ? "YMax" : "YMid"} ${specialPoster.fit === "cover" ? "slice" : "meet"}`}><title>{specialPoster.image.alt}</title></image>}
             {sessions.map((session, slot) => {
               const g = geometry[slot], sy = slot * sessionHeight, photoClip = `${clip}-photo-${slot}`, copyClip = `${clip}-copy-${slot}`;
               const copyClipAllowance = .6;
@@ -145,7 +168,7 @@ export function LecturePoster({ schedule, speakers, settings, svgRef }: { schedu
           </g>
         </g>;
       })}
-      <text x="620" y="873" textAnchor="middle" fontSize="8" fill="white" letterSpacing=".35">DATA CONTOH · FOTO RUJUKAN UNTUK DEMO · BUKAN JADUAL RASMI</text>
+      <text x="620" y={layout.height - 4} textAnchor="middle" fontSize="8" fill="white" letterSpacing=".35">DATA CONTOH · FOTO RUJUKAN UNTUK DEMO · BUKAN JADUAL RASMI</text>
     </svg>
     {!!warnings.length && <p role="status" style={{ margin: 0, padding: "10px 14px", background: "#fff4d8", color: "#755919", fontSize: 13 }}>Teks terlalu panjang pada {warnings.join(", ")} hb. Pendekkan teks sebelum export; teks penuh kekal dalam editor.</p>}
   </>;

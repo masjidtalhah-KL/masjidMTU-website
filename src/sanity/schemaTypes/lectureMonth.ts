@@ -1,5 +1,6 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 import { lectureMonths, lectureSessionTypes } from "../lecture-types";
+import { validateImage } from "./fields";
 
 type ScheduledDay = { date?: string; sessions?: unknown[] };
 
@@ -10,8 +11,19 @@ export const lectureDay = defineType({
     defineField({ name: "date", title: "Tarikh", type: "date", validation: (r) => r.required() }),
     defineField({ name: "sessions", title: "Sesi", type: "array", of: [defineArrayMember({ type: "lectureSession" })], validation: (r) => r.required().max(2) }),
     defineField({ name: "isManualOverride", title: "Override manual bagi tarikh ini", type: "boolean", validation: (r) => r.required() }),
+    defineField({
+      name: "specialPoster", title: "Poster program khas (pilihan)", type: "object",
+      description: "Override visual satu tarikh sahaja. Sesi tersimpan dikekalkan; buang poster untuk memaparkannya semula.",
+      validation: (r) => r.custom((value, context) => !value || (context.parent as { isManualOverride?: boolean })?.isManualOverride === true || "Poster khas mestilah override manual bagi tarikh ini."),
+      fields: [
+        defineField({ name: "image", title: "Poster asal", type: "editorialImage", validation: (r) => r.required().custom(validateImage) }),
+        defineField({ name: "fit", title: "Paparan gambar", type: "string", initialValue: "cover", options: { list: [{ title: "Penuhi kotak (cover)", value: "cover" }, { title: "Paparkan keseluruhan poster (contain)", value: "contain" }] }, validation: (r) => r.required().custom((value) => ["contain", "cover"].includes(value as string) || "Pilih contain atau cover.") }),
+        defineField({ name: "position", title: "Posisi poster (cover)", type: "string", initialValue: "center", description: "Pilihan crop tanpa mengubah fail asal; nilai kosong menggunakan tengah.", options: { list: [{ title: "Atas", value: "top" }, { title: "Tengah", value: "center" }, { title: "Bawah", value: "bottom" }] }, validation: (r) => r.custom((value) => !value || ["top", "center", "bottom"].includes(value as string) || "Pilih atas, tengah atau bawah.") }),
+        defineField({ name: "mode", title: "Mod", type: "string", initialValue: "full", hidden: true, options: { list: [{ title: "Poster penuh", value: "full" }] }, validation: (r) => r.required().custom((value) => value === "full" || "Hanya mod full disokong pada fasa ini.") }),
+      ],
+    }),
   ],
-  preview: { select: { title: "date", sessions: "sessions", manual: "isManualOverride" }, prepare: ({ title, sessions, manual }) => ({ title: title || "Tarikh baharu", subtitle: `${sessions?.length || 0} sesi${manual ? " · Manual" : ""}` }) },
+  preview: { select: { title: "date", sessions: "sessions", manual: "isManualOverride", poster: "specialPoster" }, prepare: ({ title, sessions, manual, poster }) => ({ title: title || "Tarikh baharu", subtitle: `${sessions?.length || 0} sesi${poster ? " tersimpan · Poster penuh" : ""}${manual ? " · Manual" : ""}` }) },
 });
 
 export const lectureSession = defineType({
@@ -32,6 +44,7 @@ export const lectureMonth = defineType({
   fields: [
     defineField({ name: "year", title: "Tahun", type: "number", validation: (r) => r.required().integer().min(2020).max(2100) }),
     defineField({ name: "month", title: "Bulan", type: "number", options: { list: lectureMonths.map((title, index) => ({ title, value: index + 1 })) }, validation: (r) => r.required().integer().min(1).max(12) }),
+    defineField({ name: "showInfaq", title: "Papar ruang infaq", type: "boolean", initialValue: true, description: "Konfigurasi poster sahaja. QR umum diselesaikan daripada tetapan masjid; tiada asset QR berulang atau tarikh rekaan." }),
     defineField({
       name: "entries", title: "Tarikh dan sesi berurutan", type: "array", of: [defineArrayMember({ type: "lectureDay" })],
       validation: (r) => r.required().max(31).custom((entries: ScheduledDay[] | undefined, context) => {

@@ -188,6 +188,14 @@ Model dan prototype akhir Fasa 4.2/4.2A diluluskan untuk checkpoint pada
   application, Corresponding Source dan hak aset sebelum pengedaran produksi.
   Approval checkpoint tidak mengesahkan lesen gabungan telah diselesaikan.
 
+Fasa 5.3A provenance follow-up (3 October 2026): remote main was freshly checked
+at 378b1bbb4084b4f7b6c55ac70a5c4f769d221d28. Native button/editor/local-file behaviour
+was independently implemented; no substantial new legacy editor code was pasted.
+Changes to the existing adapted renderer/layout retain GPL notices. New special
+artwork is independently authored demo material. The combined-application decision
+above **remains unresolved**; this is not a legal clearance. See the updated
+[provenance notice](third-party/JADUAL-KULIAH-NOTICE.md) and [audit](LECTURE-GENERATOR-UX-RECOVERY.md).
+
 ## D19 — Oktober sebenar sebagai QA read-only
 
 - **Tarikh/bukti:** 2026-10-01, arahan pengguna dan
@@ -391,3 +399,32 @@ Read layer kekal typed/server-only, published-only, token-free, cache 300 saat. 
 Facebook curated/manual tanpa importer. Dapur/NCR/donation dan 44 published records sedia ada tidak berubah dalam publication News.
 Jadual Kuliah local/mock, Lecture Generator Publish disabled; **Fasa 5.3 belum bermula**.
 Rekod: [EDITORIAL-GENIUS-AULAD-PUBLICATION.md](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).
+
+## D30 — Calendar-first lecture editing with reversible date posters
+
+The main monthly poster is the primary date navigation surface, with native button
+keyboard semantics and a secondary collapsed date list. A full special poster is
+a manual date-level visual override, never a recurrence rule and never an implicit
+session deletion. Remove reveals stored sessions; explicit confirmed restore returns
+only that day to current rules. Owner refinement changes full posters to edge-to-edge
+cover by default with an overlaid date badge, visible crop warning, explicit contain
+alternative and optional top/center/bottom alignment. Original artwork bytes stay unchanged. Same artwork can be selected for multiple dates. Keep monthly
+Sanity snapshots and existing speaker name/photo snapshots. Mixed mode and bulk copy
+are deferred. Small-screen editing rows may grow; print/export geometry is preserved.
+
+Fasa 5.3A **completed dan owner-approved pada 4 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.3a-lecture-generator-ux`; resolve tag untuk commit akhir.
+Baseline main/tag: `f4b473b1df54af695599a735a1fb2d1c5d9fd372` / `phase-5.2b-first-news`.
+Klik petak poster sebenar memilih tarikh; Enter/Space, fokus dan selected state tersedia.
+Poster khas full kini full-bleed dengan cover default, contain alternatif dan posisi atas/tengah/bawah; badge tarikh overlay, sesi asal kekal tersimpan.
+Fixture 24/25 berkongsi satu artwork demo. Save Draft/Publish disabled; tiada production
+Sanity writes, lecture migration, public /kuliah atau homepage lecture feed. Git checkpoint sahaja; tiada production lecture writes.
+Production kekal 45 published documents, 0 drafts, 1 Program, 0 Announcement, 1 News,
+55 image assets dan 0 lecture documents. Fasa 5.3B belum bermula.
+
+[Full audit and future persistence contract](LECTURE-GENERATOR-UX-RECOVERY.md).
+
+## D31 — Adaptive poster-level infaq in genuine unused cells
+
+4 October 2026: recover the observed legacy donation-panel behavior with independently implemented shared SVG geometry. A leading or trailing group requires at least two actual no-date cells; choose the larger eligible group and prefer leading on ties. A one-cell group never qualifies, even when the opposite eligible group is used. Never move dates to make panel space, consume valid empty dates or synthesize lectureDay content. Respect the established compact layout rather than its raw calendar offset.
+
+Keep the complete white merged group, but center QR/copy within at most three columns for large 4–6 groups. Owner-approved on 4 October 2026: the centered three-column cap is locked. Toggle defaults ON; upstream default was OFF. Source QR is unchanged, uncropped, contain/meet, with quiet zone and no overlay/badge. Monthly schema stores optional showInfaq only; future persistence reuses mosque-wide QR configuration. Save/Publish remain disabled and 5.3B is not started. The owner now authorizes the supplied QR-only source for local lecture-poster review. Historical 5.2A S04 exclusion/unclassified evidence remains unchanged; this is no production asset upload or reclassification.

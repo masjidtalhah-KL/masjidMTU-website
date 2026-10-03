@@ -9,7 +9,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **2** | Public Homepage | **Siap** |
 | **3** | Public Pages | **Siap** |
 | **4** | Sanity CMS | **Siap** — checkpoint 4.3C |
-| **5** | Dynamic Content | **Semasa** — 5.1/5.2/5.2A/5.2B siap; 5.3 belum bermula |
+| **5** | Dynamic Content | **Semasa** — 5.1/5.2/5.2A/5.2B siap; 5.3A siap |
 | 6 | Admin Foundation | Belum bermula |
 | 7 | Feature Flags & Campaign Engine | Belum bermula |
 | 8 | Qurban MVP | Belum bermula |
@@ -26,7 +26,22 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | 5.2 | Homepage Pengumuman, Program, Berita & Aktiviti | **Siap** — manual visual approval; `phase-5.2-homepage-editorial-integration`; pada checkpoint asal 0 published documents bagi setiap jenis |
 | 5.2A | Source reconciliation dan public information architecture | **Siap** — published ongoing Dapur, evergreen NCR, general QR dan final donation copy; `phase-5.2a-editorial-public-information`; 0 drafts / 1 Program / 0 Announcement / 0 News / 53 assets |
 | 5.2B | First real News, CMS images and optional eventDate | **Siap** — Genius Aulad published; `phase-5.2b-first-news`; 0 drafts / 1 Program / 0 Announcement / 1 News / 55 assets |
-| 5.3 | Jadual Kuliah integration | **Belum bermula** — scope berasingan |
+| 5.3 | Jadual Kuliah integration | **UX/model sahaja sedang direview**; production integration belum dibina |
+| 5.3A | Calendar-first UX, full poster, model/renderer and local QA | **Siap** — owner-approved UX/model/renderer; `phase-5.3a-lecture-generator-ux`; tiada production writes |
+| 5.3B | Authenticated month loading/draft persistence, snapshots and reusable assets | **Belum bermula**; scope/permissions perlu approved berasingan |
+
+Fasa 5.3A **completed dan owner-approved pada 4 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.3a-lecture-generator-ux`; resolve tag untuk commit akhir.
+Baseline main/tag: `f4b473b1df54af695599a735a1fb2d1c5d9fd372` / `phase-5.2b-first-news`.
+Klik petak poster sebenar memilih tarikh; Enter/Space, fokus dan selected state tersedia.
+Poster khas full kini full-bleed dengan cover default, contain alternatif dan posisi atas/tengah/bawah; badge tarikh overlay, sesi asal kekal tersimpan.
+Panel infaq adaptif owner-approved: kumpulan petak tanpa tarikh minimum 2, kumpulan terbesar dipilih dan seri mengutamakan awal bulan. Kandungan kumpulan 4–6 dipusatkan dengan lebar maksimum 3 petak. Toggle Papar ruang infaq ON secara lalai; QR umum asal setempat tidak diubah atau diupload. Cadangan persistence hanya lectureMonth.showInfaq; sumber QR mosque-wide, bukan lectureDay. Tiada Sanity writes/persistence; checkpoint Git sahaja. 5.3B belum bermula.
+
+Fixture 24/25 berkongsi satu artwork demo. Save Draft/Publish disabled; tiada production
+Sanity writes, lecture migration, public /kuliah atau homepage lecture feed. Git checkpoint sahaja; tiada production lecture writes.
+Production kekal 45 published documents, 0 drafts, 1 Program, 0 Announcement, 1 News,
+55 image assets dan 0 lecture documents. Fasa 5.3B belum bermula.
+
+Rujuk [5.3A audit dan recommended scope](LECTURE-GENERATOR-UX-RECOVERY.md).
 
 Rujuk [SANITY-PUBLIC-CONTENT.md](SANITY-PUBLIC-CONTENT.md). Tiada production
 content writes, redesign atau operasi/admin dalam scope 5.1 ini. Pengguna

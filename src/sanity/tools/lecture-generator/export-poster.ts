@@ -17,6 +17,8 @@ async function posterCanvas(svg: SVGSVGElement, paper: "A4" | "A3"): Promise<HTM
   await Promise.all(Array.from(snapshot.querySelectorAll("image")).map(async (image) => {
     const href = image.getAttribute("href");
     if (!href) return;
+    // Local original raster bytes are already embedded; never upload or re-encode the source.
+    if (/^data:image\/(png|jpeg|webp);base64,/.test(href)) return;
     const url = new URL(href, window.location.origin);
     if (url.origin !== window.location.origin) throw new Error("Aset poster mestilah daripada website ini.");
     if (!assets.has(url.href)) assets.set(url.href, (async () => {

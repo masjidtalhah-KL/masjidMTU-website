@@ -2,7 +2,22 @@
 
 Project ini ialah asas website rasmi masjid yang dibangunkan secara berfasa. Fasa 0 menyediakan aplikasi Next.js dan dokumentasi; kandungan sebenar, CMS, dashboard operasi serta transaksi akan ditambah dalam fasa masing-masing.
 
-## Keadaan semasa — Fasa 5.2B
+## Keadaan semasa — Fasa 5.3A completed
+
+Fasa 5.3A **completed dan owner-approved pada 4 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.3a-lecture-generator-ux`; resolve tag untuk commit akhir.
+Baseline main/tag: `f4b473b1df54af695599a735a1fb2d1c5d9fd372` / `phase-5.2b-first-news`.
+Klik petak poster sebenar memilih tarikh; Enter/Space, fokus dan selected state tersedia.
+Poster khas full kini full-bleed dengan cover default, contain alternatif dan posisi atas/tengah/bawah; badge tarikh overlay, sesi asal kekal tersimpan.
+Panel infaq adaptif owner-approved: kumpulan petak tanpa tarikh minimum 2, kumpulan terbesar dipilih dan seri mengutamakan awal bulan. Kandungan kumpulan 4–6 dipusatkan dengan lebar maksimum 3 petak. Toggle Papar ruang infaq ON secara lalai; QR umum asal setempat tidak diubah atau diupload. Cadangan persistence hanya lectureMonth.showInfaq; sumber QR mosque-wide, bukan lectureDay. Tiada Sanity writes/persistence; checkpoint Git sahaja. 5.3B belum bermula.
+
+Fixture 24/25 berkongsi satu artwork demo. Save Draft/Publish disabled; tiada production
+Sanity writes, lecture migration, public /kuliah atau homepage lecture feed. Git checkpoint sahaja; tiada production lecture writes.
+Production kekal 45 published documents, 0 drafts, 1 Program, 0 Announcement, 1 News,
+55 image assets dan 0 lecture documents. Fasa 5.3B belum bermula.
+
+Rujuk [UX recovery / feature matrix / persistence plan](docs/LECTURE-GENERATOR-UX-RECOVERY.md).
+
+## Rekod checkpoint terdahulu — Fasa 5.2B
 
 Fasa 5.2B completed pada **3 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.2b-first-news`; resolve tag untuk hash commit akhir.
 Genius Aulad ialah News pertama: 0 drafts / 1 Program / 0 Announcement / 1 News / 55 image assets.

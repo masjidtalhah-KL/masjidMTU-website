@@ -196,3 +196,29 @@ Read layer kekal typed/server-only, published-only, token-free, cache 300 saat. 
 Facebook curated/manual tanpa importer. Dapur/NCR/donation dan 44 published records sedia ada tidak berubah dalam publication News.
 Jadual Kuliah local/mock, Lecture Generator Publish disabled; **Fasa 5.3 belum bermula**.
 Rekod: [EDITORIAL-GENIUS-AULAD-PUBLICATION.md](EDITORIAL-GENIUS-AULAD-PUBLICATION.md).
+
+## Fasa 5.3A — local calendar-first editing architecture
+
+Fasa 5.3A **completed dan owner-approved pada 4 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.3a-lecture-generator-ux`; resolve tag untuk commit akhir.
+Baseline main/tag: `f4b473b1df54af695599a735a1fb2d1c5d9fd372` / `phase-5.2b-first-news`.
+Klik petak poster sebenar memilih tarikh; Enter/Space, fokus dan selected state tersedia.
+Poster khas full kini full-bleed dengan cover default, contain alternatif dan posisi atas/tengah/bawah; badge tarikh overlay, sesi asal kekal tersimpan.
+Fixture 24/25 berkongsi satu artwork demo. Save Draft/Publish disabled; tiada production
+Sanity writes, lecture migration, public /kuliah atau homepage lecture feed. Git checkpoint sahaja; tiada production lecture writes.
+Production kekal 45 published documents, 0 drafts, 1 Program, 0 Announcement, 1 News,
+55 image assets dan 0 lecture documents. Fasa 5.3B belum bermula.
+
+InteractiveLecturePoster places native accessible date buttons over coordinates shared
+with LecturePoster. Both use posterCellRects; only narrow editing previews gain taller
+rows. Fixed export snapshot uses the same SVG renderer without interaction chrome.
+The selected-day state preserves sessions under a full specialPoster; restoring one
+date is explicit and cannot replace other dates. Local original-file catalog uses
+SHA-256/data URLs without upload or resize. Authenticated load/save adapters will
+round-trip monthly ISO dates, references and existing name/photo snapshots in 5.3B.
+Proposed schema adds lectureDay.specialPoster and optional lectureMonth.showInfaq only; no per-day document.
+
+Panel infaq adaptif owner-approved: kumpulan petak tanpa tarikh minimum 2, kumpulan terbesar dipilih dan seri mengutamakan awal bulan. Kandungan kumpulan 4–6 dipusatkan dengan lebar maksimum 3 petak. Toggle Papar ruang infaq ON secara lalai; QR umum asal setempat tidak diubah atau diupload. Cadangan persistence hanya lectureMonth.showInfaq; sumber QR mosque-wide, bukan lectureDay. Tiada Sanity writes/persistence; checkpoint Git sahaja. 5.3B belum bermula.
+
+The shared SVG renderer selects actual no-date groups from the existing compact/noncompact layout. It adds QR/copy to one blank group without altering valid cell coordinates or monthly entries. Preview, PNG and PDF use the same placement helper; the offscreen print snapshot retains fixed print geometry. QR resolves from poster runtime settings; a future authenticated adapter must reuse mosque-wide donation configuration, never persist the local source URL or QR copies in monthly documents.
+The published public read layer and five-minute revalidation remain untouched.
+See [5.3A architecture and QA](LECTURE-GENERATOR-UX-RECOVERY.md).

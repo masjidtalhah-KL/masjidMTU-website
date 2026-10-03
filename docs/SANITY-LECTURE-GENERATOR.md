@@ -1,4 +1,25 @@
-# Penjana Jadual Kuliah — Prototype Fasa 4.2A
+# Penjana Jadual Kuliah
+
+## Completed — Fasa 5.3A
+
+Fasa 5.3A **completed dan owner-approved pada 4 Oktober 2026 (+08:00)**. Checkpoint: `phase-5.3a-lecture-generator-ux`; resolve tag untuk commit akhir.
+Baseline main/tag: `f4b473b1df54af695599a735a1fb2d1c5d9fd372` / `phase-5.2b-first-news`.
+Klik petak poster sebenar memilih tarikh; Enter/Space, fokus dan selected state tersedia.
+Poster khas full kini full-bleed dengan cover default, contain alternatif dan posisi atas/tengah/bawah; badge tarikh overlay, sesi asal kekal tersimpan.
+Panel infaq adaptif owner-approved: kumpulan petak tanpa tarikh minimum 2, kumpulan terbesar dipilih dan seri mengutamakan awal bulan. Kandungan kumpulan 4–6 dipusatkan dengan lebar maksimum 3 petak. Toggle Papar ruang infaq ON secara lalai; QR umum asal setempat tidak diubah atau diupload. Cadangan persistence hanya lectureMonth.showInfaq; sumber QR mosque-wide, bukan lectureDay. Tiada Sanity writes/persistence; checkpoint Git sahaja. 5.3B belum bermula.
+
+Fixture 24/25 berkongsi satu artwork demo. Save Draft/Publish disabled; tiada production
+Sanity writes, lecture migration, public /kuliah atau homepage lecture feed. Git checkpoint sahaja; tiada production lecture writes.
+Production kekal 45 published documents, 0 drafts, 1 Program, 0 Announcement, 1 News,
+55 image assets dan 0 lecture documents. Fasa 5.3B belum bermula.
+
+One optional embedded lectureDay.specialPoster object adds editorialImage, fit contain/cover
+and fixed mode full; valid only on a manual day. Existing monthly snapshots without it
+remain valid. Runtime renders existing speakerName/photo snapshots when supplied.
+No schema deployment or real Save Draft/Publish path is introduced.
+[Feature matrix, interaction/rendering contract, provenance and future persistence](LECTURE-GENERATOR-UX-RECOVERY.md).
+
+## Historical prototype — Fasa 4.2A
 
 Diluluskan untuk checkpoint `phase-4.2-sanity-content-model` pada 2026-10-01.
 Model/renderer tersedia sebagai prototype; Save/Publish sebenar belum dibina.
