@@ -9,6 +9,15 @@ export type PosterCell = { day: number; span: number };
 export type TextStyle = { size: number; family: string; weight?: number; italic?: boolean };
 export type MeasureText = (text: string, style: TextStyle) => number;
 
+export const POSTER_WEEKDAYS = ["ISNIN", "SELASA", "RABU", "KHAMIS", "JUMAAT", "SABTU", "AHAD"] as const;
+export const WEEKDAY_HEADER = { y: 201, height: 28, size: 27, weight: 900, letterSpacing: -1.1 } as const;
+/** Centre the painted glyph bounds, rather than a fixed baseline or font advance. */
+export function weekdayLabelPosition(x: number, width: number, metrics?: Pick<TextMetrics, "actualBoundingBoxLeft" | "actualBoundingBoxRight" | "actualBoundingBoxAscent" | "actualBoundingBoxDescent">) {
+  const middle = WEEKDAY_HEADER.y + WEEKDAY_HEADER.height / 2;
+  return metrics ? { x: x + width / 2 - (metrics.actualBoundingBoxRight - metrics.actualBoundingBoxLeft) / 2, y: middle + (metrics.actualBoundingBoxAscent - metrics.actualBoundingBoxDescent) / 2, anchor: "start" as const }
+    : { x: x + width / 2, y: middle + 10, anchor: "middle" as const };
+}
+
 /** Shared coordinates for the SVG artwork and its native HTML date buttons. */
 export function posterCellRects(year: number, month: number, compact = true, gridHeight: number = POSTER.gridHeight) {
   const layout = posterMonthCells(year, month, compact);
@@ -39,7 +48,7 @@ export function infaqPlacement(layout: ReturnType<typeof posterCellRects>) {
 export function infaqGeometry(width: number, height: number) {
   const column = (POSTER.gridWidth - POSTER.columnGap * 6) / 7;
   const contentWidth = Math.min(width, 3 * column + 2 * POSTER.columnGap);
-  const qrSize = Math.min(100, height - 16, contentWidth * .33);
+  const qrSize = Math.min(116, height - 16, contentWidth * .33);
   const left = (width - contentWidth) / 2 + 8;
   return { left, qrSize, qrY: (height - qrSize) / 2, textX: left + qrSize + 14, textWidth: contentWidth - qrSize - 30, contentWidth };
 }

@@ -428,3 +428,81 @@ Production kekal 45 published documents, 0 drafts, 1 Program, 0 Announcement, 1 
 4 October 2026: recover the observed legacy donation-panel behavior with independently implemented shared SVG geometry. A leading or trailing group requires at least two actual no-date cells; choose the larger eligible group and prefer leading on ties. A one-cell group never qualifies, even when the opposite eligible group is used. Never move dates to make panel space, consume valid empty dates or synthesize lectureDay content. Respect the established compact layout rather than its raw calendar offset.
 
 Keep the complete white merged group, but center QR/copy within at most three columns for large 4–6 groups. Owner-approved on 4 October 2026: the centered three-column cap is locked. Toggle defaults ON; upstream default was OFF. Source QR is unchanged, uncropped, contain/meet, with quiet zone and no overlay/badge. Monthly schema stores optional showInfaq only; future persistence reuses mosque-wide QR configuration. Save/Publish remain disabled and 5.3B is not started. The owner now authorizes the supplied QR-only source for local lecture-poster review. Historical 5.2A S04 exclusion/unclassified evidence remains unchanged; this is no production asset upload or reclassification.
+
+## D32 — Authenticated manual lecture draft persistence with a first-write gate
+
+4 October 2026: one stable lectureMonth-YYYY-MM identity, embedded real-date
+snapshots and no per-session/day document. Authenticated Studio client; raw reads
+prefer draft, then published, then published-rule defaults generated locally.
+Manual Save Draft validates/serializes a complete month and issues only guarded
+draft actions with original-asset hash reuse and exact authenticated read-back.
+Retain draft/published revisions, reject conflicts visibly, preserve unsaved local
+state and require explicit reload/review; no autosave, auto-merge or automatic retry.
+
+The implementation is ready for review, not permission to write. Approval is
+compiled unset; before the first production upload/save, the owner must approve
+the complete fingerprinted plan. October source recommendation is the independently
+QA'd owner snapshot, not Studio demo. No speaker/rule seeding in that first batch.
+Optional photoLayout preserves approved existing portrait settings. Persist only
+showInfaq; resolve general mosque QR at runtime and omit it safely when absent.
+
+Publish disabled; no production mutations, public kuliah/feed, commit or push.
+The initial browser-policy block is historical; fresh refinement Studio/export
+QA subsequently passed as recorded in the refinement report.
+D18 GPL/combined-application decision and existing provenance notices are unchanged.
+[Architecture, guards, exact plan and validation limits](LECTURE-DRAFT-PERSISTENCE.md).
+
+## D33 — English operational editor and separate compact mosque QR
+
+4 October 2026 owner refinement: English-first operational Studio instructions,
+labels, helpers, errors and states; retain natural Malay mosque terms and all
+poster-facing Malay output. Center weekday painted bounds inside unchanged pills;
+font family/27px/900 and seven-column geometry stay fixed in preview/export.
+
+Use optional donationInfo.compactQr (image/reference/alt, square PNG/JPG/WebP,
+no crop/hotspot) for Jadual only. Resolve published settings; absent/unusable QR
+omits panel with a warning. Never fall back to branded primaryQr. Public Donation
+continues using full branded primaryQr unchanged. Months store showInfaq only.
+Keep D31 adaptive placement and three-cell cap; original QR bytes, quiet zone,
+contain and no overlays/recolour are mandatory.
+
+QR setup needs a separately approved original upload + settings draft preserving
+all existing fields, followed by review and separate settings publication approval.
+This implementation authorizes no mutation. The October fingerprint does not
+authorize QR setup. Month save remains gated; Publish Jadual disabled.
+D18 GPL/combined-application decision and historical provenance remain unchanged.
+[Exact prerequisites and QA](LECTURE-UI-COMPACT-QR-REFINEMENT.md).
+
+## Fasa 5.3B — first October draft saved; owner review pending
+
+4 October 2026 (+08:00): the owner explicitly approved the corrected October
+candidate after the original fingerprint guard failed. Controlled execution added
+only the reusable `donationInfo.compactQr` to published `siteSettings`, then saved
+`drafts.lectureMonth-2026-10`: 30 date entries, 34 sessions and 29 original portraits.
+Published settings revision: `chGo6kzbOkh09ebDsGFF22`.
+October draft revision: `SSdKRdF7e0XIFT3zzNP2ab`.
+
+Authenticated inventory: 1 draft, 0 published lecture documents, 0 speakers/rules,
+85 image assets, 1 Program, 0 Announcement and 1 News. Primary branded QR, public
+donation output, NCR and unrelated documents remain unchanged. October stores
+only `showInfaq`; the compact QR resolves from published mosque-wide settings.
+Studio refresh/reopen loads the identical real draft; desktop/mobile and actual
+PNG/PDF exports pass. The operational UI stays English-first; poster stays Malay.
+
+Original failed plan/audit are preserved unchanged. Six owner-approved Unicode
+corrections restored fingerprint
+`906611b8069b1c07b105da950be4f6b7cedd6d1a79a5357e912faee6e3264bb8`;
+no production mutation occurred before that correction. The approved replacement
+is [LECTURE-FIRST-SAVE-APPROVED.json](LECTURE-FIRST-SAVE-APPROVED.json).
+The candidate's original review-required annotation is preserved as history;
+the owner's later explicit approval is recorded in the execution record.
+
+Execution used the authenticated Sanity connector with the exact approved payload.
+The generic Studio save approval remains unset; this does not enable unreviewed
+future writes. Publish Jadual remains disabled. No lecture publication, public
+Kuliah integration, later phase, commit, push or Fasa 5.3B checkpoint.
+[Execution and audit evidence](LECTURE-FIRST-SAVE-EXECUTION.md).
+
+## Fasa 5.3B operational closeout — 4 October 2026 (+08:00)
+
+The owner authorized generic authenticated manual Studio saves. The actual button validated and read back October unchanged, without upload or mutation; revision stayed SSdKRdF7e0XIFT3zzNP2ab. Create/update paths retain optimistic revision guards, with conflicts tested in a controlled simulator. Real draft accessibility replaces stale demo wording. Publish remains disabled; October remains unpublished. Compact QR stays mosque-wide and primary public QR unchanged. The six Unicode corrections, original guard failure and immutable audit remain recorded. GPL provenance and unresolved licensing decision remain intact. Checkpoint: `phase-5.3b-lecture-draft-persistence`. No subsequent/public lecture phase started. [Closeout evidence](LECTURE-DRAFT-PERSISTENCE-CLOSEOUT.md).

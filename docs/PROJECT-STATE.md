@@ -1,5 +1,89 @@
 # Project State — Masjid Talhah Bin Ubaidillah
 
+## Fasa 5.3B — completed
+4 October 2026 (+08:00). Checkpoint: `phase-5.3b-lecture-draft-persistence`.
+The first real October snapshot is persisted only as
+`drafts.lectureMonth-2026-10`: 30 dates, 34 sessions, 29 original portraits.
+Draft revision: `SSdKRdF7e0XIFT3zzNP2ab`; published settings revision:
+`chGo6kzbOkh09ebDsGFF22`.
+
+The actual authenticated Studio **Save Draft** button was physically exercised
+without content edits. It validated and read back the identical payload, reported
+**Draft saved — no changes needed**, and performed no update/upload. Reopening
+Studio loaded exactly the same poster. Manual saving is now operational through
+the authenticated Studio client, with schema validation, original-asset reuse,
+optimistic revision guards, exact read-back and visible saved/conflict/error states.
+No autosave. Publish Jadual remains disabled with no handler.
+
+Loading precedence remains draft → published → locally generated rules.
+Monthly snapshots preserve Penceramah name/photo/topic and rule references.
+Only showInfaq is stored per month; approved mosque-wide compactQr is resolved
+from published siteSettings, without branded primaryQr fallback. Public donation
+QR, NCR and unrelated published content remain unchanged.
+
+Final inventory: 1 draft, 0 published lecture documents, 0 lectureSpeaker,
+0 lectureRule, 85 image assets, 1 Program, 0 Announcement, 1 News.
+Real October accessibility now says draft/review, while genuine fixtures retain
+demo labels. Poster artwork stays Malay; Studio operations stay English-first.
+Desktop/mobile, fresh actual PNG/PDF exports and conflict simulation pass.
+
+The original failed/corrupted first-save plan and guard audit remain immutable.
+Six approved Unicode corrections restored fingerprint
+`906611b8069b1c07b105da950be4f6b7cedd6d1a79a5357e912faee6e3264bb8`.
+No production mutation occurred before correction. The original first execution
+record remains historical evidence; this closeout supersedes its unset generic
+Studio approval gate. GPL/provenance notices and the unresolved combined-application
+licensing decision remain intact. Public /kuliah and homepage lecture integration
+have not started.
+
+[Final Studio save and validation evidence](LECTURE-DRAFT-PERSISTENCE-CLOSEOUT.md).
+
+## Preparation record before controlled execution (historical)
+
+4 October 2026 (+08:00), baseline 27e23a2528c72144a1fe7e0d5ecbd45dc3343912 /
+phase-5.3a-lecture-generator-ux. Authenticated Studio month loading prefers draft,
+then published, then a local snapshot from published active rules. With no rules,
+the new month is empty; demo data is never migrated.
+
+Manual Save Draft prepares a schema-validated, fingerprinted plan. The save service
+implements original-asset reuse/upload, guarded create/update and authenticated
+exact read-back, but the compiled first-write approval is unset. **No production
+lecture save/upload, publish, commit or push has occurred.** Publish remains
+disabled; public /kuliah and homepage lecture integration remain outside scope.
+
+State protection covers dirty month switches, revision conflicts and explicit
+reload/review. Monthly snapshots preserve speaker name/photo/topic; optional
+lectureSession.photoLayout retains existing portrait fit/position/zoom/inset.
+Special posters preserve the locked 5.3A takeover/cover/contain/position behavior.
+Only showInfaq is persisted; compact QR resolves from published
+siteSettings.donationInfo.compactQr, never branded primaryQr.
+
+First recommendation: independently QA'd original October 2026 source, 34 sessions,
+one draft and 29 original portraits. Complete payload, asset IDs/hashes, source
+provenance, counts and exact approval fingerprint are in the dry-run file.
+Production remains 0 drafts / 0 lecture documents / 45 published non-asset records /
+55 images / 1 Program / 0 Announcement / 1 News.
+
+Fresh refinement QA now passes on authenticated desktop/mobile Studio and the
+isolated compact-QR fixture. Actual PNG/PDF exports were reviewed for 2-cell,
+3-cell and larger eligible groups. The original blocked-browser review remains
+historical; these are new browser/export proofs. No later phase has started.
+
+Operational Studio UI is English-first, retaining Malay Masjid/Kuliah terms;
+generated poster output stays Malay. Weekday labels use measured painted-bound
+centering with unchanged fonts/pills/grid. Proposed optional
+siteSettings.donationInfo.compactQr is exclusive to Jadual Infaq. Missing compact
+configuration omits the panel with a warning, with no branded QR fallback.
+Public donationInfo.primaryQr and every public setting remain unchanged.
+Separate QR upload/settings draft/review/publication approvals precede the
+desired October Infaq output. No QR or production settings write has occurred.
+
+[Refinement, proofs and setup gates](LECTURE-UI-COMPACT-QR-REFINEMENT.md).
+
+[Persistence architecture and validation](LECTURE-DRAFT-PERSISTENCE.md) · [Exact first-save payload](LECTURE-FIRST-SAVE-DRY-RUN.json).
+
+## Historical record through Fasa 5.3A
+
 Snapshot disemak pada **4 Oktober 2026 (+08:00)**. Dokumen ini ialah ringkasan
 keadaan semasa untuk sambungan kerja. Arahan pengguna terkini dan keadaan Git/kod
 perlu diperiksa semula; snapshot ini bukan kebenaran automatik untuk fasa berikutnya.

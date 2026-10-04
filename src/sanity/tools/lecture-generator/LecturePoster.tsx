@@ -5,7 +5,7 @@
 // See docs/third-party/JADUAL-KULIAH-NOTICE.md for upstream sources and changes.
 import { useEffect, useId, useState, type Ref } from "react";
 import { lectureMonths, sessionLabel, type MonthSchedule, type PosterSettings, type PosterImage, type Session, type Speaker } from "./model";
-import { approximateText, fitPosterCopy, fitSingleLine, POSTER, POSTER_FONTS, portraitBounds, posterCellRects, infaqPlacement, infaqGeometry, type MeasureText, type TextStyle } from "./poster-layout";
+import { approximateText, fitPosterCopy, fitSingleLine, POSTER, POSTER_FONTS, POSTER_WEEKDAYS, WEEKDAY_HEADER, weekdayLabelPosition, portraitBounds, posterCellRects, infaqPlacement, infaqGeometry, type MeasureText, type TextStyle } from "./poster-layout";
 
 function Lines({ lines, x, y, style, lineHeight = 1.07, outline = false }: { lines: string[]; x: number; y: number; style: TextStyle; lineHeight?: number; outline?: boolean }) {
   return <text x={x} y={y + style.size * .85} fill="white" fontFamily={style.family} fontSize={style.size} fontWeight={style.weight} fontStyle={style.italic ? "italic" : "normal"} stroke={outline ? "#101a19" : undefined} strokeWidth={outline ? style.size * .07 : undefined} paintOrder="stroke fill" strokeLinejoin="round">
@@ -57,11 +57,16 @@ export function LecturePoster({ schedule, speakers, settings, svgRef, gridHeight
   const uid = useId().replaceAll(":", "");
   const [measure, setMeasure] = useState<MeasureText>(() => approximateText);
   const [fontsReady, setFontsReady] = useState(false);
+  const [weekdayMetrics, setWeekdayMetrics] = useState<TextMetrics[]>([]);
   useEffect(() => {
     let active = true;
     void document.fonts.ready.then(() => {
       const context = document.createElement("canvas").getContext("2d");
       if (!active || !context) return;
+      context.font = `${WEEKDAY_HEADER.weight} ${WEEKDAY_HEADER.size}px ${POSTER_FONTS.title}`;
+      context.letterSpacing = `${WEEKDAY_HEADER.letterSpacing}px`;
+      setWeekdayMetrics(POSTER_WEEKDAYS.map(label => context.measureText(label)));
+      context.letterSpacing = "0px";
       setMeasure(() => (text: string, style: TextStyle) => {
         context.font = `${style.italic ? "italic " : ""}${style.weight || 400} ${style.size}px ${style.family}`;
         return context.measureText(text).width;
@@ -102,7 +107,7 @@ export function LecturePoster({ schedule, speakers, settings, svgRef, gridHeight
   const warnings = cells.filter(({ geometry }) => geometry.some(({ copy }) => !copy.fits)).map(({ day }) => day);
 
   return <>
-    <svg ref={svgRef} xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 1240 ${layout.height}`} role="img" aria-label={`Poster contoh ${lectureMonths[schedule.month - 1]} ${schedule.year}. Foto rujukan untuk demo, bukan jadual rasmi.`} data-lecture-poster="true" data-fonts-ready={fontsReady} data-overflow={warnings.length ? warnings.join(", ") : undefined} style={{ display: "block", width: "100%", height: "auto", fontFamily: "Arial, sans-serif" }}>
+    <svg ref={svgRef} xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 1240 ${layout.height}`} role="img" aria-label={settings.reviewMode === "draft" ? `Draft Jadual Kuliah ${lectureMonths[schedule.month - 1]} ${schedule.year}. Belum diterbitkan; untuk semakan Studio.` : `Poster contoh ${lectureMonths[schedule.month - 1]} ${schedule.year}. Foto rujukan untuk demo, bukan jadual rasmi.`} data-lecture-poster="true" data-fonts-ready={fontsReady} data-overflow={warnings.length ? warnings.join(", ") : undefined} style={{ display: "block", width: "100%", height: "auto", fontFamily: "Arial, sans-serif" }}>
       <defs>
         <linearGradient id={`${uid}-bg`} x1="0" y1="0" x2="0" y2="1"><stop offset=".2" stopColor="#0e2642"/><stop offset="1" stopColor="#537793"/></linearGradient>
         <linearGradient id={`${uid}-address`}><stop stopColor="#00a99d" stopOpacity="0"/><stop offset=".42" stopColor="#00a99d"/></linearGradient>
@@ -122,9 +127,10 @@ export function LecturePoster({ schedule, speakers, settings, svgRef, gridHeight
         <Lines lines={identity?.addressLines || ["BUKIT JALIL, KUALA LUMPUR"]} x={795} y={161} style={{ size: 10.5, family: POSTER_FONTS.name, weight: 700 }} lineHeight={1.06}/>
         {identity?.phone && <><path d="M1079 161v22" stroke="#ffe222" strokeWidth="2"/><Lines lines={["NO. TELEFON:", identity.phone]} x={1091} y={161} style={{ size: 10.5, family: POSTER_FONTS.name, weight: 700 }} lineHeight={1.06}/></>}
       </g>
-      {["ISNIN", "SELASA", "RABU", "KHAMIS", "JUMAAT", "SABTU", "AHAD"].map((label, index) => {
+      {POSTER_WEEKDAYS.map((label, index) => {
         const x = POSTER.left + index * (column + POSTER.columnGap);
-        return <g key={label}><rect x={x} y="201" width={column} height="28" rx="18" fill="#ed0b58"/><text x={x + column / 2} y="223" textAnchor="middle" fill="white" fontFamily={POSTER_FONTS.title} fontSize="27" fontWeight="900" letterSpacing="-1.1">{label}</text></g>;
+        const position = weekdayLabelPosition(x, column, weekdayMetrics[index]);
+        return <g key={label} data-weekday-header={label}><rect x={x} y={WEEKDAY_HEADER.y} width={column} height={WEEKDAY_HEADER.height} rx="18" fill="#ed0b58"/><text x={position.x} y={position.y} textAnchor={position.anchor} fill="white" fontFamily={POSTER_FONTS.title} fontSize={WEEKDAY_HEADER.size} fontWeight={WEEKDAY_HEADER.weight} letterSpacing={WEEKDAY_HEADER.letterSpacing}>{label}</text></g>;
       })}
       {cells.map(({ day, x, y, width, sessions, specialPoster, sessionHeight, geometry }, index) => {
         const clip = `${uid}-cell-${index}`, yasinOnly = sessions.length === 1 && sessions[0].sessionType === "yasin";
@@ -168,8 +174,8 @@ export function LecturePoster({ schedule, speakers, settings, svgRef, gridHeight
           </g>
         </g>;
       })}
-      <text x="620" y={layout.height - 4} textAnchor="middle" fontSize="8" fill="white" letterSpacing=".35">DATA CONTOH · FOTO RUJUKAN UNTUK DEMO · BUKAN JADUAL RASMI</text>
+      <text x="620" y={layout.height - 4} textAnchor="middle" fontSize="8" fill="white" letterSpacing=".35">{settings.reviewLabel ?? "DATA CONTOH · FOTO RUJUKAN UNTUK DEMO · BUKAN JADUAL RASMI"}</text>
     </svg>
-    {!!warnings.length && <p role="status" style={{ margin: 0, padding: "10px 14px", background: "#fff4d8", color: "#755919", fontSize: 13 }}>Teks terlalu panjang pada {warnings.join(", ")} hb. Pendekkan teks sebelum export; teks penuh kekal dalam editor.</p>}
+    {!!warnings.length && <p role="status" style={{ margin: 0, padding: "10px 14px", background: "#fff4d8", color: "#755919", fontSize: 13 }}>Text overflows dates {warnings.join(", ")}. Shorten it before exporting; full text is preserved in the editor.</p>}
   </>;
 }

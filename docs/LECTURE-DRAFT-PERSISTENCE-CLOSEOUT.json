@@ -1,0 +1,123 @@
+{
+  "phase": "Fasa 5.3B",
+  "status": "completed",
+  "date": "2026-10-04",
+  "timezone": "Asia/Singapore",
+  "target": {
+    "projectId": "2o95jmms",
+    "dataset": "production"
+  },
+  "studio": {
+    "url": "http://127.0.0.1:3002/studio/penjana-jadual-kuliah",
+    "authenticated": true,
+    "buttonPhysicallyClicked": true,
+    "intentionalContentEdits": false,
+    "result": "Draft saved — no changes needed",
+    "mode": "schema-validation-and-authenticated-exact-readback-no-op",
+    "uploads": 0,
+    "documentMutations": 0,
+    "reopen": {
+      "result": "Draft saved",
+      "posterTextIdentical": true
+    },
+    "accessibility": "Draft Jadual Kuliah Oktober 2026. Belum diterbitkan; untuk semakan Studio.",
+    "publishDisabled": true,
+    "autosave": false
+  },
+  "month": {
+    "id": "drafts.lectureMonth-2026-10",
+    "revision": "SSdKRdF7e0XIFT3zzNP2ab",
+    "dates": 30,
+    "sessions": 34,
+    "contentAndMetadataUnchanged": true
+  },
+  "inventory": {
+    "drafts": 1,
+    "publishedLectureDocuments": 0,
+    "lectureSpeaker": 0,
+    "lectureRule": 0,
+    "imageAssets": 85,
+    "program": 1,
+    "announcement": 0,
+    "newsPost": 1,
+    "totalDocuments": 143
+  },
+  "regression": {
+    "allDocumentRevisionsAndAssetMetadataUnchanged": true,
+    "primaryPublicQrUnchanged": true,
+    "ncrUnchanged": true,
+    "compactQrResolves": true,
+    "posterMalay": true,
+    "studioEnglishFirst": true,
+    "noDuplicatePortraits": true
+  },
+  "validation": {
+    "lint": "pass",
+    "productionBuild": "pass",
+    "diffCheck": "pass",
+    "automatedTests": {
+      "passed": 192,
+      "failed": 0,
+      "skipped": 0
+    },
+    "schemaExtraction": "pass - enforced required fields",
+    "persistedSchema": {
+      "documents": 2,
+      "errors": 0,
+      "warnings": 0
+    },
+    "currentStateContract": "pass - historical evidence preserved",
+    "publicRoutes": {
+      "/": 200,
+      "/profil": 200,
+      "/profil/organisasi": 200,
+      "/profil/surau-kariah": 200,
+      "/galeri": 200,
+      "/hubungi": 200,
+      "/studio/penjana-jadual-kuliah": 200,
+      "/kuliah": 404
+    },
+    "conflict": "controlled simulator: stale plan, server atomic revision conflict and unchanged-readback race pass",
+    "desktop": {
+      "width": 1440,
+      "height": 1100,
+      "result": "pass"
+    },
+    "mobile": {
+      "width": 375,
+      "height": 900,
+      "result": "pass - no horizontal overflow"
+    },
+    "png": {
+      "width": 3508,
+      "height": 2480,
+      "result": "pass - actual Studio export"
+    },
+    "pdf": {
+      "pages": 1,
+      "paper": "A4 landscape",
+      "result": "pass - actual Studio export rendered and inspected"
+    }
+  },
+  "audit": {
+    "failedPlanUnchanged": true,
+    "failedPlanSha256": "5e0c1826f1b9bab2fc2cafe94d555710ecd0b77bb541cc92db4d3eaec531095a",
+    "approvedFingerprint": "906611b8069b1c07b105da950be4f6b7cedd6d1a79a5357e912faee6e3264bb8",
+    "corrections": 6,
+    "noMutationBeforeCorrection": true,
+    "originalExecutionRecordPreserved": true
+  },
+  "checkpoint": {
+    "tag": "phase-5.3b-lecture-draft-persistence",
+    "commitMessage": "feat: complete Fasa 5.3B lecture draft persistence"
+  },
+  "warnings": [],
+  "excluded": [
+    "October publication",
+    "Publish Jadual enablement",
+    "public /kuliah",
+    "homepage lecture integration",
+    "speaker/rule seeding",
+    "later phases"
+  ]
+}

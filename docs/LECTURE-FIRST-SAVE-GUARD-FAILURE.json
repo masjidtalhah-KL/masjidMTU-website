@@ -1,0 +1,55 @@
+{
+  "stopReason": "Stored approved JSON payload has six mojibake strings and no longer matches its recorded fingerprint.",
+  "stage1GuardsPassed": true,
+  "settingsRevision": "SSdKRdF7e0XIFT3zzGU8xL",
+  "qrSourceSha256": "1b86b6336223e38fb103f23368cafae07cb0c1ea66e5a3bc1bb53b9eb6ed792d",
+  "sourceSha256": "ebddec2e34efce4f5e1447bd642e86a8f40d28e291f5780cdb69654955413795",
+  "portraitAssetsVerified": 29,
+  "recordedFingerprint": "906611b8069b1c07b105da950be4f6b7cedd6d1a79a5357e912faee6e3264bb8",
+  "storedPayloadFingerprint": "4619c0893237ec71003f5e0e8c8698251eb091bce98c603348f5bda94815731a",
+  "correctedExactSourceFingerprint": "906611b8069b1c07b105da950be4f6b7cedd6d1a79a5357e912faee6e3264bb8",
+  "differences": [
+    {
+      "path": ".payload.entries.2.sessions.1.topic",
+      "actual": "AL-QUR’AN\n& TAJWID",
+      "expected": "AL-QURâ€™AN\n& TAJWID"
+    },
+    {
+      "path": ".payload.entries.9.sessions.0.speakerName",
+      "actual": "UST K. NI’MAT",
+      "expected": "UST K. NIâ€™MAT"
+    },
+    {
+      "path": ".payload.entries.9.sessions.0.photo.alt",
+      "actual": "Potret UST K. NI’MAT",
+      "expected": "Potret UST K. NIâ€™MAT"
+    },
+    {
+      "path": ".payload.entries.23.sessions.0.speakerName",
+      "actual": "UST MUHD MU’IZZ",
+      "expected": "UST MUHD MUâ€™IZZ"
+    },
+    {
+      "path": ".payload.entries.23.sessions.0.photo.alt",
+      "actual": "Potret UST MUHD MU’IZZ",
+      "expected": "Potret UST MUHD MUâ€™IZZ"
+    },
+    {
+      "path": ".payload.entries.24.sessions.0.topic",
+      "actual": "KITAB MATLA’\nAL-BADRAIN",
+      "expected": "KITAB MATLAâ€™\nAL-BADRAIN"
+    }
+  ],
+  "counts": {
+    "drafts": 0,
+    "lectureDocuments": 0,
+    "imageAssets": 55,
+    "program": 1,
+    "announcement": 0,
+    "newsPost": 1
+  },
+  "uploads": 0,
+  "productionWrites": 0,
+  "publications": 0,
+  "canonicalPlanUnchanged": true
+}

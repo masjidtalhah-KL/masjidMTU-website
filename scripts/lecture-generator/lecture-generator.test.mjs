@@ -42,9 +42,9 @@ test("inactive rules are skipped, sessions are ordered, and a third session fail
   assert.deepEqual(m.applyRecurringRules(2026, 10, [rule({ isActive: false })]), []);
   const rules = [rule(), rule({ id: "early", sessionType: "subuh" })];
   assert.deepEqual(m.applyRecurringRules(2026, 10, rules)[0].sessions.map(({ sessionType }) => sessionType), ["subuh", "maghrib"]);
-  assert.throws(() => m.applyRecurringRules(2026, 10, [...rules, rule({ id: "third" })]), /dua sesi/);
+  assert.throws(() => m.applyRecurringRules(2026, 10, [...rules, rule({ id: "third" })]), /two sessions/);
   const schedule = m.createReviewSchedule(), original = structuredClone(schedule);
-  assert.throws(() => m.updateDay(schedule, 24, [session(), session(), session()]), /dua sesi/);
+  assert.throws(() => m.updateDay(schedule, 24, [session(), session(), session()]), /two sessions/);
   assert.deepEqual(schedule, original);
 });
 
@@ -85,7 +85,7 @@ test("restoring a date affects that date only, even when another weekday has a c
   const restored = m.restoreScheduleDay(original, 24, rules);
   assert.equal(day(restored, 24), undefined);
   assert.equal(day(restored, 25), day(original, 25));
-  assert.throws(() => m.restoreScheduleDay(original, 25, rules), /dua sesi/);
+  assert.throws(() => m.restoreScheduleDay(original, 25, rules), /two sessions/);
 });
 
 test("24 and 25 reuse one fixture image object/source and retain two/one underlying sessions", () => {
@@ -98,8 +98,8 @@ test("24 and 25 reuse one fixture image object/source and retain two/one underly
 
 test("invalid dates, fit, mode, empty alt and invalid dimensions fail before changing the schedule", () => {
   const schedule = m.createReviewSchedule();
-  for (const date of [0, 32, 1.5]) assert.throws(() => m.updateSpecialPoster(schedule, date, m.demoSpecialPoster), /tarikh/);
-  for (const patch of [{ mode: "mixed" }, { fit: "stretch" }, { position: "outside" }, { image: { ...m.demoSpecialPoster.image, alt: " " } }, { image: { ...m.demoSpecialPoster.image, width: NaN } }]) assert.throws(() => m.updateSpecialPoster(schedule, 24, { ...m.demoSpecialPoster, ...patch }), /Poster memerlukan/);
+  for (const date of [0, 32, 1.5]) assert.throws(() => m.updateSpecialPoster(schedule, date, m.demoSpecialPoster), /date/);
+  for (const patch of [{ mode: "mixed" }, { fit: "stretch" }, { position: "outside" }, { image: { ...m.demoSpecialPoster.image, alt: " " } }, { image: { ...m.demoSpecialPoster.image, width: NaN } }]) assert.throws(() => m.updateSpecialPoster(schedule, 24, { ...m.demoSpecialPoster, ...patch }), /Poster requires/);
   assert.equal(m.lectureMonthDocumentId(2026, 1), "lectureMonth-2026-01");
   for (const [year, month] of [[2019, 1], [2026, 13], [2026.5, 1]]) assert.throws(() => m.lectureMonthDocumentId(year, month));
 });
@@ -109,7 +109,7 @@ test("all valid dates have one native keyboard button, chronological focus order
   const buttons = [...html.matchAll(/<button[^>]+data-date-cell="(\d+)"[^>]+>/g)];
   assert.deepEqual(buttons.map((match) => Number(match[1])), Array.from({ length: 31 }, (_, index) => index + 1));
   assert.match(buttons[23][0], /type="button".*aria-label="24 Oktober 2026.*aria-pressed="true".*aria-controls="lecture-selected-day"/);
-  assert.match(buttons[24][0], /poster program khas; sesi tersimpan disembunyikan/);
+  assert.match(buttons[24][0], /special program poster; preserved sessions hidden/);
   assert.doesNotMatch(html, /data-date-cell="0"/);
 });
 
@@ -173,11 +173,11 @@ test("existing session name/photo snapshots override mutable library data; an ab
 
 test("editor primary surface precedes the selected-day editor, draft/publish remain disabled, export has no interactive overlay", () => {
   const html = renderToStaticMarkup(React.createElement(LectureGeneratorTool));
-  assert.ok(html.indexOf("poster-preview-title") < html.indexOf('aria-label="Editor jadual prototype"'));
-  assert.match(html, /<details.*Pilih tarikh melalui senarai/);
+  assert.ok(html.indexOf("poster-preview-title") < html.indexOf('aria-label="Jadual editor"'));
+  assert.match(html, /<details.*Choose date from a list/);
   assert.match(html, /disabled=""[^>]*>Save Draft \(prototype\)/);
   assert.match(html, /disabled=""[^>]*>Publish Jadual/);
-  assert.match(html, /Dipilih: 24 hb/);
+  assert.match(html, /Selected date: 24 hb/);
   assert.equal((html.match(/data-date-cell=/g) || []).length, 31);
   assert.equal((html.match(/data-lecture-poster="true"/g) || []).length, 2);
   assert.equal(lectureMonth.readOnly, true);

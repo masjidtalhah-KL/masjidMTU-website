@@ -1,5 +1,45 @@
 # Fasa 5.3A — Calendar-first Lecture Generator checkpoint
 
+## Fasa 5.3B — completed
+4 October 2026 (+08:00). Checkpoint: `phase-5.3b-lecture-draft-persistence`.
+The first real October snapshot is persisted only as
+`drafts.lectureMonth-2026-10`: 30 dates, 34 sessions, 29 original portraits.
+Draft revision: `SSdKRdF7e0XIFT3zzNP2ab`; published settings revision:
+`chGo6kzbOkh09ebDsGFF22`.
+
+The actual authenticated Studio **Save Draft** button was physically exercised
+without content edits. It validated and read back the identical payload, reported
+**Draft saved — no changes needed**, and performed no update/upload. Reopening
+Studio loaded exactly the same poster. Manual saving is now operational through
+the authenticated Studio client, with schema validation, original-asset reuse,
+optimistic revision guards, exact read-back and visible saved/conflict/error states.
+No autosave. Publish Jadual remains disabled with no handler.
+
+Loading precedence remains draft → published → locally generated rules.
+Monthly snapshots preserve Penceramah name/photo/topic and rule references.
+Only showInfaq is stored per month; approved mosque-wide compactQr is resolved
+from published siteSettings, without branded primaryQr fallback. Public donation
+QR, NCR and unrelated published content remain unchanged.
+
+Final inventory: 1 draft, 0 published lecture documents, 0 lectureSpeaker,
+0 lectureRule, 85 image assets, 1 Program, 0 Announcement, 1 News.
+Real October accessibility now says draft/review, while genuine fixtures retain
+demo labels. Poster artwork stays Malay; Studio operations stay English-first.
+Desktop/mobile, fresh actual PNG/PDF exports and conflict simulation pass.
+
+The original failed/corrupted first-save plan and guard audit remain immutable.
+Six approved Unicode corrections restored fingerprint
+`906611b8069b1c07b105da950be4f6b7cedd6d1a79a5357e912faee6e3264bb8`.
+No production mutation occurred before correction. The original first execution
+record remains historical evidence; this closeout supersedes its unset generic
+Studio approval gate. GPL/provenance notices and the unresolved combined-application
+licensing decision remain intact. Public /kuliah and homepage lecture integration
+have not started.
+
+[Final Studio save and validation evidence](LECTURE-DRAFT-PERSISTENCE-CLOSEOUT.md).
+
+## Historical record through Fasa 5.3A
+
 Status: **Fasa 5.3A completed, owner-approved 4 October 2026 (+08:00)**.
 Checkpoint: `phase-5.3a-lecture-generator-ux`; resolve the tag for the final commit.
 Baseline: `f4b473b1df54af695599a735a1fb2d1c5d9fd372`, tag `phase-5.2b-first-news`.

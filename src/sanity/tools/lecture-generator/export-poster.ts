@@ -2,15 +2,21 @@ async function dataUrl(blob: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = () => resolve(String(reader.result));
-    reader.onerror = () => reject(new Error("Gagal membaca aset poster."));
+    reader.onerror = () => reject(new Error("Could not read the poster asset."));
     reader.readAsDataURL(blob);
   });
 }
 
-async function posterCanvas(svg: SVGSVGElement, paper: "A4" | "A3"): Promise<HTMLCanvasElement> {
+export function allowedPosterAsset(href: string, origin: string, cmsBase?: string) {
+  const url = new URL(href, origin);
+  if (url.username || url.password) return false;
+  if (url.origin === origin) return true;
+  return cmsBase === "https://cdn.sanity.io/images/2o95jmms/production/" && url.protocol === "https:" && url.origin === "https://cdn.sanity.io" && url.href.startsWith(cmsBase) && /^\/[\w/.-]+$/.test(url.pathname);
+}
+async function posterCanvas(svg: SVGSVGElement, paper: "A4" | "A3", cmsBase?: string): Promise<HTMLCanvasElement> {
   await document.fonts.ready;
-  if (svg.dataset.fontsReady !== "true") throw new Error("Tunggu seketika sehingga fon poster selesai diukur.");
-  if (svg.dataset.overflow) throw new Error(`Teks terlalu panjang pada ${svg.dataset.overflow} hb. Pendekkan teks sebelum export.`);
+  if (svg.dataset.fontsReady !== "true") throw new Error("Wait for poster fonts to finish measuring.");
+  if (svg.dataset.overflow) throw new Error(`Text overflows date ${svg.dataset.overflow}. Shorten it before exporting.`);
   const snapshot = svg.cloneNode(true) as SVGSVGElement;
   const assets = new Map<string, Promise<string>>();
   // Embed same-origin assets once each; repeated portraits share the same decoded data.
@@ -20,10 +26,10 @@ async function posterCanvas(svg: SVGSVGElement, paper: "A4" | "A3"): Promise<HTM
     // Local original raster bytes are already embedded; never upload or re-encode the source.
     if (/^data:image\/(png|jpeg|webp);base64,/.test(href)) return;
     const url = new URL(href, window.location.origin);
-    if (url.origin !== window.location.origin) throw new Error("Aset poster mestilah daripada website ini.");
+    if (!allowedPosterAsset(href, window.location.origin, cmsBase)) throw new Error("Poster assets must be same-origin or on the approved Sanity project CDN.");
     if (!assets.has(url.href)) assets.set(url.href, (async () => {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Aset poster tidak dapat dibaca: ${url.pathname}`);
+      const response = await fetch(url, { credentials: url.origin === window.location.origin ? "same-origin" : "omit" });
+      if (!response.ok) throw new Error(`Could not read poster asset: ${url.pathname}`);
       return dataUrl(await response.blob());
     })());
     image.setAttribute("href", await assets.get(url.href)!);
@@ -35,7 +41,7 @@ async function posterCanvas(svg: SVGSVGElement, paper: "A4" | "A3"): Promise<HTM
     const image = new Image(); image.src = objectUrl; await image.decode();
     const canvas = document.createElement("canvas"); canvas.width = width; canvas.height = height;
     const context = canvas.getContext("2d");
-    if (!context) throw new Error("Browser ini tidak menyokong export canvas.");
+    if (!context) throw new Error("This browser does not support canvas export.");
     context.fillStyle = "#fff"; context.fillRect(0, 0, canvas.width, canvas.height);
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
     return canvas;
@@ -51,7 +57,7 @@ function download(blob: Blob, filename: string) {
 }
 
 // A single raster page needs only a small PDF container. No new PDF/animation dependency.
-function rasterPdf(canvas: HTMLCanvasElement, paper: "A4" | "A3"): Blob {
+export function rasterPdf(canvas: Pick<HTMLCanvasElement, "width" | "height" | "toDataURL">, paper: "A4" | "A3"): Blob {
   const jpeg = Uint8Array.from(atob(canvas.toDataURL("image/jpeg", .95).split(",")[1]), (char) => char.charCodeAt(0));
   const [width, height] = paper === "A3" ? [1190.55, 841.89] : [841.89, 595.28];
   const encode = (text: string) => new TextEncoder().encode(text);
@@ -74,9 +80,9 @@ function rasterPdf(canvas: HTMLCanvasElement, paper: "A4" | "A3"): Blob {
   return new Blob(parts.map((part) => part.buffer as ArrayBuffer), { type: "application/pdf" });
 }
 
-export async function exportPoster(svg: SVGSVGElement, format: "png" | "pdf", filename: string, paper: "A4" | "A3") {
-  const canvas = await posterCanvas(svg, paper);
+export async function exportPoster(svg: SVGSVGElement, format: "png" | "pdf", filename: string, paper: "A4" | "A3", cmsBase?: string) {
+  const canvas = await posterCanvas(svg, paper, cmsBase);
   if (format === "pdf") { download(rasterPdf(canvas, paper), `${filename}-prototype.pdf`); return; }
-  const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob((value) => value ? resolve(value) : reject(new Error("Gagal menghasilkan PNG.")), "image/png"));
+  const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob((value) => value ? resolve(value) : reject(new Error("Could not generate PNG.")), "image/png"));
   download(blob, `${filename}-prototype.png`);
 }

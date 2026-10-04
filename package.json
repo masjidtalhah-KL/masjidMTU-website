@@ -22,7 +22,8 @@
     "sanity:publish:test": "node --test scripts/sanity-migration/publication.test.mjs",
     "information-content:test": "node --test scripts/public-content/information-content.test.mjs",
     "public-content:verify:checkpoint": "node scripts/public-content/verify.mjs",
-    "public-content:verify:current": "node scripts/public-content/current-verify.mjs"
+    "public-content:verify:current": "node scripts/public-content/current-verify.mjs",
+    "lecture-draft:test": "node --test scripts/lecture-generator/draft-persistence.test.mjs"
   },
   "dependencies": {
     "@sanity/client": "8.9.0",

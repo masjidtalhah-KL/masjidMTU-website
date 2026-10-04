@@ -423,3 +423,69 @@ The isolated exact-component preview remains local QA only. The existing embedde
 Studio CORS registration gate was not bypassed or changed. The owner accepted the
 visual review; no additional Studio-shell capability is claimed by this checkpoint.
 Checkpoint: phase-5.3a-lecture-generator-ux. Stop after checkpoint; no 5.3B work.
+
+## 4 October 2026 — Fasa 5.3B implementation review (uncommitted)
+
+Started from 27e23a2528c72144a1fe7e0d5ecbd45dc3343912 / phase-5.3a-lecture-generator-ux.
+Authenticated loading and manual draft persistence are implemented with revision
+guards, exact read-back, snapshots, original-asset reuse and dirty-state protection.
+The first production write remains blocked pending exact dry-run approval.
+Recommended October 2026 source retains the independently QA'd 34 real sessions;
+proposed batch is one draft and 29 original portrait assets, without speaker/rule
+seeding or any publication. No production write, commit, push or new checkpoint.
+
+Automated validation and production HTTP smoke pass. Fresh browser visual/export
+QA was blocked by browser security policy and is explicitly pending.
+[Full current record and first-save plan](LECTURE-DRAFT-PERSISTENCE.md).
+
+## 4 October 2026 — Fasa 5.3B owner UI/compact-QR refinement (uncommitted)
+
+Weekday painted-bound centering retains approved font/pill/grid geometry.
+Operational Studio UI/schema labels are English-first; Malay mosque terms and
+poster output remain unchanged. Proposed optional published donationInfo.compactQr
+separates the QR-only Jadual source from public branded primaryQr. No monthly QR.
+
+Fresh authenticated desktop/mobile QA and browser PNG/PDF exports for 2/3/larger
+groups passed after the earlier browser block. 187 tests, lint, build, enforced
+schema extraction, current-state verification and route smoke pass. One initial
+Sanity build query timed out; retry passed without changing code/fallback policy.
+Production unchanged: 0 drafts/0 lecture records/55 images/1 Program/0 Announcement/1 News.
+
+Separate QR upload/settings draft plan requires owner approval, then separate
+review/publication approval. October payload remains 34 source-backed sessions/
+29 portraits/showInfaq only. No production upload/write, publication, commit/push
+or subsequent phase. [Current report](LECTURE-UI-COMPACT-QR-REFINEMENT.md).
+
+## Fasa 5.3B — first October draft saved; owner review pending
+
+4 October 2026 (+08:00): the owner explicitly approved the corrected October
+candidate after the original fingerprint guard failed. Controlled execution added
+only the reusable `donationInfo.compactQr` to published `siteSettings`, then saved
+`drafts.lectureMonth-2026-10`: 30 date entries, 34 sessions and 29 original portraits.
+Published settings revision: `chGo6kzbOkh09ebDsGFF22`.
+October draft revision: `SSdKRdF7e0XIFT3zzNP2ab`.
+
+Authenticated inventory: 1 draft, 0 published lecture documents, 0 speakers/rules,
+85 image assets, 1 Program, 0 Announcement and 1 News. Primary branded QR, public
+donation output, NCR and unrelated documents remain unchanged. October stores
+only `showInfaq`; the compact QR resolves from published mosque-wide settings.
+Studio refresh/reopen loads the identical real draft; desktop/mobile and actual
+PNG/PDF exports pass. The operational UI stays English-first; poster stays Malay.
+
+Original failed plan/audit are preserved unchanged. Six owner-approved Unicode
+corrections restored fingerprint
+`906611b8069b1c07b105da950be4f6b7cedd6d1a79a5357e912faee6e3264bb8`;
+no production mutation occurred before that correction. The approved replacement
+is [LECTURE-FIRST-SAVE-APPROVED.json](LECTURE-FIRST-SAVE-APPROVED.json).
+The candidate's original review-required annotation is preserved as history;
+the owner's later explicit approval is recorded in the execution record.
+
+Execution used the authenticated Sanity connector with the exact approved payload.
+The generic Studio save approval remains unset; this does not enable unreviewed
+future writes. Publish Jadual remains disabled. No lecture publication, public
+Kuliah integration, later phase, commit, push or Fasa 5.3B checkpoint.
+[Execution and audit evidence](LECTURE-FIRST-SAVE-EXECUTION.md).
+
+## Fasa 5.3B operational closeout — 4 October 2026 (+08:00)
+
+The owner authorized generic authenticated manual Studio saves. The actual button validated and read back October unchanged, without upload or mutation; revision stayed SSdKRdF7e0XIFT3zzNP2ab. Create/update paths retain optimistic revision guards, with conflicts tested in a controlled simulator. Real draft accessibility replaces stale demo wording. Publish remains disabled; October remains unpublished. Compact QR stays mosque-wide and primary public QR unchanged. The six Unicode corrections, original guard failure and immutable audit remain recorded. GPL provenance and unresolved licensing decision remain intact. Checkpoint: `phase-5.3b-lecture-draft-persistence`. No subsequent/public lecture phase started. [Closeout evidence](LECTURE-DRAFT-PERSISTENCE-CLOSEOUT.md).

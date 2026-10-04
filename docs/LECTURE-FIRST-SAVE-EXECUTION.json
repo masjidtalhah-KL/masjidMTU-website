@@ -1,0 +1,380 @@
+{
+  "target": {
+    "projectId": "2o95jmms",
+    "dataset": "production"
+  },
+  "execution": "Owner-approved exact-payload execution through authenticated Sanity connector; compiled generic Studio approval remains unset.",
+  "settings": {
+    "publishedRevision": "chGo6kzbOkh09ebDsGFF22",
+    "compactAssetId": "image-46cfd9cd56c2bdf6ad48cf6bdba8e83cc6f41ba8-853x853-png",
+    "compactSourceSha1": "46cfd9cd56c2bdf6ad48cf6bdba8e83cc6f41ba8",
+    "compactSourceSha256": "1b86b6336223e38fb103f23368cafae07cb0c1ea66e5a3bc1bb53b9eb6ed792d",
+    "primaryQrUnchanged": true,
+    "ncrUnchanged": true,
+    "otherFieldsUnchanged": true
+  },
+  "month": {
+    "id": "drafts.lectureMonth-2026-10",
+    "revision": "SSdKRdF7e0XIFT3zzNP2ab",
+    "createdAt": "2026-10-04T04:42:03Z",
+    "dates": 30,
+    "sessions": 34,
+    "showInfaq": true,
+    "exactPayloadVerified": true,
+    "published": false
+  },
+  "inventory": {
+    "total": 143,
+    "drafts": 1,
+    "publishedLectureDocuments": 0,
+    "lectureSpeaker": 0,
+    "lectureRule": 0,
+    "imageAssets": 85,
+    "program": 1,
+    "announcement": 0,
+    "newsPost": 1
+  },
+  "portraits": {
+    "uploaded": 29,
+    "reusedFromExistingDataset": 0,
+    "assets": [
+      {
+        "assetId": "image-019bd8d129ae9075cac8fdea89f0a9cc744b0641-251x251-webp",
+        "filename": "rashidi.webp",
+        "sha1": "019bd8d129ae9075cac8fdea89f0a9cc744b0641",
+        "sha256": "3b188a020a38e6d22b9a405405a2722970179576ca92a8cf0559c9823afdc9c8",
+        "size": 6600,
+        "width": 251,
+        "height": 251
+      },
+      {
+        "assetId": "image-0738480d5ceaa2a3d1d666119d49d83f633c7a6a-161x170-webp",
+        "filename": "zulzaidi.webp",
+        "sha1": "0738480d5ceaa2a3d1d666119d49d83f633c7a6a",
+        "sha256": "99deaef2d6e9a866b966f32b1bf5e4fa2a797a5e9a45706631f0a021d3c0ba76",
+        "size": 5560,
+        "width": 161,
+        "height": 170
+      },
+      {
+        "assetId": "image-082ab780d7c27128869350c3794a61bb6cf5c71b-226x236-webp",
+        "filename": "faidhul.webp",
+        "sha1": "082ab780d7c27128869350c3794a61bb6cf5c71b",
+        "sha256": "effe125854aaf12b49e2f75eb27c2451f80a4ece473d64f417f8ab2403040ffd",
+        "size": 7402,
+        "width": 226,
+        "height": 236
+      },
+      {
+        "assetId": "image-1729405a1c26637ce5f722273ed677ed4cf3ae02-221x232-webp",
+        "filename": "rahimi.webp",
+        "sha1": "1729405a1c26637ce5f722273ed677ed4cf3ae02",
+        "sha256": "a53f9578094b968ae0b9b7753597e1e1def037d9e203ff0cd1c09758948d696c",
+        "size": 9760,
+        "width": 221,
+        "height": 232
+      },
+      {
+        "assetId": "image-2134605e5123fa4ac9429b26aff8c01adffe2adf-171x187-webp",
+        "filename": "faisal.webp",
+        "sha1": "2134605e5123fa4ac9429b26aff8c01adffe2adf",
+        "sha256": "bcdc737c84fc40b9f9a107a489a8227a43b6312eabfcfd7ca9f7bd9b77aec629",
+        "size": 5138,
+        "width": 171,
+        "height": 187
+      },
+      {
+        "assetId": "image-2460cf74a3b053affc162d0a644c1f7b7d64db7c-186x186-webp",
+        "filename": "alias.webp",
+        "sha1": "2460cf74a3b053affc162d0a644c1f7b7d64db7c",
+        "sha256": "e136fc3921379967e51b922038a91fafe7b5fa1edbb2a9fd12717b40be5bed87",
+        "size": 6430,
+        "width": 186,
+        "height": 186
+      },
+      {
+        "assetId": "image-304049abc58a2a081c820b35c6b4786dbd767024-219x226-webp",
+        "filename": "fattah.webp",
+        "sha1": "304049abc58a2a081c820b35c6b4786dbd767024",
+        "sha256": "d46a5432e6ca9848fa1d9016f9a0641fc97dcc867eef63ad46b12e5c7b5f0f81",
+        "size": 6864,
+        "width": 219,
+        "height": 226
+      },
+      {
+        "assetId": "image-380dedeff1a7f4725a96251a4211022d14c878fe-222x233-webp",
+        "filename": "robbani.webp",
+        "sha1": "380dedeff1a7f4725a96251a4211022d14c878fe",
+        "sha256": "a89c78882e7e429dfabde80ee683bcb3daed547b6b6ebe86e376df150f381f8d",
+        "size": 6696,
+        "width": 222,
+        "height": 233
+      },
+      {
+        "assetId": "image-3aeae634350afdc5eca21e0c3082b467c9fea4b0-233x234-webp",
+        "filename": "noruddin.webp",
+        "sha1": "3aeae634350afdc5eca21e0c3082b467c9fea4b0",
+        "sha256": "1868545ec9cfffec6afa8b21c7b11886fbbcf9d9f76720012a10d8a3f1bfbca6",
+        "size": 10406,
+        "width": 233,
+        "height": 234
+      },
+      {
+        "assetId": "image-40809dbdc937ef17d64242125164db4fd9c3a7be-214x226-webp",
+        "filename": "hasnol.webp",
+        "sha1": "40809dbdc937ef17d64242125164db4fd9c3a7be",
+        "sha256": "1dab171e599ab70f269a33c9ed4b520abb27a45191912eac868a097c054fcc66",
+        "size": 9240,
+        "width": 214,
+        "height": 226
+      },
+      {
+        "assetId": "image-4838f2c586d320dae020c3b0ebfea1ed7d2188da-163x173-webp",
+        "filename": "muizz.webp",
+        "sha1": "4838f2c586d320dae020c3b0ebfea1ed7d2188da",
+        "sha256": "0cf65cddffd0d0e8e93c8a6d8b390d781e66af9200625679a8802acc470ae97f",
+        "size": 4724,
+        "width": 163,
+        "height": 173
+      },
+      {
+        "assetId": "image-49541530572c80da7c0975783c3d1ab226a415a3-900x900-webp",
+        "filename": "october-23-1.webp",
+        "sha1": "49541530572c80da7c0975783c3d1ab226a415a3",
+        "sha256": "6977518a8b0cb6a2eddba032c8a34a07bb3135e6e1589f87a30c5cbb064de3d2",
+        "size": 45214,
+        "width": 900,
+        "height": 900
+      },
+      {
+        "assetId": "image-4fc211e7b17334f98498c6e25c11ce63c83cd5f4-225x235-webp",
+        "filename": "azizi.webp",
+        "sha1": "4fc211e7b17334f98498c6e25c11ce63c83cd5f4",
+        "sha256": "05534bc3d2ce64e4e4d10f387c347ea574222599b1afca763193c4abde9e11bf",
+        "size": 6888,
+        "width": 225,
+        "height": 235
+      },
+      {
+        "assetId": "image-5372ad0909ce0430258e3830c16c7c4c9fc92c82-207x206-webp",
+        "filename": "fakhruddin.webp",
+        "sha1": "5372ad0909ce0430258e3830c16c7c4c9fc92c82",
+        "sha256": "d82347f5a485401c7110e49d4adc98dfd425fb83a049d01d9dd0aca4683e7206",
+        "size": 7792,
+        "width": 207,
+        "height": 206
+      },
+      {
+        "assetId": "image-53e429e3c3fc3d2c4d1e21147e729e4ce8344912-225x238-webp",
+        "filename": "silmi.webp",
+        "sha1": "53e429e3c3fc3d2c4d1e21147e729e4ce8344912",
+        "sha256": "87affd6b0641a4592c7923bdae067d3536a124c47467841eede9a5423e4be28c",
+        "size": 8394,
+        "width": 225,
+        "height": 238
+      },
+      {
+        "assetId": "image-570c38678f86d72d271efb07684be0b77300d7da-186x186-webp",
+        "filename": "aliFikri.webp",
+        "sha1": "570c38678f86d72d271efb07684be0b77300d7da",
+        "sha256": "5ac922a27a869047229a915a241f66b09a2b45fedbf7313baa167e3f4b7ba8b0",
+        "size": 4438,
+        "width": 186,
+        "height": 186
+      },
+      {
+        "assetId": "image-57af729144e203d99e82c8f46d8a5ffc48a07b2c-175x184-webp",
+        "filename": "zamri.webp",
+        "sha1": "57af729144e203d99e82c8f46d8a5ffc48a07b2c",
+        "sha256": "23af6193c752c44d7dac9c26714db6b13a3d47b414db644a83a16b0d0b24f7bc",
+        "size": 7080,
+        "width": 175,
+        "height": 184
+      },
+      {
+        "assetId": "image-77428f14199304a2095c2454451baa7fb3a9219b-154x164-webp",
+        "filename": "zainuddin.webp",
+        "sha1": "77428f14199304a2095c2454451baa7fb3a9219b",
+        "sha256": "5cfb7206e9ea998df4713bb0b5021d54652c38e0510bf8d8697ae10289c35b65",
+        "size": 5170,
+        "width": 154,
+        "height": 164
+      },
+      {
+        "assetId": "image-8bbff3a91ac2f1589cd5ef515636edbb80cd192f-216x227-webp",
+        "filename": "airy.webp",
+        "sha1": "8bbff3a91ac2f1589cd5ef515636edbb80cd192f",
+        "sha256": "ce606f3425c8b1c8081e0eabc893816440907b79d81a1fd347aa6d7ec069dfac",
+        "size": 7480,
+        "width": 216,
+        "height": 227
+      },
+      {
+        "assetId": "image-94c2a9d72b54d0b1034c9aa3c093d38de00cba49-186x186-webp",
+        "filename": "arif.webp",
+        "sha1": "94c2a9d72b54d0b1034c9aa3c093d38de00cba49",
+        "sha256": "6e6787790b07ecae07dae0cf0653dd57027c2e945b3296b285ee81d057f5bde7",
+        "size": 5646,
+        "width": 186,
+        "height": 186
+      },
+      {
+        "assetId": "image-9e6966d421a0e8782078a0973a1dc64105225c24-191x214-webp",
+        "filename": "fathi.webp",
+        "sha1": "9e6966d421a0e8782078a0973a1dc64105225c24",
+        "sha256": "20bcb754f62c024a723e05e905ede58d725ce19bf7f8922c929cff8520e1cb72",
+        "size": 6366,
+        "width": 191,
+        "height": 214
+      },
+      {
+        "assetId": "image-9f80079d32363b3182812e142ed3a3023c1c55dc-200x183-webp",
+        "filename": "muzaffaz.webp",
+        "sha1": "9f80079d32363b3182812e142ed3a3023c1c55dc",
+        "sha256": "dd120e43ebe02d35250c8c861278c9bab6facb9e7e972c7dd39033f04df05a9d",
+        "size": 5308,
+        "width": 200,
+        "height": 183
+      },
+      {
+        "assetId": "image-a273d1e69277688d0d76ea6277ec5e6427cd5272-166x174-webp",
+        "filename": "qais.webp",
+        "sha1": "a273d1e69277688d0d76ea6277ec5e6427cd5272",
+        "sha256": "ffe259225a7caf74b1f960ff9af2bd34cc56a2c0a9626897f041e853d1b39aa5",
+        "size": 4860,
+        "width": 166,
+        "height": 174
+      },
+      {
+        "assetId": "image-a2dfe0f6056301b8f9ba9fc24a1d639b44088276-228x240-webp",
+        "filename": "nikmat.webp",
+        "sha1": "a2dfe0f6056301b8f9ba9fc24a1d639b44088276",
+        "sha256": "624348a14e07a508640fef22c75c826ce45821fd430747a759dab5fa56d52b8e",
+        "size": 9190,
+        "width": 228,
+        "height": 240
+      },
+      {
+        "assetId": "image-b137fddf370e1df083f2a617ebe7b418115481ca-225x238-webp",
+        "filename": "latif.webp",
+        "sha1": "b137fddf370e1df083f2a617ebe7b418115481ca",
+        "sha256": "983f41bb35036c3285e3cf74126f9e3fcb3123934f4478c066eee57c0bbf741e",
+        "size": 7156,
+        "width": 225,
+        "height": 238
+      },
+      {
+        "assetId": "image-b4ca028f1f7244514dc2b329b2aec7e3434c7ffd-225x236-webp",
+        "filename": "abu.webp",
+        "sha1": "b4ca028f1f7244514dc2b329b2aec7e3434c7ffd",
+        "sha256": "0da37c49f722c02df410920cb78df6dd129c3e8f05bbe8017b9fd9f4768c993a",
+        "size": 9612,
+        "width": 225,
+        "height": 236
+      },
+      {
+        "assetId": "image-b6dce2cc4dea141af793f7866f51d4985cf710c3-186x186-webp",
+        "filename": "muhammadAli.webp",
+        "sha1": "b6dce2cc4dea141af793f7866f51d4985cf710c3",
+        "sha256": "f553cfa018f797a10f3a87e65b8916369e7d88504ba3d7ba952668077110b0ee",
+        "size": 6116,
+        "width": 186,
+        "height": 186
+      },
+      {
+        "assetId": "image-b7931505d8f67fd601867fb268624e59d1acd931-900x900-webp",
+        "filename": "october-27-1.webp",
+        "sha1": "b7931505d8f67fd601867fb268624e59d1acd931",
+        "sha256": "50afe6bbe82f5391b940c50f1024fa3cb50a67c27c34e7600342040564cce647",
+        "size": 104564,
+        "width": 900,
+        "height": 900
+      },
+      {
+        "assetId": "image-bb3c10390c2d50bc632799a718c78b664f9b637a-234x231-webp",
+        "filename": "arfah.webp",
+        "sha1": "bb3c10390c2d50bc632799a718c78b664f9b637a",
+        "sha256": "258f13931b57433a5830aaeff2112d71a19280518a93e0d954e9624ac6ea4418",
+        "size": 6758,
+        "width": 234,
+        "height": 231
+      }
+    ]
+  },
+  "audit": {
+    "originalStoredFingerprint": "4619c0893237ec71003f5e0e8c8698251eb091bce98c603348f5bda94815731a",
+    "restoredApprovedFingerprint": "906611b8069b1c07b105da950be4f6b7cedd6d1a79a5357e912faee6e3264bb8",
+    "sixCorrections": [
+      {
+        "path": ".payload.entries.2.sessions.1.topic",
+        "actual": "AL-QUR’AN\n& TAJWID",
+        "expected": "AL-QURâ€™AN\n& TAJWID"
+      },
+      {
+        "path": ".payload.entries.9.sessions.0.speakerName",
+        "actual": "UST K. NI’MAT",
+        "expected": "UST K. NIâ€™MAT"
+      },
+      {
+        "path": ".payload.entries.9.sessions.0.photo.alt",
+        "actual": "Potret UST K. NI’MAT",
+        "expected": "Potret UST K. NIâ€™MAT"
+      },
+      {
+        "path": ".payload.entries.23.sessions.0.speakerName",
+        "actual": "UST MUHD MU’IZZ",
+        "expected": "UST MUHD MUâ€™IZZ"
+      },
+      {
+        "path": ".payload.entries.23.sessions.0.photo.alt",
+        "actual": "Potret UST MUHD MU’IZZ",
+        "expected": "Potret UST MUHD MUâ€™IZZ"
+      },
+      {
+        "path": ".payload.entries.24.sessions.0.topic",
+        "actual": "KITAB MATLA’\nAL-BADRAIN",
+        "expected": "KITAB MATLAâ€™\nAL-BADRAIN"
+      }
+    ],
+    "productionMutationsBeforeCorrection": 0,
+    "originalFailedPlanFileSha256": "5e0c1826f1b9bab2fc2cafe94d555710ecd0b77bb541cc92db4d3eaec531095a",
+    "failedRecordUnchanged": true
+  },
+  "verification": {
+    "schemaErrors": 0,
+    "schemaWarnings": 0,
+    "schemaExtraction": true,
+    "testsPassed": 188,
+    "lint": true,
+    "buildWithLivePublishedSanity": true,
+    "currentPublicContract": true,
+    "studioDesktopWidth": 1440,
+    "studioMobileWidth": 375,
+    "mobileHorizontalOverflow": false,
+    "studioRefreshSamePoster": true,
+    "studioReopenSamePoster": true,
+    "draftRevisionUnchangedDuringQA": true,
+    "png": {
+      "path": "outputs/phase-5.3b-october-draft.png",
+      "width": 3508,
+      "height": 2480
+    },
+    "pdf": {
+      "path": "outputs/phase-5.3b-october-draft.pdf",
+      "pages": 1,
+      "paper": "A4 landscape"
+    },
+    "unrelatedDocumentsUnchanged": true
+  },
+  "warnings": [
+    "Existing poster accessibility label still describes a demo although the authenticated saved October content is loaded.",
+    "Generic Studio first-write gate/copy is unchanged; this exact approved batch was executed through the authenticated connector."
+  ],
+  "boundaries": {
+    "lecturePublication": false,
+    "publishJadualDisabled": true,
+    "commit": false,
+    "push": false,
+    "laterPhase": false
+  }
+}

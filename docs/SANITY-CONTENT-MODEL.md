@@ -225,3 +225,27 @@ deployment or production documents were created. [Design/5.3B plan](LECTURE-GENE
 ## Fasa 5.3A — approved optional poster-level infaq flag (not deployed)
 
 lectureMonth.showInfaq is an optional boolean with initialValue true. Legacy months without it remain valid; the runtime default is ON. No QR/image field is added to lectureMonth or lectureDay for this panel. Resolve the approved general mosque QR once from mosque-wide donation configuration in the future Studio adapter; repeated months do not require repeated uploads. The current owner-supplied QR is a byte-identical local review asset only. Document types remain read-only; no schema deployment, production mutation or persistence occurs.
+
+## Fasa 5.3B — persisted lecture snapshot
+
+Existing lectureSpeaker / lectureRule / lectureMonth / embedded lectureDay and
+lectureSession stay authoritative. No per-date/session document is added.
+Optional lectureSession.photoLayout (fit, positionY, zoom, borderInset) retains
+the approved portrait rendering settings across conversion without changing bytes.
+specialPoster image/alt/full/fit/position and showInfaq retain the 5.3A contract.
+Name/photo/topic snapshots remain stable if speaker/rule profiles change later.
+Schema extraction/validation passes. The real October monthly draft is persisted; no lecture publication or speaker/rule seeding.
+
+[Authenticated persistence and exact first-save proposal](LECTURE-DRAFT-PERSISTENCE.md).
+
+## Fasa 5.3B — published optional compact QR
+
+siteSettings.donationInfo.compactQr is an optional image with required asset and
+alt (max 300), square PNG/JPG/WebP, hotspot disabled and explicit rejection of any
+crop/hotspot. Existing settings without it remain valid. Jadual runtime reads
+published compactQr exclusively; absent/unusable configuration warns and omits.
+Public primaryQr remains branded. The compact QR is published in mosque-wide settings. No month/day QR fields. Operational lecture schema labels are
+English with domain terms retained; IDs/values/poster Malay unchanged.
+[Complete settings draft proposal](LECTURE-COMPACT-QR-DRY-RUN.json).
+
+Fasa 5.3B is completed; [actual Studio Save Draft closeout](LECTURE-DRAFT-PERSISTENCE-CLOSEOUT.md). Historical Fasa 5.3A evidence above retains its original no-write boundary.

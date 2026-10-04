@@ -92,3 +92,6 @@
 .restoreConfirm { background: #fff5de; padding: 12px; border: 1px solid #dac386; border-radius: 6px; font-size: 12px; line-height: 1.6; }
 .exportSnapshot { position: absolute; left: -10000px; top: 0; width: 1240px; pointer-events: none; }
 @media (prefers-reduced-motion: reduce) { .root button { transition: none; } }
+
+.controls { border:0; padding:0; margin:0; min-width:0; }
+.payload { white-space:pre-wrap; overflow-wrap:anywhere; max-height:24rem; overflow:auto; font-size:.75rem; }

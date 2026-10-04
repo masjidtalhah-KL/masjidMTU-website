@@ -1,0 +1,117 @@
+{
+  "status": "DRY RUN ONLY — OWNER APPROVAL REQUIRED; NO UPLOAD OR WRITE",
+  "observedAt": "2026-10-04T03:14:57.696Z",
+  "target": {
+    "projectId": "2o95jmms",
+    "dataset": "production"
+  },
+  "source": {
+    "path": "C:/Users/User/Downloads/qr masjid mtu.png",
+    "sha1": "46cfd9cd56c2bdf6ad48cf6bdba8e83cc6f41ba8",
+    "sha256": "1b86b6336223e38fb103f23368cafae07cb0c1ea66e5a3bc1bb53b9eb6ed792d",
+    "size": 1480205,
+    "width": 853,
+    "height": 853,
+    "mimeType": "image/png"
+  },
+  "asset": {
+    "assetId": "image-46cfd9cd56c2bdf6ad48cf6bdba8e83cc6f41ba8-853x853-png",
+    "exists": false,
+    "operation": "upload original bytes once"
+  },
+  "documentId": "drafts.siteSettings",
+  "operation": "create draft from published settings",
+  "basePublishedRevision": "SSdKRdF7e0XIFT3zzGU8xL",
+  "baseDraftRevision": null,
+  "payload": {
+    "_id": "drafts.siteSettings",
+    "_type": "siteSettings",
+    "address": "MASJID TALHAH BIN UBAIDILLAH\nTAMAN ALAM SUTERA\n57000 BUKIT JALIL\nWILAYAH PERSEKUTUAN KUALA LUMPUR",
+    "donationInfo": {
+      "_type": "object",
+      "copy": "Sumbangan anda akan digunakan untuk pengimarahan masjid, saguhati penceramah, pembangunan & pembaikan masjid, alatan & kemudahan para jemaah.\n\nSemak nama penerima sebelum mengesahkan transaksi dalam aplikasi bank atau e-dompet anda.",
+      "heading": "Moga menjadi saham akhirat dan rezeki diberkati",
+      "primaryQr": {
+        "_type": "image",
+        "alt": "Artwork penuh DuitNow QR sumbangan umum Masjid Talhah Bin Ubaidillah, Bukit Jalil, dengan jenama DuitNow dan Bank Islam.",
+        "asset": {
+          "_ref": "image-6ba112c3ffc0107ea20e277aa11ff0729eba926b-853x853-png",
+          "_type": "reference"
+        }
+      },
+      "recipientLabel": "Masjid Talhah Bin Ubaidillah, Bukit Jalil — sumbangan umum",
+      "compactQr": {
+        "_type": "image",
+        "asset": {
+          "_type": "reference",
+          "_ref": "image-46cfd9cd56c2bdf6ad48cf6bdba8e83cc6f41ba8-853x853-png"
+        },
+        "alt": "QR sumbangan umum Masjid Talhah Bin Ubaidillah untuk panel Infaq Jadual Kuliah."
+      }
+    },
+    "email": "masjidtalhahubaidillah@gmail.com",
+    "facebookUrl": "https://www.facebook.com/masjidtalhahkl",
+    "instagramUrl": "https://www.instagram.com/masjidtalhahubaidillahofficial/",
+    "mosqueName": "Masjid Talhah Bin Ubaidillah",
+    "ncrService": {
+      "_type": "object",
+      "heading": "Penolong Pendaftar Nikah, Cerai & Ruju’ (NCR)",
+      "introduction": "Untuk pertanyaan berkaitan urusan nikah, cerai dan ruju’, hubungi pegawai yang disenaraikan.",
+      "officers": [
+        {
+          "_key": "ncr-wan-halim",
+          "_type": "object",
+          "name": "USTAZ WAN HALIM BIN MD.YUSOFF",
+          "phone": "019 374 9937",
+          "role": "Penolong Pendaftar Nikah, Cerai & Ruju’ (NCR)"
+        },
+        {
+          "_key": "ncr-nik-fadlan",
+          "_type": "object",
+          "name": "USTAZ NIK MUHAMMAD FADLAN BIN NIK MAHMOOD",
+          "phone": "011 2937 8366",
+          "role": "Penolong Pendaftar Nikah, Cerai & Ruju’ (NCR)"
+        }
+      ],
+      "poster": {
+        "_type": "editorialImage",
+        "alt": "Poster Penolong Pendaftar Nikah, Cerai & Ruju’ Masjid Talhah Bin Ubaidillah dengan dua pegawai dan nombor telefon.",
+        "asset": {
+          "_ref": "image-62bee78573fc94f3a232528eefff834fa7ed11b4-1080x761-png",
+          "_type": "reference"
+        }
+      }
+    },
+    "officeHours": [
+      {
+        "_key": "hours-1",
+        "_type": "officeHoursRow",
+        "days": "Isnin – Jumaat",
+        "hours": "9:00 pagi – 5:00 petang"
+      },
+      {
+        "_key": "hours-2",
+        "_type": "officeHoursRow",
+        "days": "Sabtu, Ahad dan Cuti Umum",
+        "hours": "Tutup"
+      }
+    ],
+    "phone": "+60 3-8074 7414"
+  },
+  "onlyAddedField": "donationInfo.compactQr",
+  "allOtherContentFieldsPreserved": true,
+  "primaryQrUnchanged": {
+    "_type": "image",
+    "alt": "Artwork penuh DuitNow QR sumbangan umum Masjid Talhah Bin Ubaidillah, Bukit Jalil, dengan jenama DuitNow dan Bank Islam.",
+    "asset": {
+      "_ref": "image-6ba112c3ffc0107ea20e277aa11ff0729eba926b-853x853-png",
+      "_type": "reference"
+    }
+  },
+  "draftsBefore": 0,
+  "draftsAfter": 1,
+  "imageAssetsBefore": 55,
+  "imageAssetsAfter": 56,
+  "publication": "Separate controlled siteSettings publication requires owner approval after authenticated draft review. Draft-only compactQr is not consumed by the runtime.",
+  "lectureWrite": "Not included; no lecture month, speaker, rule or published document changes in this prerequisite draft batch."
+}

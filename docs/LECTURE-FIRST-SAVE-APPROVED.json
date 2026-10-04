@@ -1,0 +1,1527 @@
+{
+  "status": "CORRECTED LOCAL CANDIDATE — REVIEW REQUIRED; NO PRODUCTION WRITES",
+  "observedAt": "2026-10-03T23:18:59.328Z",
+  "baselineCommit": "27e23a2528c72144a1fe7e0d5ecbd45dc3343912",
+  "source": {
+    "path": "C:/Users/User/Downloads/jadual-talhah-semua-bulan.json",
+    "sha256": "ebddec2e34efce4f5e1447bd642e86a8f40d28e291f5780cdb69654955413795",
+    "monthKey": "2026-10",
+    "legacyMonthIndex": 9,
+    "referenceCommit": "378b1bbb4084b4f7b6c55ac70a5c4f769d221d28",
+    "independentQa": "docs/SANITY-OCTOBER-QA.md",
+    "contentApproval": "Exact-source Unicode correction requires owner review after failed stored-payload fingerprint guard."
+  },
+  "plan": {
+    "target": {
+      "projectId": "2o95jmms",
+      "dataset": "production"
+    },
+    "documentId": "drafts.lectureMonth-2026-10",
+    "operation": "create",
+    "draftRevision": null,
+    "publishedRevision": null,
+    "payload": {
+      "_id": "drafts.lectureMonth-2026-10",
+      "_type": "lectureMonth",
+      "year": 2026,
+      "month": 10,
+      "showInfaq": true,
+      "entries": [
+        {
+          "_key": "day-1",
+          "_type": "lectureDay",
+          "date": "2026-10-01",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-1-1",
+              "_type": "lectureSession",
+              "sessionType": "yasin",
+              "topic": "BACAAN YASIN\n& TAHLIL",
+              "speakerName": ""
+            }
+          ]
+        },
+        {
+          "_key": "day-2",
+          "_type": "lectureDay",
+          "date": "2026-10-02",
+          "isManualOverride": true,
+          "sessions": [
+            {
+              "_key": "october-2-1",
+              "_type": "lectureSession",
+              "sessionType": "jumaat",
+              "topic": "UMUM",
+              "speakerName": "USTAZ NORUDDIN\nALUWI",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-3aeae634350afdc5eca21e0c3082b467c9fea4b0-233x234-webp"
+                },
+                "alt": "Potret USTAZ NORUDDIN\nALUWI"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-3",
+          "_type": "lectureDay",
+          "date": "2026-10-03",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-3-1",
+              "_type": "lectureSession",
+              "sessionType": "subuh",
+              "topic": "10 SAHABAT\nDIJAMIN SYURGA",
+              "speakerName": "UST QAIS AMIRI",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-a273d1e69277688d0d76ea6277ec5e6427cd5272-166x174-webp"
+                },
+                "alt": "Potret UST QAIS AMIRI"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            },
+            {
+              "_key": "october-3-2",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "AL-QUR’AN\n& TAJWID",
+              "speakerName": "UST ZAINUDDIN",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-77428f14199304a2095c2454451baa7fb3a9219b-154x164-webp"
+                },
+                "alt": "Potret UST ZAINUDDIN"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-4",
+          "_type": "lectureDay",
+          "date": "2026-10-04",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-4-1",
+              "_type": "lectureSession",
+              "sessionType": "subuh",
+              "topic": "PENAWAR\nBAGI HATI",
+              "speakerName": "UST ARFAH",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-bb3c10390c2d50bc632799a718c78b664f9b637a-234x231-webp"
+                },
+                "alt": "Potret UST ARFAH"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-5",
+          "_type": "lectureDay",
+          "date": "2026-10-05",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-5-1",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "AL-QURAN",
+              "speakerName": "USTAZ\nABU BAKAR",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-b4ca028f1f7244514dc2b329b2aec7e3434c7ffd-225x236-webp"
+                },
+                "alt": "Potret USTAZ\nABU BAKAR"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-6",
+          "_type": "lectureDay",
+          "date": "2026-10-06",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-6-1",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "30 KISAH HADIS SAHIH",
+              "speakerName": "UST ALIAS\nABD RAHIM",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-2460cf74a3b053affc162d0a644c1f7b7d64db7c-186x186-webp"
+                },
+                "alt": "Potret UST ALIAS\nABD RAHIM"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-7",
+          "_type": "lectureDay",
+          "date": "2026-10-07",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-7-1",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "KITAB TAFSIR\nIBNU KATHIR",
+              "speakerName": "USTAZ HJ AIRY",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-8bbff3a91ac2f1589cd5ef515636edbb80cd192f-216x227-webp"
+                },
+                "alt": "Potret USTAZ HJ AIRY"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-8",
+          "_type": "lectureDay",
+          "date": "2026-10-08",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-8-1",
+              "_type": "lectureSession",
+              "sessionType": "yasin",
+              "topic": "BACAAN YASIN\n& TAHLIL",
+              "speakerName": ""
+            }
+          ]
+        },
+        {
+          "_key": "day-9",
+          "_type": "lectureDay",
+          "date": "2026-10-09",
+          "isManualOverride": true,
+          "sessions": [
+            {
+              "_key": "october-9-1",
+              "_type": "lectureSession",
+              "sessionType": "jumaat",
+              "topic": "UMUM",
+              "speakerName": "UST ALI FIKRI\nZAINUDDIN",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-570c38678f86d72d271efb07684be0b77300d7da-186x186-webp"
+                },
+                "alt": "Potret UST ALI FIKRI\nZAINUDDIN"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-10",
+          "_type": "lectureDay",
+          "date": "2026-10-10",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-10-1",
+              "_type": "lectureSession",
+              "sessionType": "subuh",
+              "topic": "PERISTIWA\nAKHIR ZAMAN",
+              "speakerName": "UST K. NI’MAT",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-a2dfe0f6056301b8f9ba9fc24a1d639b44088276-228x240-webp"
+                },
+                "alt": "Potret UST K. NI’MAT"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-11",
+          "_type": "lectureDay",
+          "date": "2026-10-11",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-11-1",
+              "_type": "lectureSession",
+              "sessionType": "subuh",
+              "topic": "FIQH SOLAT-\nSAFINATUN NAJAH",
+              "speakerName": "UST. AHMAD FATHI",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-9e6966d421a0e8782078a0973a1dc64105225c24-191x214-webp"
+                },
+                "alt": "Potret UST. AHMAD FATHI"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            },
+            {
+              "_key": "october-11-2",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "AKIDAH PARA SUFI",
+              "speakerName": "UST MOHD FAISAL",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-2134605e5123fa4ac9429b26aff8c01adffe2adf-171x187-webp"
+                },
+                "alt": "Potret UST MOHD FAISAL"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-12",
+          "_type": "lectureDay",
+          "date": "2026-10-12",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-12-1",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "BIDAYATUL HIDAYAH",
+              "speakerName": "USTAZ\nMOHD SILMI",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-53e429e3c3fc3d2c4d1e21147e729e4ce8344912-225x238-webp"
+                },
+                "alt": "Potret USTAZ\nMOHD SILMI"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-13",
+          "_type": "lectureDay",
+          "date": "2026-10-13",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-13-1",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "SYAMAIL MUHAMMADIYAH",
+              "speakerName": "USTAZ AHMAD\nFAKHRUDDIN",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-5372ad0909ce0430258e3830c16c7c4c9fc92c82-207x206-webp"
+                },
+                "alt": "Potret USTAZ AHMAD\nFAKHRUDDIN"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-14",
+          "_type": "lectureDay",
+          "date": "2026-10-14",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-14-1",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "SIRAH NABAWIYYAH",
+              "speakerName": "USTAZ AZIZI",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-4fc211e7b17334f98498c6e25c11ce63c83cd5f4-225x235-webp"
+                },
+                "alt": "Potret USTAZ AZIZI"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-15",
+          "_type": "lectureDay",
+          "date": "2026-10-15",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-15-1",
+              "_type": "lectureSession",
+              "sessionType": "yasin",
+              "topic": "BACAAN YASIN\n& TAHLIL",
+              "speakerName": ""
+            }
+          ]
+        },
+        {
+          "_key": "day-16",
+          "_type": "lectureDay",
+          "date": "2026-10-16",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-16-1",
+              "_type": "lectureSession",
+              "sessionType": "jumaat",
+              "topic": "UMUM",
+              "speakerName": "USTAZ MOHD\nHASNOL",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-40809dbdc937ef17d64242125164db4fd9c3a7be-214x226-webp"
+                },
+                "alt": "Potret USTAZ MOHD\nHASNOL"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-17",
+          "_type": "lectureDay",
+          "date": "2026-10-17",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-17-1",
+              "_type": "lectureSession",
+              "sessionType": "subuh",
+              "topic": "KITAB HADITH 40\nIMAM NAWAWI",
+              "speakerName": "UST ABD FATTAH",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-304049abc58a2a081c820b35c6b4786dbd767024-219x226-webp"
+                },
+                "alt": "Potret UST ABD FATTAH"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-18",
+          "_type": "lectureDay",
+          "date": "2026-10-18",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-18-1",
+              "_type": "lectureSession",
+              "sessionType": "subuh",
+              "topic": "40 HADITH\nJALAN KE SYURGA",
+              "speakerName": "UST MOHD ZAMRI",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-57af729144e203d99e82c8f46d8a5ffc48a07b2c-175x184-webp"
+                },
+                "alt": "Potret UST MOHD ZAMRI"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            },
+            {
+              "_key": "october-18-2",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "KITAB\nBAHRUL MAZI",
+              "speakerName": "DR ZULZAIDI",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-0738480d5ceaa2a3d1d666119d49d83f633c7a6a-161x170-webp"
+                },
+                "alt": "Potret DR ZULZAIDI"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-19",
+          "_type": "lectureDay",
+          "date": "2026-10-19",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-19-1",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "40 ASAS\nDALAM AGAMA",
+              "speakerName": "USTAZ\nFAIDHUL IRFAN",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-082ab780d7c27128869350c3794a61bb6cf5c71b-226x236-webp"
+                },
+                "alt": "Potret USTAZ\nFAIDHUL IRFAN"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-20",
+          "_type": "lectureDay",
+          "date": "2026-10-20",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-20-1",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "AWJAZUL MUKHTASARAT",
+              "speakerName": "USTAZ\nMUHAMMAD ALI",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-b6dce2cc4dea141af793f7866f51d4985cf710c3-186x186-webp"
+                },
+                "alt": "Potret USTAZ\nMUHAMMAD ALI"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-21",
+          "_type": "lectureDay",
+          "date": "2026-10-21",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-21-1",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "JAUHARAH AL-MAUHUB",
+              "speakerName": "UST ARIF\nABD SAMAT",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-94c2a9d72b54d0b1034c9aa3c093d38de00cba49-186x186-webp"
+                },
+                "alt": "Potret UST ARIF\nABD SAMAT"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-22",
+          "_type": "lectureDay",
+          "date": "2026-10-22",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-22-1",
+              "_type": "lectureSession",
+              "sessionType": "yasin",
+              "topic": "BACAAN YASIN\n& TAHLIL",
+              "speakerName": ""
+            }
+          ]
+        },
+        {
+          "_key": "day-23",
+          "_type": "lectureDay",
+          "date": "2026-10-23",
+          "isManualOverride": true,
+          "sessions": [
+            {
+              "_key": "october-23-1",
+              "_type": "lectureSession",
+              "sessionType": "jumaat",
+              "topic": "UMUM",
+              "speakerName": "UST IBNUZZAMAN",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-49541530572c80da7c0975783c3d1ab226a415a3-900x900-webp"
+                },
+                "alt": "Potret UST IBNUZZAMAN"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-24",
+          "_type": "lectureDay",
+          "date": "2026-10-24",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-24-1",
+              "_type": "lectureSession",
+              "sessionType": "subuh",
+              "topic": "Tanbih al-Mughtarrin",
+              "speakerName": "UST MUHD MU’IZZ",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-4838f2c586d320dae020c3b0ebfea1ed7d2188da-163x173-webp"
+                },
+                "alt": "Potret UST MUHD MU’IZZ"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            },
+            {
+              "_key": "october-24-2",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "MATAN MUQTADHA\nSYAHADATAYN",
+              "speakerName": "UST AHMAD MUZAFFAZ",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-9f80079d32363b3182812e142ed3a3023c1c55dc-200x183-webp"
+                },
+                "alt": "Potret UST AHMAD MUZAFFAZ"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-25",
+          "_type": "lectureDay",
+          "date": "2026-10-25",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-25-1",
+              "_type": "lectureSession",
+              "sessionType": "subuh",
+              "topic": "KITAB MATLA’\nAL-BADRAIN",
+              "speakerName": "UST ABD LATIF",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-b137fddf370e1df083f2a617ebe7b418115481ca-225x238-webp"
+                },
+                "alt": "Potret UST ABD LATIF"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-26",
+          "_type": "lectureDay",
+          "date": "2026-10-26",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-26-1",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "TAFSIR AYAT AHKAM",
+              "speakerName": "USTAZ\nROBBANI",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-380dedeff1a7f4725a96251a4211022d14c878fe-222x233-webp"
+                },
+                "alt": "Potret USTAZ\nROBBANI"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-27",
+          "_type": "lectureDay",
+          "date": "2026-10-27",
+          "isManualOverride": true,
+          "sessions": [
+            {
+              "_key": "october-27-1",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "UMUM",
+              "speakerName": "UST DANISH FARHAN",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-b7931505d8f67fd601867fb268624e59d1acd931-900x900-webp"
+                },
+                "alt": "Potret UST DANISH FARHAN"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-28",
+          "_type": "lectureDay",
+          "date": "2026-10-28",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-28-1",
+              "_type": "lectureSession",
+              "sessionType": "maghrib",
+              "topic": "TANBIHUL GHAFILIN",
+              "speakerName": "USTAZ\nMOHD RAHIMI",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-1729405a1c26637ce5f722273ed677ed4cf3ae02-221x232-webp"
+                },
+                "alt": "Potret USTAZ\nMOHD RAHIMI"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        },
+        {
+          "_key": "day-29",
+          "_type": "lectureDay",
+          "date": "2026-10-29",
+          "isManualOverride": false,
+          "sessions": [
+            {
+              "_key": "october-29-1",
+              "_type": "lectureSession",
+              "sessionType": "yasin",
+              "topic": "BACAAN YASIN\n& TAHLIL",
+              "speakerName": ""
+            }
+          ]
+        },
+        {
+          "_key": "day-30",
+          "_type": "lectureDay",
+          "date": "2026-10-30",
+          "isManualOverride": true,
+          "sessions": [
+            {
+              "_key": "october-30-1",
+              "_type": "lectureSession",
+              "sessionType": "jumaat",
+              "topic": "UMUM",
+              "speakerName": "USTAZ RASHIDI",
+              "photo": {
+                "_type": "editorialImage",
+                "asset": {
+                  "_type": "reference",
+                  "_ref": "image-019bd8d129ae9075cac8fdea89f0a9cc744b0641-251x251-webp"
+                },
+                "alt": "Potret USTAZ RASHIDI"
+              },
+              "photoLayout": {
+                "fit": "cover",
+                "positionY": 50,
+                "zoom": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "assets": [
+      {
+        "assetId": "image-019bd8d129ae9075cac8fdea89f0a9cc744b0641-251x251-webp",
+        "sha1": "019bd8d129ae9075cac8fdea89f0a9cc744b0641",
+        "sha256": "3b188a020a38e6d22b9a405405a2722970179576ca92a8cf0559c9823afdc9c8",
+        "size": 6600,
+        "mimeType": "image/webp",
+        "filename": "rashidi.webp",
+        "width": 251,
+        "height": 251,
+        "exists": false
+      },
+      {
+        "assetId": "image-0738480d5ceaa2a3d1d666119d49d83f633c7a6a-161x170-webp",
+        "sha1": "0738480d5ceaa2a3d1d666119d49d83f633c7a6a",
+        "sha256": "99deaef2d6e9a866b966f32b1bf5e4fa2a797a5e9a45706631f0a021d3c0ba76",
+        "size": 5560,
+        "mimeType": "image/webp",
+        "filename": "zulzaidi.webp",
+        "width": 161,
+        "height": 170,
+        "exists": false
+      },
+      {
+        "assetId": "image-082ab780d7c27128869350c3794a61bb6cf5c71b-226x236-webp",
+        "sha1": "082ab780d7c27128869350c3794a61bb6cf5c71b",
+        "sha256": "effe125854aaf12b49e2f75eb27c2451f80a4ece473d64f417f8ab2403040ffd",
+        "size": 7402,
+        "mimeType": "image/webp",
+        "filename": "faidhul.webp",
+        "width": 226,
+        "height": 236,
+        "exists": false
+      },
+      {
+        "assetId": "image-1729405a1c26637ce5f722273ed677ed4cf3ae02-221x232-webp",
+        "sha1": "1729405a1c26637ce5f722273ed677ed4cf3ae02",
+        "sha256": "a53f9578094b968ae0b9b7753597e1e1def037d9e203ff0cd1c09758948d696c",
+        "size": 9760,
+        "mimeType": "image/webp",
+        "filename": "rahimi.webp",
+        "width": 221,
+        "height": 232,
+        "exists": false
+      },
+      {
+        "assetId": "image-2134605e5123fa4ac9429b26aff8c01adffe2adf-171x187-webp",
+        "sha1": "2134605e5123fa4ac9429b26aff8c01adffe2adf",
+        "sha256": "bcdc737c84fc40b9f9a107a489a8227a43b6312eabfcfd7ca9f7bd9b77aec629",
+        "size": 5138,
+        "mimeType": "image/webp",
+        "filename": "faisal.webp",
+        "width": 171,
+        "height": 187,
+        "exists": false
+      },
+      {
+        "assetId": "image-2460cf74a3b053affc162d0a644c1f7b7d64db7c-186x186-webp",
+        "sha1": "2460cf74a3b053affc162d0a644c1f7b7d64db7c",
+        "sha256": "e136fc3921379967e51b922038a91fafe7b5fa1edbb2a9fd12717b40be5bed87",
+        "size": 6430,
+        "mimeType": "image/webp",
+        "filename": "alias.webp",
+        "width": 186,
+        "height": 186,
+        "exists": false
+      },
+      {
+        "assetId": "image-304049abc58a2a081c820b35c6b4786dbd767024-219x226-webp",
+        "sha1": "304049abc58a2a081c820b35c6b4786dbd767024",
+        "sha256": "d46a5432e6ca9848fa1d9016f9a0641fc97dcc867eef63ad46b12e5c7b5f0f81",
+        "size": 6864,
+        "mimeType": "image/webp",
+        "filename": "fattah.webp",
+        "width": 219,
+        "height": 226,
+        "exists": false
+      },
+      {
+        "assetId": "image-380dedeff1a7f4725a96251a4211022d14c878fe-222x233-webp",
+        "sha1": "380dedeff1a7f4725a96251a4211022d14c878fe",
+        "sha256": "a89c78882e7e429dfabde80ee683bcb3daed547b6b6ebe86e376df150f381f8d",
+        "size": 6696,
+        "mimeType": "image/webp",
+        "filename": "robbani.webp",
+        "width": 222,
+        "height": 233,
+        "exists": false
+      },
+      {
+        "assetId": "image-3aeae634350afdc5eca21e0c3082b467c9fea4b0-233x234-webp",
+        "sha1": "3aeae634350afdc5eca21e0c3082b467c9fea4b0",
+        "sha256": "1868545ec9cfffec6afa8b21c7b11886fbbcf9d9f76720012a10d8a3f1bfbca6",
+        "size": 10406,
+        "mimeType": "image/webp",
+        "filename": "noruddin.webp",
+        "width": 233,
+        "height": 234,
+        "exists": false
+      },
+      {
+        "assetId": "image-40809dbdc937ef17d64242125164db4fd9c3a7be-214x226-webp",
+        "sha1": "40809dbdc937ef17d64242125164db4fd9c3a7be",
+        "sha256": "1dab171e599ab70f269a33c9ed4b520abb27a45191912eac868a097c054fcc66",
+        "size": 9240,
+        "mimeType": "image/webp",
+        "filename": "hasnol.webp",
+        "width": 214,
+        "height": 226,
+        "exists": false
+      },
+      {
+        "assetId": "image-4838f2c586d320dae020c3b0ebfea1ed7d2188da-163x173-webp",
+        "sha1": "4838f2c586d320dae020c3b0ebfea1ed7d2188da",
+        "sha256": "0cf65cddffd0d0e8e93c8a6d8b390d781e66af9200625679a8802acc470ae97f",
+        "size": 4724,
+        "mimeType": "image/webp",
+        "filename": "muizz.webp",
+        "width": 163,
+        "height": 173,
+        "exists": false
+      },
+      {
+        "assetId": "image-49541530572c80da7c0975783c3d1ab226a415a3-900x900-webp",
+        "sha1": "49541530572c80da7c0975783c3d1ab226a415a3",
+        "sha256": "6977518a8b0cb6a2eddba032c8a34a07bb3135e6e1589f87a30c5cbb064de3d2",
+        "size": 45214,
+        "mimeType": "image/webp",
+        "filename": "october-23-1.webp",
+        "width": 900,
+        "height": 900,
+        "exists": false
+      },
+      {
+        "assetId": "image-4fc211e7b17334f98498c6e25c11ce63c83cd5f4-225x235-webp",
+        "sha1": "4fc211e7b17334f98498c6e25c11ce63c83cd5f4",
+        "sha256": "05534bc3d2ce64e4e4d10f387c347ea574222599b1afca763193c4abde9e11bf",
+        "size": 6888,
+        "mimeType": "image/webp",
+        "filename": "azizi.webp",
+        "width": 225,
+        "height": 235,
+        "exists": false
+      },
+      {
+        "assetId": "image-5372ad0909ce0430258e3830c16c7c4c9fc92c82-207x206-webp",
+        "sha1": "5372ad0909ce0430258e3830c16c7c4c9fc92c82",
+        "sha256": "d82347f5a485401c7110e49d4adc98dfd425fb83a049d01d9dd0aca4683e7206",
+        "size": 7792,
+        "mimeType": "image/webp",
+        "filename": "fakhruddin.webp",
+        "width": 207,
+        "height": 206,
+        "exists": false
+      },
+      {
+        "assetId": "image-53e429e3c3fc3d2c4d1e21147e729e4ce8344912-225x238-webp",
+        "sha1": "53e429e3c3fc3d2c4d1e21147e729e4ce8344912",
+        "sha256": "87affd6b0641a4592c7923bdae067d3536a124c47467841eede9a5423e4be28c",
+        "size": 8394,
+        "mimeType": "image/webp",
+        "filename": "silmi.webp",
+        "width": 225,
+        "height": 238,
+        "exists": false
+      },
+      {
+        "assetId": "image-570c38678f86d72d271efb07684be0b77300d7da-186x186-webp",
+        "sha1": "570c38678f86d72d271efb07684be0b77300d7da",
+        "sha256": "5ac922a27a869047229a915a241f66b09a2b45fedbf7313baa167e3f4b7ba8b0",
+        "size": 4438,
+        "mimeType": "image/webp",
+        "filename": "aliFikri.webp",
+        "width": 186,
+        "height": 186,
+        "exists": false
+      },
+      {
+        "assetId": "image-57af729144e203d99e82c8f46d8a5ffc48a07b2c-175x184-webp",
+        "sha1": "57af729144e203d99e82c8f46d8a5ffc48a07b2c",
+        "sha256": "23af6193c752c44d7dac9c26714db6b13a3d47b414db644a83a16b0d0b24f7bc",
+        "size": 7080,
+        "mimeType": "image/webp",
+        "filename": "zamri.webp",
+        "width": 175,
+        "height": 184,
+        "exists": false
+      },
+      {
+        "assetId": "image-77428f14199304a2095c2454451baa7fb3a9219b-154x164-webp",
+        "sha1": "77428f14199304a2095c2454451baa7fb3a9219b",
+        "sha256": "5cfb7206e9ea998df4713bb0b5021d54652c38e0510bf8d8697ae10289c35b65",
+        "size": 5170,
+        "mimeType": "image/webp",
+        "filename": "zainuddin.webp",
+        "width": 154,
+        "height": 164,
+        "exists": false
+      },
+      {
+        "assetId": "image-8bbff3a91ac2f1589cd5ef515636edbb80cd192f-216x227-webp",
+        "sha1": "8bbff3a91ac2f1589cd5ef515636edbb80cd192f",
+        "sha256": "ce606f3425c8b1c8081e0eabc893816440907b79d81a1fd347aa6d7ec069dfac",
+        "size": 7480,
+        "mimeType": "image/webp",
+        "filename": "airy.webp",
+        "width": 216,
+        "height": 227,
+        "exists": false
+      },
+      {
+        "assetId": "image-94c2a9d72b54d0b1034c9aa3c093d38de00cba49-186x186-webp",
+        "sha1": "94c2a9d72b54d0b1034c9aa3c093d38de00cba49",
+        "sha256": "6e6787790b07ecae07dae0cf0653dd57027c2e945b3296b285ee81d057f5bde7",
+        "size": 5646,
+        "mimeType": "image/webp",
+        "filename": "arif.webp",
+        "width": 186,
+        "height": 186,
+        "exists": false
+      },
+      {
+        "assetId": "image-9e6966d421a0e8782078a0973a1dc64105225c24-191x214-webp",
+        "sha1": "9e6966d421a0e8782078a0973a1dc64105225c24",
+        "sha256": "20bcb754f62c024a723e05e905ede58d725ce19bf7f8922c929cff8520e1cb72",
+        "size": 6366,
+        "mimeType": "image/webp",
+        "filename": "fathi.webp",
+        "width": 191,
+        "height": 214,
+        "exists": false
+      },
+      {
+        "assetId": "image-9f80079d32363b3182812e142ed3a3023c1c55dc-200x183-webp",
+        "sha1": "9f80079d32363b3182812e142ed3a3023c1c55dc",
+        "sha256": "dd120e43ebe02d35250c8c861278c9bab6facb9e7e972c7dd39033f04df05a9d",
+        "size": 5308,
+        "mimeType": "image/webp",
+        "filename": "muzaffaz.webp",
+        "width": 200,
+        "height": 183,
+        "exists": false
+      },
+      {
+        "assetId": "image-a273d1e69277688d0d76ea6277ec5e6427cd5272-166x174-webp",
+        "sha1": "a273d1e69277688d0d76ea6277ec5e6427cd5272",
+        "sha256": "ffe259225a7caf74b1f960ff9af2bd34cc56a2c0a9626897f041e853d1b39aa5",
+        "size": 4860,
+        "mimeType": "image/webp",
+        "filename": "qais.webp",
+        "width": 166,
+        "height": 174,
+        "exists": false
+      },
+      {
+        "assetId": "image-a2dfe0f6056301b8f9ba9fc24a1d639b44088276-228x240-webp",
+        "sha1": "a2dfe0f6056301b8f9ba9fc24a1d639b44088276",
+        "sha256": "624348a14e07a508640fef22c75c826ce45821fd430747a759dab5fa56d52b8e",
+        "size": 9190,
+        "mimeType": "image/webp",
+        "filename": "nikmat.webp",
+        "width": 228,
+        "height": 240,
+        "exists": false
+      },
+      {
+        "assetId": "image-b137fddf370e1df083f2a617ebe7b418115481ca-225x238-webp",
+        "sha1": "b137fddf370e1df083f2a617ebe7b418115481ca",
+        "sha256": "983f41bb35036c3285e3cf74126f9e3fcb3123934f4478c066eee57c0bbf741e",
+        "size": 7156,
+        "mimeType": "image/webp",
+        "filename": "latif.webp",
+        "width": 225,
+        "height": 238,
+        "exists": false
+      },
+      {
+        "assetId": "image-b4ca028f1f7244514dc2b329b2aec7e3434c7ffd-225x236-webp",
+        "sha1": "b4ca028f1f7244514dc2b329b2aec7e3434c7ffd",
+        "sha256": "0da37c49f722c02df410920cb78df6dd129c3e8f05bbe8017b9fd9f4768c993a",
+        "size": 9612,
+        "mimeType": "image/webp",
+        "filename": "abu.webp",
+        "width": 225,
+        "height": 236,
+        "exists": false
+      },
+      {
+        "assetId": "image-b6dce2cc4dea141af793f7866f51d4985cf710c3-186x186-webp",
+        "sha1": "b6dce2cc4dea141af793f7866f51d4985cf710c3",
+        "sha256": "f553cfa018f797a10f3a87e65b8916369e7d88504ba3d7ba952668077110b0ee",
+        "size": 6116,
+        "mimeType": "image/webp",
+        "filename": "muhammadAli.webp",
+        "width": 186,
+        "height": 186,
+        "exists": false
+      },
+      {
+        "assetId": "image-b7931505d8f67fd601867fb268624e59d1acd931-900x900-webp",
+        "sha1": "b7931505d8f67fd601867fb268624e59d1acd931",
+        "sha256": "50afe6bbe82f5391b940c50f1024fa3cb50a67c27c34e7600342040564cce647",
+        "size": 104564,
+        "mimeType": "image/webp",
+        "filename": "october-27-1.webp",
+        "width": 900,
+        "height": 900,
+        "exists": false
+      },
+      {
+        "assetId": "image-bb3c10390c2d50bc632799a718c78b664f9b637a-234x231-webp",
+        "sha1": "bb3c10390c2d50bc632799a718c78b664f9b637a",
+        "sha256": "258f13931b57433a5830aaeff2112d71a19280518a93e0d954e9624ac6ea4418",
+        "size": 6758,
+        "mimeType": "image/webp",
+        "filename": "arfah.webp",
+        "width": 234,
+        "height": 231,
+        "exists": false
+      }
+    ],
+    "references": [
+      "image-019bd8d129ae9075cac8fdea89f0a9cc744b0641-251x251-webp",
+      "image-0738480d5ceaa2a3d1d666119d49d83f633c7a6a-161x170-webp",
+      "image-082ab780d7c27128869350c3794a61bb6cf5c71b-226x236-webp",
+      "image-1729405a1c26637ce5f722273ed677ed4cf3ae02-221x232-webp",
+      "image-2134605e5123fa4ac9429b26aff8c01adffe2adf-171x187-webp",
+      "image-2460cf74a3b053affc162d0a644c1f7b7d64db7c-186x186-webp",
+      "image-304049abc58a2a081c820b35c6b4786dbd767024-219x226-webp",
+      "image-380dedeff1a7f4725a96251a4211022d14c878fe-222x233-webp",
+      "image-3aeae634350afdc5eca21e0c3082b467c9fea4b0-233x234-webp",
+      "image-40809dbdc937ef17d64242125164db4fd9c3a7be-214x226-webp",
+      "image-4838f2c586d320dae020c3b0ebfea1ed7d2188da-163x173-webp",
+      "image-49541530572c80da7c0975783c3d1ab226a415a3-900x900-webp",
+      "image-4fc211e7b17334f98498c6e25c11ce63c83cd5f4-225x235-webp",
+      "image-5372ad0909ce0430258e3830c16c7c4c9fc92c82-207x206-webp",
+      "image-53e429e3c3fc3d2c4d1e21147e729e4ce8344912-225x238-webp",
+      "image-570c38678f86d72d271efb07684be0b77300d7da-186x186-webp",
+      "image-57af729144e203d99e82c8f46d8a5ffc48a07b2c-175x184-webp",
+      "image-77428f14199304a2095c2454451baa7fb3a9219b-154x164-webp",
+      "image-8bbff3a91ac2f1589cd5ef515636edbb80cd192f-216x227-webp",
+      "image-94c2a9d72b54d0b1034c9aa3c093d38de00cba49-186x186-webp",
+      "image-9e6966d421a0e8782078a0973a1dc64105225c24-191x214-webp",
+      "image-9f80079d32363b3182812e142ed3a3023c1c55dc-200x183-webp",
+      "image-a273d1e69277688d0d76ea6277ec5e6427cd5272-166x174-webp",
+      "image-a2dfe0f6056301b8f9ba9fc24a1d639b44088276-228x240-webp",
+      "image-b137fddf370e1df083f2a617ebe7b418115481ca-225x238-webp",
+      "image-b4ca028f1f7244514dc2b329b2aec7e3434c7ffd-225x236-webp",
+      "image-b6dce2cc4dea141af793f7866f51d4985cf710c3-186x186-webp",
+      "image-b7931505d8f67fd601867fb268624e59d1acd931-900x900-webp",
+      "image-bb3c10390c2d50bc632799a718c78b664f9b637a-234x231-webp"
+    ],
+    "draftsBefore": 0,
+    "draftsAfter": 1,
+    "fingerprint": "906611b8069b1c07b105da950be4f6b7cedd6d1a79a5357e912faee6e3264bb8"
+  },
+  "sourceRegister": [
+    {
+      "date": "2026-10-01",
+      "sessionKey": "october-1-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": null
+    },
+    {
+      "date": "2026-10-02",
+      "sessionKey": "october-2-1",
+      "source": "manual",
+      "fontScale": 1,
+      "photoSource": "@noruddin"
+    },
+    {
+      "date": "2026-10-03",
+      "sessionKey": "october-3-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@qais"
+    },
+    {
+      "date": "2026-10-03",
+      "sessionKey": "october-3-2",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@zainuddin"
+    },
+    {
+      "date": "2026-10-04",
+      "sessionKey": "october-4-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@arfah"
+    },
+    {
+      "date": "2026-10-05",
+      "sessionKey": "october-5-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@abu"
+    },
+    {
+      "date": "2026-10-06",
+      "sessionKey": "october-6-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@alias"
+    },
+    {
+      "date": "2026-10-07",
+      "sessionKey": "october-7-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@airy"
+    },
+    {
+      "date": "2026-10-08",
+      "sessionKey": "october-8-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": null
+    },
+    {
+      "date": "2026-10-09",
+      "sessionKey": "october-9-1",
+      "source": "manual",
+      "fontScale": 1,
+      "photoSource": "@aliFikri"
+    },
+    {
+      "date": "2026-10-10",
+      "sessionKey": "october-10-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@nikmat"
+    },
+    {
+      "date": "2026-10-11",
+      "sessionKey": "october-11-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@fathi"
+    },
+    {
+      "date": "2026-10-11",
+      "sessionKey": "october-11-2",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@faisal"
+    },
+    {
+      "date": "2026-10-12",
+      "sessionKey": "october-12-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@silmi"
+    },
+    {
+      "date": "2026-10-13",
+      "sessionKey": "october-13-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@fakhruddin"
+    },
+    {
+      "date": "2026-10-14",
+      "sessionKey": "october-14-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@azizi"
+    },
+    {
+      "date": "2026-10-15",
+      "sessionKey": "october-15-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": null
+    },
+    {
+      "date": "2026-10-16",
+      "sessionKey": "october-16-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@hasnol"
+    },
+    {
+      "date": "2026-10-17",
+      "sessionKey": "october-17-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@fattah"
+    },
+    {
+      "date": "2026-10-18",
+      "sessionKey": "october-18-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@zamri"
+    },
+    {
+      "date": "2026-10-18",
+      "sessionKey": "october-18-2",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@zulzaidi"
+    },
+    {
+      "date": "2026-10-19",
+      "sessionKey": "october-19-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@faidhul"
+    },
+    {
+      "date": "2026-10-20",
+      "sessionKey": "october-20-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@muhammadAli"
+    },
+    {
+      "date": "2026-10-21",
+      "sessionKey": "october-21-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@arif"
+    },
+    {
+      "date": "2026-10-22",
+      "sessionKey": "october-22-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": null
+    },
+    {
+      "date": "2026-10-23",
+      "sessionKey": "october-23-1",
+      "source": "manual",
+      "fontScale": 1,
+      "photoSource": "inline october-23-1"
+    },
+    {
+      "date": "2026-10-24",
+      "sessionKey": "october-24-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@muizz"
+    },
+    {
+      "date": "2026-10-24",
+      "sessionKey": "october-24-2",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@muzaffaz"
+    },
+    {
+      "date": "2026-10-25",
+      "sessionKey": "october-25-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@latif"
+    },
+    {
+      "date": "2026-10-26",
+      "sessionKey": "october-26-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@robbani"
+    },
+    {
+      "date": "2026-10-27",
+      "sessionKey": "october-27-1",
+      "source": "manual",
+      "fontScale": 1,
+      "photoSource": "inline october-27-1"
+    },
+    {
+      "date": "2026-10-28",
+      "sessionKey": "october-28-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": "@rahimi"
+    },
+    {
+      "date": "2026-10-29",
+      "sessionKey": "october-29-1",
+      "source": "default",
+      "fontScale": 1,
+      "photoSource": null
+    },
+    {
+      "date": "2026-10-30",
+      "sessionKey": "october-30-1",
+      "source": "manual",
+      "fontScale": 1,
+      "photoSource": "@rashidi"
+    }
+  ],
+  "assertions": {
+    "sessions": 34,
+    "speakerDocumentsCreated": 0,
+    "ruleDocumentsCreated": 0,
+    "publishedDocumentsChanged": 0,
+    "infaqQrUploads": 0,
+    "specialPosterUploads": 0,
+    "demoRecordsMigrated": 0
+  },
+  "imageAssetsBefore": 56,
+  "imageAssetsAfter": 85,
+  "prerequisites": {
+    "compactQrPlan": "docs/LECTURE-COMPACT-QR-DRY-RUN.json",
+    "compactQrAssetId": "image-46cfd9cd56c2bdf6ad48cf6bdba8e83cc6f41ba8-853x853-png",
+    "sourceSha256": "1b86b6336223e38fb103f23368cafae07cb0c1ea66e5a3bc1bb53b9eb6ed792d",
+    "settingsPublishedRevision": "SSdKRdF7e0XIFT3zzGU8xL",
+    "steps": [
+      "Owner approves QR asset + settings draft plan",
+      "Upload/reuse exactly one original compact QR; create drafts.siteSettings preserving all fields, adding compactQr only",
+      "Authenticate read-back and review settings draft",
+      "Separate owner approval and controlled publication of siteSettings; recheck runtime QR",
+      "Refresh the lecture first-save plan against the new remote inventory; owner approves exact month batch",
+      "Save exactly drafts.lectureMonth-2026-10; Publish Jadual remains disabled"
+    ],
+    "monthPayloadUnchanged": true,
+    "monthFingerprintIsNotSetupApproval": true,
+    "missingQrBehaviour": "Month draft can exist safely without compact QR; Infaq is omitted with warning. Complete prerequisite setup to include the approved panel.",
+    "expectedAfterSetupPublication": {
+      "drafts": 0,
+      "imageAssets": 56,
+      "lectureDocuments": 0
+    },
+    "expectedAfterLectureSave": {
+      "drafts": 1,
+      "imageAssets": 85,
+      "lectureMonthDrafts": 1,
+      "publishedLectureMonths": 0
+    },
+    "stopOnAnyDifferentGuard": true
+  },
+  "imageAssetsAfterPrerequisiteSetup": 56,
+  "imageAssetsAfterMonthSaveWithPrerequisite": 85,
+  "observedImageAssetsBeforeSetup": 55,
+  "countsPolicy": "Expected month batch after separately approved compact-QR setup publication; refresh all remote guards before exact month approval."
+}

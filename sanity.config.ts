@@ -31,7 +31,7 @@ export default defineConfig({
   projectId,
   dataset,
   plugins: [structureTool({ structure })],
-  tools: [{ name: "penjana-jadual-kuliah", title: "Penjana Jadual Kuliah", icon: LectureGeneratorIcon, component: LectureGeneratorTool }],
+  tools: [{ name: "penjana-jadual-kuliah", title: "Jadual Kuliah Generator", icon: LectureGeneratorIcon, component: LectureGeneratorTool }],
   schema: {
     types: schemaTypes.map((type) => type.name === "galleryCollection" ? { ...type, preview: galleryListPreview } : type),
     templates: (templates) => templates.filter(({ schemaType }) => !singletonTypes.has(schemaType) && !lecturePrototypeTypes.has(schemaType)),

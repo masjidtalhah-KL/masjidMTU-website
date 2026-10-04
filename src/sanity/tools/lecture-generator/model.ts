@@ -2,14 +2,15 @@ import { lectureMonths, lectureSessionTypes, lectureWeekdays } from "../../lectu
 
 export { lectureMonths, lectureSessionTypes, lectureWeekdays };
 export type SessionType = "subuh" | "maghrib" | "jumaat" | "yasin";
-export type Speaker = { id: string; name: string; defaultTopic: string; isActive: boolean; photo?: { src: string; width: number; height: number; fit?: "contain" | "cover"; positionY?: number; zoom?: number; borderInset?: number } };
+export type CmsImage = { _type: "editorialImage" | "image"; asset: { _type: "reference"; _ref: string }; alt: string; crop?: { top: number; bottom: number; left: number; right: number }; hotspot?: { x: number; y: number; width: number; height: number } };
+export type Speaker = { id: string; name: string; defaultTopic: string; isActive: boolean; photo?: { src: string; width: number; height: number; fit?: "contain" | "cover"; positionY?: number; zoom?: number; borderInset?: number; cmsImage?: CmsImage; originalFile?: File; localHash?: string } };
 export type RecurringRule = { id: string; weekday: number; occurrence: number; sessionType: SessionType; speakerId: string; topic: string; isActive: boolean };
 export type Session = { id: string; sessionType: SessionType; speakerId: string; topic: string; sourceRuleId?: string; speakerName?: string; photo?: Speaker["photo"] };
-export type PosterImage = { src: string; width: number; height: number; alt: string; assetId?: string; localHash?: string };
+export type PosterImage = { src: string; width: number; height: number; alt: string; assetId?: string; localHash?: string; originalFile?: File; cmsImage?: CmsImage };
 export type SpecialPoster = { image: PosterImage; fit: "contain" | "cover"; position?: "top" | "center" | "bottom"; mode: "full" };
 export type DayEntry = { day: number; sessions: Session[]; isManualOverride: boolean; specialPoster?: SpecialPoster };
 export type MonthSchedule = { year: number; month: number; entries: DayEntry[] };
-export type PosterSettings = { title: string; paper: "A4" | "A3"; colours: Record<SessionType, string>; compactCalendar?: boolean; showInfaq?: boolean; generalDonationQr?: PosterImage; identity?: { name: string; addressLines: string[]; phone?: string; logos?: string; mosquePhoto?: string; yasinBook?: string } };
+export type PosterSettings = { title: string; paper: "A4" | "A3"; colours: Record<SessionType, string>; compactCalendar?: boolean; showInfaq?: boolean; generalDonationQr?: PosterImage; reviewLabel?: string; reviewMode?: "draft" | "demo"; identity?: { name: string; addressLines: string[]; phone?: string; logos?: string; mosquePhoto?: string; yasinBook?: string } };
 
 // Fictional, in-memory timetable. Selected upstream portraits are visual QA assets only,
 // not these people's names, attendance or appointments. See the poster provenance notice.
@@ -53,25 +54,25 @@ function generatedDay(year: number, month: number, day: number, rules: Recurring
   const weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
   const occurrence = Math.ceil(day / 7);
   const matches = rules.filter((rule) => rule.isActive && rule.weekday === weekday && (rule.occurrence === 0 || rule.occurrence === occurrence));
-  if (matches.length > 2) throw new Error(`${day} ${lectureMonths[month - 1]} mempunyai lebih daripada dua sesi. Laraskan aturan sebelum menerapkannya.`);
+  if (matches.length > 2) throw new Error(`${day} ${lectureMonths[month - 1]} has more than two sessions. Adjust the rules before applying.`);
   if (matches.length) return { day, isManualOverride: false, sessions: matches.map((rule) => ({ id: `${rule.id}-${day}`, sessionType: rule.sessionType, speakerId: rule.speakerId, topic: rule.topic, sourceRuleId: rule.id })).sort((a, b) => order[a.sessionType] - order[b.sessionType]) };
 }
 
 export function updateDay(schedule: MonthSchedule, day: number, sessions: Session[]): MonthSchedule {
   assertScheduleDay(schedule, day);
-  if (sessions.length > 2) throw new Error("Maksimum dua sesi bagi setiap tarikh.");
+  if (sessions.length > 2) throw new Error("Maximum two sessions per date.");
   const existing = schedule.entries.find((entry) => entry.day === day);
   return { ...schedule, entries: [...schedule.entries.filter((entry) => entry.day !== day), { ...existing, day, sessions, isManualOverride: true }].sort((a, b) => a.day - b.day) };
 }
 
 function assertScheduleDay(schedule: MonthSchedule, day: number) {
-  if (!Number.isInteger(day) || day < 1 || day > daysInMonth(schedule.year, schedule.month)) throw new Error("Pilih tarikh yang sah dalam bulan ini.");
+  if (!Number.isInteger(day) || day < 1 || day > daysInMonth(schedule.year, schedule.month)) throw new Error("Select a valid date in this month.");
 }
 
 /** A visual override preserves the exact underlying sessions, including generated sessions. */
 export function updateSpecialPoster(schedule: MonthSchedule, day: number, specialPoster?: SpecialPoster): MonthSchedule {
   assertScheduleDay(schedule, day);
-  if (specialPoster && (specialPoster.mode !== "full" || !["contain", "cover"].includes(specialPoster.fit) || (specialPoster.position !== undefined && !["top", "center", "bottom"].includes(specialPoster.position)) || !specialPoster.image.alt.trim() || !specialPoster.image.src || !Number.isFinite(specialPoster.image.width) || !Number.isFinite(specialPoster.image.height) || specialPoster.image.width <= 0 || specialPoster.image.height <= 0)) throw new Error("Poster memerlukan gambar, teks alternatif dan fit yang sah.");
+  if (specialPoster && (specialPoster.mode !== "full" || !["contain", "cover"].includes(specialPoster.fit) || (specialPoster.position !== undefined && !["top", "center", "bottom"].includes(specialPoster.position)) || !specialPoster.image.alt.trim() || !specialPoster.image.src || !Number.isFinite(specialPoster.image.width) || !Number.isFinite(specialPoster.image.height) || specialPoster.image.width <= 0 || specialPoster.image.height <= 0)) throw new Error("Poster requires a valid image, alt text and fit.");
   const existing = schedule.entries.find((entry) => entry.day === day);
   const entry: DayEntry = { ...existing, day, sessions: existing?.sessions ?? [], isManualOverride: true };
   if (specialPoster) entry.specialPoster = specialPoster;
@@ -87,7 +88,7 @@ export function restoreScheduleDay(schedule: MonthSchedule, day: number, rules: 
 }
 
 export function lectureMonthDocumentId(year: number, month: number): string {
-  if (!Number.isInteger(year) || year < 2020 || year > 2100 || !Number.isInteger(month) || month < 1 || month > 12) throw new Error("Bulan/tahun jadual tidak sah.");
+  if (!Number.isInteger(year) || year < 2020 || year > 2100 || !Number.isInteger(month) || month < 1 || month > 12) throw new Error("Invalid Jadual month or year.");
   return `lectureMonth-${monthKey(year, month)}`;
 }
 

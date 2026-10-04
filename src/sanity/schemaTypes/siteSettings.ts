@@ -46,6 +46,11 @@ export const siteSettings = defineType({
       defineField({ name: "primaryQr", title: "Artwork QR sumbangan umum", type: "image", options: { hotspot: false }, description: "Artwork penuh berjenama masjid umum sahaja. Jangan gunakan QR Dapur Zohor atau potong/ubah artwork.", validation: (rule) => rule.required().custom(validateImage).custom((value) => !value?.crop && !value?.hotspot || "Artwork QR tidak boleh dipotong atau menggunakan hotspot."), fields: [
         defineField({ name: "alt", title: "Penerangan imej", type: "string", validation: (rule) => rule.required() }),
       ] }),
+      defineField({ name: "compactQr", title: "Compact Infaq QR (optional)", type: "image", options: { hotspot: false }, description: "Approved square QR-only original for Jadual Kuliah. The public donation section keeps primaryQr. Preserve the complete image and quiet zone; no crop or hotspot.", validation: (rule) => rule.custom(validateImage).custom((value) => !value || !value.crop && !value.hotspot || "Compact QR must not have a crop or hotspot.").custom((value) => {
+        if (!value?.asset?._ref) return true;
+        const dimensions = value.asset._ref.match(/^image-[a-f0-9]{40}-(\d+)x(\d+)-(png|jpg|webp)$/);
+        return !!dimensions && dimensions[1] === dimensions[2] || "Compact QR must reference a square PNG, JPG or WebP original.";
+      }), fields: [defineField({ name: "alt", title: "Image alt text", type: "string", validation: (rule) => rule.required().max(300) })] }),
     ] }),
   ],
   preview: { prepare: () => ({ title: "Site Settings", subtitle: "Tetapan global website" }) },
