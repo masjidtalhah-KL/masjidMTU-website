@@ -4,7 +4,7 @@
 // Rendering adapted from JadualKuliahBulanan (378b1bb), 2026-10-01.
 // See docs/third-party/JADUAL-KULIAH-NOTICE.md for upstream sources and changes.
 import { useEffect, useId, useState, type Ref } from "react";
-import { lectureMonths, sessionLabel, type MonthSchedule, type PosterSettings, type PosterImage, type Session, type Speaker } from "./model";
+import { lectureMonths, sessionLabel, type MonthSchedule, type PosterSettings, type PosterImage, type Session, type Speaker } from "./poster-model";
 import { approximateText, fitPosterCopy, fitSingleLine, POSTER, POSTER_FONTS, POSTER_WEEKDAYS, WEEKDAY_HEADER, weekdayLabelPosition, portraitBounds, posterCellRects, infaqPlacement, infaqGeometry, type MeasureText, type TextStyle } from "./poster-layout";
 
 function Lines({ lines, x, y, style, lineHeight = 1.07, outline = false }: { lines: string[]; x: number; y: number; style: TextStyle; lineHeight?: number; outline?: boolean }) {
@@ -107,7 +107,7 @@ export function LecturePoster({ schedule, speakers, settings, svgRef, gridHeight
   const warnings = cells.filter(({ geometry }) => geometry.some(({ copy }) => !copy.fits)).map(({ day }) => day);
 
   return <>
-    <svg ref={svgRef} xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 1240 ${layout.height}`} role="img" aria-label={settings.reviewMode === "published" ? `Jadual Kuliah ${lectureMonths[schedule.month - 1]} ${schedule.year}. Versi diterbitkan di CMS.` : settings.reviewMode === "draft" ? `Draft Jadual Kuliah ${lectureMonths[schedule.month - 1]} ${schedule.year}. Belum diterbitkan; untuk semakan Studio.` : `Poster contoh ${lectureMonths[schedule.month - 1]} ${schedule.year}. Foto rujukan untuk demo, bukan jadual rasmi.`} data-lecture-poster="true" data-fonts-ready={fontsReady} data-overflow={warnings.length ? warnings.join(", ") : undefined} style={{ display: "block", width: "100%", height: "auto", fontFamily: "Arial, sans-serif" }}>
+    <svg ref={svgRef} xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 1240 ${layout.height}`} role="img" aria-label={settings.reviewMode === "official" ? `Jadual Kuliah rasmi ${lectureMonths[schedule.month - 1]} ${schedule.year}.` : settings.reviewMode === "published" ? `Jadual Kuliah ${lectureMonths[schedule.month - 1]} ${schedule.year}. Versi diterbitkan di CMS.` : settings.reviewMode === "draft" ? `Draft Jadual Kuliah ${lectureMonths[schedule.month - 1]} ${schedule.year}. Belum diterbitkan; untuk semakan Studio.` : `Poster contoh ${lectureMonths[schedule.month - 1]} ${schedule.year}. Foto rujukan untuk demo, bukan jadual rasmi.`} data-lecture-poster="true" data-fonts-ready={fontsReady} data-overflow={warnings.length ? warnings.join(", ") : undefined} style={{ display: "block", width: "100%", height: "auto", fontFamily: "Arial, sans-serif" }}>
       <defs>
         <linearGradient id={`${uid}-bg`} x1="0" y1="0" x2="0" y2="1"><stop offset=".2" stopColor="#0e2642"/><stop offset="1" stopColor="#537793"/></linearGradient>
         <linearGradient id={`${uid}-address`}><stop stopColor="#00a99d" stopOpacity="0"/><stop offset=".42" stopColor="#00a99d"/></linearGradient>
@@ -174,8 +174,8 @@ export function LecturePoster({ schedule, speakers, settings, svgRef, gridHeight
           </g>
         </g>;
       })}
-      <text x="620" y={layout.height - 4} textAnchor="middle" fontSize="8" fill="white" letterSpacing=".35">{settings.reviewLabel ?? "DATA CONTOH · FOTO RUJUKAN UNTUK DEMO · BUKAN JADUAL RASMI"}</text>
+      {settings.reviewMode !== "official" && <text x="620" y={layout.height - 4} textAnchor="middle" fontSize="8" fill="white" letterSpacing=".35">{settings.reviewLabel ?? "DATA CONTOH · FOTO RUJUKAN UNTUK DEMO · BUKAN JADUAL RASMI"}</text>}
     </svg>
-    {!!warnings.length && <p role="status" style={{ margin: 0, padding: "10px 14px", background: "#fff4d8", color: "#755919", fontSize: 13 }}>Text overflows dates {warnings.join(", ")}. Shorten it before exporting; full text is preserved in the editor.</p>}
+    {!!warnings.length && <p role="status" style={{ margin: 0, padding: "10px 14px", background: "#fff4d8", color: "#755919", fontSize: 13 }}>{settings.reviewMode === "official" ? `Teks pada tarikh ${warnings.join(", ")} melebihi ruang poster. Muat turun tidak tersedia; sila hubungi pihak masjid.` : `Text overflows dates ${warnings.join(", ")}. Shorten it before exporting; full text is preserved in the editor.`}</p>}
   </>;
 }

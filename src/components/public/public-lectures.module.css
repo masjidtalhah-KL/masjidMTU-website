@@ -1,0 +1,281 @@
+.section {
+  padding-block: 3rem;
+}
+.monthNav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.monthNav > a {
+  font-size: 0.88rem;
+  font-weight: 650;
+  border: 0;
+  background: none;
+  color: var(--color-blue-700);
+  padding: 0.6rem 0;
+}
+.previousMonth {
+  grid-column: 1;
+  grid-row: 1;
+}
+.nextMonth {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: right;
+}
+.currentMonth,
+.monthChoice {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+}
+.monthNav .currentMonth,
+.monthChoice summary {
+  padding: 0.7rem 1.25rem;
+  border: 1px solid var(--color-gold-200);
+  border-radius: 99px;
+  color: var(--color-navy-950);
+  background: white;
+  font-size: 1rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.monthChoice {
+  position: relative;
+}
+.monthChoice summary {
+  cursor: pointer;
+}
+.monthChoice ul {
+  position: absolute;
+  z-index: 2;
+  list-style: none;
+  background: white;
+  box-shadow: var(--shadow-raised);
+  border-radius: 1rem;
+  min-width: 100%;
+  padding: 0.75rem;
+  max-height: 18rem;
+  overflow-y: auto;
+}
+.monthChoice li a {
+  display: block;
+  padding: 0.5rem;
+  white-space: nowrap;
+}
+.notice {
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--color-gold-500);
+  background: white;
+  color: var(--color-ink-muted);
+  border-radius: 0.4rem;
+  overflow-wrap: anywhere;
+}
+.figure {
+  margin: 0;
+  min-width: 0;
+}
+.figure figcaption {
+  margin-bottom: 1.5rem;
+}
+.figure h2,
+.scheduleHeading h2 {
+  margin: 0;
+  color: var(--color-navy-950);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+.poster {
+  border-radius: 0.9rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  background: var(--color-navy-950);
+  width: 100%;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.actions button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+  transform: none;
+}
+.hint {
+  margin: 0.9rem 0 0;
+  color: var(--color-ink-muted);
+  font-size: 0.85rem;
+  max-width: 55rem;
+}
+.scheduleHeading {
+  margin-bottom: 2rem;
+}
+.scheduleHeading > p:last-child {
+  color: var(--color-ink-muted);
+  margin-bottom: 0;
+}
+.schedule {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.day {
+  min-width: 0;
+  border: 1px solid #e5e9ee;
+  border-radius: 1rem;
+  padding: 1.4rem 1.5rem;
+  background: white;
+}
+.day h3 {
+  margin: 0 0 1.1rem;
+  color: var(--color-navy-950);
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1.4;
+}
+.sessions {
+  display: grid;
+  gap: 1.1rem;
+}
+.session h4,
+.special h4 {
+  margin: 0;
+  color: var(--color-blue-700);
+  font-size: 0.8rem;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+}
+.session + .session {
+  padding-top: 1rem;
+  border-top: 1px solid #eceef1;
+}
+.speaker {
+  margin: 0.45rem 0 0;
+  font-size: 0.98rem;
+  font-weight: 650;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+.topic {
+  margin: 0.4rem 0 0;
+  color: var(--color-ink-muted);
+  font-size: 0.92rem;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  line-height: 1.55;
+}
+.special p {
+  overflow-wrap: anywhere;
+}
+.special a,
+.support a {
+  color: var(--color-blue-700);
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+  font-size: 0.9rem;
+}
+.support {
+  margin: 2rem 0 0;
+}
+.empty {
+  padding: 2rem 0;
+  max-width: 40rem;
+}
+.empty h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--color-navy-950);
+}
+.empty p {
+  color: var(--color-ink-muted);
+  margin-bottom: 1.5rem;
+}
+.dialog {
+  width: calc(100% - 2rem);
+  max-width: 1300px;
+  max-height: calc(100dvh - 2rem);
+  border: 0;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  color: var(--color-ink);
+  overflow: auto;
+}
+.dialog::backdrop {
+  background: rgb(7 26 62 / 80%);
+}
+.dialogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.dialogHeader h2 {
+  font-size: 1.1rem;
+  margin: 0;
+  line-height: 1.4;
+}
+.dialog > p {
+  font-size: 0.85rem;
+  color: var(--color-ink-muted);
+}
+.fullPoster {
+  overflow: auto;
+  max-width: 100%;
+  border-radius: 0.6rem;
+}
+.fullPoster svg {
+  min-width: 1100px;
+}
+.fullPoster:focus-visible {
+  outline: 3px solid var(--color-gold-500);
+  outline-offset: 3px;
+}
+@media (max-width: 639px) {
+  .section {
+    padding-block: 2rem;
+  }
+  .monthNav {
+    gap: 0.4rem;
+    grid-template-columns: 1fr auto 1fr;
+    margin-bottom: 1.5rem;
+  }
+  .monthNav > a {
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+  .monthNav .currentMonth,
+  .monthChoice summary {
+    font-size: 0.87rem;
+    padding: 0.65rem 0.8rem;
+  }
+  .figure figcaption {
+    margin-bottom: 1rem;
+  }
+  .schedule {
+    grid-template-columns: 1fr;
+  }
+  .day {
+    padding: 1.2rem;
+  }
+  .actions {
+    gap: 0.5rem;
+  }
+  .actions :global(.button) {
+    flex: 1;
+    min-width: 140px;
+  }
+  .actions :global(.button):last-child {
+    flex-basis: 100%;
+  }
+  .dialog {
+    padding: 0.8rem;
+  }
+}

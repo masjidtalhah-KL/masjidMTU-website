@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-only
 // Adapted geometry/compact calendar from JadualKuliahBulanan, commit 378b1bb.
 // React/SVG adaptation: 2026-10-01. See docs/third-party/JADUAL-KULIAH-NOTICE.md.
-import { calendarOffset, daysInMonth } from "./model";
+import { calendarOffset, daysInMonth } from "./poster-model";
 
 export const POSTER = { width: 1240, height: 877, left: 34, top: 238, gridWidth: 1172, gridHeight: 621, columnGap: 13, rowGap: 9 } as const;
 export const POSTER_FONTS = { title: '"Arial Black", Arial, sans-serif', topic: '"Arial Narrow", "Liberation Sans Narrow", Arial, sans-serif', name: "Arial, sans-serif" };

@@ -12,6 +12,7 @@ const profileLinks = [
 ] as const;
 
 const mainLinks = [
+  { label: "Kuliah", href: "/kuliah" },
   { label: "Galeri", href: "/galeri" },
   { label: "Hubungi", href: "/hubungi" },
 ] as const;
@@ -193,7 +194,7 @@ function NavigationLinks({
           key={href}
           className="public-nav__link"
           href={href}
-          aria-current={pathname === href ? "page" : undefined}
+          aria-current={pathname === href || (href === "/kuliah" && pathname.startsWith("/kuliah/")) ? "page" : undefined}
           onClick={onNavigate}
         >
           {label}
@@ -252,7 +253,7 @@ export function PublicNavigation() {
             key={href}
             className="public-nav__link"
             href={href}
-            aria-current={pathname === href ? "page" : undefined}
+            aria-current={pathname === href || (href === "/kuliah" && pathname.startsWith("/kuliah/")) ? "page" : undefined}
           >
             {label}
           </Link>

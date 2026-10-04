@@ -518,3 +518,18 @@ integration have not started. Owner-approved desktop/mobile and PNG/PDF QA pass.
 Checkpoint: `phase-5.3c-controlled-lecture-publication`.
 [Final validation](LECTURE-PUBLICATION-CLOSEOUT.md);
 [immutable publication execution](LECTURE-FIRST-PUBLICATION-EXECUTION.md).
+
+
+## 4 October 2026 (+08:00) — Fasa 5.3D completed
+
+Read-only public Jadual Kuliah, shareable published-month navigation, official
+shared poster/public PNG/PDF, accessible date/session HTML and Navbar integration
+are complete. Owner-approved implementation received final mobile schedule,
+full-poster viewer and public download QA. Single-month navigation hides
+unavailable neighbours. All 229 relevant tests, lint, production build,
+schema/current-state verification and route regressions pass.
+Production remains unchanged: October revision `zVZDfWLj75qTdy5eh9rsNA`,
+0 drafts / 1 published lecture month / 85 images, 30 dates / 34 sessions.
+Checkpoint: `phase-5.3d-public-kuliah`.
+No CMS mutation or homepage lecture integration.
+[Architecture and QA](PUBLIC-LECTURES.md).

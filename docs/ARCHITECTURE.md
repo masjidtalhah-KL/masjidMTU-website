@@ -1,5 +1,18 @@
 # Architecture Projek
 
+## Fasa 5.3D — completed
+
+4 October 2026 (+08:00). The read-only public `/kuliah` and bookmarkable
+`/kuliah/YYYY-MM` views are implemented using published Sanity only, with
+five-minute revalidation, shared official poster/PNG/PDF and accessible Malay
+schedule. Kuliah is in desktop/mobile navigation. Production remains unchanged;
+homepage lecture integration has not started. Checkpoint:
+`phase-5.3d-public-kuliah` (resolve the tag for the final commit).
+Final 375/430px schedule/viewer QA and real public PNG/PDF actions pass.
+Unavailable month neighbours are hidden. All 229 tests and final validation pass.
+[Architecture and verification](PUBLIC-LECTURES.md). Earlier checkpoint sections below
+remain historical records.
+
 ## Fasa 5.3C — completed
 
 4 October 2026 (+08:00). Checkpoint:

@@ -535,3 +535,28 @@ integration have not started. Owner-approved desktop/mobile and PNG/PDF QA pass.
 Checkpoint: `phase-5.3c-controlled-lecture-publication`.
 [Final validation](LECTURE-PUBLICATION-CLOSEOUT.md);
 [immutable publication execution](LECTURE-FIRST-PUBLICATION-EXECUTION.md).
+
+
+## Fasa 5.3D public lecture decisions — 4 October 2026 (+08:00)
+
+Public URLs are `/kuliah` (current published month, otherwise latest with notice)
+and `/kuliah/YYYY-MM` (shareable published snapshot). Typed server-only token-free
+published reads revalidate every 300 seconds. No schedules are invented during
+absence/outage; malformed/auth/query failures remain errors. Shared poster/export
+code is reused with an official presentation that removes admin labels. Full
+special posters hide preserved sessions in both artwork and public text; text
+exposes their alt description/artwork link. A restricted GET-only same-origin
+image endpoint serves only referenced published assets for CORS-independent
+downloads. Pure poster definitions are separated from editor fixtures so the
+public browser bundle excludes demo/save/publish workflows.
+
+The D18 GPL/combined-application decision remains unresolved and unchanged.
+Existing renderer/layout notices are retained; no new reference-repository
+implementation is copied. No Sanity mutation or homepage lecture integration.
+Fasa 5.3D is complete after owner approval and final QA. Unavailable previous/next
+controls are hidden; the centred current-month link remains. Published neighbours
+appear naturally when available. Mobile inspection uses an internally pannable
+landscape poster dialog, with keyboard panning, Tutup and Escape.
+Public exports use the published month and preserve Studio's default behaviour.
+Checkpoint: `phase-5.3d-public-kuliah`.
+[Full public contract and QA](PUBLIC-LECTURES.md).

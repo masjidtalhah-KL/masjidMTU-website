@@ -13,7 +13,7 @@ export function allowedPosterAsset(href: string, origin: string, cmsBase?: strin
   if (url.origin === origin) return true;
   return cmsBase === "https://cdn.sanity.io/images/2o95jmms/production/" && url.protocol === "https:" && url.origin === "https://cdn.sanity.io" && url.href.startsWith(cmsBase) && /^\/[\w/.-]+$/.test(url.pathname);
 }
-async function posterCanvas(svg: SVGSVGElement, paper: "A4" | "A3", cmsBase?: string): Promise<HTMLCanvasElement> {
+async function posterCanvas(svg: SVGSVGElement, paper: "A4" | "A3", cmsBase?: string, assetFetchUrl?: (href: string) => string): Promise<HTMLCanvasElement> {
   await document.fonts.ready;
   if (svg.dataset.fontsReady !== "true") throw new Error("Wait for poster fonts to finish measuring.");
   if (svg.dataset.overflow) throw new Error(`Text overflows date ${svg.dataset.overflow}. Shorten it before exporting.`);
@@ -28,7 +28,9 @@ async function posterCanvas(svg: SVGSVGElement, paper: "A4" | "A3", cmsBase?: st
     const url = new URL(href, window.location.origin);
     if (!allowedPosterAsset(href, window.location.origin, cmsBase)) throw new Error("Poster assets must be same-origin or on the approved Sanity project CDN.");
     if (!assets.has(url.href)) assets.set(url.href, (async () => {
-      const response = await fetch(url, { credentials: url.origin === window.location.origin ? "same-origin" : "omit" });
+      const fetchUrl = new URL(assetFetchUrl?.(url.href) ?? url.href, window.location.origin);
+      if (!allowedPosterAsset(fetchUrl.href, window.location.origin, cmsBase)) throw new Error("Invalid poster download source.");
+      const response = await fetch(fetchUrl, { credentials: fetchUrl.origin === window.location.origin ? "same-origin" : "omit" });
       if (!response.ok) throw new Error(`Could not read poster asset: ${url.pathname}`);
       return dataUrl(await response.blob());
     })());
@@ -80,9 +82,10 @@ export function rasterPdf(canvas: Pick<HTMLCanvasElement, "width" | "height" | "
   return new Blob(parts.map((part) => part.buffer as ArrayBuffer), { type: "application/pdf" });
 }
 
-export async function exportPoster(svg: SVGSVGElement, format: "png" | "pdf", filename: string, paper: "A4" | "A3", cmsBase?: string) {
-  const canvas = await posterCanvas(svg, paper, cmsBase);
-  if (format === "pdf") { download(rasterPdf(canvas, paper), `${filename}-prototype.pdf`); return; }
+export async function exportPoster(svg: SVGSVGElement, format: "png" | "pdf", filename: string, paper: "A4" | "A3", cmsBase?: string, options: { reviewOnly?: boolean; assetFetchUrl?: (href: string) => string } = {}) {
+  const canvas = await posterCanvas(svg, paper, cmsBase, options.assetFetchUrl);
+  const suffix = options.reviewOnly === false ? "" : "-prototype";
+  if (format === "pdf") { download(rasterPdf(canvas, paper), `${filename}${suffix}.pdf`); return; }
   const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob((value) => value ? resolve(value) : reject(new Error("Could not generate PNG.")), "image/png"));
-  download(blob, `${filename}-prototype.png`);
+  download(blob, `${filename}${suffix}.png`);
 }
