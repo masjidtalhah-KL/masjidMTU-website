@@ -5,6 +5,7 @@ import { useClient, useCurrentUser, useWorkspace, validateDocument } from "sanit
 import type { SanityDocument } from "@sanity/client";
 import { LectureGeneratorTool } from "./LectureGeneratorTool";
 import { loadMonth, prepareSave, saveDraft, type DraftAdapter } from "./draft-persistence";
+import { preparePublication, publishReviewedMonth } from "./publication";
 
 /** Only mounted by the authenticated Studio tool. No private/write environment token. */
 export function StudioLectureGenerator() {
@@ -24,6 +25,8 @@ export function StudioLectureGenerator() {
       load: (year, month) => loadMonth(client, year, month),
       prepare: async (...args) => { const prepared = await prepareSave(client, ...args); await validate(prepared.plan.payload, prepared.plan.assets.map(a => a.assetId)); return prepared; },
       save: (prepared, base) => saveDraft(client, prepared, base, (document, uploaded) => validate(document, uploaded ? [] : prepared.plan.assets.map(a => a.assetId))),
+      preparePublication: (base, year, month) => preparePublication(client, base, year, month, validate),
+      publish: (plan, confirmation) => publishReviewedMonth(client, plan, confirmation, validate),
     };
   }, [studioClient, workspace]);
   if (!user) return <p role="status">Sign in to Studio to load and prepare a Jadual draft.</p>;

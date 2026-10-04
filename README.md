@@ -1,5 +1,39 @@
 # Website Rasmi Masjid Talhah Bin Ubaidillah, Bukit Jalil
 
+## Fasa 5.3C — completed
+
+4 October 2026 (+08:00). Checkpoint:
+`phase-5.3c-controlled-lecture-publication` (resolve the tag for the final commit).
+
+October 2026 is the first published `lectureMonth`: `lectureMonth-2026-10`,
+revision `zVZDfWLj75qTdy5eh9rsNA`, 30 stored dates / 34 sessions / 29 resolved
+portrait references. Authenticated verification confirms 0 drafts, 1 published
+lecture month, 85 image assets, 0 lectureSpeaker and 0 lectureRule documents.
+`showInfaq: true`; the compact QR remains mosque-wide
+`siteSettings.donationInfo.compactQr`, never duplicated into a month.
+
+Publish Jadual requires a saved, unchanged draft, explicit modal confirmation and
+fresh schema/reference/revision/content guards immediately before mutation.
+Stale or conflicting drafts stop publication. It never autosaves. Supported Sanity
+publication removed the October draft as observed; authenticated read-back and
+refresh/reopen show Published with identical content. The Studio UI did not retain
+the action transaction ID; none is invented or inferred from the document revision.
+
+Content SHA256:
+`d18eb8c75642d32065fe509e9ba5f219a7d68c5989c7fc6cf4b538cb5fa547b6`.
+All six approved Unicode/name/topic/portrait-alt fields remain exact. The original
+failed/corrupted plan, guard failure, approved correction/fingerprint and prior
+execution evidence remain immutable. No unrelated revisions or assets changed.
+
+Desktop/mobile and PNG/A4 landscape PDF QA are owner-approved. Studio operations
+remain English-first; poster output remains Malay. **Public /kuliah and homepage
+lecture integration have not started.** Earlier phase sections below are historical
+checkpoint records; they do not describe the current publication state.
+
+[Publication workflow](docs/LECTURE-PUBLICATION.md);
+[immutable execution evidence](docs/LECTURE-FIRST-PUBLICATION-EXECUTION.md);
+[final closeout verification](docs/LECTURE-PUBLICATION-CLOSEOUT.md).
+
 ## Fasa 5.3B — completed
 4 October 2026 (+08:00). Checkpoint: `phase-5.3b-lecture-draft-persistence`.
 The first real October snapshot is persisted only as

@@ -1,0 +1,169 @@
+{
+  "phase": "5.3C",
+  "status": "completed",
+  "ownerApproval": "Publication, desktop/mobile Studio and PNG/PDF QA approved; final closeout/checkpoint authorized",
+  "verifiedAt": "2026-10-04T10:49:28.225017+00:00",
+  "checkpointTag": "phase-5.3c-controlled-lecture-publication",
+  "commitMessage": "feat: complete Fasa 5.3C controlled lecture publication",
+  "production": {
+    "verifiedAt": "2026-10-04T10:45:08.879Z",
+    "target": {
+      "projectId": "2o95jmms",
+      "dataset": "production"
+    },
+    "action": "supported Sanity create-if-absent + document.publish, one atomic action batch; Studio acknowledged and authenticated read-back verified",
+    "publishedId": "lectureMonth-2026-10",
+    "publishedRevision": "zVZDfWLj75qTdy5eh9rsNA",
+    "createdAt": "2026-10-04T04:42:03Z",
+    "updatedAt": "2026-10-04T10:20:27Z",
+    "draftRemoved": true,
+    "dates": 30,
+    "sessions": 34,
+    "contentFingerprint": "d18eb8c75642d32065fe509e9ba5f219a7d68c5989c7fc6cf4b538cb5fa547b6",
+    "approvedPlanFingerprint": "875b6e19e4fcbbad4b5c741a46dc815770b6aa8536fbad5ea146c18ddf4aa160",
+    "exactContentEquivalent": true,
+    "unicode": [
+      {
+        "value": "AL-QUR’AN\n& TAJWID",
+        "exact": true
+      },
+      {
+        "value": "UST K. NI’MAT",
+        "exact": true
+      },
+      {
+        "value": "Potret UST K. NI’MAT",
+        "exact": true
+      },
+      {
+        "value": "UST MUHD MU’IZZ",
+        "exact": true
+      },
+      {
+        "value": "Potret UST MUHD MU’IZZ",
+        "exact": true
+      },
+      {
+        "value": "KITAB MATLA’\nAL-BADRAIN",
+        "exact": true
+      }
+    ],
+    "resolvedImages": 29,
+    "showInfaq": true,
+    "unrelatedRevisionsUnchanged": true,
+    "settingsUnchanged": true,
+    "assetsUnchanged": true,
+    "assetUploads": 0,
+    "inventory": {
+      "drafts": 0,
+      "publishedLectureMonths": 1,
+      "lectureSpeaker": 0,
+      "lectureRule": 0,
+      "program": 1,
+      "announcement": 0,
+      "newsPost": 1,
+      "imageAssets": 85
+    },
+    "schemaValidation": {
+      "errors": [],
+      "warnings": [],
+      "documentsValidated": 1,
+      "references": "remote read-only"
+    },
+    "closeout": "Owner-approved final closeout; read-only validation"
+  },
+  "validation": {
+    "lint": "passed",
+    "productionBuild": "passed with live Sanity access, no outage fallback",
+    "diffCheck": "passed",
+    "auditWhitespaceException": {
+      "file": "docs/LECTURE-FIRST-PUBLICATION-EXECUTION.md",
+      "reason": "Preserve the immutable historical final blank line and exact SHA256; only blank-at-eof is excluded for this one file. Trailing whitespace and indentation checks remain active."
+    },
+    "schemaExtraction": "passed with enforced required fields",
+    "publishedSchemaValidation": {
+      "errors": [],
+      "warnings": [],
+      "documentsValidated": 1,
+      "references": "remote read-only"
+    },
+    "currentPublicContract": "passed; historical base and approved image hashes remain available; editorial/settings schema passed",
+    "tests": {
+      "passed": 213,
+      "failed": 0,
+      "skipped": 0,
+      "coverage": [
+        "publication eligibility/confirmation/stale revisions/network failures/double-submit/state transitions",
+        "Save Draft serialization/revision protection/snapshots/asset reuse",
+        "six exact Unicode corrections",
+        "recurrence/manual overrides and full-poster/Infaq renderer",
+        "PNG export asset policy and A4/A3 one-page PDF structure",
+        "public-content/homepage/outage/malformed and migration regressions"
+      ]
+    },
+    "routes": [
+      {
+        "route": "/",
+        "status": 200
+      },
+      {
+        "route": "/profil",
+        "status": 200
+      },
+      {
+        "route": "/profil/organisasi",
+        "status": 200
+      },
+      {
+        "route": "/profil/surau-kariah",
+        "status": 200
+      },
+      {
+        "route": "/galeri",
+        "status": 200
+      },
+      {
+        "route": "/hubungi",
+        "status": 200
+      },
+      {
+        "route": "/studio/penjana-jadual-kuliah",
+        "status": 200
+      },
+      {
+        "route": "/kuliah",
+        "status": 404
+      }
+    ],
+    "exports": {
+      "png": "3508x2480; actual Studio export owner-approved, SHA256 unchanged",
+      "pdf": "one-page A4 landscape; actual Studio export owner-approved, SHA256 unchanged"
+    },
+    "studioQa": "owner-approved Published state refresh/reopen, desktop/mobile, English-first operations and Malay poster"
+  },
+  "historicalAuditFilesUnchanged": {
+    "docs/LECTURE-COMPACT-QR-DRY-RUN.json": "c8240939e20f6c8dd92387474d1cf32ccc369d91f4ec3b2b585dba2af68353fc",
+    "docs/LECTURE-DRAFT-PERSISTENCE-CLOSEOUT.json": "a21555c9e7e27641d692884a8358e045844e3b917b05ab1f9bf5283ad33623ab",
+    "docs/LECTURE-DRAFT-PERSISTENCE-CLOSEOUT.md": "13e40c81c244e251abf7d0c41823c6c6b3dc4dce73868bc9b7cd7e05b7c49660",
+    "docs/LECTURE-FIRST-PUBLICATION-DRY-RUN.json": "8380c426941d2802ab679d153e360616beb6b686e0e8e546451b1cdcc13b1631",
+    "docs/LECTURE-FIRST-PUBLICATION-EXECUTION.json": "27a00a3c404e902e5b90c1425f7abae1f0d63f4759fbbae8064f038f76796c2f",
+    "docs/LECTURE-FIRST-PUBLICATION-EXECUTION.md": "ccf6a104865e4a2bbff48cbaabe21378294eb328e7e02e1d530151e767b5f336",
+    "docs/LECTURE-FIRST-SAVE-APPROVED.json": "dfbb4c4607e8ae49b03a881f44a06b67b3bb93c1696c495ff3196e70d13894fc",
+    "docs/LECTURE-FIRST-SAVE-DRY-RUN.json": "5e0c1826f1b9bab2fc2cafe94d555710ecd0b77bb541cc92db4d3eaec531095a",
+    "docs/LECTURE-FIRST-SAVE-EXECUTION.json": "a1fdaf661aa40162ad35cde4fd974257848d68eec6ef72472b3ec72083467dfc",
+    "docs/LECTURE-FIRST-SAVE-EXECUTION.md": "204f2567aba28ab09fd2259616328e84ee2f60979e11e4ef1ec48c875bbe881a",
+    "docs/LECTURE-FIRST-SAVE-GUARD-FAILURE.json": "998ec80c30c782f25847771551960ac5e999c48bcab94729a5a0905608b676c6",
+    "docs/SANITY-MIGRATION.md": "43e64b814e8de24084e4f1f5bdd7c09038ff6d6521e3278954a91213ec8ad98d",
+    "docs/SANITY-PUBLICATION.md": "4d7f4817c2d93b7d25705e8aa6a1dd62b0948a9460db3f1236e8331d8a016522"
+  },
+  "transactionId": "Studio UI did not retain the action transaction ID; none invented or inferred",
+  "productionWritesDuringCloseout": 0,
+  "boundaries": {
+    "publicKuliahPage": "not started; 404",
+    "homepageLectureIntegration": "not started",
+    "lectureSpeaker": 0,
+    "lectureRule": 0,
+    "compactQr": "mosque-wide siteSettings.donationInfo.compactQr; showInfaq only stored in month",
+    "otherSanityRevisions": "unchanged"
+  }
+}

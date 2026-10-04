@@ -11,6 +11,8 @@ import { applyRecurringRules, createReviewSchedule, demoSpecialPoster, restoreSc
 import styles from "./generator.module.css";
 import { useDraftWorkflow } from "./useDraftWorkflow";
 import type { DraftAdapter, LoadedMonth } from "./draft-persistence";
+import { usePublicationWorkflow } from "./usePublicationWorkflow";
+import { PublishConfirmation } from "./PublishConfirmation";
 import { lectureEditorMonths as editorMonths, lectureEditorWeekdays as editorWeekdays, lectureEditorOccurrences as editorOccurrences } from "../../lecture-types";
 
 const tabs = [{ id: "calendar", label: "Calendar" }, { id: "speakers", label: "Penceramah" }, { id: "rules", label: "Recurring Rules" }, { id: "settings", label: "Settings" }] as const;
@@ -65,6 +67,8 @@ export function LectureGeneratorTool({ persistence }: { persistence?: DraftAdapt
     setPosterLibrary(previous => { const images = [...previous, ...loaded.schedule.entries.flatMap(e => e.specialPoster ? [e.specialPoster.image] : [])]; return images.filter((image,index) => images.findIndex(other => (other.assetId ?? other.localHash ?? other.src) === (image.assetId ?? image.localHash ?? image.src)) === index); });
   }
   const draft = useDraftWorkflow(persistence, schedule, speakers, settings, receiveMonth, activateMonth);
+  const publication = usePublicationWorkflow(persistence, draft, schedule, settings.showInfaq !== false);
+  const renderSettings = persistence && draft.state?.loaded.base.published && !draft.state.loaded.base.draft && !draft.dirty ? { ...settings, reviewMode: "published" as const, reviewLabel: "DITERBITKAN · VERSI CMS" } : settings;
   function changeMonth(year: number, month: number) { void draft.switchMonth(year, month); }
   function setCurrentSchedule(value: MonthSchedule) { setSchedules((previous) => ({ ...previous, [currentKey]: value })); }
   function changeSessions(value: Session[]) { setCurrentSchedule(updateDay(schedule, selectedDay, value)); setMessage(""); }
@@ -117,11 +121,14 @@ export function LectureGeneratorTool({ persistence }: { persistence?: DraftAdapt
   return <div className={styles.root}>
     <header className={styles.header}>
       <div><p className={styles.eyebrow}>MASJID TALHAH BIN UBAIDILLAH</p><h1>Jadual Kuliah Generator</h1><p className={styles.subtitle}>Edit the monthly Jadual and review the poster live.</p></div>
-      <span className={styles.demoBadge}>{persistence ? "Studio · Draft only" : "Prototype · Demo data"}</span>
+      <span className={styles.demoBadge}>{persistence ? "Studio · CMS review" : "Prototype · Demo data"}</span>
     </header>
-    <div className={styles.notice}>{persistence ? <><strong>Draft only.</strong> Manual saving through your authenticated Studio session. Save Draft validates and saves only the monthly draft. No autosave. Publish remains disabled.</> : <><strong>Local demo only.</strong> Changes stay in memory and are lost on reload. Nothing is saved or published to Sanity.</>}</div>
+    <div className={styles.notice}>{persistence ? <><strong>CMS review.</strong> Manual Save Draft and explicit confirmed publication through your authenticated Studio session. No autosave. Publishing in CMS does not launch a public Kuliah page or homepage feed.</> : <><strong>Local demo only.</strong> Changes stay in memory and are lost on reload. Nothing is saved or published to Sanity.</>}</div>
     {persistence && <>
       <p className={styles.message} role="status" data-save-state={draft.phase}>{draft.status}</p>
+      {draft.state && <p className={styles.hint}>{draft.state.loaded.base.draft ? `Draft revision: ${draft.state.loaded.base.draft._rev}` : draft.state.loaded.base.published ? `Published revision: ${draft.state.loaded.base.published._rev}` : "No saved month."}</p>}
+      <p id="lecture-publication-reason" className={styles.hint} role={["conflict","error","uncertain"].includes(publication.phase) ? "alert" : "status"}>{publication.reason || "Saved draft validated. Publish Jadual opens an explicit confirmation."}</p>
+      {["conflict","error","uncertain"].includes(publication.phase) && <button type="button" onClick={() => void draft.reloadForReview()}>Reload publication state for review</button>}
       {draft.state?.loaded.warning && <p className={styles.notice}>{draft.state.loaded.warning}</p>}
       {draft.error && <p className={styles.notice} role="alert">{draft.error}</p>}
       {(draft.phase === "conflict" || draft.phase === "error") && <button type="button" onClick={() => void draft.reloadForReview()}>Reload for review</button>}
@@ -130,25 +137,26 @@ export function LectureGeneratorTool({ persistence }: { persistence?: DraftAdapt
       {draft.pending && <div className={styles.restoreConfirm} role="group" aria-label="Unsaved changes"><p>This month has unsaved changes. Switching keeps them in memory until the page is reloaded.</p><button type="button" onClick={() => void draft.switchMonth(draft.pending!.year, draft.pending!.month, true)}>Switch and keep local edits</button><button type="button" onClick={draft.cancelSwitch}>Keep editing this month</button></div>}
       {draft.prepared && <details><summary>Save Draft details</summary><pre className={styles.payload}>{JSON.stringify(draft.prepared.plan, null, 2)}</pre></details>}
     </>}
-    <fieldset className={styles.controls} disabled={draft.locked}>
+    {publication.confirmation && <PublishConfirmation plan={publication.confirmation} busy={publication.phase === "publishing"} onCancel={publication.cancel} onConfirm={() => void publication.confirm()}/>}
+    <fieldset className={styles.controls} disabled={draft.locked || publication.locked}>
     <div className={styles.toolbar}>
       <div className={styles.period}>
         <Field label="Month"><select value={schedule.month} onChange={(event) => changeMonth(schedule.year, Number(event.target.value))}>{editorMonths.map((label, index) => <option key={label} value={index + 1}>{label}</option>)}</select></Field>
         <Field label="Year"><select value={schedule.year} onChange={(event) => changeMonth(Number(event.target.value), schedule.month)}>{Array.from({ length: 81 }, (_, index) => <option key={2020 + index}>{2020 + index}</option>)}</select></Field>
       </div>
       <div className={styles.stats}><strong>{totalSessions}</strong> sessions {persistence ? "this month" : "in memory"} <span>·</span> <strong>{schedule.entries.filter(({ isManualOverride }) => isManualOverride).length}</strong> manually edited dates</div>
-      <div className={styles.exports}><button type="button" disabled={busy} onClick={() => download("png")}>{busy ? "Preparing…" : "Download PNG"}</button><button type="button" disabled={busy} onClick={() => download("pdf")}>Download PDF</button><button type="button" disabled={!persistence || draft.locked || loadingPoster} onClick={() => void draft.save()} aria-describedby="lecture-publish-note">{persistence ? "Save Draft" : "Save Draft (prototype)"}</button><button type="button" className={styles.publish} disabled aria-describedby="lecture-publish-note">Publish Jadual</button></div>
+      <div className={styles.exports}><button type="button" disabled={busy} onClick={() => download("png")}>{busy ? "Preparing…" : "Download PNG"}</button><button type="button" disabled={busy} onClick={() => download("pdf")}>Download PDF</button><button type="button" disabled={!persistence || draft.locked || publication.locked || loadingPoster} onClick={() => void draft.save()} aria-describedby="lecture-publish-note">{persistence ? "Save Draft" : "Save Draft (prototype)"}</button><button type="button" className={styles.publish} disabled={!publication.enabled || loadingPoster} onClick={() => void publication.openConfirmation()} aria-describedby="lecture-publication-reason">{publication.phase === "publishing" ? "Publishing Jadual…" : "Publish Jadual"}</button></div>
     </div>
-    <p id="lecture-publish-note" className={styles.publishNote}>{persistence ? "Save Draft validates the month and saves with revision protection. Unchanged drafts are verified without another write. Publish Jadual is disabled. Draft exports are for review only." : "Save Draft and Publish are disabled in this prototype. PNG / PDF review exports carry a Malay demo label."}</p>
+    <p id="lecture-publish-note" className={styles.publishNote}>{persistence ? "Save Draft validates and saves only the monthly draft. Publish Jadual requires a saved, unchanged draft, fresh validation and explicit confirmation. Draft exports are for review only." : "Save Draft and Publish are disabled in this prototype. PNG / PDF review exports carry a Malay demo label."}</p>
     {message && <p className={styles.message} role="status">{message}</p>}
     <div className={styles.workspace}>
       <section className={styles.preview} aria-labelledby="poster-preview-title">
         <div className={styles.previewHeading}><div><p className={styles.eyebrow}>LIVE PREVIEW</p><h2 id="poster-preview-title">Poster {lectureMonths[schedule.month - 1]} {schedule.year}</h2></div><span className={styles.liveDot}>Live</span></div>
-        <InteractiveLecturePoster schedule={schedule} speakers={speakers} settings={settings} selectedDay={selectedDay} onSelectDay={selectDay}/>
+        <InteractiveLecturePoster schedule={schedule} speakers={speakers} settings={renderSettings} selectedDay={selectedDay} onSelectDay={selectDay}/>
         <p className={styles.hint} data-infaq-status="true">{infaqStatus}</p>
         <div className={styles.legend}>{lectureSessionTypes.map(({ value, title }) => <span key={value}><i style={{ background: settings.colours[value as SessionType] }}/>{title}</span>)}</div>
         <p className={styles.hint}>Click a date cell or press Enter/Space to edit. On small screens, editing cells are taller for touch; PNG/PDF retain the print composition. Text fits the available space; overflow produces an export warning. {persistence ? "CMS snapshots remain stable after later profile changes." : "Photos and Jadual entries are demo data for review."}</p>
-        <div className={styles.future}><strong>Future publication workflow</strong><p>Edit → Preview → Save Draft → Publish → Kuliah page & poster.</p><span>{persistence ? "Fasa 5.3B stops at drafts; no publication or public Kuliah feed." : "This prototype supports editing, preview and demo downloads only."}</span></div>
+        <div className={styles.future}><strong>CMS publication workflow</strong><p>Edit → Preview → Save Draft → Review → Confirm Publish.</p><span>{persistence ? "Publication is in Sanity CMS only. Public Kuliah pages and homepage lecture feeds are separate phases." : "This prototype supports editing, preview and demo downloads only."}</span></div>
       </section>
       <section className={styles.editor} aria-label="Jadual editor">
         <div className={styles.tabs} aria-label="Editor panels">{tabs.map(({ id, label }) => <button type="button" key={id} aria-pressed={tab === id} onClick={() => setTab(id)}>{label}</button>)}</div>
@@ -234,6 +242,6 @@ export function LectureGeneratorTool({ persistence }: { persistence?: DraftAdapt
 
     </div>
     </fieldset>
-    <div className={styles.exportSnapshot} aria-hidden="true"><LecturePoster schedule={schedule} speakers={speakers} settings={settings} svgRef={svgRef}/></div>
+    <div className={styles.exportSnapshot} aria-hidden="true"><LecturePoster schedule={schedule} speakers={speakers} settings={renderSettings} svgRef={svgRef}/></div>
   </div>;
 }

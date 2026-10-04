@@ -1,0 +1,116 @@
+{
+  "verifiedAt": "2026-10-04T10:21:40.756Z",
+  "target": {
+    "projectId": "2o95jmms",
+    "dataset": "production"
+  },
+  "action": "supported Sanity create-if-absent + document.publish, one atomic action batch; Studio acknowledged and authenticated read-back verified",
+  "publishedId": "lectureMonth-2026-10",
+  "publishedRevision": "zVZDfWLj75qTdy5eh9rsNA",
+  "createdAt": "2026-10-04T04:42:03Z",
+  "updatedAt": "2026-10-04T10:20:27Z",
+  "draftRemoved": true,
+  "dates": 30,
+  "sessions": 34,
+  "contentFingerprint": "d18eb8c75642d32065fe509e9ba5f219a7d68c5989c7fc6cf4b538cb5fa547b6",
+  "approvedPlanFingerprint": "875b6e19e4fcbbad4b5c741a46dc815770b6aa8536fbad5ea146c18ddf4aa160",
+  "exactContentEquivalent": true,
+  "unicode": [
+    {
+      "value": "AL-QUR’AN\n& TAJWID",
+      "exact": true
+    },
+    {
+      "value": "UST K. NI’MAT",
+      "exact": true
+    },
+    {
+      "value": "Potret UST K. NI’MAT",
+      "exact": true
+    },
+    {
+      "value": "UST MUHD MU’IZZ",
+      "exact": true
+    },
+    {
+      "value": "Potret UST MUHD MU’IZZ",
+      "exact": true
+    },
+    {
+      "value": "KITAB MATLA’\nAL-BADRAIN",
+      "exact": true
+    }
+  ],
+  "resolvedImages": 29,
+  "showInfaq": true,
+  "unrelatedRevisionsUnchanged": true,
+  "settingsUnchanged": true,
+  "assetsUnchanged": true,
+  "assetUploads": 0,
+  "inventory": {
+    "drafts": 0,
+    "publishedLectureMonths": 1,
+    "lectureSpeaker": 0,
+    "lectureRule": 0,
+    "program": 1,
+    "announcement": 0,
+    "newsPost": 1,
+    "imageAssets": 85
+  },
+  "schemaValidation": {
+    "errors": [],
+    "warnings": [],
+    "documentsValidated": 1,
+    "references": "remote read-only"
+  },
+  "closeout": "Awaiting owner approval; no commit or push",
+  "publicationAcknowledgement": {
+    "supportedActionBatch": true,
+    "authenticatedReadback": "passed",
+    "transactionId": "not retained by current Studio response interface; not inferred from document revision"
+  },
+  "freshGuards": {
+    "draftRevision": "SSdKRdF7e0XIFT3zzNP2ab",
+    "approvedPlanFingerprintMatched": true,
+    "contentFingerprintMatched": true,
+    "publishedTargetAbsent": true,
+    "resolvedImages": 29,
+    "noUnsavedChangesInExecutionAndOwnerStudio": true
+  },
+  "studioQa": {
+    "actualConfirmationButton": "exercised once",
+    "publishedState": "passed",
+    "publishedRevision": "zVZDfWLj75qTdy5eh9rsNA",
+    "reload": "passed",
+    "freshReopen": "passed",
+    "ownerOriginalStudioRefresh": "passed",
+    "operationalUi": "English-first",
+    "poster": "Malay",
+    "desktop": "passed at actual 1280px browser viewport",
+    "mobile": "passed in 375px authenticated Studio review iframe",
+    "compactInfaq": "rendered",
+    "contentEdits": 0
+  },
+  "exports": {
+    "png": {
+      "path": "outputs/phase-5.3c-october-published.png",
+      "dimensions": "3508x2480",
+      "sha256": "fad06de69104877b98d501c3737cc5578ade0a5030fc4d2b8c7f9ca723ce0e6d",
+      "result": "passed"
+    },
+    "pdf": {
+      "path": "outputs/phase-5.3c-october-published.pdf",
+      "pages": 1,
+      "size": "A4 landscape",
+      "sha256": "97363f8a058cf19eea4d49763b435bbebbf0d1db0c45a5ba8cfb433b41a135f4",
+      "result": "passed"
+    }
+  },
+  "warningOrConflict": "none",
+  "git": {
+    "head": "2bedc0afc482c2100b428abbe1a9190776e0f736",
+    "commitPerformed": false,
+    "pushPerformed": false
+  },
+  "historicalPlan": "docs/LECTURE-FIRST-PUBLICATION-DRY-RUN.json preserved unchanged"
+}

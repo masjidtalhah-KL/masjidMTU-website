@@ -9,7 +9,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **2** | Public Homepage | **Siap** |
 | **3** | Public Pages | **Siap** |
 | **4** | Sanity CMS | **Siap** — checkpoint 4.3C |
-| **5** | Dynamic Content | **Semasa** — 5.1/5.2/5.2A/5.2B siap; 5.3A/5.3B siap |
+| **5** | Dynamic Content | **Semasa** — 5.1/5.2/5.2A/5.2B siap; 5.3A/5.3B/5.3C siap |
 | 6 | Admin Foundation | Belum bermula |
 | 7 | Feature Flags & Campaign Engine | Belum bermula |
 | 8 | Qurban MVP | Belum bermula |
@@ -18,14 +18,17 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | 11 | Security & Production Hardening | Belum bermula |
 | 12 | Production Launch | Belum bermula |
 
-## Current gate — Fasa 5.3B completed
+## Current checkpoint — Fasa 5.3C completed
 
-The owner-approved October draft is persisted and the actual authenticated Studio
-Save Draft button has passed identical-payload validation/read-back without a
-write. Revision protection is active. October remains unpublished; Publish stays
-disabled. Checkpoint: `phase-5.3b-lecture-draft-persistence`.
-No public /kuliah or homepage lecture integration has started.
-See [final closeout](LECTURE-DRAFT-PERSISTENCE-CLOSEOUT.md).
+Owner-approved controlled October publication is complete. The first published
+month has 30 dates / 34 sessions; production has 0 drafts / 1 published lecture
+month / 85 images, and no lectureSpeaker or lectureRule documents.
+Checkpoint: `phase-5.3c-controlled-lecture-publication`.
+Publication requires explicit confirmation and fresh revision/content guards;
+stale drafts stop, and Publish Jadual never autosaves.
+[Closeout verification](LECTURE-PUBLICATION-CLOSEOUT.md);
+[immutable execution](LECTURE-FIRST-PUBLICATION-EXECUTION.md).
+**Public /kuliah and homepage lecture integration have not started.**
 
 ## Pecahan Fasa 5
 
@@ -35,9 +38,10 @@ See [final closeout](LECTURE-DRAFT-PERSISTENCE-CLOSEOUT.md).
 | 5.2 | Homepage Pengumuman, Program, Berita & Aktiviti | **Siap** — manual visual approval; `phase-5.2-homepage-editorial-integration`; pada checkpoint asal 0 published documents bagi setiap jenis |
 | 5.2A | Source reconciliation dan public information architecture | **Siap** — published ongoing Dapur, evergreen NCR, general QR dan final donation copy; `phase-5.2a-editorial-public-information`; 0 drafts / 1 Program / 0 Announcement / 0 News / 53 assets |
 | 5.2B | First real News, CMS images and optional eventDate | **Siap** — Genius Aulad published; `phase-5.2b-first-news`; 0 drafts / 1 Program / 0 Announcement / 1 News / 55 assets |
-| 5.3 | Jadual Kuliah integration | **5.3A/5.3B siap**; public integration belum dibina |
+| 5.3 | Jadual Kuliah integration | **5.3A/5.3B/5.3C siap**; public integration belum dibina |
 | 5.3A | Calendar-first UX, full poster, model/renderer and local QA | **Siap** — owner-approved UX/model/renderer; `phase-5.3a-lecture-generator-ux`; tiada production writes |
 | 5.3B | Authenticated month loading/draft persistence, snapshots and reusable assets | **Siap** — real October draft; authenticated Studio Save Draft exercised; compact QR published; Publish disabled; `phase-5.3b-lecture-draft-persistence` |
+| 5.3C | Controlled authenticated CMS lecture publication | **Siap** — first October month published after explicit approval and fresh guards; 0 drafts / 1 published month; `phase-5.3c-controlled-lecture-publication` |
 
 ## Historical Fasa 5.3A checkpoint
 

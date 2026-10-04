@@ -489,3 +489,32 @@ Kuliah integration, later phase, commit, push or Fasa 5.3B checkpoint.
 ## Fasa 5.3B operational closeout — 4 October 2026 (+08:00)
 
 The owner authorized generic authenticated manual Studio saves. The actual button validated and read back October unchanged, without upload or mutation; revision stayed SSdKRdF7e0XIFT3zzNP2ab. Create/update paths retain optimistic revision guards, with conflicts tested in a controlled simulator. Real draft accessibility replaces stale demo wording. Publish remains disabled; October remains unpublished. Compact QR stays mosque-wide and primary public QR unchanged. The six Unicode corrections, original guard failure and immutable audit remain recorded. GPL provenance and unresolved licensing decision remain intact. Checkpoint: `phase-5.3b-lecture-draft-persistence`. No subsequent/public lecture phase started. [Closeout evidence](LECTURE-DRAFT-PERSISTENCE-CLOSEOUT.md).
+
+## Fasa 5.3C — publication implementation / read-only plan, 4 October 2026 (+08:00)
+
+Eligible saved, unchanged months can open an explicit publication confirmation. Whole-month schema/reference validation and draft/published revision guards are rechecked before the supported Sanity publish action. First publication guards absence of the published target atomically; later updates guard its revision. Authenticated read-back determines success, including lost-response recovery. Conflicts/uncertain responses preserve editor state, stop retries and require reload/review. Double-submit is blocked. Exact source Unicode and alt text are covered by regression tests. The real confirmation was opened/cancelled; no production mutation or upload occurred. October remains draft-only. No public /kuliah, homepage lecture feed, commit or push. [Exact plan](LECTURE-FIRST-PUBLICATION-DRY-RUN.json); [implementation/QA](LECTURE-PUBLICATION.md).
+
+## Fasa 5.3C controlled publication closeout — 4 October 2026 (+08:00)
+
+Owner approval authorized only the exact October publication. Supported atomic
+Sanity actions and authenticated read-back produced `lectureMonth-2026-10`,
+revision `zVZDfWLj75qTdy5eh9rsNA`; its draft was removed as observed.
+Current inventory is 0 drafts / 1 published lecture month / 85 images /
+0 lectureSpeaker / 0 lectureRule, with 30 stored dates and 34 sessions.
+All 29 portraits resolve, showInfaq remains true and content fingerprint remains
+`d18eb8c75642d32065fe509e9ba5f219a7d68c5989c7fc6cf4b538cb5fa547b6`.
+
+Publish requires explicit confirmation and fresh saved-draft schema, asset,
+revision and content checks. Stale/conflicting drafts stop publication; Publish
+never autosaves. Authenticated read-back determines the final Published state.
+The UI did not retain the transaction ID; it is not invented or inferred.
+The compact Infaq QR stays mosque-wide; primary public donation QR/settings,
+all unrelated revisions and assets remain unchanged.
+
+Original Unicode/fingerprint guard failure and corrected replacement evidence
+remain immutable. GPL/provenance notices and the unresolved combined-application
+licensing decision remain unchanged. Public /kuliah and homepage lecture
+integration have not started. Owner-approved desktop/mobile and PNG/PDF QA pass.
+Checkpoint: `phase-5.3c-controlled-lecture-publication`.
+[Final validation](LECTURE-PUBLICATION-CLOSEOUT.md);
+[immutable publication execution](LECTURE-FIRST-PUBLICATION-EXECUTION.md).

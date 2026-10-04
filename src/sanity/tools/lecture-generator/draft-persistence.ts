@@ -1,4 +1,5 @@
 import type { Action, SanityClient } from "@sanity/client";
+import type { PublicationPlan } from "./publication";
 import { applyRecurringRules, type MonthSchedule, type PosterImage, type PosterSettings, type RecurringRule, type Speaker, type CmsImage, lectureMonthDocumentId } from "./model";
 import { deserializeMonth, imageView, serializeMonth, stableJson, validateCmsImage, validateMonthDocument, type MonthDocument } from "./month-document";
 
@@ -9,12 +10,13 @@ export type SavePlan={target:typeof LECTURE_TARGET;documentId:string;operation:"
 export type PreparedSave={plan:SavePlan;files:Map<string,File>};
 export type LoadedMonth={base:BaseState;schedule:MonthSchedule;showInfaq:boolean;speakers:Speaker[];rules:RecurringRule[];donationQr?:PosterImage;warning?:string;saveResult?:"saved"|"unchanged"};
 export type SaveApproval={fingerprint:string};
-export type DraftAdapter={load:(year:number,month:number)=>Promise<LoadedMonth>;prepare:(schedule:MonthSchedule,speakers:Speaker[],settings:PosterSettings,base:BaseState)=>Promise<PreparedSave>;save:(prepared:PreparedSave,base:BaseState)=>Promise<LoadedMonth>};
+export type DraftAdapter={load:(year:number,month:number)=>Promise<LoadedMonth>;prepare:(schedule:MonthSchedule,speakers:Speaker[],settings:PosterSettings,base:BaseState)=>Promise<PreparedSave>;save:(prepared:PreparedSave,base:BaseState)=>Promise<LoadedMonth>;preparePublication?:(base:BaseState,year:number,month:number)=>Promise<PublicationPlan>;publish?:(plan:PublicationPlan,confirmedFingerprint:string)=>Promise<LoadedMonth>};
 
 export class DraftConflict extends Error { constructor(message="Revision conflict. Your local edits are preserved; reload for review."){super(message);this.name="DraftConflict";} }
 export async function sha(bytes:ArrayBuffer,algorithm:"SHA-1"|"SHA-256"){return Array.from(new Uint8Array(await crypto.subtle.digest(algorithm,bytes)),b=>b.toString(16).padStart(2,"0")).join("");}
 export async function fingerprint(plan:Omit<SavePlan,"fingerprint">){return sha(new TextEncoder().encode(stableJson(plan)).buffer,"SHA-256");}
 function configured(client:SanityClient){const c=client.config();if(c.projectId!==LECTURE_TARGET.projectId||c.dataset!==LECTURE_TARGET.dataset||c.perspective!=="raw"||c.useCdn||c.maxRetries!==0)throw new Error("Client must use authenticated Studio, the intended target, raw perspective, no CDN and no retries.");}
+export { configured as assertLectureClient };
 const content=(doc:MonthDocument)=>({...doc,_rev:undefined,_createdAt:undefined,_updatedAt:undefined});
 const referenceIds=(doc:MonthDocument)=>[...new Set([...JSON.stringify(doc).matchAll(/"_ref":"([^"]+)"/g)].map(m=>m[1]))].sort();
 function sameBase(a:BaseState,b:BaseState){if((a.draft?._rev??null)!==(b.draft?._rev??null)||(a.published?._rev??null)!==(b.published?._rev??null))throw new DraftConflict();}

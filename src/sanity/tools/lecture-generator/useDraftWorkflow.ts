@@ -81,6 +81,11 @@ export function useDraftWorkflow(adapter: DraftAdapter | undefined, schedule: Mo
     setMonths(previous => ({ ...previous, [key]: { loaded: review, signature: workingSignature(review.schedule, review.showInfaq) } }));
     setPrepared(undefined); setReview(undefined); setError(""); setPhase("idle");
   }
-  const status = phase === "saving" ? "Saving…" : phase === "loading" ? "Loading month…" : phase === "conflict" ? "Revision conflict — local edits preserved" : phase === "error" ? "Validation / save failed — review error" : dirty ? "Unsaved changes" : state?.loaded.base.draft ? state.loaded.saveResult === "unchanged" ? "Draft saved — no changes needed" : "Draft saved" : state?.loaded.base.published ? "Based on published version" : "Not saved";
-  return { state, status, dirty, locked, phase, error, prepared, pending, review, backup, switchMonth, cancelSwitch: () => setPending(undefined), save, reloadForReview, useRemote };
+  function acceptPublished(loaded: LoadedMonth) {
+    callbacks.current.receive(loaded);
+    setMonths(previous => ({ ...previous, [key]: { loaded, signature: workingSignature(loaded.schedule, loaded.showInfaq) } }));
+    setPrepared(undefined); setReview(undefined); setError(""); setPhase("idle");
+  }
+  const status = phase === "saving" ? "Saving…" : phase === "loading" ? "Loading month…" : phase === "conflict" ? "Revision conflict — local edits preserved" : phase === "error" ? "Validation / save failed — review error" : dirty ? "Unsaved changes" : state?.loaded.base.draft ? state.loaded.saveResult === "unchanged" ? "Draft saved — no changes needed" : "Draft saved" : state?.loaded.base.published ? "Published" : "Not saved";
+  return { state, status, dirty, locked, phase, error, prepared, pending, review, backup, switchMonth, cancelSwitch: () => setPending(undefined), save, reloadForReview, useRemote, acceptPublished };
 }

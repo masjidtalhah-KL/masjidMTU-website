@@ -10,7 +10,7 @@ export type PosterImage = { src: string; width: number; height: number; alt: str
 export type SpecialPoster = { image: PosterImage; fit: "contain" | "cover"; position?: "top" | "center" | "bottom"; mode: "full" };
 export type DayEntry = { day: number; sessions: Session[]; isManualOverride: boolean; specialPoster?: SpecialPoster };
 export type MonthSchedule = { year: number; month: number; entries: DayEntry[] };
-export type PosterSettings = { title: string; paper: "A4" | "A3"; colours: Record<SessionType, string>; compactCalendar?: boolean; showInfaq?: boolean; generalDonationQr?: PosterImage; reviewLabel?: string; reviewMode?: "draft" | "demo"; identity?: { name: string; addressLines: string[]; phone?: string; logos?: string; mosquePhoto?: string; yasinBook?: string } };
+export type PosterSettings = { title: string; paper: "A4" | "A3"; colours: Record<SessionType, string>; compactCalendar?: boolean; showInfaq?: boolean; generalDonationQr?: PosterImage; reviewLabel?: string; reviewMode?: "draft" | "demo" | "published"; identity?: { name: string; addressLines: string[]; phone?: string; logos?: string; mosquePhoto?: string; yasinBook?: string } };
 
 // Fictional, in-memory timetable. Selected upstream portraits are visual QA assets only,
 // not these people's names, attendance or appointments. See the poster provenance notice.

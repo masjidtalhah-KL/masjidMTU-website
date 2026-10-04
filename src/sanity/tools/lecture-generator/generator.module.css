@@ -95,3 +95,14 @@
 
 .controls { border:0; padding:0; margin:0; min-width:0; }
 .payload { white-space:pre-wrap; overflow-wrap:anywhere; max-height:24rem; overflow:auto; font-size:.75rem; }
+.publishDialog { width: min(620px, calc(100vw - 32px)); box-sizing: border-box; margin: auto; max-height: calc(100dvh - 32px); overflow: auto; border: 1px solid #cbd4df; border-radius: 10px; padding: 24px; color: #162a43; background: white; font: inherit; }
+.publishDialog h2 { margin: 0 0 12px; font-size: 20px; font-weight: 650; }
+.publishDialog::backdrop { background: rgb(16 43 71 / 55%); }
+.publishDialog p { line-height: 1.5; }
+.publishDialog dl { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 10px; }
+.publishDialog dd { margin: 0; overflow-wrap: anywhere; }
+.publishDialog button { padding: 10px; border: 1px solid #cbd4df; border-radius: 5px; font: inherit; cursor: pointer; }
+.publishDialog button:disabled { cursor: default; opacity: .6; }
+.publishDialog button:focus-visible { outline: 3px solid #007aa3; outline-offset: 3px; }
+.publishDialog .primary { background: #183a66; color: white; }
+@media (max-width: 430px) { .publishDialog dl { grid-template-columns: 1fr; gap: 4px; } .publishDialog dd { margin-bottom: 10px; } }
