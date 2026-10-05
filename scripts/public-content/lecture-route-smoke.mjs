@@ -8,6 +8,16 @@ const results = await Promise.all(routes.map(async route => {
   return {route,status:response.status,html:await response.text()};
 }));
 const page = results.find(r=>r.route==="/kuliah").html;
+const home = results.find(r=>r.route==="/").html;
+const upcoming = home.match(/<section id="lectures"[\s\S]*?<\/section>/)?.[0];
+assert.ok(upcoming, "Homepage upcoming Kuliah section");
+assert.match(upcoming, /Kuliah terdekat/);
+assert.match(upcoming, /Pengajian terdekat berdasarkan jadual yang diterbitkan oleh pihak masjid\./);
+assert.doesNotMatch(upcoming, /Kuliah seterusnya|Disenaraikan untuk hari ini/);
+assert.match(upcoming, /href="\/kuliah"/);
+assert.match(upcoming, /Lihat jadual penuh/);
+assert.doesNotMatch(upcoming, /lecture-row|data-lecture-poster|No Penceramah|Penceramah jemputan|Tadabbur Surah|contoh untuk pratonton/);
+assert.ok((upcoming.match(/<time /g)||[]).length<=1, "One upcoming date only");
 assert.match(page,/Jadual Kuliah rasmi Oktober 2026/);
 assert.match(page,/AL-QUR’AN|AL-QUR&#x27;AN/);
 assert.equal((page.match(/<time /g)||[]).length,30);

@@ -560,3 +560,34 @@ landscape poster dialog, with keyboard panning, Tutup and Escape.
 Public exports use the published month and preserve Studio's default behaviour.
 Checkpoint: `phase-5.3d-public-kuliah`.
 [Full public contract and QA](PUBLIC-LECTURES.md).
+
+## Fasa 5.3E homepage upcoming Kuliah — 4 October 2026 (+08:00)
+
+Use the existing published month index/query/validation path rather than a
+second CMS query architecture. Sort candidate published months chronologically
+and select the earliest meaningful date on/after today's Asia/Kuala_Lumpur date.
+Include all sessions on the selected date; never infer exact clock order,
+completion, countdowns or future month data from local fixtures. Today is labelled
+Disenaraikan untuk hari ini. A full special poster hides its underlying sessions
+and exposes its approved public description. A failed candidate month is not
+skipped, because it could contain the nearest date.
+
+No future date yields a restrained full-schedule link, not the latest old session.
+No published months and temporary outage have separate Malay messages.
+Malformed/auth/query/reference failures propagate as errors. Homepage revalidation
+stays five minutes. No CMS mutations or Studio changes; awaiting owner review.
+[Contract and evidence](HOMEPAGE-LECTURES.md).
+
+## Fasa 5.3E final wording — 5 October 2026 (+08:00)
+
+Owner-approved public copy: **PENGAJIAN DI MASJID / Kuliah terdekat**.
+Description: **Pengajian terdekat berdasarkan jadual yang diterbitkan oleh pihak masjid.**
+Same-day label: **Hari ini**. This supersedes the initial 4 October wording;
+date-only selection cannot imply a same-day session is still next. Selection,
+two-session/special-poster behaviour, cross-month handling and `/kuliah` CTA remain
+unchanged. Final desktop/mobile QA, all 243 tests, lint/build, current-state
+validation and route checks pass. Authenticated comparison confirms all production
+revisions unchanged: 143 documents, 0 drafts, 1 published lecture month, 85 images;
+October revision `zVZDfWLj75qTdy5eh9rsNA`, 30 dates / 34 sessions and the approved
+fingerprint remain unchanged. Historical evidence is preserved.
+Checkpoint: `phase-5.3e-homepage-lecture`. Fasa 6 has not started.

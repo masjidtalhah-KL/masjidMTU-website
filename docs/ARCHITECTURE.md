@@ -1,5 +1,19 @@
 # Architecture Projek
 
+## Fasa 5.3E — completed
+
+5 October 2026 (+08:00). The homepage now shows one nearest published Kuliah
+date through the existing server-only lecture read boundary. Selection includes
+today in Malaysia, displays both sessions on a date and checks later published
+months. Empty/outage states never use mock sessions. The full monthly poster stays
+on `/kuliah`. Final owner-approved wording uses **Kuliah terdekat** and **Hari ini**
+without claiming exact session completion. All 243 tests, lint/build, current-state
+validation and route checks pass. Production is unchanged. Checkpoint:
+`phase-5.3e-homepage-lecture` (resolve the tag for the final commit).
+Fasa 6 has not started.
+[Selection rule and QA](HOMEPAGE-LECTURES.md).
+Earlier checkpoint sections remain historical records.
+
 ## Fasa 5.3D — completed
 
 4 October 2026 (+08:00). The read-only public `/kuliah` and bookmarkable

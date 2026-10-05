@@ -533,3 +533,30 @@ Production remains unchanged: October revision `zVZDfWLj75qTdy5eh9rsNA`,
 Checkpoint: `phase-5.3d-public-kuliah`.
 No CMS mutation or homepage lecture integration.
 [Architecture and QA](PUBLIC-LECTURES.md).
+
+## 4 October 2026 (+08:00) — Fasa 5.3E implemented for review
+
+Replaced homepage mock Kuliah rows with a concise published upcoming-date
+presentation. Date-only selection includes today, preserves two sessions, skips
+exhausted months and uses later published months. Special poster dates expose
+their description instead of hidden sessions. No applicable date, no published
+months and temporary outage have distinct states; malformed/auth/query failures
+remain errors. Shared server reads retain published-only perspective, no token
+and 300-second revalidation. No CMS mutation, commit or push.
+Responsive QA at 375/430/768/1440, full-schedule CTA and public Kuliah/export
+regressions pass. Owner visual review remains pending.
+[Implementation and QA](HOMEPAGE-LECTURES.md).
+
+## Fasa 5.3E completed — 5 October 2026 (+08:00)
+
+Owner-approved public copy: **PENGAJIAN DI MASJID / Kuliah terdekat**.
+Description: **Pengajian terdekat berdasarkan jadual yang diterbitkan oleh pihak masjid.**
+Same-day label: **Hari ini**. This supersedes the initial 4 October wording;
+date-only selection cannot imply a same-day session is still next. Selection,
+two-session/special-poster behaviour, cross-month handling and `/kuliah` CTA remain
+unchanged. Final desktop/mobile QA, all 243 tests, lint/build, current-state
+validation and route checks pass. Authenticated comparison confirms all production
+revisions unchanged: 143 documents, 0 drafts, 1 published lecture month, 85 images;
+October revision `zVZDfWLj75qTdy5eh9rsNA`, 30 dates / 34 sessions and the approved
+fingerprint remain unchanged. Historical evidence is preserved.
+Checkpoint: `phase-5.3e-homepage-lecture`. Fasa 6 has not started.

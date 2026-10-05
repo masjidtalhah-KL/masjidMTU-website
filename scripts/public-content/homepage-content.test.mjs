@@ -246,5 +246,6 @@ test("server boundary pins published token-free 300-second caching and homepage 
   assert.match(page, /export const revalidate = 300/);
   assert.match(page, /getHomepageEditorial\(\)/);
   assert.doesNotMatch(page, /upcomingPrograms|communityUpdates|announcement\./);
-  assert.match(page, /lectureSchedule\.map/);
+  assert.doesNotMatch(page, /lectureSchedule/);
+  assert.match(page, /getUpcomingLecture\(\)/);
 });

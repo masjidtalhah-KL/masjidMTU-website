@@ -10,18 +10,16 @@ import {
   Heading,
   Navbar,
   Section,
-  SectionHeading,
 } from "@/components/design-system";
 import { Reveal } from "@/components/reveal";
-import {
-  lectureSchedule,
-  prayerTimes,
-} from "@/lib/homepage-content";
+import { prayerTimes } from "@/lib/homepage-content";
 
 import { HomepageAnnouncementSection, HomepageProgramSection, HomepageNewsSection } from "@/components/public/homepage-editorial";
 import { DonationSection } from "@/components/public/donation-section";
 import { getDonationContent } from "@/lib/public-content/cms/server";
 import { getHomepageEditorial } from "@/lib/public-content/cms/homepage-server";
+import { HomepageLectureSection } from "@/components/public/homepage-lectures";
+import { getUpcomingLecture } from "@/lib/public-content/lectures/server";
 
 export const revalidate = 300;
 
@@ -32,7 +30,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const [editorial, donation] = await Promise.all([getHomepageEditorial(), getDonationContent()]);
+  const [editorial, donation, upcomingLecture] = await Promise.all([
+    getHomepageEditorial(),
+    getDonationContent(),
+    getUpcomingLecture(),
+  ]);
   return (
     <>
       <Navbar variant="public" />
@@ -119,35 +121,7 @@ export default async function Home() {
 
         <HomepageProgramSection editorial={editorial} />
 
-        <Section id="lectures" tone="navy" className="lecture-section">
-          <Container width="wide">
-            <Reveal>
-              <SectionHeading
-                eyebrow="Tambah ilmu"
-                title="Jadual kuliah"
-                description="Contoh jadual yang boleh disambungkan kepada sumber kandungan kemudian."
-                tone="light"
-              />
-            </Reveal>
-            <div className="lecture-list">
-              {lectureSchedule.map((lecture, index) => (
-                <article className="lecture-row" key={lecture.title}>
-                  <span className="lecture-row__index">0{index + 1}</span>
-                  <div className="lecture-row__date">
-                    <strong>{lecture.date}</strong>
-                    <span>{lecture.time}</span>
-                  </div>
-                  <div className="lecture-row__content">
-                    <Heading as="h3">{lecture.title}</Heading>
-                    <p>{lecture.speaker}</p>
-                  </div>
-                  <span className="lecture-row__arrow" aria-hidden="true">↗</span>
-                </article>
-              ))}
-            </div>
-            <p className="content-note content-note--light">Jadual dan nama penceramah ialah contoh untuk pratonton.</p>
-          </Container>
-        </Section>
+        <HomepageLectureSection content={upcomingLecture} />
 
         <DonationSection content={donation} />
 
