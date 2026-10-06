@@ -1,5 +1,16 @@
 # Fasa 6.0 — Admin Foundation Architecture & Security Plan
 
+> Implementation status, 6 October 2026: the owner subsequently authorized the
+> local Fasa 6.1 task from commit 91117322f7ac81043bbe9d952811dfbe02d8ccde.
+> This document preserves the approved 6.0 architecture and historical closeout
+> below. Current implementation/evidence is in
+> [ADMIN-FOUNDATION-LOCAL.md](ADMIN-FOUNDATION-LOCAL.md), with the separate
+> [staging review checklist](ADMIN-STAGING-CHECKLIST.md). Fasa 6.1 is open;
+> the owner approved the UI and authorized the green 6.1A local checkpoint
+> `phase-6.1a-local-admin-foundation`. Real local Supabase verification passes:
+> [exact evidence](ADMIN-FOUNDATION-LOCAL-VERIFICATION.md). No hosted resources,
+> real owner or production. Historical 6.0 closeout below remains unchanged.
+
 **Owner-approved architecture; Fasa 6.0 completed — 6 October 2026 (+08:00).**
 Baseline: `dff2327939060dc79641c6014961f7055f777279`, clean and synchronized
 with `origin/main` before this documentation work. Fasa 0–5 completed.

@@ -1,5 +1,66 @@
 # Rekod Keputusan Projek
 
+## Fasa 6.1A — real local verification decisions (6 October 2026, +08:00)
+
+The owner approved the existing desktop/mobile foundation UI and authorized a
+commit/push/tag after green full local verification, superseding the initial
+6.1 no-commit boundary. All local checks passed; the checkpoint is
+`phase-6.1a-local-admin-foundation`. Fasa 6.1 remains open. No UI redesign,
+hosted resources, production, real owner or operational feature is authorized.
+
+- Actual Docker Supabase replaces the previous local service uncertainty:
+  PostgreSQL 17.6, Auth v2.187.0 and PostgREST 14.5, CLI 2.78.0.
+- Intentional optimistic-version conflicts use SQLSTATE PT409 (HTTP 409).
+  PostgREST retried intentional 40001 indefinitely in actual testing. Guards,
+  locks, deny-first policy and transactional audits are preserved.
+- Public types come from the real local pinned CLI, with exact parity and no
+  synthetic fallback. The Auth FK exists; an unexposed Auth target intentionally
+  does not appear in public-only generated relationship entries.
+- Genuine local TOTP primary/backup, Auth-issued AAL2, refresh AMR, 600-second
+  step-up and live factor-removal denial passed. Google identity/OAuth AMR setup
+  is a declared trusted fixture; no successful Google OAuth is claimed.
+- Actual private hook grants and real GoTrue rejection passed using an isolated
+  local non-Google probe. Positive Google events passed the DB contract only;
+  genuine first-time Google OAuth admission remains a staging gate.
+- Existing browser adapter tests stay supplementary; real Next SSR/DAL also
+  passed independently against actual local Auth and PostgREST.
+- Provider session termination, hosted plan controls, recovery/bootstrap and
+  real owner onboarding remain separately reviewed staging gates.
+
+[Exact evidence and local reproduction](ADMIN-FOUNDATION-LOCAL-VERIFICATION.md).
+The following initial 6.1 decisions/results are historical and are superseded
+where the 6.1A evidence above resolves local uncertainty.
+
+## Historical Fasa 6.1 — local implementation decisions (6 October 2026, +08:00)
+
+The owner authorized local runtime/configuration/migrations/tests from
+`91117322f7ac81043bbe9d952811dfbe02d8ccde`, with no hosted resources, real
+owner, production provisioning, operational module, commit or push.
+
+- Keep ordinary runtime entirely user-scoped: no privileged key imports.
+  Guard all foundation mutations in PostgreSQL, including atomic audit.
+- Owner reads require AAL2 and a current verified TOTP factor. Mutations also
+  require signed TOTP AMR no older than 600 seconds using the database clock.
+  This is locally verified against synthetic signed claims; real hosted AMR
+  continuity/refresh/step-up behaviour remains a mandatory staging gate.
+- One pending invitation per normalized exact email, seven-day expiry, DB role
+  assignment, same Google subject binding and no ordinary super_admin changes.
+- Preserve live deny on disable/revoke. Auth-provider session termination and
+  infrastructure recovery are not silently claimed complete; UI reports the
+  remaining staging task. No owner bootstrap endpoint or account is created.
+- Pinned SSR 0.12.7 / supabase-js 2.117.2 supports the existing Next 16.3.6
+  cookie/proxy API. Pinned local CLI 2.78.0 uses an overridden tar 7.5.22.
+  Local wrappers reject remote link/push/deploy operations.
+- Docker daemon unavailable: actual migration/RLS tests use PostgreSQL/PGlite
+  with explicit Auth contract stubs; browser integration uses a synthetic
+  Auth/RPC adapter. Neither proves real Supabase service/provider behaviour.
+- Production builds pass with Webpack. The default Turbopack attempt stalled
+  and was stopped; it is not reported as passed.
+
+Fasa 6.1 remains open for owner review and full local/staging verification.
+[Implementation and evidence](ADMIN-FOUNDATION-LOCAL.md);
+[exact staging checklist](ADMIN-STAGING-CHECKLIST.md).
+
 ## Fasa 6.0 — owner-approved architecture decisions (6 October 2026, +08:00)
 
 Owner requirements: operational `/admin` uses Supabase Auth/PostgreSQL, separate

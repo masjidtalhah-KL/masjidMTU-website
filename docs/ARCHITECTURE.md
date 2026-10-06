@@ -1,6 +1,37 @@
 # Architecture Projek
 
-## Current checkpoint — Fasa 6.0 completed
+## Current architecture — Fasa 6.1A locally verified foundation
+
+6 October 2026 (+08:00). Implementation follows the approved 6.0 plan, from
+`91117322f7ac81043bbe9d952811dfbe02d8ccde`. Supabase owns operational
+identity/membership; Sanity editorial identity stays independent.
+
+- Three tables only: public.admin_profiles, private.admin_invites and
+  private.admin_audit_log. Private schema is not exposed by the Data API.
+- User-scoped public-key clients, verified claims plus fresh Auth user, live
+  identity/membership checks, deny-first RLS and narrow guarded RPCs.
+- Owner operational access requires AAL2 plus a live verified TOTP factor;
+  mutations additionally require signed TOTP AMR within 600 seconds, checked
+  using the database clock. Missing or stale evidence denies mutations.
+- The /admin-only proxy refreshes cookies; server DAL and database independently
+  authorize. Admin responses are dynamic/private/no-store. The complete /admin
+  branch bypasses public outgoing transitions; logout/account changes discard
+  authenticated views, including MFA provisioning material.
+- Local/staging configuration fails closed; production mode is rejected.
+  No privileged key is imported by runtime. Provider session termination and
+  owner bootstrap/recovery remain separately reviewed staging gates.
+
+[Implementation details and honest verification boundary](ADMIN-FOUNDATION-LOCAL.md);
+[staging setup](ADMIN-STAGING-CHECKLIST.md). No hosted resources or real owner
+exist. Full local Supabase reset/migration and 30 real PostgreSQL/Auth/PostgREST/
+TOTP/SSR tests pass; supplementary SQL/browser fixtures remain explicitly
+synthetic. Public types now come from real local CLI generation. Intentional
+version conflicts use PT409 to avoid PostgREST transaction retry loops.
+[Exact verification boundary](ADMIN-FOUNDATION-LOCAL-VERIFICATION.md).
+Checkpoint: `phase-6.1a-local-admin-foundation`; Fasa 6.1 remains open for staging.
+Earlier checkpoint sections below are historical records.
+
+## Historical checkpoint — Fasa 6.0 completed
 
 6 October 2026 (+08:00). Fasa 0–5 is complete; baseline
 `dff2327939060dc79641c6014961f7055f777279`. The owner-approved Fasa 6.0

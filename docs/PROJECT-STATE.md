@@ -1,6 +1,30 @@
 # Project State — Masjid Talhah Bin Ubaidillah
 
-## Current checkpoint — Fasa 6.0 completed
+## Current checkpoint — Fasa 6.1A full local verification
+
+6 October 2026 (+08:00). The owner approved the existing desktop/mobile Admin
+Foundation UI. Real local Supabase start/reset, PostgreSQL/Auth schema,
+PostgREST/RLS/grants, guarded RPCs, private hook invocation, genuine TOTP/AAL2,
+AMR refresh/step-up and real Next SSR/DAL verification pass. No unresolved local
+blocker. Checkpoint: `phase-6.1a-local-admin-foundation` (resolve tag for commit),
+from baseline `91117322f7ac81043bbe9d952811dfbe02d8ccde`.
+
+All 327 automated tests pass (30 real local, 28 supplementary SQL, 8 policy,
+18 browser, 243 public/Studio/Kuliah), plus lint, TypeScript, production Webpack
+build, types, route/export/bundle and documentation checks. Google identity
+fixtures are synthetic; genuine Google OAuth/positive admission and hosted
+session/plan/recovery checks still require staging. **Fasa 6.1 remains open.**
+No hosted resources, production provisioning, real owner or operational modules.
+Provider session termination remains an explicit staging gate; live membership
+disable/revoke already denies still-valid JWTs.
+
+[Real local evidence](ADMIN-FOUNDATION-LOCAL-VERIFICATION.md);
+[implementation/workflow](ADMIN-FOUNDATION-LOCAL.md);
+[prepared staging checklist](ADMIN-STAGING-CHECKLIST.md).
+
+Earlier checkpoint sections below are historical records.
+
+## Historical checkpoint — Fasa 6.0 completed
 
 6 October 2026 (+08:00). Fasa 0–5 is complete; baseline
 `dff2327939060dc79641c6014961f7055f777279`. Fasa 6.0 architecture is

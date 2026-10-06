@@ -26,25 +26,48 @@
     "lecture-draft:test": "node --test scripts/lecture-generator/draft-persistence.test.mjs",
     "lecture-public:test": "node --test scripts/public-content/lecture-content.test.mjs",
     "lecture-public:verify": "node scripts/public-content/lecture-verify.mjs",
-    "lecture-public:smoke": "node scripts/public-content/lecture-route-smoke.mjs"
+    "lecture-public:smoke": "node scripts/public-content/lecture-route-smoke.mjs",
+    "admin:db:test": "node --test scripts/admin-foundation/database.test.mjs",
+    "admin:policy:test": "node --import tsx --test scripts/admin-foundation/policy.test.ts",
+    "admin:types": "node scripts/admin-foundation/generate-types.mjs",
+    "admin:types:check": "node scripts/admin-foundation/generate-types.mjs --check",
+    "admin:bundle:check": "node scripts/admin-foundation/bundle-check.mjs",
+    "admin:local:start": "node scripts/admin-foundation/local-cli.mjs start",
+    "admin:local:reset": "node scripts/admin-foundation/local-cli.mjs db reset --local --no-seed",
+    "admin:local:types": "node scripts/admin-foundation/local-cli.mjs gen types typescript --local --schema public",
+    "admin:local:test": "node --test scripts/admin-foundation/local-supabase.test.mjs",
+    "admin:smoke": "node scripts/admin-foundation/route-smoke.mjs",
+    "admin:e2e": "playwright test -c scripts/admin-foundation/playwright.config.ts"
+  },
+  "overrides": {
+    "supabase": {
+      "tar": "7.5.22"
+    }
   },
   "dependencies": {
     "@sanity/client": "8.9.0",
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.117.2",
     "next": "16.3.6",
     "next-sanity": "13.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "sanity": "6.17.0",
+    "server-only": "0.0.1",
     "styled-components": "6.5.3"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "@playwright/test": "1.63.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.6",
+    "supabase": "2.78.0",
     "tailwindcss": "^4",
+    "tsx": "4.23.15",
     "typescript": "^5"
   }
 }

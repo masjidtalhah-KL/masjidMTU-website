@@ -1,0 +1,64 @@
+project_id = "mtu-admin-local"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 17
+
+[db.seed]
+enabled = false
+
+[studio]
+enabled = true
+port = 54323
+
+[inbucket]
+enabled = false
+
+[storage]
+enabled = false
+
+[auth]
+enabled = true
+site_url = "http://localhost:3037"
+additional_redirect_urls = ["http://localhost:3037/admin/auth/callback"]
+# Local service default only; hosted timeout targets require plan review.
+jwt_expiry = 3600
+enable_signup = true
+enable_anonymous_sign_ins = false
+enable_manual_linking = false
+
+[auth.email]
+enable_signup = false
+enable_confirmations = true
+
+[auth.sms]
+enable_signup = false
+
+[auth.mfa]
+max_enrolled_factors = 10
+
+[auth.mfa.totp]
+enroll_enabled = true
+verify_enabled = true
+
+[auth.external.google]
+# Staging review must precede actual OAuth setup. No credentials in Git.
+enabled = false
+client_id = ""
+secret = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET)"
+skip_nonce_check = false
+
+[auth.hook.before_user_created]
+enabled = true
+uri = "pg-functions://postgres/private/before_user_created"
+
+[analytics]
+enabled = false
