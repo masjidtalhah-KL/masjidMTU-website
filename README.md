@@ -1,5 +1,22 @@
 # Website Rasmi Masjid Talhah Bin Ubaidillah, Bukit Jalil
 
+## Current checkpoint — Fasa 6.0 completed
+
+6 October 2026 (+08:00). Fasa 0–5 completed. The approved invite-only operational
+`/admin` foundation uses Supabase Auth/PostgreSQL and stays separate from Sanity
+`/studio`. [Architecture/security plan](docs/ADMIN-FOUNDATION-PLAN.md)
+is owner-approved and closed; Fasa 6.1 has not started. Access management stays
+super_admin-only, invites last 7 days and the owner requires Google + TOTP/AAL2.
+Privileged step-up targets around 10 minutes where supported; session timeout
+targets remain pending the selected hosted plan. Recovery uses a primary
+authenticator, backup TOTP, owner-only Vaultwarden material and independent
+Supabase project-owner recovery. Audit starts with the first mutation, with
+proposed 12-month retention. Local + hosted staging is sufficient for 6.1;
+production provisioning requires explicit owner approval. Operational modules
+remain out of scope. No runtime/configuration changes or Supabase remote resources.
+Checkpoint: `phase-6.0-admin-foundation-architecture` (resolve the tag for the final commit).
+Earlier checkpoint sections below remain historical records.
+
 ## Fasa 5.3E — completed
 
 5 October 2026 (+08:00). The homepage now shows one nearest published Kuliah

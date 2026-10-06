@@ -1,5 +1,26 @@
 # Roadmap Projek
 
+## Current checkpoint — Fasa 6.0 completed
+
+6 October 2026 (+08:00). Fasa 0–5 is complete; baseline
+`dff2327939060dc79641c6014961f7055f777279`. Fasa 6.0 architecture is
+owner-approved and closed: invite-only `/admin` uses Supabase Auth/PostgreSQL, separate from
+Sanity `/studio`. Google identity requires live active membership; the owner is
+the sole initial super_admin and requires Google + Supabase TOTP/AAL2. Access
+management stays super_admin-only in 6.1, invitations last 7 days and admin/staff
+may initially use AAL1. Privileged step-up targets around 10 minutes where
+supported; session timeouts remain targets pending the selected hosted plan.
+Audit begins at the first mutation, with proposed 12-month retention. Recovery
+uses primary + backup TOTP, owner-only Vaultwarden and independent project-owner
+recovery. Local + hosted staging is sufficient for 6.1; production remains a
+separate future environment requiring explicit owner provisioning approval.
+
+[Approved plan and implementation gates](ADMIN-FOUNDATION-PLAN.md).
+Checkpoint: `phase-6.0-admin-foundation-architecture` (resolve tag for final commit).
+Fasa 6.1 has not started. No runtime/configuration, database, Supabase remote
+resources or Sanity changes. Qurban, Ramadan, BKK, payment, receipt, registration
+and finance modules remain out of scope. Earlier phase sections are historical records.
+
 ## Fasa 5.3E — completed
 
 5 October 2026 (+08:00). The homepage now shows one nearest published Kuliah
@@ -37,13 +58,25 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **3** | Public Pages | **Siap** |
 | **4** | Sanity CMS | **Siap** — checkpoint 4.3C |
 | **5** | Dynamic Content | **Siap** — 5.1/5.2/5.2A/5.2B dan 5.3A–5.3E siap, termasuk public `/kuliah` (5.3D) dan homepage lecture integration (5.3E) |
-| 6 | Admin Foundation | Belum bermula |
+| **6** | Admin Foundation | **6.0 siap dan owner-approved** — architecture/security checkpoint; implementasi 6.1 belum bermula |
 | 7 | Feature Flags & Campaign Engine | Belum bermula |
 | 8 | Qurban MVP | Belum bermula |
 | 9 | Payment & Receipt | Belum bermula |
 | 10 | Ramadan Iftar | Belum bermula |
 | 11 | Security & Production Hardening | Belum bermula |
 | 12 | Production Launch | Belum bermula |
+
+## Pecahan Fasa 6
+
+| Langkah | Fokus | Status |
+| --- | --- | --- |
+| **6.0** | Admin architecture, invite-only access, MFA, RLS and environment plan | **Siap dan owner-approved** — `phase-6.0-admin-foundation-architecture`; dokumentasi sahaja |
+| 6.1 | Generic authenticated admin foundation | Belum bermula; task/scope/setup/bootstrap berasingan; local + hosted staging sahaja, tiada production sehingga diluluskan owner |
+
+Fasa 7 may build feature flags/campaign configuration on this foundation.
+Fasa 8+ operational module choices remain subject to AJK requirements and owner
+approval; existing Qurban/Ramadan rows are roadmap candidates, not an instruction
+to implement them next. No module workflow is designed in 6.0.
 
 ## Historical checkpoint — Fasa 5.3C completed
 

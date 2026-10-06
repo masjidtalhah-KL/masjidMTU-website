@@ -1,5 +1,42 @@
 # Rekod Keputusan Projek
 
+## Fasa 6.0 — owner-approved architecture decisions (6 October 2026, +08:00)
+
+Owner requirements: operational `/admin` uses Supabase Auth/PostgreSQL, separate
+from editorial Sanity `/studio`; no public signup, Google primary login, invite-only
+membership, generic super_admin/admin/staff roles, owner-only initial super_admin
+and mandatory stronger owner authentication. Mosque job titles do not define roles.
+
+The owner approved the architecture with these decisions:
+
+| Area | Decision |
+| --- | --- |
+| Access management | Remains super_admin-only in Fasa 6.1 |
+| Invitations | Lifetime of 7 days |
+| Super_admin assurance | Google OAuth + Supabase TOTP; AAL2 for operational access |
+| Privileged mutations | Require recent MFA/step-up, target around 10 minutes where technically supported |
+| Admin/staff assurance | May initially operate at AAL1 |
+| Owner recovery | Primary authenticator + backup TOTP factor; owner-only Vaultwarden recovery material; independently protected Supabase project-owner recovery |
+| Environments | Separate local, hosted staging and production; local + staging sufficient for 6.1; do not provision production until the owner explicitly approves |
+| Audit | Included from the first foundation mutation; proposed 12-month retention |
+| Session timeouts | Remain targets pending selected hosted-plan support; no hardcoded unsupported assumptions |
+| Excluded modules | Qurban, Ramadan, BKK, payment, receipt, registration and finance |
+
+The approved design uses Google SSR PKCE with private invite admission, live
+identity/membership checks and deny-first RLS. Three minimum conceptual tables:
+admin_profiles, expiring admin_invites and append-only admin_audit_log.
+Normal operations preserve user-session RLS; privileged Auth administration stays
+isolated. These are architectural requirements/conditional targets, not deployed
+or runtime-tested controls. Concrete staging setup/bootstrap/recovery and
+platform support must be reviewed in a separately authorized implementation task.
+
+[Complete plan, policy matrix, threats and owner decisions](ADMIN-FOUNDATION-PLAN.md).
+Fasa 6.0 closed at `phase-6.0-admin-foundation-architecture` (resolve tag for commit).
+Fasa 6.1 has not started.
+This task authorizes documentation checks and commit/push/tag only. No Fasa 6.1
+implementation, runtime auth/database code, Supabase remote resources or modules.
+All earlier decisions and immutable audit evidence remain unchanged.
+
 Disusun pada **1 Oktober 2026 (+08:00)** daripada kod, dokumentasi dan sejarah
 repository. Tarikh commit di bawah ialah **tarikh keputusan dapat dibuktikan
 dalam Git**, bukan semestinya tarikh perbincangan atau kelulusan sebenar.

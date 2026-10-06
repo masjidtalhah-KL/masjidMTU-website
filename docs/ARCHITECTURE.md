@@ -1,5 +1,30 @@
 # Architecture Projek
 
+## Current checkpoint — Fasa 6.0 completed
+
+6 October 2026 (+08:00). Fasa 0–5 is complete; baseline
+`dff2327939060dc79641c6014961f7055f777279`. The owner-approved Fasa 6.0
+architecture covers invite-only `/admin` using Supabase Auth/PostgreSQL, separate from
+Sanity `/studio`. Google identity requires live active membership; the owner is
+the sole initial super_admin and requires Google + Supabase TOTP/AAL2.
+Access management remains super_admin-only in 6.1; admin/staff may initially use
+AAL1. Invitations last 7 days. Privileged mutations require recent MFA/step-up,
+targeting around 10 minutes where technically supported. Timeout targets await
+selected hosted-plan support and must not become hardcoded assumptions.
+Three foundation tables and deny-first RLS include audit from the first mutation,
+with proposed 12-month retention. Owner recovery uses a primary authenticator,
+backup TOTP factor, owner-only Vaultwarden material and independently protected
+Supabase project-owner recovery. Separate local, hosted staging and production;
+local + staging is sufficient for 6.1, with no production provisioning until
+explicit owner approval. Qurban/Ramadan/BKK/payment/receipt/registration/finance
+modules remain out of scope.
+
+[Approved plan and implementation gates](ADMIN-FOUNDATION-PLAN.md).
+Fasa 6.0 is closed at `phase-6.0-admin-foundation-architecture` (resolve tag for commit).
+Fasa 6.1 has not started. This checkpoint changes documentation only; no runtime,
+configuration, database, Supabase remote resources or Sanity changes.
+Earlier phase sections are historical records.
+
 ## Fasa 5.3E — completed
 
 5 October 2026 (+08:00). The homepage now shows one nearest published Kuliah

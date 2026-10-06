@@ -1,5 +1,27 @@
 # Project State — Masjid Talhah Bin Ubaidillah
 
+## Current checkpoint — Fasa 6.0 completed
+
+6 October 2026 (+08:00). Fasa 0–5 is complete; baseline
+`dff2327939060dc79641c6014961f7055f777279`. Fasa 6.0 architecture is
+owner-approved and closed: invite-only `/admin` uses Supabase Auth/PostgreSQL, separate from
+Sanity `/studio`. Google identity requires live active membership; the owner is
+the sole initial super_admin and requires Google + Supabase TOTP/AAL2. Access
+management remains super_admin-only in 6.1; admin/staff may initially operate at
+AAL1. Invites last 7 days; privileged mutations require recent MFA/step-up,
+targeting around 10 minutes where supported. Session timeout values remain targets
+pending the hosted plan. Recovery uses primary + backup TOTP, owner-only
+Vaultwarden material and independently protected Supabase project-owner access.
+Audit starts with the first mutation, with proposed 12-month retention. Local +
+hosted staging is sufficient for 6.1; future production must remain separate and
+requires explicit owner provisioning approval. Operational modules remain out of scope.
+
+[Approved plan and implementation gates](ADMIN-FOUNDATION-PLAN.md).
+Checkpoint: `phase-6.0-admin-foundation-architecture` (resolve tag for final commit).
+Fasa 6.1 has not started. Documentation-only closeout: no runtime/configuration,
+database, Supabase remote resources or Sanity changes. Earlier phase sections are
+historical records; their prior Fasa 6 status does not describe this checkpoint.
+
 ## Fasa 5.3E — completed
 
 5 October 2026 (+08:00). The homepage now shows one nearest published Kuliah

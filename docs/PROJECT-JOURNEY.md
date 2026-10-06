@@ -1,5 +1,35 @@
 # Perjalanan Projek — Fasa 0 hingga 4.3B
 
+## 6 October 2026 (+08:00) — Fasa 6.0 approved and closed
+
+Continued from clean synchronized `dff2327939060dc79641c6014961f7055f777279`
+after Fasa 0–5 completion. Inspected canonical docs, App Router/configuration and
+existing service boundaries: Supabase/admin are placeholders only, with no auth
+package, client, admin routes or migrations. Official Supabase/Next.js guidance
+and the bundled Next.js authentication guide informed the planning.
+
+Prepared and owner-approved [Admin Foundation architecture/security plan](ADMIN-FOUNDATION-PLAN.md):
+Google invite-only admission, live membership, owner TOTP/AAL2, generic roles,
+minimum three-table model, RLS policy matrix, lifecycle/recovery, routing/session,
+staging/production strategy, audit/threat model and a bounded 6.1 proposal.
+The owner confirmed super_admin-only access management, 7-day invitations,
+Google + Supabase TOTP/AAL2 for super_admin, recent privileged MFA/step-up with
+an approximately 10-minute target where supported, and initial AAL1 for admin/staff.
+Recovery custody is primary + backup TOTP, owner-only Vaultwarden and independently
+protected project-owner recovery. Local + hosted staging is sufficient for 6.1;
+separate production must wait for explicit owner provisioning approval. Audit
+begins with the first foundation mutation, with proposed 12-month retention.
+Session timeout values remain conditional targets pending hosted-plan support.
+Qurban, Ramadan, BKK, payment, receipt, registration and finance remain excluded.
+
+Fasa 6.0 is closed. Documentation/diff checks cover canonical links, consistent
+owner decisions/status, documentation-only scope and preserved historical records.
+Checkpoint: `phase-6.0-admin-foundation-architecture` (resolve tag for final commit).
+Only documentation and Git checkpoint work is authorized here. Fasa 6.1 has not
+started; no runtime/env/package/database changes or Supabase remote resources.
+
+The prior timeline and execution/audit records below remain unchanged.
+
 Rekonstruksi pada **1 Oktober 2026** daripada `git log --all`, refs/tags,
 ROADMAP dan dokumen fasa. GitHub `main`/tag refs turut disemak secara read-only.
 Semua waktu di bawah ialah **+08:00**. Author dan committer dates bagi commit
