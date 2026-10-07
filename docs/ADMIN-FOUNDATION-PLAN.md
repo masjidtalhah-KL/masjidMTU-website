@@ -3,7 +3,8 @@
 > Hosted status, 7 October 2026: owner-authorized 6.1B-1 applied the unchanged
 > reviewed migration and verified staging RLS/grants/private hook/negative admission.
 > [Hosted evidence](ADMIN-FOUNDATION-STAGING-VERIFICATION.md). Vercel CLI confirmed eight Production env names and no privileged key. Owner
-> authorized checkpoint/push and first canonical-source staging deployment. Google,
+> authorized checkpoint/push and first canonical-source staging deployment, now
+> READY at the stable staging alias. HTTP/browser/bundle/log checks pass. Google,
 > owner bootstrap and production remain excluded; Fasa 6.1 stays open.
 >
 > Implementation status, 6 October 2026: the owner subsequently authorized the

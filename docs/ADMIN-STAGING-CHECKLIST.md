@@ -5,7 +5,7 @@ verification passed; remaining steps require owner review.** This checklist does
 not authorize Google, deployment, owner onboarding or production by itself.
 [Current hosted evidence](ADMIN-FOUNDATION-STAGING-VERIFICATION.md). Baseline HEAD
 4ab521b484d034e102ae405476c12183554e61f4. Owner subsequently authorized the B-1
-checkpoint/push and first staging deployment; this does not authorize OAuth.
+checkpoint/push and first staging deployment, now READY and verified; no OAuth.
 
 ## 1. Freeze the target before provisioning
 
@@ -19,7 +19,7 @@ identity and bootstrap decisions need owner review; no secrets in chat:
 | Region | Verified Southeast Asia (Singapore), ap-southeast-1 |
 | Hosted plan | Selected staging plan with its actual supported Auth hooks/MFA/session settings recorded |
 | Supabase project ref | azypohqpupphapasweln |
-| Stable staging origin | https://masjid-mtu-admin-staging.vercel.app; first deployment authorized after checkpoint |
+| Stable staging origin | https://masjid-mtu-admin-staging.vercel.app; READY, first staging deployment verified |
 | Google Cloud project/client | Dedicated mtu-admin-staging project and mtu-admin-staging-web Web application OAuth client |
 | Test identities | Approved Google test accounts held by the operator; separate from a real owner bootstrap |
 | DB operator | Named protected operator permitted to apply only the reviewed foundation migration/bootstrap test procedure |
@@ -230,8 +230,8 @@ test bootstrap and real owner onboarding; provider session termination/recovery;
 selected-plan timeout and retention/backup procedures. Repeat the matrix on
 staging rather than inferring hosted success from local or synthetic fixtures.
 Hosted staging now exists; 6.1B-1 applied only the reviewed migration, enabled
-the private hook and passed 36 hosted HTTP/SQL/contract cases. No real owner,
-Google setup, deployment or production resource. Vercel variable completeness
+the private hook and passed 36 hosted HTTP/SQL/contract cases. The first staging
+deployment is READY and verified; no real owner, Google setup or production resource. Vercel variable completeness
 is verified through CLI metadata; connector still returns 403. See the hosted record for genuine versus
 synthetic test boundaries; no full hosted Auth/TOTP/session success is inferred.
 Fasa 6.1 remains open; production and operational modules are not authorized.

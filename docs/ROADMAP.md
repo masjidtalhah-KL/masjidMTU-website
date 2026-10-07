@@ -8,14 +8,16 @@ Dedicated Supabase staging azypohqpupphapasweln (Singapore) is linked; the uncha
 negative GoTrue admission pass. 36 hosted HTTP/SQL/contract cases pass with explicit
 synthetic boundaries. No Auth users/profiles/invites/audit fixture rows remain.
 
-Owner subsequently authorized the B-1 checkpoint and first deployment from the
-canonical local repo. CLI 62.7.0 verified the exact linked Vercel project/team,
-all eight required Production environment names and no privileged credential.
-No Git/fork source connection exists. The connector still returns 403; CLI access
-works. Deployment is the next authorized step after this clean checkpoint.
-Google remains disabled; no real owner, production resource or 6.1B-2 work.
-Fasa 6.1 remains open. Runtime/migration unchanged; .vercelignore excludes local
-Supabase caches and credential/build files detected by the upload dry-run.
+B-1 is checkpointed at 79a87e97c16573968eb4c57d0b19e421d6f7fba0, tag
+phase-6.1b1-hosted-supabase-staging. First Vercel deployment is READY:
+dpl_DT9F1qXyZYbpKQMUHGSwzihYeDVn, stable alias
+https://masjid-mtu-admin-staging.vercel.app. CLI verifies eight Production env
+names and no privileged credential; source is the clean canonical local repo,
+with no Git/fork connection. Connector remains 403; CLI access works.
+8/8 HTTP checks, 5/5 anonymous browser checks and 30 deployed JS chunk scans pass;
+runtime logs contain no error/fatal/5xx. Google remains disabled; no real owner,
+production resource or 6.1B-2 work. Fasa 6.1 stays open. Runtime/migration unchanged;
+.vercelignore excludes local caches/credential/build files.
 
 [Hosted results and exact runtime/OAuth values](ADMIN-FOUNDATION-STAGING-VERIFICATION.md);
 [remaining staging checklist](ADMIN-STAGING-CHECKLIST.md).
@@ -117,7 +119,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **6.0** | Admin architecture, invite-only access, MFA, RLS and environment plan | **Siap dan owner-approved** — `phase-6.0-admin-foundation-architecture`; dokumentasi sahaja |
 | 6.1 | Generic authenticated admin foundation | Local implementation/UI approved; 6.1A real local verification passed; hosted staging gates pending; no production |
 | 6.1A | Full local Supabase verification | Complete local checkpoint: real PostgreSQL/Auth/PostgREST, hook/TOTP/SSR and all 327 tests pass; no hosted provisioning |
-| 6.1B-1 | Hosted staging migration and Auth hook | Supabase green (36 cases); Vercel env names verified; first staging deployment authorized; Google pending |
+| 6.1B-1 | Hosted staging migration and Auth hook | Complete: Supabase 36 cases, Vercel READY, 8 HTTP/5 browser/30 chunk checks; Google pending |
 
 Fasa 7 may build feature flags/campaign configuration on this foundation.
 Fasa 8+ operational module choices remain subject to AJK requirements and owner

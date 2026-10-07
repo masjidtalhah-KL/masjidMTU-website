@@ -27,6 +27,11 @@
   because source dry-run included nested Supabase caches despite Git ignoring them.
   No runtime/migration change; no Google, real owner, operational module or mosque
   production. Checkpoint tag: phase-6.1b1-hosted-supabase-staging.
+- First deployment from tagged canonical commit 79a87e97c16573968eb4c57d0b19e421d6f7fba0
+  is READY, ID dpl_DT9F1qXyZYbpKQMUHGSwzihYeDVn, stable staging alias verified.
+  Hosted Turbopack build/TypeScript, 8 HTTP, 5 browser and 30 app-chunk checks pass.
+  Record post-deployment evidence in a separate documentation commit; preserve the
+  tag and deployed source commit without force-push or retagging.
 
 [Hosted evidence and remaining gates](ADMIN-FOUNDATION-STAGING-VERIFICATION.md).
 

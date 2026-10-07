@@ -3,7 +3,7 @@
 7 October 2026 (+08:00). **Hosted migration, schema/grants and negative Auth-hook
 verification passed. Owner entered the eight Vercel Production variables; CLI
 verified their names and no privileged credential. Checkpoint/push and first
-staging deployment are authorized. Stop before Google and 6.1B-2.**
+staging deployment are complete and verified. Stop before Google and 6.1B-2.**
 
 Baseline HEAD: `4ab521b484d034e102ae405476c12183554e61f4`, tag
 `phase-6.1a-local-admin-foundation`. No runtime, dependency, migration or checked-in
@@ -12,6 +12,72 @@ staging deployment. No Google OAuth configuration, real
 owner bootstrap, real personal test identity, operational module or production
 resource. Fasa 6.1 remains open. The 327 local tests remain the completed 6.1A
 evidence and were not rerun for documentation-only changes.
+
+## First staging deployment — finalization verified
+
+Owner entered the eight environment variables and authorized commit/push/tag plus
+first staging deployment, superseding the initial B-1 no-deploy/no-commit boundary.
+Both projects remain dedicated staging. Google and real-owner work remain excluded.
+
+| Item | Verified result |
+| --- | --- |
+| B-1/deployed source commit | 79a87e97c16573968eb4c57d0b19e421d6f7fba0 |
+| Checkpoint tag | phase-6.1b1-hosted-supabase-staging, pushed and preserved |
+| Vercel deployment | dpl_DT9F1qXyZYbpKQMUHGSwzihYeDVn, READY |
+| Immutable deployment URL | https://masjid-mtu-admin-staging-5xlzub8jt-korok.vercel.app |
+| Stable staging alias | https://masjid-mtu-admin-staging.vercel.app, verified domain and alias |
+| Source/target | CLI local upload; clean canonical repo/main; Production target of dedicated staging project; no Git/fork source connection |
+| Build | Next.js 16.3.6 Turbopack; TypeScript passed; 15 static pages; 338 source files uploaded; READY in about 92 seconds |
+| Runtime | Node 24.x; hosted build CLI 62.1.0; operator CLI 62.7.0; build region iad1 |
+| Environment contract | Exactly eight configured keys, all Production targets; names verified without decrypt/pull; no service-role/secret/DB/OAuth credential |
+| HTTP checks | 8/8 passed |
+| Genuine anonymous browser | 5/5 passed; no console/page errors or response >=500; no Google login attempted |
+| Public bundle scan | 30 actual deployed app chunks from public/admin/Studio pages passed; no privileged key/token/reference/service-role JWT |
+| Runtime log inspection | Latest 100 bounded request records include 200/307, no error/fatal/5xx; earlier API records include expected 401; separate 30-minute error and 5xx queries each return zero |
+
+The alias login page also returned 200 without a Vercel bypass header. Protection
+remains configured as all_except_custom_domains; no protection setting was disabled.
+The CLI generated its protection-aware access credential internally; no credential
+value was printed or committed. The official external Sanity bridge.js is outside
+this app build and excluded from the 30-chunk scan.
+
+| Route | HTTP evidence |
+| --- | --- |
+| / | 200, Sanity-backed Kuliah terdekat section renders |
+| /kuliah | 200, official October poster, 30 dates / 34 sessions |
+| /kuliah/2026-10 | 200, matching published Sanity schedule; browser poster hydrates |
+| /admin/login | 200, configured invitation-only login, enabled Google entry button; provider intentionally not configured |
+| /admin | 307 to /admin/login?state=signed-out; browser follows to 200 login |
+| /admin/api/security and /admin/api/access | 401, unauthenticated access denied; no initialization failure |
+| /studio | 200 shell; no editorial mutation/login attempted |
+
+Initial ad-hoc test selectors assumed a query-free redirect and abbreviated login
+text; harnesses were corrected to the existing DAL/UI contracts, without app changes.
+The first bundle harness also encountered the external Sanity bridge after scanning
+all 30 app chunks; its allowlist now explicitly excludes that external script.
+Build warnings concern existing Node engine range, package deprecations and npm
+install-script allowlist, not a failed build. No dependencies/runtime/migration changed.
+Full 327 local tests were not rerun: 6.1A remains their evidence. Hosted build and the
+deployment checks above are new evidence. Local documentation/link/diff checks pass.
+
+Post-deployment documentation records these results separately from the source
+checkpoint. The tag still identifies the exact deployed source; no redeploy is
+needed for a documentation-only results commit. B-1 is complete; Fasa 6.1 stays open.
+
+Remaining exact B-2 gates, requiring next-task approval:
+
+1. Dedicated staging Google Web OAuth consent/client and Supabase Google provider;
+   origin https://masjid-mtu-admin-staging.vercel.app, Google redirect
+   https://azypohqpupphapasweln.supabase.co/auth/v1/callback, Next redirect
+   https://masjid-mtu-admin-staging.vercel.app/admin/auth/callback. Enter Google
+   secret directly in the approved provider dashboard, never chat or Next env.
+2. Real hosted OAuth admission: eligible invite, arbitrary/wrong/expired/revoked
+   rejection, trusted provider binding, PKCE/callback/cookies and authenticated
+   PostgREST role/status/stale-JWT matrix using approved isolated test identities.
+3. Approved isolated test-owner procedure; hosted TOTP primary/backup, Auth-issued
+   AAL2, signed recent AMR/refresh/step-up and factor removal. No real owner yet.
+4. Hosted session plan/timeout/rotation/logout/account-change and deployment callback
+   behaviour; separately reviewed recovery and provider session termination.
 
 ## Verified targets and preflight
 
@@ -205,7 +271,7 @@ used for migrations/settings is separate from application credentials.
 No agent Vercel variable mutation or environment pull was needed. Owner entered
 the variables. Source upload dry-run initially included nested Supabase caches;
 .vercelignore now excludes caches, environment/credential files and local build
-outputs. Safe dry-run confirms exclusions. First deployment follows this checkpoint.
+outputs. Safe dry-run confirms exclusions. First deployment passed; see finalization evidence above.
 [Vercel environment settings](https://vercel.com/docs/environment-variables).
 
 ## Exact 6.1B-2 OAuth values (prepared, not configured)
