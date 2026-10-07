@@ -1,5 +1,35 @@
 # Rekod Keputusan Projek
 
+## Fasa 6.1B-1 — hosted staging decisions (7 October 2026, +08:00)
+
+- Owner authorized the existing dedicated staging ref azypohqpupphapasweln,
+  Singapore, and Vercel origin https://masjid-mtu-admin-staging.vercel.app.
+  Primary service main/Production labels do not make these mosque production.
+- Apply only the unchanged reviewed 20261006000100 migration after empty-state
+  preflight. Hosted catalog, bodies, guards and public type core match local;
+  no runtime or schema patch. Hosted versions/default operator grants differ
+  without requiring wider privileges or a service key.
+- Enable the private Before User Created hook, prove genuine negative invocation,
+  then disable the initially enabled email provider. Set only approved non-Google
+  staging Site URL/redirect. Google remains disabled; global signup creation is
+  gated by the hook. No identities or membership fixtures remain committed.
+- Authenticated DB-role and rollback-only invitation probes are synthetic
+  contracts, not real Google/Auth-issued token success. Positive admission and
+  hosted TOTP/session tests remain 6.1B-2.
+- Keep two INFO no-policy private-table advisor findings as intentional deny-first
+  design. Do not add policies merely to remove warnings.
+- Initial scope prepared Vercel values only. Owner subsequently entered all eight
+  variables and authorized commit/push/tag and first staging deployment. CLI
+  verified their names/Production targets without decryption; no privileged key.
+  Connector scope korok remains 403, but CLI credentials have correct project access.
+- Deploy local canonical source; Vercel project has no Git/fork connection. The
+  Production target belongs to this dedicated staging project. Add .vercelignore
+  because source dry-run included nested Supabase caches despite Git ignoring them.
+  No runtime/migration change; no Google, real owner, operational module or mosque
+  production. Checkpoint tag: phase-6.1b1-hosted-supabase-staging.
+
+[Hosted evidence and remaining gates](ADMIN-FOUNDATION-STAGING-VERIFICATION.md).
+
 ## Fasa 6.1A — real local verification decisions (6 October 2026, +08:00)
 
 The owner approved the existing desktop/mobile foundation UI and authorized a

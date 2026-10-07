@@ -1,6 +1,26 @@
 # Architecture Projek
 
-## Current architecture — Fasa 6.1A locally verified foundation
+## Current work — Fasa 6.1B-1 hosted staging checkpoint
+
+7 October 2026 (+08:00), from HEAD 4ab521b484d034e102ae405476c12183554e61f4.
+Dedicated Supabase staging azypohqpupphapasweln (Singapore) is linked; the unchanged
+20261006000100 migration, hosted catalog/grants/RLS, private-hook wiring and genuine
+negative GoTrue admission pass. 36 hosted HTTP/SQL/contract cases pass with explicit
+synthetic boundaries. No Auth users/profiles/invites/audit fixture rows remain.
+
+Owner subsequently authorized the B-1 checkpoint and first deployment from the
+canonical local repo. CLI 62.7.0 verified the exact linked Vercel project/team,
+all eight required Production environment names and no privileged credential.
+No Git/fork source connection exists. The connector still returns 403; CLI access
+works. Deployment is the next authorized step after this clean checkpoint.
+Google remains disabled; no real owner, production resource or 6.1B-2 work.
+Fasa 6.1 remains open. Runtime/migration unchanged; .vercelignore excludes local
+Supabase caches and credential/build files detected by the upload dry-run.
+
+[Hosted results and exact runtime/OAuth values](ADMIN-FOUNDATION-STAGING-VERIFICATION.md);
+[remaining staging checklist](ADMIN-STAGING-CHECKLIST.md).
+
+## Historical verified architecture — Fasa 6.1A locally verified foundation
 
 6 October 2026 (+08:00). Implementation follows the approved 6.0 plan, from
 `91117322f7ac81043bbe9d952811dfbe02d8ccde`. Supabase owns operational

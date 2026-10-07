@@ -1,5 +1,11 @@
 # Fasa 6.0 — Admin Foundation Architecture & Security Plan
 
+> Hosted status, 7 October 2026: owner-authorized 6.1B-1 applied the unchanged
+> reviewed migration and verified staging RLS/grants/private hook/negative admission.
+> [Hosted evidence](ADMIN-FOUNDATION-STAGING-VERIFICATION.md). Vercel CLI confirmed eight Production env names and no privileged key. Owner
+> authorized checkpoint/push and first canonical-source staging deployment. Google,
+> owner bootstrap and production remain excluded; Fasa 6.1 stays open.
+>
 > Implementation status, 6 October 2026: the owner subsequently authorized the
 > local Fasa 6.1 task from commit 91117322f7ac81043bbe9d952811dfbe02d8ccde.
 > This document preserves the approved 6.0 architecture and historical closeout

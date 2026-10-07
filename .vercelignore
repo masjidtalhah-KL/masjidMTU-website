@@ -1,0 +1,23 @@
+# Deploy source only; never upload local credentials, caches or build outputs.
+.git
+.vercel
+node_modules
+.next
+out
+build
+.cache
+coverage
+test-results
+playwright-report
+.env*
+!.env.example
+*.pem
+*.tsbuildinfo
+next-env.d.ts
+supabase/.temp
+supabase/.branches
+supabase/snippets
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

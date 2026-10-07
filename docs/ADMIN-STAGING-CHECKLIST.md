@@ -1,24 +1,25 @@
 # Fasa 6.1 — Staging Provisioning Checklist for Owner Review
 
-**Prepared only, 6 October 2026 (+08:00). No hosted resource has been created or mutated.**
-This checklist authorizes nothing by itself. The local implementation and full
-real Supabase verification checkpoint is phase-6.1a-local-admin-foundation,
-from baseline 91117322f7ac81043bbe9d952811dfbe02d8ccde. Owner approved the UI.
-[Local evidence and fixture boundaries](ADMIN-FOUNDATION-LOCAL-VERIFICATION.md). No production project or
-real application owner account is authorized by the current task.
+**Updated 7 October 2026 (+08:00): existing staging migration and negative hook
+verification passed; remaining steps require owner review.** This checklist does
+not authorize Google, deployment, owner onboarding or production by itself.
+[Current hosted evidence](ADMIN-FOUNDATION-STAGING-VERIFICATION.md). Baseline HEAD
+4ab521b484d034e102ae405476c12183554e61f4. Owner subsequently authorized the B-1
+checkpoint/push and first staging deployment; this does not authorize OAuth.
 
 ## 1. Freeze the target before provisioning
 
-Owner review must select and record, without secrets in chat:
+The staging target is selected and independently verified. Remaining plan, Google/test
+identity and bootstrap decisions need owner review; no secrets in chat:
 
 | Parameter | Required reviewed value |
 | --- | --- |
 | Supabase organization | Owner-controlled organization; independently protected project-owner recovery |
 | Project name | masjid-mtu-admin-staging; exactly one separate hosted staging project |
-| Region | Recommended specific Southeast Asia (Singapore), ap-southeast-1, subject to owner cost/data-location review |
+| Region | Verified Southeast Asia (Singapore), ap-southeast-1 |
 | Hosted plan | Selected staging plan with its actual supported Auth hooks/MFA/session settings recorded |
-| PROJECT_REF | Actual 20-character ref assigned by the new staging project |
-| STAGING_ORIGIN | One owner-approved HTTPS origin hosting this branch; no path, wildcard, production hostname or shared preview domain |
+| Supabase project ref | azypohqpupphapasweln |
+| Stable staging origin | https://masjid-mtu-admin-staging.vercel.app; first deployment authorized after checkpoint |
 | Google Cloud project/client | Dedicated mtu-admin-staging project and mtu-admin-staging-web Web application OAuth client |
 | Test identities | Approved Google test accounts held by the operator; separate from a real owner bootstrap |
 | DB operator | Named protected operator permitted to apply only the reviewed foundation migration/bootstrap test procedure |
@@ -29,22 +30,23 @@ Supabase region. Choose it explicitly rather than relying on the broad Asia
 selection when the exact location matters.
 [Supabase regions](https://supabase.com/docs/guides/platform/regions).
 
-PROJECT_REF and STAGING_ORIGIN do not exist yet and cannot be truthfully filled
-in now. Replace the symbols below once, record the resulting literal URLs and
-review them before saving any configuration.
+The ref and stable staging origin are now confirmed. Google remains disabled;
+no Google client/secret was configured in this task. The projects remain staging regardless of the
+services' main/Production labels. Owner entered eight Vercel Production variables; CLI metadata verifies all names
+and absence of privileged credentials. Connector remains 403; CLI succeeds.
 
 ## 2. Exact OAuth and callback configuration
 
 | Service/setting | Exact value after parameter substitution |
 | --- | --- |
-| Supabase API URL | https://PROJECT_REF.supabase.co |
-| Google authorized redirect URI | https://PROJECT_REF.supabase.co/auth/v1/callback |
-| Supabase Auth Site URL | STAGING_ORIGIN |
-| Supabase allowed redirect URL | STAGING_ORIGIN/admin/auth/callback |
-| App Google redirectTo | STAGING_ORIGIN/admin/auth/callback |
-| App Google entry | STAGING_ORIGIN/admin/auth/google, same-origin POST |
-| App login | STAGING_ORIGIN/admin/login |
-| Google authorized JavaScript origin, if configured | STAGING_ORIGIN exactly, without path |
+| Supabase API URL | https://azypohqpupphapasweln.supabase.co |
+| Google authorized redirect URI | https://azypohqpupphapasweln.supabase.co/auth/v1/callback |
+| Supabase Auth Site URL | https://masjid-mtu-admin-staging.vercel.app |
+| Supabase allowed redirect URL | https://masjid-mtu-admin-staging.vercel.app/admin/auth/callback |
+| App Google redirectTo | https://masjid-mtu-admin-staging.vercel.app/admin/auth/callback |
+| App Google entry | https://masjid-mtu-admin-staging.vercel.app/admin/auth/google, same-origin POST |
+| App login | https://masjid-mtu-admin-staging.vercel.app/admin/login |
+| Google authorized JavaScript origin, if configured | https://masjid-mtu-admin-staging.vercel.app exactly, without path |
 
 The Google redirect points to Supabase, not the Next callback. Supabase then
 returns to the Next PKCE callback. This implementation uses the server redirect
@@ -76,9 +78,9 @@ For the staging application deployment, enter:
 | Variable | Value |
 | --- | --- |
 | ADMIN_SUPABASE_ENV | staging |
-| ADMIN_SUPABASE_PROJECT_REF | PROJECT_REF |
-| ADMIN_APP_ORIGIN | STAGING_ORIGIN |
-| NEXT_PUBLIC_SUPABASE_URL | https://PROJECT_REF.supabase.co |
+| ADMIN_SUPABASE_PROJECT_REF | azypohqpupphapasweln |
+| ADMIN_APP_ORIGIN | https://masjid-mtu-admin-staging.vercel.app |
+| NEXT_PUBLIC_SUPABASE_URL | https://azypohqpupphapasweln.supabase.co |
 | NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY | Actual staging sb_publishable_ key |
 | Existing NEXT_PUBLIC_SANITY_* | Existing reviewed public read configuration, unchanged |
 | SUPABASE_SECRET_KEY | Leave blank; ordinary foundation runtime does not require it |
@@ -101,9 +103,12 @@ secrets are not. Supabase manages JWT signing keys; do not export them into the 
 An isolated future Auth Admin session-termination client needs its own review;
 do not fill the reserved secret placeholder merely to make this checklist pass.
 
-## 4. Apply only the reviewed schema and deny-first configuration
+## 4. Reviewed schema and deny-first configuration
 
-After target/provisioning approval, the operator would:
+The project already exists. Steps 1–4 schema/hook checks passed in 6.1B-1;
+non-Google Site URL/redirect and provider denial are set. The numbered sequence
+remains the review checklist for later re-verification, not authorization to
+create another project or repeat a completed migration:
 
 1. Create only masjid-mtu-admin-staging, in the approved organization/region/plan.
    Verify the literal ref and app origin before any migration command.
@@ -130,7 +135,7 @@ After target/provisioning approval, the operator would:
    as an unresolved release gate.
 8. Generate public DB types from the actual staging/local full-stack schema and
    reconcile relationships/PostgREST metadata with checked-in catalog types.
-9. Deploy only this reviewed branch to STAGING_ORIGIN with the above environment.
+9. Deploy only this reviewed branch to https://masjid-mtu-admin-staging.vercel.app with the above environment.
    Verify public and Studio identity/data boundaries remain separate.
 
 The current local CLI wrapper intentionally does not provide remote link/push.
@@ -211,7 +216,7 @@ Use approved test identities only; record results without tokens/seeds/secrets.
     Fasa 6.1 complete. Production provisioning, owner onboarding, backups/retention
     policy and any operational module require their own explicit decisions.
 
-## Current unresolved items
+## Current completed foundation and remaining items
 
 Local Docker reset/migration, actual Auth schema/grants, PostgREST/RLS/bypass/
 concurrency, public CLI types, private-hook execution and genuine TOTP/AAL2/
@@ -224,5 +229,9 @@ Google-session TOTP/refresh/deployment cookies/rotation/outages; reviewed isolat
 test bootstrap and real owner onboarding; provider session termination/recovery;
 selected-plan timeout and retention/backup procedures. Repeat the matrix on
 staging rather than inferring hosted success from local or synthetic fixtures.
-No hosted resources or real owner accounts exist and no provisioning has begun.
+Hosted staging now exists; 6.1B-1 applied only the reviewed migration, enabled
+the private hook and passed 36 hosted HTTP/SQL/contract cases. No real owner,
+Google setup, deployment or production resource. Vercel variable completeness
+is verified through CLI metadata; connector still returns 403. See the hosted record for genuine versus
+synthetic test boundaries; no full hosted Auth/TOTP/session success is inferred.
 Fasa 6.1 remains open; production and operational modules are not authorized.
