@@ -1,5 +1,31 @@
 # Roadmap Projek
 
+## Fasa 7.0 — Campaign Engine Architecture Lock complete / owner-approved
+
+8 October 2026 (+08:00). [Campaign Engine architecture](CAMPAIGN-ENGINE-PLAN.md)
+is owner-approved. Required global/module flag OFF returns public 404; closed
+admission cannot reopen and archived is terminal; admin audit is safe campaign-only,
+staff has no audit history and foundation/security audit remains super_admin-only.
+Documentation checkpoint: `phase-7.0-campaign-engine-architecture`; resolve this
+tag for the actual checkpoint commit. Overall Fasa 7 is **in progress/not complete**.
+No implementation, deployment or hosted resource change. Fasa 8+ remains unstarted.
+
+### Pecahan Fasa 7
+
+| Langkah | Fokus | Status |
+| --- | --- | --- |
+| **7.0** | Campaign Engine Architecture Lock | **Complete / owner-approved** — documentation checkpoint `phase-7.0-campaign-engine-architecture` |
+| 7.1 | Database schema + RLS | Belum bermula |
+| 7.2 | Feature flag service | Belum bermula |
+| 7.3 | Campaign lifecycle + scheduling | Belum bermula |
+| 7.4 | Admin campaign management | Belum bermula |
+| 7.5 | Public `/kempen/[slug]` gating | Belum bermula |
+| 7.6 | Audit, security and regression QA | Belum bermula |
+| 7.C | Owner-approved Campaign Engine implementation checkpoint | Belum bermula |
+
+Fasa 6 historical evidence/checkpoints below are preserved. Their Fasa 7
+not-started statements describe those earlier checkpoint boundaries.
+
 ## Fasa 6.1 complete — owner-approved checkpoint
 
 8 October 2026 (+08:00). Minimum deterministic MFA naming/selection patch deployed
@@ -173,7 +199,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **4** | Sanity CMS | **Siap** — checkpoint 4.3C |
 | **5** | Dynamic Content | **Siap** — 5.1/5.2/5.2A/5.2B dan 5.3A–5.3E siap, termasuk public `/kuliah` (5.3D) dan homepage lecture integration (5.3E) |
 | **6** | Admin Foundation | **6.0 dan 6.1 complete, owner-approved**; 6.1A/6.1B-1/6.1B-2/6.1B-2R complete; checkpoint `phase-6.1-admin-foundation-complete`; no production |
-| 7 | Feature Flags & Campaign Engine | Belum bermula |
+| **7** | Feature Flags & Campaign Engine | **In progress / not complete** — 7.0 architecture complete/owner-approved; 7.1–7.6 dan 7.C belum bermula |
 | 8 | Qurban MVP | Belum bermula |
 | 9 | Payment & Receipt | Belum bermula |
 | 10 | Ramadan Iftar | Belum bermula |
