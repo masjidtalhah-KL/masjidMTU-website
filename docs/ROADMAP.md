@@ -20,9 +20,21 @@ deny-first RLS/grants, scoped campaign authorization and backward-compatible
 audit extension with safe admin campaign-only audit projection. **421/421 local
 tests passed**; no hosted mutation or deployment. Checkpoint:
 `phase-7.1-campaign-database-foundation`; resolve the tag for the checkpoint commit.
-Overall Fasa 7 remains **in progress/not complete**. 7.2–7.6 and 7.C have not started;
+At the 7.1 checkpoint, overall Fasa 7 remained **in progress/not complete**;
+7.2–7.6 and 7.C had not started;
 no feature-flag service, lifecycle/scheduler, campaign UI/public route or domain
 implementation. All Fasa 6 and 7.0 historical evidence is preserved.
+
+## Fasa 7.2 — Feature Flag Service complete / owner-approved
+
+9 October 2026 (+08:00). [Feature flag service and verification](CAMPAIGN-FEATURE-FLAGS.md)
+is owner-approved: safe flag reads/effective availability, owner-only enable/disable,
+optimistic concurrency, idempotent no-ops and atomic audit. Route-level request body
+is bounded to 256 UTF-8 bytes with the existing same-origin boundary; Next proxy
+buffering remains outside that limit, without an early network-rejection claim.
+**477/477 local tests passed**; no hosted mutation or deployment. Checkpoint:
+`phase-7.2-feature-flag-service`; resolve the tag for the checkpoint commit.
+Overall Fasa 7 remains **in progress/not complete**. 7.3–7.6 and 7.C have not started.
 
 ### Pecahan Fasa 7
 
@@ -30,7 +42,7 @@ implementation. All Fasa 6 and 7.0 historical evidence is preserved.
 | --- | --- | --- |
 | **7.0** | Campaign Engine Architecture Lock | **Complete / owner-approved** — documentation checkpoint `phase-7.0-campaign-engine-architecture` |
 | **7.1** | Database schema + RLS | **Complete / owner-approved** — local foundation, 421/421; `phase-7.1-campaign-database-foundation` |
-| 7.2 | Feature flag service | Belum bermula |
+| **7.2** | Feature flag service | **Complete / owner-approved** — local service, 477/477; `phase-7.2-feature-flag-service` |
 | 7.3 | Campaign lifecycle + scheduling | Belum bermula |
 | 7.4 | Admin campaign management | Belum bermula |
 | 7.5 | Public `/kempen/[slug]` gating | Belum bermula |
@@ -213,7 +225,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **4** | Sanity CMS | **Siap** — checkpoint 4.3C |
 | **5** | Dynamic Content | **Siap** — 5.1/5.2/5.2A/5.2B dan 5.3A–5.3E siap, termasuk public `/kuliah` (5.3D) dan homepage lecture integration (5.3E) |
 | **6** | Admin Foundation | **6.0 dan 6.1 complete, owner-approved**; 6.1A/6.1B-1/6.1B-2/6.1B-2R complete; checkpoint `phase-6.1-admin-foundation-complete`; no production |
-| **7** | Feature Flags & Campaign Engine | **In progress / not complete** — 7.0 architecture complete/owner-approved; 7.1–7.6 dan 7.C belum bermula |
+| **7** | Feature Flags & Campaign Engine | **In progress / not complete** — 7.0–7.2 complete/owner-approved; 7.3–7.6 dan 7.C belum bermula |
 | 8 | Qurban MVP | Belum bermula |
 | 9 | Payment & Receipt | Belum bermula |
 | 10 | Ramadan Iftar | Belum bermula |

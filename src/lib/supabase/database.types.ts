@@ -70,6 +70,15 @@ export type Database = {
         Returns: undefined
       }
       admin_security_state: { Args: never; Returns: Json }
+      admin_set_system_flag: {
+        Args: {
+          desired_enabled: boolean
+          expected_version: number
+          target_key: string
+        }
+        Returns: Json
+      }
+      admin_system_flags: { Args: never; Returns: Json }
       campaign_audit_history: {
         Args: { page_size?: number; target_campaign?: string }
         Returns: Json
