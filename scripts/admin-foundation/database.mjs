@@ -6,11 +6,12 @@ import { fileURLToPath } from 'node:url';
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 // Test contract only. These are NOT Supabase Auth migrations or an Auth emulator.
 // Real Auth schemas/services remain a separate full-stack verification gate.
-export async function database() {
+export async function database({ migrationThrough } = {}) {
   const db = new PGlite();
   await db.exec(`
     create role anon nologin;
     create role authenticated nologin;
+    create role service_role nologin bypassrls;
     create role supabase_auth_admin nologin;
     create schema auth;
     create table auth.users(id uuid primary key, email text, email_confirmed_at timestamptz, is_anonymous boolean default false, raw_user_meta_data jsonb default '{}');
@@ -22,7 +23,8 @@ export async function database() {
     grant usage on schema auth to authenticated, anon;
     grant execute on function auth.jwt(), auth.uid() to authenticated, anon;
   `);
-  for (const file of (await readdir(path.join(root, 'supabase/migrations'))).filter(f => f.endsWith('.sql')).sort()) {
+  for (const file of (await readdir(path.join(root, 'supabase/migrations')))
+    .filter(f => f.endsWith('.sql') && (!migrationThrough || f.split('_')[0] <= migrationThrough)).sort()) {
     await db.exec(await readFile(path.join(root, 'supabase/migrations', file), 'utf8'));
   }
   return db;

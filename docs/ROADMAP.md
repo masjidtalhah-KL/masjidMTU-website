@@ -8,14 +8,28 @@ admission cannot reopen and archived is terminal; admin audit is safe campaign-o
 staff has no audit history and foundation/security audit remains super_admin-only.
 Documentation checkpoint: `phase-7.0-campaign-engine-architecture`; resolve this
 tag for the actual checkpoint commit. Overall Fasa 7 is **in progress/not complete**.
-No implementation, deployment or hosted resource change. Fasa 8+ remains unstarted.
+The 7.0 architecture checkpoint made no implementation, deployment or hosted
+resource change. Fasa 8+ remains unstarted.
+
+## Fasa 7.1 — Campaign Engine Database Foundation complete / owner-approved
+
+8 October 2026 (+08:00). [Database foundation and verification](CAMPAIGN-ENGINE-DATABASE.md)
+is owner-approved: additive migration `20261008102157_campaign_database_foundation.sql`,
+empty production descriptor registry, private campaign/flag persistence,
+deny-first RLS/grants, scoped campaign authorization and backward-compatible
+audit extension with safe admin campaign-only audit projection. **421/421 local
+tests passed**; no hosted mutation or deployment. Checkpoint:
+`phase-7.1-campaign-database-foundation`; resolve the tag for the checkpoint commit.
+Overall Fasa 7 remains **in progress/not complete**. 7.2–7.6 and 7.C have not started;
+no feature-flag service, lifecycle/scheduler, campaign UI/public route or domain
+implementation. All Fasa 6 and 7.0 historical evidence is preserved.
 
 ### Pecahan Fasa 7
 
 | Langkah | Fokus | Status |
 | --- | --- | --- |
 | **7.0** | Campaign Engine Architecture Lock | **Complete / owner-approved** — documentation checkpoint `phase-7.0-campaign-engine-architecture` |
-| 7.1 | Database schema + RLS | Belum bermula |
+| **7.1** | Database schema + RLS | **Complete / owner-approved** — local foundation, 421/421; `phase-7.1-campaign-database-foundation` |
 | 7.2 | Feature flag service | Belum bermula |
 | 7.3 | Campaign lifecycle + scheduling | Belum bermula |
 | 7.4 | Admin campaign management | Belum bermula |

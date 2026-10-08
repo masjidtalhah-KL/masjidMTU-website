@@ -2,7 +2,7 @@ import test, { before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { createClient } from '@supabase/supabase-js';
 import { localStack, fixtures, sql, rows, quote, signedToken, api, rpc, totp, cli } from './local-stack.mjs';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { randomUUID } from 'node:crypto';
 import { hookProbe } from './local-hook-probe.mjs';
 import { nextProbe } from './local-next-probe.mjs';
@@ -19,7 +19,8 @@ before(() => {
 after(async () => { if(ownerClient) await ownerClient.auth.stopAutoRefresh(); primarySeed = undefined; });
 
 test('real migration version, PostgreSQL/Auth schema and hook configuration match', () => {
-  assert.equal(sql("select version from supabase_migrations.schema_migrations;"), '20261006000100');
+  assert.deepEqual(rows('select version from supabase_migrations.schema_migrations order by version').map(r=>r.version),
+    readdirSync('supabase/migrations').filter(f=>f.endsWith('.sql')).sort().map(f=>f.split('_')[0]));
   for (const [table,column] of [['identities','provider_id'],['sessions','aal'],['mfa_factors','factor_type'],['mfa_amr_claims','authentication_method']])
     assert.equal(sql("select count(*) from information_schema.columns where table_schema='auth' and table_name="+quote(table)+" and column_name="+quote(column)), '1');
   assert.equal(stack.authEnv.GOTRUE_HOOK_BEFORE_USER_CREATED_ENABLED,'true');

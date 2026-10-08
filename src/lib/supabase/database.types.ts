@@ -70,6 +70,11 @@ export type Database = {
         Returns: undefined
       }
       admin_security_state: { Args: never; Returns: Json }
+      campaign_audit_history: {
+        Args: { page_size?: number; target_campaign?: string }
+        Returns: Json
+      }
+      campaign_foundation_list: { Args: { page_size?: number }; Returns: Json }
     }
     Enums: {
       [_ in never]: never

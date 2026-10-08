@@ -38,7 +38,9 @@
     "admin:local:types": "node scripts/admin-foundation/local-cli.mjs gen types typescript --local --schema public",
     "admin:local:test": "node --test scripts/admin-foundation/local-supabase.test.mjs",
     "admin:smoke": "node scripts/admin-foundation/route-smoke.mjs",
-    "admin:e2e": "playwright test -c scripts/admin-foundation/playwright.config.ts"
+    "admin:e2e": "playwright test -c scripts/admin-foundation/playwright.config.ts",
+    "campaign:local:test": "node --test scripts/campaign-engine/local-database.test.mjs",
+    "campaign:upgrade:test": "node --test scripts/campaign-engine/upgrade.test.mjs"
   },
   "overrides": {
     "supabase": {
