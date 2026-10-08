@@ -1,13 +1,41 @@
 # Fasa 6.0 — Admin Foundation Architecture & Security Plan
 
-> Hosted status, 7 October 2026: owner-authorized 6.1B-1 applied the unchanged
+> Current status, 8 October 2026: **Fasa 6.1 complete and owner-approved.**
+> Minimum MFA naming/selection patch passed 97/97 local tests and deployed READY
+> to dedicated staging. Lost Primary removed only through supported Auth MFA API;
+> genuine replacement Primary and retained Backup AAL2 verified. Google relogin
+> AAL1 exclusion, signed refresh-only recency, stale mutation denial and direct
+> API guards passed. All test sessions globally signed out; actual unexpired JWT
+> denied by live-session checks. Two verified factors, 12 audits, zero pending invites.
+> Existing authorization/RLS/migration unchanged; no privileged browser/runtime key.
+> Lack of second isolated Google identity and safe sole-owner revoked-replay limits
+> remain explicitly documented and accepted as non-blocking. Free-plan session
+> targets and independent real-owner recovery custody remain future decisions.
+> [Complete B-2R evidence](ADMIN-FOUNDATION-MFA-RECOVERY-VERIFICATION.md).
+> Owner authorizes main commit/push and tag `phase-6.1-admin-foundation-complete`.
+> No real-owner onboarding or production provisioning; Fasa 7 remains unstarted.
+
+> Historical B-2 status, 8 October 2026: genuine no-invite denial and allowlisted Google admission passed.
+> Isolated staging test-super-admin binding/invite consumption/audit committed atomically.
+> Genuine OAuth AAL1 exclusion and primary hosted TOTP/AAL2 passed; Users opens.
+> Staff/admin invite creation, duplicate denial and revoke passed via real session.
+> Backup TOTP, fresh step-up retry and local-scope hosted logout passed.
+> Relogin returns to AAL1; existing verified factors do not automatically grant AAL2.
+> Backup rechallenge works; Primary rechallenge returns invalid TOTP and is under
+> owner entry/custody review. Explicit remaining Backup challenge passed.
+> [Replacement-Primary recovery proposal](ADMIN-FOUNDATION-STAGING-RECOVERY-REVIEW.md)
+> is prepared; no runtime patch/factor reset/deployment performed.
+> No runtime change; separate-identity admission/role matrix and direct API gates are open.
+> [Historical B-2 hosted Auth/MFA evidence](ADMIN-FOUNDATION-HOSTED-AUTH-VERIFICATION.md).
+
+> Historical hosted status, 7 October 2026: owner-authorized 6.1B-1 applied the unchanged
 > reviewed migration and verified staging RLS/grants/private hook/negative admission.
 > [Hosted evidence](ADMIN-FOUNDATION-STAGING-VERIFICATION.md). Vercel CLI confirmed eight Production env names and no privileged key. Owner
 > authorized checkpoint/push and first canonical-source staging deployment, now
 > READY at the stable staging alias. HTTP/browser/bundle/log checks pass. Google,
 > owner bootstrap and production remain excluded; Fasa 6.1 stays open.
 >
-> Implementation status, 6 October 2026: the owner subsequently authorized the
+> Historical implementation status, 6 October 2026: the owner subsequently authorized the
 > local Fasa 6.1 task from commit 91117322f7ac81043bbe9d952811dfbe02d8ccde.
 > This document preserves the approved 6.0 architecture and historical closeout
 > below. Current implementation/evidence is in

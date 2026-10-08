@@ -87,6 +87,41 @@ test('MFA provider failure leaves AAL1 owner denied and never invents successful
   await expect(page).toHaveURL(/\/admin\/mfa/);
   expect((await context.request.get('/admin/api/access')).status()).toBe(403);
 });
+
+// UI contract fixtures only. No successful Auth/TOTP verification is simulated.
+for (const labels of [["Backup authenticator"], ["Primary authenticator"], ["Primary authenticator", "Backup authenticator"], ["Backup authenticator", "Primary authenticator"]]) {
+  test(`MFA recovery labels/default: ${labels.join(', ')}`, async ({ page, context }) => {
+    await login(context, 'owner', '?aal=aal1');
+    await page.route('**/auth/v1/user', async route => {
+      const response = await route.fetch();
+      const user = await response.json();
+      user.factors = labels.map((friendly_name, index) => ({ id: `00000000-0000-4000-8000-0000000000${index + 21}`, friendly_name, factor_type: 'totp', status: 'verified' }));
+      await route.fulfill({ response, json: user });
+    });
+    await page.goto('/admin/mfa');
+    const selection = page.getByRole('combobox', { name: 'Authenticator', exact: true });
+    const defaultLabel = labels.includes('Primary authenticator') ? 'Primary authenticator' : 'Backup authenticator';
+    await expect(selection.locator('option:checked')).toHaveText(defaultLabel);
+    if (labels.length === 2) {
+      await expect(page.getByRole('button', { name: 'Add backup authenticator' })).toBeDisabled();
+      await selection.selectOption({ label: 'Backup authenticator' });
+      await expect(selection.locator('option:checked')).toHaveText('Backup authenticator');
+    } else {
+      const missing = labels[0] === 'Backup authenticator' ? 'Primary authenticator' : 'Backup authenticator';
+      let requestedName: string | undefined;
+      await page.route('**/auth/v1/factors', async route => {
+        requestedName = route.request().postDataJSON().friendly_name;
+        await route.fulfill({ status: 501, json: { msg: 'Synthetic enrollment unavailable' } });
+      });
+      await page.getByRole('button', { name: missing === 'Primary authenticator' ? 'Add primary authenticator' : 'Add backup authenticator' }).click();
+      await expect(page.getByRole('alert').filter({ hasText: /Could not enroll/ })).toHaveText(/Could not enroll/);
+      expect(requestedName).toBe(missing);
+      expect(requestedName).not.toBe(labels[0]);
+      await expect(selection.locator('option:checked')).toHaveText(defaultLabel);
+      expect((await context.request.get('/admin/api/access')).status()).toBe(403);
+    }
+  });
+}
 test('mobile navigation is focus-contained, keyboard accessible and does not overflow',async({page,context},testInfo)=>{
   await page.setViewportSize({width:375,height:812});await login(context,'owner');await page.goto('/admin/users');
   await page.getByRole('button',{name:'Open admin navigation'}).click();await expect(page.getByRole('dialog')).toBeVisible();

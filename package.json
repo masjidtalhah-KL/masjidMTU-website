@@ -29,6 +29,7 @@
     "lecture-public:smoke": "node scripts/public-content/lecture-route-smoke.mjs",
     "admin:db:test": "node --test scripts/admin-foundation/database.test.mjs",
     "admin:policy:test": "node --import tsx --test scripts/admin-foundation/policy.test.ts",
+    "admin:mfa:test": "node --import tsx --test scripts/admin-foundation/mfa.test.ts",
     "admin:types": "node scripts/admin-foundation/generate-types.mjs",
     "admin:types:check": "node scripts/admin-foundation/generate-types.mjs --check",
     "admin:bundle:check": "node scripts/admin-foundation/bundle-check.mjs",

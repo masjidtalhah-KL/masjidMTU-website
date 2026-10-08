@@ -1,6 +1,74 @@
 # Roadmap Projek
 
-## Current work — Fasa 6.1B-1 hosted staging checkpoint
+## Fasa 6.1 complete — owner-approved checkpoint
+
+8 October 2026 (+08:00). Minimum deterministic MFA naming/selection patch deployed
+READY to dedicated staging: dpl_5EZM2KX68cK154fxWHbN5megXqqs,
+https://masjid-mtu-admin-staging.vercel.app. 97/97 local automated tests, lint,
+TypeScript and production Webpack build passed; authorization/RLS/migration unchanged.
+Only lost Primary was removed through supported Auth Admin MFA API after fresh
+Backup/AAL2 proof. Replacement Primary and the retained Backup independently
+restored genuine hosted AAL2. Google relogin stays AAL1 until a fresh TOTP challenge.
+
+30/30 actual hosted API/refresh/AAL1 assertions passed; refresh does not advance
+signed TOTP recency, and naturally stale privileged mutation returns 403. Three
+supplementary live-membership rollback contracts and two genuine-session cleanup
+assertions passed. An unexpired real JWT is denied after supported global logout.
+8/8 deployed route regressions, public/Studio/Kuliah, bundle and bounded logs checks
+are green. Public navigation retains no authenticated admin content.
+
+Final counts: one isolated Auth user/Google identity/active test-super-admin profile,
+two verified factors, zero sessions/live refresh records/pending invites, one accepted
+and four revoked historical invites, 12 preserved audit rows. Sole review identity
+and factors retained; all test sessions removed. No real owner onboarded.
+No second isolated Google identity exists: ordinary external staff/admin browser
+admission and independent account switching were not exercised. A committed revoked
+sole-owner browser replay was avoided; existing contracts and rollback evidence
+remain explicit. Owner accepts these limitations with critical closure gates green.
+Free-plan timeout limitations and future independent owner recovery custody remain
+documented. **Fasa 6.1 complete and owner-approved on 8 October 2026.**
+Owner authorizes the canonical main commit and tag
+`phase-6.1-admin-foundation-complete`; resolve the tag for the checkpoint commit.
+No production resources or real-owner onboarding; Fasa 7 remains unstarted. [Actual B-2R evidence](ADMIN-FOUNDATION-MFA-RECOVERY-VERIFICATION.md).
+
+## Historical B-2 owner-review evidence
+
+8 October 2026 (+08:00). Preflight from clean/synced main
+05a1e394c2dce9a6c816020072e5bc9c3d466540 passed. Google is now enabled in dedicated
+staging; email/phone/anonymous remain disabled. Auth hook and exact staging URLs
+are unchanged. Login responds 200; Vercel has eight required variables and no
+privileged runtime key. Initial hosted users/profiles/invites/audit counts were zero.
+First real no-invite Google denial passed: owner browser result, Google/hook Auth
+logs and zero users/identities/sessions/profiles/invites/audits corroborate it.
+Second genuine Google login passed hosted admission and created one exact-email
+Google identity. The controlled staging operator transaction bound the isolated
+test super-admin profile, consumed the bootstrap invitation and added an audit.
+Readback: one Auth user/Google identity/active profile, one accepted invitation,
+two bootstrap audits. Next login produced a genuine OAuth AAL1 session with no
+MFA factors; /admin/users redirected to /admin/mfa. Owner verified primary TOTP;
+hosted session now AAL2 and Users opens. Real-session staff/admin invite create,
+duplicate denial and revoke passed; six audits retained, zero pending invitations.
+After 10 minutes, AAL2 remained but the server denied mutation until fresh MFA.
+Backup enrollment/challenge and fresh step-up retry passed. Relogin after logout
+returned to AAL1 despite both stored verified factors; Users redirects to MFA.
+Logout removed the
+session/refresh tokens; post-logout Users redirects to login. Eight route checks
+and 30 deployed bundle scans pass. One test profile/two factors/eight audits retained.
+No separate Google test account is available; ordinary admission/role/account-switch
+and direct API gates remain explicitly unverified. No claim that Fasa 6.1 is closed.
+Primary rechallenge is now blocked by genuine invalid-TOTP responses; owner
+Owner confirms only one authenticator device/entry remains after deleting entries
+while trying to obtain fresh codes. Primary possession is unverified; Backup is
+the last successful factor. Explicit Backup challenge after entry loss passed.
+Replacement-Primary enrollment naming needs a minimum reviewed patch; no reset,
+runtime patch or deployment performed. [Recovery review](ADMIN-FOUNDATION-STAGING-RECOVERY-REVIEW.md).
+No runtime/migration change or commit/push. Fasa 6.1 stays open.
+[Actual B-2 evidence and pending gates](ADMIN-FOUNDATION-HOSTED-AUTH-VERIFICATION.md).
+
+The following B-1 checkpoint is a historical record; its Google-disabled state
+was true at that checkpoint, before the owner's B-2 provider configuration.
+
+## Historical checkpoint — Fasa 6.1B-1 hosted staging
 
 7 October 2026 (+08:00), from HEAD 4ab521b484d034e102ae405476c12183554e61f4.
 Dedicated Supabase staging azypohqpupphapasweln (Singapore) is linked; the unchanged
@@ -104,7 +172,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **3** | Public Pages | **Siap** |
 | **4** | Sanity CMS | **Siap** — checkpoint 4.3C |
 | **5** | Dynamic Content | **Siap** — 5.1/5.2/5.2A/5.2B dan 5.3A–5.3E siap, termasuk public `/kuliah` (5.3D) dan homepage lecture integration (5.3E) |
-| **6** | Admin Foundation | **6.0 siap dan owner-approved**; 6.1A full local verified; 6.1 remains open for hosted staging |
+| **6** | Admin Foundation | **6.0 dan 6.1 complete, owner-approved**; 6.1A/6.1B-1/6.1B-2/6.1B-2R complete; checkpoint `phase-6.1-admin-foundation-complete`; no production |
 | 7 | Feature Flags & Campaign Engine | Belum bermula |
 | 8 | Qurban MVP | Belum bermula |
 | 9 | Payment & Receipt | Belum bermula |
@@ -117,11 +185,13 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | Langkah | Fokus | Status |
 | --- | --- | --- |
 | **6.0** | Admin architecture, invite-only access, MFA, RLS and environment plan | **Siap dan owner-approved** — `phase-6.0-admin-foundation-architecture`; dokumentasi sahaja |
-| 6.1 | Generic authenticated admin foundation | Local implementation/UI approved; 6.1A real local verification passed; hosted staging gates pending; no production |
-| 6.1A | Full local Supabase verification | Complete local checkpoint: real PostgreSQL/Auth/PostgREST, hook/TOTP/SSR and all 327 tests pass; no hosted provisioning |
-| 6.1B-1 | Hosted staging migration and Auth hook | Complete: Supabase 36 cases, Vercel READY, 8 HTTP/5 browser/30 chunk checks; Google pending |
+| **6.1** | Generic authenticated admin foundation | **Complete, owner-approved** — local and hosted staging foundation verified; `phase-6.1-admin-foundation-complete`; no production |
+| **6.1A** | Full local Supabase verification | **Complete** — real PostgreSQL/Auth/PostgREST, hook/TOTP/SSR and all 327 tests passed; `phase-6.1a-local-admin-foundation` |
+| **6.1B-1** | Hosted staging migration and Auth hook | **Complete** — hosted migration/hook verified, Vercel READY; `phase-6.1b1-hosted-supabase-staging` |
+| **6.1B-2** | Real Google OAuth and hosted Auth/MFA verification | **Complete** — genuine Google admission, AAL1/AAL2 and hosted MFA; final recovery/security gates resolved in 6.1B-2R; accepted separate-identity test limitations documented |
+| **6.1B-2R** | MFA recovery patch and final hosted closeout | **Complete** — replacement Primary and retained Backup verified; refresh-only recency/direct API/session checks passed; all test sessions removed, identity/factors and 12 audits retained |
 
-Fasa 7 may build feature flags/campaign configuration on this foundation.
+Fasa 7 remains **belum bermula**; this checkpoint does not authorize starting it.
 Fasa 8+ operational module choices remain subject to AJK requirements and owner
 approval; existing Qurban/Ramadan rows are roadmap candidates, not an instruction
 to implement them next. No module workflow is designed in 6.0.

@@ -2,15 +2,17 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { browserClient } from "@/lib/supabase/browser";
 import type { BrowserConfig } from "@/lib/supabase/config";
+import { missingAuthenticatorName, selectedAuthenticator, PRIMARY_AUTHENTICATOR, type TotpFactor } from "@/lib/admin/mfa";
 export function MfaPanel({ config, userId, next }: { config: BrowserConfig; userId: string; next: string }) {
   const sensitive = useRef<HTMLElement>(null);
-  const [factors, setFactors] = useState<{ id: string; friendly_name?: string }[]>([]);
+  const [factors, setFactors] = useState<TotpFactor[]>([]);
   const [selected, setSelected] = useState("");
   const [enrollment, setEnrollment] = useState<{ id: string; qr: string; secret: string } | null>(null);
   const [code, setCode] = useState("");
   const [busy, setBusy] = useState(false);
   const [ready, setReady] = useState(false);
   const [message, setMessage] = useState("");
+  const enrollmentName = missingAuthenticatorName(factors);
   useEffect(() => {
     const hide = () => { if (sensitive.current) sensitive.current.hidden = true; };
     const leave = () => { hide(); setEnrollment(null); setCode(""); window.location.replace("/admin/login?state=denied"); };
@@ -26,14 +28,15 @@ export function MfaPanel({ config, userId, next }: { config: BrowserConfig; user
     void browserClient(config).auth.mfa.listFactors().then(({ data, error }) => {
       if (!active) return;
       if (error) setMessage("Could not load authenticators. Try again.");
-      else { setFactors(data.totp); setSelected(data.totp[0]?.id ?? ""); setReady(true); }
+      else { setFactors(data.totp); setSelected(previous => selectedAuthenticator(data.totp, previous)); setReady(true); }
     });
     return () => { active = false; };
   }, [config]);
   async function enroll() {
+    if (busy || !enrollmentName) return;
     setBusy(true); setMessage("");
     try {
-      const result = await browserClient(config).auth.mfa.enroll({ factorType: "totp", friendlyName: factors.length ? "Backup authenticator" : "Primary authenticator", issuer: "Masjid Talhah Admin" });
+      const result = await browserClient(config).auth.mfa.enroll({ factorType: "totp", friendlyName: enrollmentName, issuer: "Masjid Talhah Admin" });
       if (result.error || !result.data || result.data.type !== "totp") throw Error("enroll");
       // Sensitive provisioning material exists only in component memory until verification.
       setEnrollment({ id: result.data.id, qr: result.data.totp.qr_code, secret: result.data.totp.secret });
@@ -60,8 +63,8 @@ export function MfaPanel({ config, userId, next }: { config: BrowserConfig; user
   return <section ref={sensitive} className="admin-stack" data-admin-sensitive>
     {!ready && !message && <p role="status">Loading authenticators…</p>}
     {ready && !enrollment && <>
-      <p>{factors.length ? "Select an authenticator, or enroll a separate backup device." : "Enroll your primary authenticator to continue."}</p>
-      <button className="admin-button admin-button-secondary" disabled={busy || factors.length >= 2} onClick={() => void enroll()}>{factors.length ? "Add backup authenticator" : "Enroll authenticator"}</button>
+      <p>{factors.length ? enrollmentName === PRIMARY_AUTHENTICATOR ? "Select your backup authenticator, or enroll a replacement primary authenticator." : "Select an authenticator, or enroll a separate backup device." : "Enroll your primary authenticator to continue."}</p>
+      <button className="admin-button admin-button-secondary" disabled={busy || !enrollmentName} onClick={() => void enroll()}>{!factors.length ? "Enroll authenticator" : enrollmentName === PRIMARY_AUTHENTICATOR ? "Add primary authenticator" : "Add backup authenticator"}</button>
     </>}
     {enrollment && <div className="admin-card" data-admin-sensitive>
       <p>Scan this code in your authenticator app. Keep this setup material private.</p>

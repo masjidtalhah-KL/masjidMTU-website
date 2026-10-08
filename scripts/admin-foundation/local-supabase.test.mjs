@@ -82,6 +82,14 @@ test('genuine local Auth TOTP enrollment/challenge creates Auth-issued AAL2 and 
   const state=await rpc(stack,'admin_security_state',ownerToken);
   assert.equal(state.status,200);assert.equal(state.data.recent_mfa,true);assert.equal(state.data.has_totp,true);
 });
+test('genuine local Auth rejects duplicate factor friendly name without replacing the verified factor',async()=>{
+  const duplicate=await ownerClient.auth.mfa.enroll({factorType:'totp',friendlyName:'Local test primary'});
+  assert(duplicate.error);
+  assert.equal(duplicate.error.code,'mfa_factor_name_conflict');
+  assert.equal(sql("select count(*) from auth.mfa_factors where user_id="+quote(users.owner.id)+" and friendly_name='Local test primary' and status='verified'"),'1');
+  assert.equal(sql("select status from auth.mfa_factors where id="+quote(ownerFactor)),'verified');
+});
+
 test('real Auth-issued owner AAL2 allows foundation snapshot and profile reads',async()=>{
   const response=await profiles(ownerToken);assert.equal(response.status,200);assert.equal(response.data.length,5);
   const snapshot=await manage('admin_owner_snapshot');assert.equal(snapshot.status,200);assert.equal(snapshot.data.users.length,5);
