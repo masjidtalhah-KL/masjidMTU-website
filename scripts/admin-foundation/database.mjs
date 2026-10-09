@@ -13,6 +13,8 @@ export async function database({ migrationThrough } = {}) {
     create role authenticated nologin;
     create role service_role nologin bypassrls;
     create role supabase_auth_admin nologin;
+    -- Test-only analogue of PostgREST's real connection role.
+    create role authenticator nologin;
     create schema auth;
     create table auth.users(id uuid primary key, email text, email_confirmed_at timestamptz, is_anonymous boolean default false, raw_user_meta_data jsonb default '{}');
     create table auth.identities(id uuid primary key default gen_random_uuid(), user_id uuid references auth.users(id), provider text, provider_id text, identity_data jsonb);

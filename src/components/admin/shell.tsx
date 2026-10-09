@@ -41,8 +41,8 @@ export function AdminShell({ children, userId, email, role, config }: { children
     return () => { stopped = true; clearInterval(interval); data.subscription.unsubscribe();
       document.removeEventListener("visibilitychange", onVisibility); window.removeEventListener("pagehide", onPageHide); window.removeEventListener("pageshow", onPageShow); };
   }, [config, userId, role]);
-  const links = [{ href: "/admin", label: "Home" }, ...(role === "super_admin" ? [{ href: "/admin/users", label: "Users" }] : []), { href: "/admin/settings", label: "Settings" }];
-  const nav = <nav aria-label="Admin navigation">{links.map(link => <Link key={link.href} href={link.href} prefetch={false} aria-current={pathname === link.href ? "page" : undefined} onClick={() => { dialog.current?.close(); setOpen(false); }}>{link.label}</Link>)}</nav>;
+  const links = [{ href: "/admin", label: "Home" }, { href: "/admin/campaigns", label: "Kempen" }, ...(role === "super_admin" ? [{ href: "/admin/users", label: "Users" }] : []), { href: "/admin/settings", label: "Settings" }];
+  const nav = <nav aria-label="Admin navigation">{links.map(link => <Link key={link.href} href={link.href} prefetch={false} aria-current={pathname === link.href || link.href === "/admin/campaigns" && pathname.startsWith("/admin/campaigns/") ? "page" : undefined} onClick={() => { dialog.current?.close(); setOpen(false); }}>{link.label}</Link>)}</nav>;
   return <div className="admin-shell">
     <aside className="admin-sidebar"><Link href="/admin" prefetch={false} className="admin-brand">MTU<span>Internal workspace</span></Link>{nav}<Link className="admin-public-link" href="/" prefetch={false} onClick={event => { event.preventDefault(); if (sensitive.current) sensitive.current.hidden = true; window.location.assign(new URL("/", window.location.origin).href); }}>Public website ↗</Link></aside>
     <div className="admin-body"><header className="admin-topbar"><button className="admin-menu" aria-label="Open admin navigation" aria-expanded={open} onClick={() => { dialog.current?.showModal(); setOpen(true); }}>Menu</button>

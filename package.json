@@ -44,7 +44,10 @@
     "campaign:flags:test": "node --import tsx --test scripts/campaign-engine/flags-contract.test.ts scripts/campaign-engine/flags-upgrade.test.mjs",
     "campaign:flags:local:test": "node --import tsx --test scripts/campaign-engine/flags-local.test.mjs",
     "campaign:lifecycle:test": "node --import tsx --test scripts/campaign-engine/lifecycle-contract.test.ts scripts/campaign-engine/lifecycle-upgrade.test.mjs",
-    "campaign:lifecycle:local:test": "node --import tsx --test scripts/campaign-engine/lifecycle-local.test.mjs"
+    "campaign:lifecycle:local:test": "node --import tsx --test scripts/campaign-engine/lifecycle-local.test.mjs",
+    "campaign:management:test": "node --import tsx --test scripts/campaign-engine/management-contract.test.ts scripts/campaign-engine/management-upgrade.test.mjs",
+    "campaign:management:local:test": "node --import tsx --test scripts/campaign-engine/management-local.test.mjs",
+    "campaign:management:bundle:check": "node scripts/campaign-engine/management-bundle-check.mjs"
   },
   "overrides": {
     "supabase": {

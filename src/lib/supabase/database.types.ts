@@ -51,6 +51,11 @@ export type Database = {
     }
     Functions: {
       admin_accept_invite: { Args: never; Returns: undefined }
+      admin_campaign_create: { Args: { payload: Json }; Returns: Json }
+      admin_campaign_detail: {
+        Args: { target_campaign: string }
+        Returns: Json
+      }
       admin_campaign_lifecycle: {
         Args: {
           command_action: string
@@ -64,6 +69,15 @@ export type Database = {
           expected_version: number
           target_campaign: string
           windows: Json
+        }
+        Returns: Json
+      }
+      admin_campaign_types: { Args: never; Returns: Json }
+      admin_campaign_update: {
+        Args: {
+          expected_version: number
+          payload: Json
+          target_campaign: string
         }
         Returns: Json
       }

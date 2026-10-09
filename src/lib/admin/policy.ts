@@ -18,7 +18,8 @@ export function securityState(value: unknown): SecurityState {
   return s as SecurityState;
 }
 export function safeAdminReturn(value: unknown): string {
-  return typeof value === "string" && ["/admin", "/admin/users", "/admin/settings"].includes(value) ? value : "/admin";
+  return typeof value === "string" && (["/admin", "/admin/users", "/admin/settings", "/admin/campaigns", "/admin/campaigns/new"].includes(value) ||
+    /^\/admin\/campaigns\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(value)) ? value : "/admin";
 }
 export function isIsolatedRoute(pathname: string) {
   return ["/admin", "/studio"].some(root => pathname === root || pathname.startsWith(`${root}/`));

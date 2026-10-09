@@ -52,6 +52,20 @@
 .admin-qr { display: block; max-width: 100%; height: auto; background: white; }
 .admin-root code { display: block; overflow-wrap: anywhere; word-break: break-all; }
 .admin-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+.campaign-heading { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+.campaign-list { display: grid; gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.campaign-list h2 a { text-decoration: underline; }
+.campaign-status { display: inline-block; padding: .2rem .6rem; border: 1px solid #bcc5d3; border-radius: .4rem; font-weight: 650; }
+.campaign-form, .campaign-form fieldset { display: grid; min-width: 0; gap: 1rem; }
+.campaign-form fieldset { padding: 0; margin: 0; border: 0; }
+.campaign-form legend { padding: 1rem 0 .75rem; font-weight: 650; }
+.campaign-form h3 { font-weight: 650; }
+.campaign-form .campaign-check { display: flex; align-items: flex-start; gap: .65rem; }
+.campaign-check input { width: 1.1rem; min-height: 1.1rem; height: 1.1rem; flex: none; margin-top: .1rem; }
+.campaign-feedback { display: grid; justify-items: start; gap: .5rem; }
+.campaign-feedback p:empty, .campaign-form p:empty { display: none; }
+.campaign-confirm { max-width: 32rem; }
+.campaign-form :focus-visible, .campaign-feedback :focus-visible, .campaign-confirm :focus-visible, .campaign-list a:focus-visible { outline: 3px solid var(--color-blue-700); outline-offset: 3px; }
 @media (max-width: 800px) {
   .admin-shell { grid-template-columns: minmax(0,1fr); }
   .admin-sidebar { display: none; }
