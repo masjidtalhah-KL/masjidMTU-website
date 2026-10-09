@@ -118,8 +118,8 @@ test('server metadata/version, immutable UUID/type/creator, stable slug and term
     ";update private.campaigns set status='draft',slug_locked_at=null where id=" + quote(campaignId) +
     ";update private.campaigns set slug='changed-slug' where id=" + quote(campaignId),token('admin'),/Slug is stable/);
   for (const state of ['closed','archived']) for (const exit of ['draft','scheduled','open','paused'])
-    deniedSql("update private.campaigns set status=" + quote(state) + ' where id=' + quote(campaignId) + ';update private.campaigns set status=' + quote(exit) + ' where id=' + quote(campaignId),token('admin'),/Terminal campaign state/);
-  transaction("update private.campaigns set status='closed' where id=" + quote(campaignId) + ";update private.campaigns set status='archived' where id=" + quote(campaignId));
+    deniedSql("update private.campaigns set status='open' where id=" + quote(campaignId) + ";update private.campaigns set status=" + (state === 'archived' ? "'closed' where id=" + quote(campaignId) + ";update private.campaigns set status='archived'" : quote(state)) + ' where id=' + quote(campaignId) + ';update private.campaigns set status=' + quote(exit) + ' where id=' + quote(campaignId),token('admin'),/Terminal campaign state/);
+  transaction("update private.campaigns set status='open' where id=" + quote(campaignId) + ";update private.campaigns set status='closed' where id=" + quote(campaignId) + ";update private.campaigns set status='archived' where id=" + quote(campaignId));
   deniedSql('delete from private.campaigns',token('admin'),/Campaign deletion denied/);
 });
 test('descriptor admission rejects missing/unreviewed validator and disallows mutable registry', () => {
@@ -259,9 +259,9 @@ test('campaign audit rejects unknown events/target/actor/version forms and unapp
   deniedSql("insert into private.admin_audit_log(action,actor_aal,actor_category,target_kind,campaign_id,expected_version,resulting_version) values ('campaign.create','system','scheduler','campaign'," + quote(campaignId) + ',0,1)',token('admin'),/governance_check/);
   deniedSql("select private.record_campaign_event('campaign.create'," + quote(campaignId) + ",'campaigns.enabled',0,1,'{}')",ownerToken,/Invalid audit target/);
 });
-test('restricted scheduler shape is structural only; no scheduler execution path exists', () => {
+test('restricted scheduler shape preserved; only capability scheduler execution exists', () => {
   transaction("insert into private.admin_audit_log(action,actor_aal,actor_category,target_kind,campaign_id,expected_version,resulting_version,metadata) values ('lifecycle.close','system','scheduler','campaign'," + quote(campaignId) + ",1,2,'{\"from_status\":\"open\",\"to_status\":\"closed\"}')");
-  assert.equal(sql("select count(*) from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname in ('private','public') and p.proname like '%scheduler%';"),'0');
+  assert.equal(sql("select has_function_privilege('authenticated','private.reconcile_campaign_lifecycle(integer)','execute')"),'f');
   assert.equal(sql("select has_function_privilege('authenticated','private.record_campaign_event(text,uuid,text,integer,integer,jsonb,uuid)','execute')"),'f');
 });
 test('atomic mutation/audit contract rolls back state on audit failure; successful versioned event is attributable', () => {
