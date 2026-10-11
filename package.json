@@ -47,7 +47,9 @@
     "campaign:lifecycle:local:test": "node --import tsx --test scripts/campaign-engine/lifecycle-local.test.mjs",
     "campaign:management:test": "node --import tsx --test scripts/campaign-engine/management-contract.test.ts scripts/campaign-engine/management-upgrade.test.mjs",
     "campaign:management:local:test": "node --import tsx --test scripts/campaign-engine/management-local.test.mjs",
-    "campaign:management:bundle:check": "node scripts/campaign-engine/management-bundle-check.mjs"
+    "campaign:management:bundle:check": "node scripts/campaign-engine/management-bundle-check.mjs",
+    "campaign:public:test": "node --import tsx --test scripts/campaign-engine/public-contract.test.ts scripts/campaign-engine/public-upgrade.test.mjs scripts/campaign-engine/public-editorial.test.ts",
+    "campaign:public:local:test": "node --import tsx --test scripts/campaign-engine/public-local.test.mjs"
   },
   "overrides": {
     "supabase": {

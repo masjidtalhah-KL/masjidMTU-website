@@ -63,9 +63,27 @@ admin manage/staff read-only; existing schedule/lifecycle reuse; safe campaign
 audit history; optimistic 409 conflict UX; bounded same-origin mutation routes.
 **743/743 unique local tests passed**; no hosted mutation or deployment. Checkpoint:
 `phase-7.4-admin-campaign-management`; resolve the tag for the checkpoint commit.
-Overall Fasa 7 remains **in progress/not complete**. 7.5, 7.6 and 7.C have not started.
+At the 7.4 checkpoint, overall Fasa 7 remained **in progress/not complete**;
+7.5, 7.6 and 7.C had not started.
 No public `/kempen` route, domain implementation, Sanity write or Cron activation.
 The hosted scheduler executor/activation gate remains separately owner-authorized.
+
+## Fasa 7.5 — Public Campaign Route + Gating + Published Editorial Adapter complete / owner-approved
+
+12 October 2026 (+08:00). [Public campaign implementation and verification](CAMPAIGN-PUBLIC-ROUTE.md)
+is **complete / owner-approved as a local implementation checkpoint**. Generic dynamic
+`/kempen/[slug]` uses a narrow anonymous projection with fresh descriptor/config,
+global/module flags, visibility, lifecycle and DB-time gates. Denial is neutral
+404; the owner approved archived always 404 in 7.5 and a neutral outage 500 page.
+The published editorial adapter resolves exact stable binding to existing `program`
+description only, after operational eligibility; missing/draft/wrong binding falls
+back to the minimal operational page. No Sanity schema change. Production
+descriptors/admin adapters remain zero. **848/848 unique local tests passed**;
+the original 808/808 evidence is preserved. Offline editorial fixtures are explicitly
+distinguished from live CMS evidence. No hosted access/mutation, deployment,
+Cron activation, domain workflow or public registration. Overall Fasa 7 remains
+**in progress/not complete**; 7.6 and 7.C have not started. Checkpoint:
+`phase-7.5-public-campaign-route`; resolve the tag for the checkpoint commit.
 
 ### Pecahan Fasa 7
 
@@ -76,7 +94,7 @@ The hosted scheduler executor/activation gate remains separately owner-authorize
 | **7.2** | Feature flag service | **Complete / owner-approved** — local service, 477/477; `phase-7.2-feature-flag-service` |
 | **7.3** | Campaign lifecycle + scheduling | **Complete / owner-approved** — local engine, 633/633; `phase-7.3-campaign-lifecycle-scheduling`; hosted executor/Cron separately gated |
 | **7.4** | Admin campaign management | **Complete / owner-approved** — local management, 743/743; `phase-7.4-admin-campaign-management` |
-| 7.5 | Public `/kempen/[slug]` gating | Belum bermula |
+| **7.5** | Public `/kempen/[slug]` gating + published editorial adapter | **Complete / owner-approved** — 848/848 local; original 808/808 preserved; `phase-7.5-public-campaign-route`; offline CMS evidence only |
 | 7.6 | Audit, security and regression QA | Belum bermula |
 | 7.C | Owner-approved Campaign Engine implementation checkpoint | Belum bermula |
 
@@ -256,7 +274,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **4** | Sanity CMS | **Siap** — checkpoint 4.3C |
 | **5** | Dynamic Content | **Siap** — 5.1/5.2/5.2A/5.2B dan 5.3A–5.3E siap, termasuk public `/kuliah` (5.3D) dan homepage lecture integration (5.3E) |
 | **6** | Admin Foundation | **6.0 dan 6.1 complete, owner-approved**; 6.1A/6.1B-1/6.1B-2/6.1B-2R complete; checkpoint `phase-6.1-admin-foundation-complete`; no production |
-| **7** | Feature Flags & Campaign Engine | **In progress / not complete** — 7.0–7.4 complete/owner-approved; 7.5–7.6 dan 7.C belum bermula |
+| **7** | Feature Flags & Campaign Engine | **In progress / not complete** — 7.0–7.5 complete/owner-approved; 7.6 dan 7.C belum bermula |
 | 8 | Qurban MVP | Belum bermula |
 | 9 | Payment & Receipt | Belum bermula |
 | 10 | Ramadan Iftar | Belum bermula |

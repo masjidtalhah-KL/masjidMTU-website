@@ -118,6 +118,7 @@ export type Database = {
         Returns: Json
       }
       campaign_foundation_list: { Args: { page_size?: number }; Returns: Json }
+      public_campaign_page: { Args: { target_slug: string }; Returns: Json }
     }
     Enums: {
       [_ in never]: never
