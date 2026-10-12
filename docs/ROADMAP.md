@@ -1,5 +1,20 @@
 # Roadmap Projek
 
+## Fasa 7.C — Final Campaign Engine Owner Checkpoint complete / owner-approved
+
+12 October 2026 (+08:00). **Fasa 7 complete / owner-approved as a local
+implementation foundation.** [Final Campaign Engine closeout](CAMPAIGN-ENGINE-CLOSEOUT.md)
+consolidates the approved 7.0–7.6 contracts and **864/864 prior verified evidence**.
+Documentation-only closeout: all checkpoint tags verified, six historical
+migrations unchanged, real local generated-type parity and empty production
+descriptor/admin-adapter registries confirmed. No runtime/test/schema/dependency
+change, hosted access/mutation, deployment or Cron activation. Hosted migration,
+provider/CMS and scheduler executor gates, Fasa 11 controls and domain workflows
+remain deferred; this is not production readiness. Checkpoint:
+`phase-7-campaign-engine-complete`; resolve the tag for the commit.
+**Next: Fasa 8 — Qurban MVP (not started).** Earlier phase-status statements below
+describe their historical checkpoints; no Fasa 8 work begins in this closeout.
+
 ## Fasa 7.0 — Campaign Engine Architecture Lock complete / owner-approved
 
 8 October 2026 (+08:00). [Campaign Engine architecture](CAMPAIGN-ENGINE-PLAN.md)
@@ -7,7 +22,7 @@ is owner-approved. Required global/module flag OFF returns public 404; closed
 admission cannot reopen and archived is terminal; admin audit is safe campaign-only,
 staff has no audit history and foundation/security audit remains super_admin-only.
 Documentation checkpoint: `phase-7.0-campaign-engine-architecture`; resolve this
-tag for the actual checkpoint commit. Overall Fasa 7 is **in progress/not complete**.
+tag for the actual checkpoint commit. At the 7.0 checkpoint, overall Fasa 7 was **in progress/not complete**.
 The 7.0 architecture checkpoint made no implementation, deployment or hosted
 resource change. Fasa 8+ remains unstarted.
 
@@ -98,7 +113,8 @@ session/CMS verification, exact scheduler role attributes/memberships and future
 executor grants/activation remain separately gated; Fasa 11 deployment controls
 and hosted image fidelity limitations are preserved. Checkpoint:
 `phase-7.6-campaign-engine-security-qa`; resolve the tag for the checkpoint commit.
-Overall Fasa 7 remains **in progress/not complete**; 7.C and Fasa 8 have not started.
+At the 7.6 checkpoint, overall Fasa 7 remained **in progress/not complete**;
+7.C and Fasa 8 had not started.
 
 ### Pecahan Fasa 7
 
@@ -111,7 +127,7 @@ Overall Fasa 7 remains **in progress/not complete**; 7.C and Fasa 8 have not sta
 | **7.4** | Admin campaign management | **Complete / owner-approved** — local management, 743/743; `phase-7.4-admin-campaign-management` |
 | **7.5** | Public `/kempen/[slug]` gating + published editorial adapter | **Complete / owner-approved** — 848/848 local; original 808/808 preserved; `phase-7.5-public-campaign-route`; offline CMS evidence only |
 | **7.6** | Audit, security and regression QA | **Complete / owner-approved** — 864/864 local; tests/documentation only; `phase-7.6-campaign-engine-security-qa`; hosted gates preserved |
-| 7.C | Owner-approved Campaign Engine implementation checkpoint | Belum bermula |
+| **7.C** | Owner-approved Campaign Engine implementation checkpoint | **Complete / owner-approved** — local foundation closeout; 864/864 prior evidence; `phase-7-campaign-engine-complete` |
 
 Fasa 6 historical evidence/checkpoints below are preserved. Their Fasa 7
 not-started statements describe those earlier checkpoint boundaries.
@@ -291,7 +307,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **4** | Sanity CMS | **Siap** — checkpoint 4.3C |
 | **5** | Dynamic Content | **Siap** — 5.1/5.2/5.2A/5.2B dan 5.3A–5.3E siap, termasuk public `/kuliah` (5.3D) dan homepage lecture integration (5.3E) |
 | **6** | Admin Foundation | **6.0 dan 6.1 complete, owner-approved**; 6.1A/6.1B-1/6.1B-2/6.1B-2R complete; checkpoint `phase-6.1-admin-foundation-complete`; no production |
-| **7** | Feature Flags & Campaign Engine | **In progress / not complete** — 7.0–7.6 complete/owner-approved; 7.C belum bermula |
+| **7** | Feature Flags & Campaign Engine | **Complete / owner-approved** — 7.0–7.6 and 7.C complete; local foundation; `phase-7-campaign-engine-complete`; hosted/domain gates remain |
 | 8 | Qurban MVP | Belum bermula |
 | 9 | Payment & Receipt | Belum bermula |
 | 10 | Ramadan Iftar | Belum bermula |
