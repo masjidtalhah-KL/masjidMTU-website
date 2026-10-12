@@ -1,4 +1,12 @@
 import { test, expect, type BrowserContext } from "@playwright/test";
+import { readFile } from "node:fs/promises";
+// Verification is offline even for browser-originated resource requests.
+test.beforeEach(async ({ context }) => {
+  await context.route(/^https?:\/\//, route => {
+    const host = new URL(route.request().url()).hostname;
+    return ["localhost", "127.0.0.1", "::1", "[::1]"].includes(host) ? route.continue() : route.abort();
+  });
+});
 async function login(context: BrowserContext, name: string, query = "") {
   const response=await context.request.get(`http://127.0.0.1:54329/__fixture/session/${name}${query}`);
   const cookie=await response.json();
@@ -167,5 +175,24 @@ test('published Kuliah PNG/PDF export still downloads real artifacts',async({pag
     const downloaded=page.waitForEvent('download');await button.click();const download=await downloaded;
     expect(download.suggestedFilename()).toMatch(new RegExp(`\\.${format.toLowerCase()}$`));
     expect(await download.failure()).toBe(null);
+    const artifact = await download.path();
+    expect(artifact).not.toBeNull();
+    const bytes = await readFile(artifact!);
+    expect(bytes.length).toBeGreaterThan(1024);
+    if (format === 'PNG') {
+      expect(bytes.subarray(0, 8).toString('hex')).toBe('89504e470d0a1a0a');
+      expect(bytes.subarray(12, 16).toString('ascii')).toBe('IHDR');
+      expect([bytes.readUInt32BE(16), bytes.readUInt32BE(20)]).toEqual([3508, 2480]);
+      expect(bytes.subarray(-12).toString('hex')).toBe('0000000049454e44ae426082');
+    } else {
+      const pdf = bytes.toString('latin1');
+      expect(pdf.startsWith('%PDF-1.4\n')).toBe(true);
+      expect(pdf).toContain('/Type /Pages /Kids [3 0 R] /Count 1');
+      expect(pdf).toContain('/MediaBox [0 0 841.89 595.28]');
+      expect(pdf).toContain('/Subtype /Image /Width 3508 /Height 2480');
+      const trailer = pdf.match(/startxref\n(\d+)\n%%EOF\s*$/);
+      expect(trailer).not.toBeNull();
+      expect(pdf.slice(Number(trailer![1]))).toMatch(/^xref\n/);
+    }
   }
 });

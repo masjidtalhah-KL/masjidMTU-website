@@ -2,18 +2,19 @@
 
 ## Current Project Status
 
-**Fasa 0–6 and Fasa 7.0–7.5 are complete / owner-approved.**
-Next: **7.6 — Audit, Security & Regression QA**, followed by 7.C.
+**Fasa 0–6 and Fasa 7.0–7.6 are complete / owner-approved.**
+Next: **7.C — Owner-approved Campaign Engine checkpoint** (not started).
 Overall Fasa 7 remains in progress; Fasa 8 — Qurban MVP has not started.
 See the **[current roadmap](docs/ROADMAP.md)** for phase status and remaining gates.
 
-Current checkpoint: `405a5987794e580a076cc8def79fbcb9068535dd`
+Current QA checkpoint: `phase-7.6-campaign-engine-security-qa` (resolve the tag
+for the commit). Runtime implementation checkpoint: `405a5987794e580a076cc8def79fbcb9068535dd`
 (`phase-7.5-public-campaign-route`). Available capabilities: public website,
 Sanity Studio, protected `/admin`, generic Campaign Engine, protected campaign
 management, gated `/kempen/[slug]` and published editorial adapter.
 Production campaign descriptors and admin adapters both remain **zero**;
 no Qurban registration/payment workflow exists yet. This status does not claim
-a production deployment; Fasa 7.5 is a local implementation checkpoint.
+a production deployment; Fasa 7.6 is a local security and regression checkpoint.
 
 ## Historical checkpoint — Fasa 6.1 complete / owner-approved
 
