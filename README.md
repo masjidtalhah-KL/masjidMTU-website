@@ -1,6 +1,21 @@
 # Website Rasmi Masjid Talhah Bin Ubaidillah, Bukit Jalil
 
-## Fasa 6.1 complete — owner-approved checkpoint
+## Current Project Status
+
+**Fasa 0–6 and Fasa 7.0–7.5 are complete / owner-approved.**
+Next: **7.6 — Audit, Security & Regression QA**, followed by 7.C.
+Overall Fasa 7 remains in progress; Fasa 8 — Qurban MVP has not started.
+See the **[current roadmap](docs/ROADMAP.md)** for phase status and remaining gates.
+
+Current checkpoint: `405a5987794e580a076cc8def79fbcb9068535dd`
+(`phase-7.5-public-campaign-route`). Available capabilities: public website,
+Sanity Studio, protected `/admin`, generic Campaign Engine, protected campaign
+management, gated `/kempen/[slug]` and published editorial adapter.
+Production campaign descriptors and admin adapters both remain **zero**;
+no Qurban registration/payment workflow exists yet. This status does not claim
+a production deployment; Fasa 7.5 is a local implementation checkpoint.
+
+## Historical checkpoint — Fasa 6.1 complete / owner-approved
 
 8 October 2026 (+08:00). Minimum deterministic MFA naming/selection patch deployed
 READY to dedicated staging: dpl_5EZM2KX68cK154fxWHbN5megXqqs,
@@ -29,7 +44,9 @@ Free-plan timeout limitations and future independent owner recovery custody rema
 documented. **Fasa 6.1 complete and owner-approved on 8 October 2026.**
 Owner authorizes the canonical main commit and tag
 `phase-6.1-admin-foundation-complete`; resolve the tag for the checkpoint commit.
-No production resources or real-owner onboarding; Fasa 7 remains unstarted. [Actual B-2R evidence](docs/ADMIN-FOUNDATION-MFA-RECOVERY-VERIFICATION.md).
+No production resources or real-owner onboarding at that checkpoint. At the Fasa 6.1
+checkpoint, Fasa 7 had not started; see the [current roadmap](docs/ROADMAP.md)
+for its current status. [Actual B-2R evidence](docs/ADMIN-FOUNDATION-MFA-RECOVERY-VERIFICATION.md).
 
 ## Historical B-2 owner-review evidence
 

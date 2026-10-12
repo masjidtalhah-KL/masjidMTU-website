@@ -130,7 +130,9 @@ Free-plan timeout limitations and future independent owner recovery custody rema
 documented. **Fasa 6.1 complete and owner-approved on 8 October 2026.**
 Owner authorizes the canonical main commit and tag
 `phase-6.1-admin-foundation-complete`; resolve the tag for the checkpoint commit.
-No production resources or real-owner onboarding; Fasa 7 remains unstarted. [Actual B-2R evidence](ADMIN-FOUNDATION-MFA-RECOVERY-VERIFICATION.md).
+No production resources or real-owner onboarding at that checkpoint. At the Fasa 6.1
+checkpoint, Fasa 7 had not started; see [Pecahan Fasa 7](#pecahan-fasa-7) above
+for its current status. [Actual B-2R evidence](ADMIN-FOUNDATION-MFA-RECOVERY-VERIFICATION.md).
 
 ## Historical B-2 owner-review evidence
 
