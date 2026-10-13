@@ -1,5 +1,15 @@
 # Roadmap Projek
 
+## Fasa 8.1 — Qurban Domain DB/RLS Foundation complete / owner-approved
+
+13 October 2026 (+08:00). Owner approved the [Qurban domain foundation](QURBAN-DOMAIN-DATABASE.md):
+one production descriptor/typed adapter, strict annual config with blank form state, four private
+RLS/ACL-protected entities and immutable akad/consent evidence. No flags, campaign or annual data seeded.
+No public Qurban registration API, payment/proof, allocation, volunteer persistence or Excel implementation.
+Checkpoint: `phase-8.1-qurban-domain-foundation` (resolve tag for commit).
+**8.0 and 8.1 complete / owner-approved; 8.2 next / not started. Overall Fasa 8 in progress; Fasa 9 not started.**
+No hosted resources or deployment touched. The explicit 8.2 admission gate remains unimplemented.
+
 ## Fasa 8.0 — Architecture + Owner UX Prototype complete / owner-approved
 
 13 October 2026 (+08:00). Owner manually tested and approved the participant/payment-proof
@@ -11,9 +21,9 @@ and initial least-privilege RBAC. Protected Excel .xlsx export is a formal **8.3
 Prototype: development + exact flag only, non-persistent, production 404.
 No production Qurban tables/migrations/descriptors/adapters or registration API.
 Checkpoint: `phase-8.0-qurban-architecture-prototype` (resolve tag for commit).
-**Overall Fasa 8: in progress. Next: 8.1, not started. Fasa 9: not started.**
+At this historical checkpoint, overall Fasa 8 was in progress and 8.1 was next; see current status above.
 No deployment or hosted changes. Payment-qualified 8.4 eligibility depends on Fasa 9.
-Stop after this checkpoint; do not start 8.1 here.
+At this historical 8.0 checkpoint, work stopped before 8.1. 8.1 is now complete / owner-approved as recorded above.
 
 ## Fasa 7.C — Final Campaign Engine Owner Checkpoint complete / owner-approved
 
@@ -323,7 +333,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **5** | Dynamic Content | **Siap** — 5.1/5.2/5.2A/5.2B dan 5.3A–5.3E siap, termasuk public `/kuliah` (5.3D) dan homepage lecture integration (5.3E) |
 | **6** | Admin Foundation | **6.0 dan 6.1 complete, owner-approved**; 6.1A/6.1B-1/6.1B-2/6.1B-2R complete; checkpoint `phase-6.1-admin-foundation-complete`; no production |
 | **7** | Feature Flags & Campaign Engine | **Complete / owner-approved** — 7.0–7.6 and 7.C complete; local foundation; `phase-7-campaign-engine-complete`; hosted/domain gates remain |
-| **8** | Qurban MVP | **In progress** — 8.0 complete / owner-approved; 8.1 next / not started; no production registration |
+| **8** | Qurban MVP | **In progress** — 8.0 and 8.1 complete / owner-approved; 8.2 next / not started; no public registration |
 | 9 | Payment & Receipt | Belum bermula |
 | 10 | Ramadan Iftar | Belum bermula |
 | 11 | Security & Production Hardening | Belum bermula |
@@ -340,7 +350,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **6.1B-2** | Real Google OAuth and hosted Auth/MFA verification | **Complete** — genuine Google admission, AAL1/AAL2 and hosted MFA; final recovery/security gates resolved in 6.1B-2R; accepted separate-identity test limitations documented |
 | **6.1B-2R** | MFA recovery patch and final hosted closeout | **Complete** — replacement Primary and retained Backup verified; refresh-only recency/direct API/session checks passed; all test sessions removed, identity/factors and 12 audits retained |
 
-Fasa 7 remains **belum bermula**; this checkpoint does not authorize starting it.
+Pada checkpoint Fasa 6 ini, Fasa 7 belum bermula; rujuk status semasa di bahagian atas.
 Fasa 8+ operational module choices remain subject to AJK requirements and owner
 approval; existing Qurban/Ramadan rows are roadmap candidates, not an instruction
 to implement them next. No module workflow is designed in 6.0.

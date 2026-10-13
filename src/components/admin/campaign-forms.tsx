@@ -1,6 +1,6 @@
 "use client";
 import { useState, type FormEvent } from "react";
-import type { CampaignAdminAdapter } from "@/lib/campaigns/admin-registry";
+import { parseAdapterConfiguration, type CampaignAdminAdapter } from "@/lib/campaigns/admin-registry";
 import type { CampaignDetail } from "@/lib/campaigns/management-contract";
 import { localCampaignTime, scheduleFormWindows } from "@/lib/campaigns/admin-presentation";
 import type { Windows } from "@/lib/campaigns/lifecycle-contract";
@@ -8,7 +8,7 @@ type Submit = (kind: "core" | "schedule", value: unknown) => Promise<void>;
 export function CampaignCoreForm({ campaign, adapter, disabled, submit }: { campaign: CampaignDetail; adapter: CampaignAdminAdapter; disabled: boolean; submit: Submit }) {
   const [configuration, setConfiguration] = useState(() => adapter.parseConfiguration(campaign.configuration)!);
   function save(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault(); const f = new FormData(event.currentTarget);
+    event.preventDefault(); if (!parseAdapterConfiguration(adapter, configuration)) return; const f = new FormData(event.currentTarget);
     void submit("core", { expectedVersion: campaign.version, title: f.get("title"), slug: f.get("slug"),
       visibility: f.get("visibility"), scheduled_public_display: f.has("scheduled_public_display"), archived_history_display: f.has("archived_history_display"),
       config_version: campaign.config_version, configuration });
@@ -21,7 +21,7 @@ export function CampaignCoreForm({ campaign, adapter, disabled, submit }: { camp
     <label className="campaign-check"><input type="checkbox" name="scheduled_public_display" defaultChecked={campaign.scheduled_public_display} />Izinkan paparan sebelum pendaftaran dibuka</label>
     <label className="campaign-check"><input type="checkbox" name="archived_history_display" defaultChecked={campaign.archived_history_display} />Izinkan sejarah selepas arkib</label>
     <h3>Konfigurasi jenis</h3><adapter.ConfigurationForm value={configuration} onChange={setConfiguration} disabled={disabled} />
-    <button className="admin-button">Simpan maklumat asas</button>
+    <button className="admin-button" disabled={!parseAdapterConfiguration(adapter, configuration)}>Simpan maklumat asas</button>
   </fieldset></form>;
 }
 const windows: { key: keyof Windows; label: string; group: "registration" | "event" }[] = [

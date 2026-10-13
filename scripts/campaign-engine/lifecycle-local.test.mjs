@@ -72,7 +72,7 @@ after(async()=>{
     } finally {
       execFileSync(process.execPath,['scripts/admin-foundation/local-cli.mjs','db','reset','--local','--no-seed'],{stdio:'pipe'});
     }
-    for(const table of ['private.campaign_type_descriptors','private.campaigns','private.system_feature_flags','private.admin_audit_log','auth.users'])assert.equal(sql('select count(*) from '+table),'0');
+    for(const table of ['private.campaign_type_descriptors','private.campaigns','private.system_feature_flags','private.admin_audit_log','auth.users'])assert.equal(sql('select count(*) from '+table),table==='private.campaign_type_descriptors'?'1':'0');
     assert.equal(sql("select count(*) from pg_roles where rolname like 'local_fixture%'"),'0');
   }
 });

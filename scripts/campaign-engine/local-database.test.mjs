@@ -52,16 +52,16 @@ after(async () => {
   // fixtures() refuses a nonempty pre-existing local identity database.
   if (createdFixtures) {
     execFileSync(process.execPath, ['scripts/admin-foundation/local-cli.mjs','db','reset','--local','--no-seed'], {stdio:'pipe'});
-    assert.equal(sql('select count(*) from private.campaign_type_descriptors;'),'0');
+    assert.equal(sql('select count(*) from private.campaign_type_descriptors;'),'1');
     assert.equal(sql('select count(*) from private.campaigns;'),'0');
     assert.equal(sql('select count(*) from private.system_feature_flags;'),'0');
     assert.equal(sql("select count(*) from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='private' and p.proname like 'local_fixture%';"),'0');
   }
 });
 
-test('production migration state has zero descriptors/campaigns/flags; absent and future types fail closed', () => {
-  for (const table of ['campaign_type_descriptors','campaigns','system_feature_flags']) assert.equal(sql('select count(*) from private.' + table),'0');
-  for (const type of ['generic','qurban','ramadan','volunteer','unknown',null])
+test('production migration state has one Qurban descriptor and zero campaigns/flags; absent and future types fail closed', () => {
+  for (const table of ['campaign_type_descriptors','campaigns','system_feature_flags']) assert.equal(sql('select count(*) from private.' + table),table==='campaign_type_descriptors'?'1':'0');
+  for (const type of ['generic','ramadan','volunteer','unknown',null])
     deniedSql("insert into private.campaigns(type_key,slug,title) values (" + (type === null ? 'null' : quote(type)) + ",'blocked-type','Blocked')", token('admin'), /Unsupported campaign type/);
 });
 
@@ -226,7 +226,7 @@ test('enrolled admin TOTP requires AAL2; changed Google binding/ended session im
   assert.equal((await rpc(stack,'campaign_foundation_list',token('admin'))).status,200);
 });
 test('unknown flags, forged metadata and direct raw flag writes cannot bypass owner guard', () => {
-  for (const flag of ['qurban.enabled','ramadan.enabled','unknown.enabled'])
+  for (const flag of ['unregistered.enabled','ramadan.enabled','unknown.enabled'])
     deniedSql('insert into private.system_feature_flags(flag_key) values (' + quote(flag) + ')',ownerToken,/Unsupported module flag/);
   transaction("insert into private.system_feature_flags(flag_key) values ('local_fixture.enabled')",ownerToken);
   deniedSql("update private.system_feature_flags set enabled=true where flag_key='campaigns.enabled'",token('admin'));

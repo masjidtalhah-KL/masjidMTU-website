@@ -2,7 +2,7 @@
 import { useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { availableCampaignTypes, type TypeDescriptor } from "@/lib/campaigns/admin-registry";
+import { availableCampaignTypes, parseAdapterConfiguration, type TypeDescriptor } from "@/lib/campaigns/admin-registry";
 import { createCampaignCommand } from "@/lib/campaigns/management-contract";
 import { campaignId } from "@/lib/campaigns/lifecycle-contract";
 export function NewCampaign({ catalog, recentMfa }: { catalog: TypeDescriptor[]; recentMfa: boolean }) {
@@ -13,7 +13,7 @@ export function NewCampaign({ catalog, recentMfa }: { catalog: TypeDescriptor[];
   const submitting = useRef(false);
   const adapter = types.find(t => `${t.type_key}:${t.config_version}` === selected);
   async function submit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault(); if (!adapter || submitting.current || !recentMfa) return;
+    event.preventDefault(); if (!adapter || !parseAdapterConfiguration(adapter, configuration) || submitting.current || !recentMfa) return;
     submitting.current = true; setBusy(true); setMessage("");
     try {
       const form = new FormData(event.currentTarget);
@@ -43,6 +43,6 @@ export function NewCampaign({ catalog, recentMfa }: { catalog: TypeDescriptor[];
       {adapter && <adapter.ConfigurationForm value={configuration} onChange={setConfiguration} disabled={busy || !recentMfa} />}
       <p>Status awal ialah draf/private, tanpa tarikh dan tanpa izin paparan public.</p>
       <p id="campaign-create-message" role="status" aria-live="polite">{message}</p>
-      <button className="admin-button" disabled={busy || !recentMfa || !adapter}>{busy ? "Menyimpan…" : "Cipta draf"}</button>
+      <button className="admin-button" disabled={busy || !recentMfa || !adapter || !parseAdapterConfiguration(adapter, configuration)}>{busy ? "Menyimpan…" : "Cipta draf"}</button>
     </form></section>;
 }

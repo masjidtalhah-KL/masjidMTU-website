@@ -1,5 +1,6 @@
 import { createElement, type ComponentType } from "react";
 import { AdminError } from "@/lib/admin/policy";
+import { qurbanAdapterDefinition } from "@/lib/qurban/admin-adapter";
 import type { Json } from "@/lib/supabase/database.types";
 
 export type Configuration = { [key: string]: Json };
@@ -9,23 +10,29 @@ export type ConfigurationFormProps<C extends Configuration = Configuration> = {
 };
 export type CampaignAdminAdapter<C extends Configuration = Configuration> = TypeDescriptor & {
   label: string; parseConfiguration: (value: unknown) => C | null;
-  defaults: () => C; ConfigurationForm: ComponentType<ConfigurationFormProps<C>>;
+  // Initial/editing form state need not be a valid persisted configuration.
+  defaults: () => Configuration; parseFormState?: (value: unknown) => Configuration | null;
+  ConfigurationForm: ComponentType<ConfigurationFormProps>;
 };
-
-// Future reviewed domains can retain a concrete config type behind this boundary.
-export function defineCampaignAdminAdapter<C extends Configuration>(definition: CampaignAdminAdapter<C>): CampaignAdminAdapter {
-  return { ...definition, ConfigurationForm: function TypedConfigurationForm(props) {
-    const value = parseAdapterConfiguration(definition as unknown as CampaignAdminAdapter, props.value) as C | null;
+export type CampaignAdapterDefinition<C extends Configuration, F extends Configuration = C> =
+  Omit<CampaignAdminAdapter<C>, "defaults" | "parseFormState" | "ConfigurationForm"> & {
+    defaults: () => F; parseFormState?: (value: unknown) => F | null;
+    ConfigurationForm: ComponentType<ConfigurationFormProps<F>>;
+  };
+export function defineCampaignAdminAdapter<C extends Configuration, F extends Configuration = C>(definition: CampaignAdapterDefinition<C, F>): CampaignAdminAdapter<C> {
+  const adapter: CampaignAdminAdapter<C> = { ...definition, ConfigurationForm: function TypedConfigurationForm(props) {
+    const value = parseAdapterFormState(adapter, props.value) as F | null;
     if (!value) return null;
     return createElement(definition.ConfigurationForm, { ...props, value, onChange: next => {
-      const parsed = parseAdapterConfiguration(definition as unknown as CampaignAdminAdapter, next);
+      const parsed = parseAdapterFormState(adapter, next);
       if (parsed) props.onChange(parsed);
     } });
   } };
+  return adapter;
 }
-
-// Intentionally empty. No environment/test switch or dynamic type registration.
-export const campaignAdminAdapters: readonly CampaignAdminAdapter[] = Object.freeze([]);
+// Exactly one reviewed production tuple; no environment/test switch or dynamic registry.
+export const qurbanAdminAdapter = defineCampaignAdminAdapter(qurbanAdapterDefinition);
+export const campaignAdminAdapters: readonly CampaignAdminAdapter[] = Object.freeze([qurbanAdminAdapter]);
 
 function canonicalConfiguration(value: unknown): string {
   const visit = (item: unknown): unknown => {
@@ -42,10 +49,18 @@ function canonicalConfiguration(value: unknown): string {
   if (new TextEncoder().encode(encoded).length > 4096) throw Error("Invalid configuration");
   return encoded;
 }
-export function parseAdapterConfiguration(adapter: CampaignAdminAdapter, value: unknown): Configuration | null {
+export function parseAdapterConfiguration<C extends Configuration>(adapter: CampaignAdminAdapter<C>, value: unknown): C | null {
   try {
     const original = canonicalConfiguration(value), parsed = adapter.parseConfiguration(value);
     // A parser cannot quietly strip unknown keys or replace malformed input with defaults.
+    return parsed && original === canonicalConfiguration(parsed) ? parsed : null;
+  } catch { return null; }
+}
+
+export function parseAdapterFormState(adapter: CampaignAdminAdapter, value: unknown): Configuration | null {
+  try {
+    const original = canonicalConfiguration(value);
+    const parsed = (adapter.parseFormState ?? adapter.parseConfiguration)(value);
     return parsed && original === canonicalConfiguration(parsed) ? parsed : null;
   } catch { return null; }
 }
@@ -70,7 +85,7 @@ export function availableCampaignTypes(catalog: readonly TypeDescriptor[], adapt
     try { return catalog.some(d => d.type_key === a.type_key && d.config_version === a.config_version &&
       d.module_flag_key === a.module_flag_key) && adapters.filter(other => other.type_key === a.type_key &&
       other.config_version === a.config_version).length === 1 && typeof a.label === "string" && a.label.length > 0 && a.label.length <= 80 &&
-      !!parseAdapterConfiguration(a, a.defaults()); } catch { return false; }
+      !!parseAdapterFormState(a, a.defaults()); } catch { return false; }
   });
 }
 export function campaignEditor(catalog: readonly TypeDescriptor[], type: string, version: number, config: unknown,
