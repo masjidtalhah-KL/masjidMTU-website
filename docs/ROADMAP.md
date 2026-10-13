@@ -1,5 +1,20 @@
 # Roadmap Projek
 
+## Fasa 8.0 — Architecture + Owner UX Prototype complete / owner-approved
+
+13 October 2026 (+08:00). Owner manually tested and approved the participant/payment-proof
+dummy flow and volunteer UX direction. [Qurban architecture](QURBAN-MVP-PLAN.md)
+locks Capacity Policy B (verified payment + atomic eligibility), applicant/wakil
+attendance, checkbox akad with immutable evidence, annual minor-unit config structure
+and initial least-privilege RBAC. Protected Excel .xlsx export is a formal **8.3** requirement.
+[Prototype validation](QURBAN-PROTOTYPE-VALIDATION.md) records focused verification.
+Prototype: development + exact flag only, non-persistent, production 404.
+No production Qurban tables/migrations/descriptors/adapters or registration API.
+Checkpoint: `phase-8.0-qurban-architecture-prototype` (resolve tag for commit).
+**Overall Fasa 8: in progress. Next: 8.1, not started. Fasa 9: not started.**
+No deployment or hosted changes. Payment-qualified 8.4 eligibility depends on Fasa 9.
+Stop after this checkpoint; do not start 8.1 here.
+
 ## Fasa 7.C — Final Campaign Engine Owner Checkpoint complete / owner-approved
 
 12 October 2026 (+08:00). **Fasa 7 complete / owner-approved as a local
@@ -12,8 +27,8 @@ change, hosted access/mutation, deployment or Cron activation. Hosted migration,
 provider/CMS and scheduler executor gates, Fasa 11 controls and domain workflows
 remain deferred; this is not production readiness. Checkpoint:
 `phase-7-campaign-engine-complete`; resolve the tag for the commit.
-**Next: Fasa 8 — Qurban MVP (not started).** Earlier phase-status statements below
-describe their historical checkpoints; no Fasa 8 work begins in this closeout.
+**At the historical Fasa 7.C checkpoint**, next was Fasa 8 (not started).
+See 8.0 above for current status; Fasa 7 remains complete.
 
 ## Fasa 7.0 — Campaign Engine Architecture Lock complete / owner-approved
 
@@ -308,7 +323,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **5** | Dynamic Content | **Siap** — 5.1/5.2/5.2A/5.2B dan 5.3A–5.3E siap, termasuk public `/kuliah` (5.3D) dan homepage lecture integration (5.3E) |
 | **6** | Admin Foundation | **6.0 dan 6.1 complete, owner-approved**; 6.1A/6.1B-1/6.1B-2/6.1B-2R complete; checkpoint `phase-6.1-admin-foundation-complete`; no production |
 | **7** | Feature Flags & Campaign Engine | **Complete / owner-approved** — 7.0–7.6 and 7.C complete; local foundation; `phase-7-campaign-engine-complete`; hosted/domain gates remain |
-| 8 | Qurban MVP | Belum bermula |
+| **8** | Qurban MVP | **In progress** — 8.0 complete / owner-approved; 8.1 next / not started; no production registration |
 | 9 | Payment & Receipt | Belum bermula |
 | 10 | Ramadan Iftar | Belum bermula |
 | 11 | Security & Production Hardening | Belum bermula |

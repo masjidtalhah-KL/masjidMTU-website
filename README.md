@@ -3,18 +3,23 @@
 ## Current Project Status
 
 **Fasa 0–7 are complete / owner-approved.**
-Next: **Fasa 8 — Qurban MVP** (not started).
+**Fasa 8 has started; 8.0 is complete / owner-approved.**
+Next: **8.1 — Qurban DB/RLS + first production descriptor/adapter** (not started).
 See the **[current roadmap](docs/ROADMAP.md)** for phase status and remaining gates.
 The **[Fasa 7 closeout](docs/CAMPAIGN-ENGINE-CLOSEOUT.md)** consolidates the local evidence.
 
-Current checkpoint: `phase-7-campaign-engine-complete` (resolve the tag
+Current checkpoint: `phase-8.0-qurban-architecture-prototype` (resolve the tag
 for the commit). Runtime implementation checkpoint: `405a5987794e580a076cc8def79fbcb9068535dd`
 (`phase-7.5-public-campaign-route`). Available capabilities: public website,
 Sanity Studio, protected `/admin`, generic Campaign Engine, protected campaign
 management, gated `/kempen/[slug]` and published editorial adapter.
 Production campaign descriptors and admin adapters both remain **zero**;
-no Qurban registration/payment workflow exists yet. This status does not claim
-a production deployment or production readiness; Fasa 7 is a local implementation foundation.
+no real Qurban persistence, public registration API or production payment workflow exists yet.
+The [approved 8.0 architecture](docs/QURBAN-MVP-PLAN.md) locks Policy B and formal
+8.3 Excel export; the [local UX prototype](docs/QURBAN-PROTOTYPE-VALIDATION.md) is
+development-only and non-persistent. Overall Fasa 8 is in progress; Fasa 9 is not started.
+This status does not claim a production deployment or production readiness;
+Fasa 7 is a local implementation foundation.
 
 ## Historical checkpoint — Fasa 6.1 complete / owner-approved
 
