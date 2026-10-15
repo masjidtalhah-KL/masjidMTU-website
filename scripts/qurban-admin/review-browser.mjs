@@ -1,0 +1,22 @@
+// Local review launcher only; normal application and DB authorization are unchanged.
+import {readFileSync} from 'node:fs';import {createHash} from 'node:crypto';
+import {chromium} from '@playwright/test';
+import {reviewStack,manifestPath} from '../qurban-registration/review-fixture.mjs';
+import {validatePlan,evidenceSql} from '../qurban-registration/fixture-session.mjs';
+import {rows,quote,signedToken} from '../admin-foundation/local-stack.mjs';
+const role=process.argv[2]??'admin',check=process.argv[3]==='--check';
+if(process.argv[3]&&!check)throw Error('Only optional --check is supported');
+if(!['admin','staff','owner'].includes(role))throw Error('Use admin | staff | owner; local synthetic review only');
+const stack=reviewStack(),manifest=JSON.parse(readFileSync(manifestPath,'utf8'));const p=validatePlan(manifest.plan);
+const marker='LOCAL-REVIEW:'+p.session+':'+createHash('sha256').update(JSON.stringify(p)).digest('hex');
+if(!rows('select 1 ok from private.qurban_akad_versions where id='+quote(p.akad)+' and campaign_id='+quote(p.campaign)+' and approval_reference='+quote(marker)).length)throw Error('Fixture session ownership not proven');
+if(JSON.stringify(rows(evidenceSql(p))[0].evidence)!==JSON.stringify(manifest.evidence))throw Error('Fixture setup fingerprints changed; refuse review identity');
+const u={...p.users[role],email:'local-'+role+'@example.test'},now=Math.floor(Date.now()/1000);
+const token=signedToken(stack,u,role==='owner'?{aal:'aal2',amr:[{method:'oauth',timestamp:now},{method:'totp',timestamp:now}]}:{});
+const session={access_token:token,refresh_token:'synthetic-local-no-refresh',token_type:'bearer',expires_in:3600,expires_at:now+3600,user:{id:u.id,email:u.email}};
+const browser=await chromium.launch({channel:'msedge',headless:check}),context=await browser.newContext();
+await context.route('**/*',r=>['http://localhost:3082','http://127.0.0.1:54321'].includes(new URL(r.request().url()).origin)?r.continue():r.abort());
+await context.addCookies([{name:'sb-127-auth-token',value:'base64-'+Buffer.from(JSON.stringify(session)).toString('base64url'),url:'http://localhost:3082/admin',sameSite:'Lax',httpOnly:true}]);
+const page=await context.newPage();await page.goto('http://localhost:3082/admin');
+console.log('LOCAL SYNTHETIC '+role+' review browser ready. This is not genuine OAuth/MFA evidence. Tokens stay in the disposable browser context; close the browser to end.');
+if(check){await page.goto('http://localhost:3082/admin/campaigns/'+p.campaign+'/qurban');await page.getByRole('heading',{name:'Pendaftaran',exact:true}).waitFor();console.log('Normal protected '+role+' route verified.');await browser.close();}else await new Promise(resolve=>browser.once('disconnected',resolve));

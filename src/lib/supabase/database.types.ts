@@ -99,6 +99,47 @@ export type Database = {
         Returns: string
       }
       admin_owner_snapshot: { Args: never; Returns: Json }
+      admin_qurban_activity: {
+        Args: { page_number: number; target_campaign: string }
+        Returns: Json
+      }
+      admin_qurban_amend: {
+        Args: {
+          payload: Json
+          target_campaign: string
+          target_registration: string
+        }
+        Returns: Json
+      }
+      admin_qurban_cancel: {
+        Args: {
+          expected_version: number
+          reason: string
+          target_campaign: string
+          target_registration: string
+        }
+        Returns: Json
+      }
+      admin_qurban_detail: {
+        Args: { target_campaign: string; target_registration: string }
+        Returns: Json
+      }
+      admin_qurban_export_complete: {
+        Args: {
+          export_reference: string
+          snapshot_fingerprint: string
+          target_campaign: string
+        }
+        Returns: Json
+      }
+      admin_qurban_export_snapshot: {
+        Args: { target_campaign: string }
+        Returns: Json
+      }
+      admin_qurban_list: {
+        Args: { options: Json; target_campaign: string }
+        Returns: Json
+      }
       admin_revoke_invite: {
         Args: { expected_version: number; invite_id: string }
         Returns: undefined

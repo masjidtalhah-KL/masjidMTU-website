@@ -1,0 +1,3 @@
+import type {NextRequest} from "next/server";import {json,failure} from "@/lib/admin/http";import {AdminError} from "@/lib/admin/policy";import {qurbanActivity} from "@/lib/qurban/admin";
+export const dynamic="force-dynamic";
+export async function GET(request:NextRequest,{params}:{params:Promise<{id:string}>}){try{const q=request.nextUrl.searchParams;if([...q.keys()].some(k=>k!=="page")||q.getAll("page").length>1)throw new AdminError(422,"invalid");const page=Number(q.get("page")??1);if(!Number.isInteger(page)||page<1||page>10000)throw new AdminError(422,"invalid");return json(await qurbanActivity((await params).id,page));}catch(e){return failure(e);}}

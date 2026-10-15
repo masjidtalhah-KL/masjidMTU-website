@@ -1,0 +1,3 @@
+import {notFound} from "next/navigation";import {qurbanList} from "@/lib/qurban/admin";import {QurbanAdminPanel} from "@/components/admin/qurban-panel";import {CampaignReadFailure} from "@/components/admin/campaign-read-failure";
+export const dynamic="force-dynamic";
+export default async function QurbanPage({params}:{params:Promise<{id:string}>}){const {id}=await params;if(!/^[0-9a-f-]{36}$/.test(id))notFound();let data;try{data=await qurbanList(id,{page:1,page_size:20,search:"",status:"all",purpose:"all",sort:"newest"});}catch(error){return <CampaignReadFailure error={error} next={"/admin/campaigns/"+id}/>;}return <QurbanAdminPanel initial={data}/>;}

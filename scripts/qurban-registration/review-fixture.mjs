@@ -35,11 +35,14 @@ export function inspect(){reviewStack();const counts=rows(`select
  (select count(*) from private.qurban_registrations) registrations,(select count(*) from private.qurban_participations) participations,
  (select count(*) from private.qurban_akad_versions) akad_versions,(select count(*) from private.qurban_consent_acceptances) consents,
  (select count(*) from private.qurban_submission_audit) audit,(select count(*) from private.qurban_submission_idempotency) idempotency,
- (select count(*) from auth.users) auth_fixture_users`)[0];
+ (select count(*) from auth.users) auth_fixture_users,
+ (select count(*) from private.qurban_operational_audit) operational_audit,
+ (select count(*) from private.qurban_export_requests) export_requests`)[0];
  const evidence=rows(`select r.public_reference,r.status,r.quoted_currency,r.quoted_price_per_share_minor,r.quoted_total_minor,r.quoted_participation_count,
  (select count(*) from private.qurban_participations p where p.registration_id=r.id) inserted_participations,
  (select count(*) from private.qurban_consent_acceptances a where a.registration_id=r.id) consent_count,
  (select count(*) from private.qurban_submission_audit a where a.registration_id=r.id) audit_count,
+ exists(select 1 from private.qurban_consent_acceptances a join private.qurban_akad_versions v on v.id=a.akad_version_id where a.registration_id=r.id and a.accepted_content_hash=v.content_hash and v.content_hash=encode(sha256(convert_to(v.approved_text,'UTF8')),'hex')) immutable_consent_hash_valid,
  r.quoted_total_minor=(r.submission_configuration->>'price_per_cattle_share_minor')::bigint*r.quoted_participation_count quote_matches_snapshot,
  exists(select 1 from private.qurban_consent_acceptances a join private.qurban_akad_versions v on v.id=a.akad_version_id
  where a.registration_id=r.id and a.accepted_content_hash=v.content_hash and v.content_hash=encode(sha256(convert_to(v.approved_text,'UTF8')),'hex')

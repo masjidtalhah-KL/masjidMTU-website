@@ -90,7 +90,7 @@ Example: applicant Safwan registers Ahmad—Qurban, Aminah—Qurban and Yusuf—
 
 **Owner-locked schema/configuration approach:** Fasa 8.1 must support reviewed, strictly validated `campaign_year`, `hijri_year`/display label, `currency`, `price_per_cattle_share`, `cattle_count`, `shares_per_cattle`, `allowed_purposes`, registration rules and `approved_akad_version`, plus optional `volunteer_whatsapp_group_url`. The group URL is reviewed public-safe campaign information, never volunteer PII; displaying it requires no consent checkbox. No production descriptor/config is created now. RM880 is historical fixture data only. Money must use exact integer minor currency units, never floating point. `price_per_cattle_share` represents the reviewed minor-unit price in the configured currency; reusable calculations take that approved price as input. The config structure is approved; actual annual year/Hijri/price/capacity values remain campaign-launch configuration. No next-campaign price has been decided, no 2027 price may be invented, and no future price is seeded here.
 
-Once a submission is accepted, record its immutable config/price version or quoted-price snapshot in the domain, so changing next year's price or correcting configuration cannot silently rewrite earlier obligations. Define amendment/reacceptance rules before persistence. Public safe display projections may include approved year, price and capacity, but not raw domain configuration, private records or accepted consent snapshots.
+Once a submission is accepted, record its immutable config/price version or quoted-price snapshot in the domain, so changing next year's price or correcting configuration cannot silently rewrite earlier obligations. Owner decision (8.3): ordinary authorized participant-name/purpose corrections need no new akad acceptance; original quote and consent remain immutable. Public safe display projections may include approved year, price and capacity, but not raw domain configuration, private records or accepted consent snapshots.
 
 Prototype fixture: 2026, RM880/bahagian, 15 cattle, 7 shares/cattle, capacity 105. Every screen retains: **“Contoh berdasarkan Qurban MTU 2026 — bukan harga 2027 yang diluluskan.”** Nothing is seeded in any database.
 
@@ -104,7 +104,7 @@ Prototype fixture: 2026, RM880/bahagian, 15 cattle, 7 shares/cattle, capacity 10
 
 **Owner-locked MVP mechanism:** checkbox acceptance in the public registration UX. No typed signature, drawn signature or electronic-signature feature is required for MVP. This is an architecture decision, not legal advice.
 
-Persistence records the exact approved akad version/reference, accepted timestamp, and immutable content fingerprint/snapshot sufficient to establish which version was accepted. A boolean alone is insufficient. Every wording edit creates a new version; historical acceptance must never be rewritten. The reviewed participation snapshot/revision associates acceptance with submitted names/purposes. Subsequent participant amendment/reacceptance handling remains for protected operational design.
+Persistence records the exact approved akad version/reference, accepted timestamp, and immutable content fingerprint/snapshot sufficient to establish which version was accepted. A boolean alone is insufficient. Every wording edit creates a new version; historical acceptance must never be rewritten. The reviewed participation snapshot/revision associates acceptance with submitted names/purposes. Owner decision (8.3), superseding the earlier reacceptance candidate: ordinary authorized participant name/purpose correction does not require a new akad acceptance. Historical acceptance remains immutable evidence of the original submission. Current participants may intentionally differ; bounded operational audit records the correction. No pending_reacceptance state or public reacceptance flow. Add/remove participants and requote remain deferred.
 
 The prototype preserves the full 2026 source paragraph, including surplus-use meaning, under `mtu-paper-2026-1447h-source-review-v1`. Actual annual production wording and approval provenance remain a final administrative **campaign-launch gate before registration opens**. Approval of the MVP mechanism does not approve future annual wording or grant new proxy authority.
 
@@ -183,7 +183,7 @@ Future protected Bayaran workflow: Registration → Menunggu bayaran → Bukti b
 
 **Owner-locked:** generate a point-in-time .xlsx workbook for printing, departmental audit, manual review and archival/reference. The database remains the source of truth. Editing a downloaded workbook never updates the database; no import/synchronisation is implied. Normalise internally, flatten only for export.
 
-Initial 8.3 workbook may contain **Ringkasan, Pendaftaran, Peserta, Sukarelawan, Format Audit / Legacy View**. Fasa 9 extends the same model with **Bayaran, Resit**, using verified financial information only when that boundary exists. No workbook exporter is implemented in 8.0.
+The first 8.3 workbook contains **Ringkasan, Pendaftaran, Peserta, Format Audit - Legacy View**; Sukarelawan is deferred until its 8.5 persistence exists. Fasa 9 extends the same model with **Bayaran, Resit**, using verified financial information only when that boundary exists. No workbook exporter is implemented in 8.0.
 
 Ringkasan: campaign/year, Hijri label, configured currency/price per share, cattle count, shares/cattle, total capacity, registration/participation/Qurban/Aqiqah/volunteer counts, export timestamp and generated-by actor/reference where appropriate. Snapshot metadata is not a live capacity claim after download.
 
@@ -210,7 +210,7 @@ Generic engine owns lifecycle, flags, windows, visibility and generic audit. Qur
 | Actor | Approved initial direction |
 | --- | --- |
 | Public visitor | Later bounded create through a domain submission service; no private participant/contact/volunteer records, no list/read/update table access and no Admin account. |
-| Staff | Read-only / minimum operational access, least privilege by default. Exact masking/scoped views may be refined in 8.3. No payment verification, destructive cancellation, unrestricted audit or full bulk PII export by default. |
+| Staff | Read-only / minimum operational access, least privilege by default. Staff field masking is owner-resolved for 8.3 as recorded below; additional operational views need review. No payment verification, destructive cancellation, unrestricted audit or full bulk PII export by default. |
 | Admin | Manage operational registrations/participants and future payment verification through reviewed domain commands and Foundation requirements. Full PII Excel export only through the protected 8.3 boundary. |
 | Super-admin | Full Qurban administrative capability subject to existing Foundation AAL/MFA requirements and domain invariants. Full PII Excel export through the protected boundary; no capacity/consent bypass. |
 
@@ -231,7 +231,7 @@ Before public submission: transactional flag/window/config checks at write time,
 - Partial/over/duplicate/unverified payment, refunds, receipt replacement: Fasa 9. No false confirmation in Fasa 8.
 - Group request cannot fit: preference conflict shown to urus setia; never forced over capacity.
 - Cattle count/capacity reduced after allocations: block invalid mutation or require explicit migration/review, not silent slot deletion.
-- Cancel/amend after allocation or consent: controlled release/history and reviewed reacceptance rules.
+- Cancel/amend after allocation or consent: controlled release/history; ordinary participant-name/purpose correction has no reacceptance. Allocation-related release rules remain for later phases.
 - Volunteer-only is valid. No task/time/contact-consent controls; the mosque assigns tasks later.
 - Volunteer says Ya: require informational participant name, never look it up, link or treat it as verified. Admin may reconcile manually later.
 - Missing/invalid optional WhatsApp group URL: show the two-line reminder, no broken/placeholder external link.
@@ -275,10 +275,10 @@ Resolved by explicit owner instruction:
 These are not unresolved architecture-policy selections:
 
 - Actual annual campaign year/Hijri/display label, currency/price, capacity and reviewed registration-rule values; no future price is seeded.
-- Final annual akad wording/administrative approval before registration opens; participant amendment/reacceptance handling.
+- Final annual akad wording/administrative approval before registration opens. Ordinary correction without reacceptance is owner-resolved in 8.3; higher-impact count/requote handling remains deferred.
 - Pre-payment guidance, overflow/refund/waitlist/payment-exception procedures under locked Policy B, before relevant production/payment work.
 - Detailed allocation/reassignment/cancellation rules and same-cattle request conflicts.
-- Exact staff field masking/scoped operational views in 8.3; data/domain-audit/export retention periods.
+- Staff masking above is owner-resolved for 8.3; data/domain-audit/export retention periods remain open.
 - Fasa 9 proof storage/access/validation/retention/replacement security, verification command details, receipt numbering/policy and refund exceptions.
 - Final volunteer admin task/assignment details and reviewed shirt-size vocabulary.
 - Private reference-retrieval controls and any additional purpose-specific requirements; the source does not establish all specialist ritual rules.
@@ -311,3 +311,9 @@ Open `http://127.0.0.1:3080/__review/qurban`. Ctrl+C stops the server. To check 
 No API mutation, database/CMS write, email, actual payment, localStorage/sessionStorage, cookie, IndexedDB or submitted-data file exists in this implementation. The proof selector holds only a browser File reference/name/type; no bytes are read, sent, previewed or written. Dummy references `QBN-DEMO-...` / `VOL-DEMO-...` are current-memory examples only, not durable registration identity. “Isi borang baru” returns to the choices with fresh forms. Refresh clears all state. Browser/test screenshots use synthetic values only.
 
 Owner explicitly authorises the approved checkpoint commit, tag `phase-8.0-qurban-architecture-prototype` and canonical main/tag push without force. The gated prototype is intentionally included as a development artifact. No deployment, hosted Supabase/Sanity/Vercel action, production Qurban table/migration/descriptor/adapter, registration API or 8.1 work is included. Stop after 8.0.
+
+## Fasa 8.3 owner decision refinement
+
+Ordinary authorised participant-name/purpose correction does not require new akad acceptance. Original consent remains immutable proof of the original submission, and current participant data may differ with bounded structural audit. The earlier reacceptance candidate is superseded.
+Staff operational read is now locked to reference/name/phone/participants/purpose/attendance/group preference/status/time/safe campaign context; address/email/consent evidence internals/operational audit/full Excel export are omitted or denied at DB/server boundaries. No mutation/cancellation/export for staff.
+The [owner-approved 8.3 checkpoint](QURBAN-ADMIN-MANAGEMENT.md) implements existing-participant corrections only (no add/remove/requote), soft cancellation and four-sheet Excel: Ringkasan, Pendaftaran, Peserta, Format Audit - Legacy View. Sukarelawan waits for 8.5; Bayaran/Resit for Fasa 9. Fasa 8.3 is complete / owner-approved; 8.4 is next / not started.

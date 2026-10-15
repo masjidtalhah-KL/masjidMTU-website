@@ -52,6 +52,7 @@ export function CampaignPanel({ initial }: { initial: CampaignView }) {
   function ask(action: LifecycleAction) { if (disabled) return; setPending(action); dialog.current?.showModal(); }
   return <div className="admin-stack" aria-busy={busy}>
     <Link href="/admin/campaigns" prefetch={false}>← Senarai kempen</Link>
+    {c.type_key === "qurban" && c.config_version === 1 && <section className="admin-card"><h2>Qurban / Aqiqah</h2><Link className="admin-button" prefetch={false} href={`/admin/campaigns/${c.id}/qurban`}>Buka pengurusan Qurban</Link><p>Pendaftaran, peserta dan Excel audit terlindung.</p></section>}
     <section className="admin-card"><h2>Ringkasan</h2><p><span className="campaign-status">{statusLabels[c.status]}</span> · Versi {c.version}</p>
       <dl><dt>Jenis</dt><dd>{c.type_key} · Konfigurasi v{c.config_version}</dd><dt>Tajuk</dt><dd>{c.title}</dd><dt>Slug</dt><dd>{c.slug} · {c.slug_editable ? "Boleh diedit dalam draf" : "Dikunci secara kekal"}</dd>
         <dt>Visibility</dt><dd>{c.visibility}</dd><dt>Paparan dijadualkan</dt><dd>{c.scheduled_public_display ? "Diizinkan" : "Tidak diizinkan"}</dd><dt>Sejarah arkib</dt><dd>{c.archived_history_display ? "Diizinkan" : "Tidak diizinkan"}</dd>
