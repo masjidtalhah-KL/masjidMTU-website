@@ -140,8 +140,7 @@ The four documentation files were edited for the final decision lock. The browse
 
 Ignored screenshots, .cache, test-results, .next and the node_modules junction are not checkpoint content. No real PII, proof bytes or hosted credentials are included.
 
-Screenshots (absolute checkout root is
-`C:\Users\User\Documents\ChatGPT\game mewarna\qurban-review`):
+Screenshots (paths relative to the repository root used during validation; ignored artifacts are not included in a fresh clone):
 
 - `.cache/qurban-review/landing-1440.png` — desktop choices.
 - `.cache/qurban-review/landing-375.png` — mobile choices.
@@ -161,7 +160,7 @@ Screenshots are ignored QA artifacts with synthetic data; none is a real submiss
 The local server was restarted with the flag enabled and left running for owner manual testing. To start it again if needed:
 
 ```powershell
-Set-Location 'C:\Users\User\Documents\ChatGPT\game mewarna\qurban-review'
+# Run from the repository root.
 $env:QURBAN_PROTOTYPE='1'
 node scripts/qurban-prototype/serve.mjs
 ```

@@ -285,8 +285,8 @@ These are not unresolved architecture-policy selections:
 
 ## Temporary review implementation and owner runbook
 
-Use the isolated local checkout `C:\Users\User\Documents\ChatGPT\game mewarna\qurban-review`.
-It was cloned locally from the owner-indicated checkout, verified at the canonical baseline/tag; reviewed work is preserved without reset or overwrite. Installed packages are reused through a local node_modules junction. No hosted configuration is copied. The original checkout was untouched during UX work; at this approved closeout canonical main is advanced only by fast-forward to the verified checkpoint and pushed without force.
+Run from the repository root.
+At the historical 8.0 review, the isolated checkout was cloned locally from the owner-indicated checkout and verified at the canonical baseline/tag; packages were reused through a local node_modules junction. That junction is not a development requirement: fresh dedicated clones restore dependencies with `npm ci` using the package-lock. No hosted configuration was copied. The original checkout was untouched during UX work; canonical main was advanced only by fast-forward to the verified checkpoint and pushed without force.
 
 Exact development/review artifact files intentionally included in the approved checkpoint:
 
@@ -301,7 +301,7 @@ Exact development/review artifact files intentionally included in the approved c
 Next uses `%5F%5Freview` on disk to expose `/__review` (a literal leading underscore folder would be private). No public navigation/sitemap link is added. Server requires **both development mode and exact server-only QURBAN_PROTOTYPE=1**. Unset/other values and production runtime return 404. Flag is never NEXT_PUBLIC. No production route is enabled even with the flag. Run only on loopback.
 
 ```powershell
-Set-Location 'C:\Users\User\Documents\ChatGPT\game mewarna\qurban-review'
+# Run from the repository root.
 $env:QURBAN_PROTOTYPE='1'
 node scripts/qurban-prototype/serve.mjs
 ```

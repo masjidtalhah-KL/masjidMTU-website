@@ -1,5 +1,15 @@
 # Roadmap Projek
 
+## Fasa 8.2 — Public Qurban Registration Submission complete / owner-approved
+
+15 October 2026 (+08:00). Owner manually tested and approved [public registration](QURBAN-PUBLIC-REGISTRATION.md), which implements
+a narrow local Qurban context/admission boundary, immutable consent/quote, idempotency and dedicated bounded audit.
+No payment/proof, allocation, volunteer persistence or Excel implementation. No hosted changes or deployment.
+Ownership-proven local selective demo cleanup is also approved; legacy untracked fixtures remain fail-closed.
+**8.0/8.1/8.2 complete / owner-approved; 8.3 next / not started**.
+Overall Fasa 8 remains in progress; Fasa 9 not started.
+Checkpoint: `phase-8.2-qurban-public-registration` (resolve tag for commit). Stop after checkpoint and workspace separation.
+
 ## Fasa 8.1 — Qurban Domain DB/RLS Foundation complete / owner-approved
 
 13 October 2026 (+08:00). Owner approved the [Qurban domain foundation](QURBAN-DOMAIN-DATABASE.md):
@@ -7,8 +17,8 @@ one production descriptor/typed adapter, strict annual config with blank form st
 RLS/ACL-protected entities and immutable akad/consent evidence. No flags, campaign or annual data seeded.
 No public Qurban registration API, payment/proof, allocation, volunteer persistence or Excel implementation.
 Checkpoint: `phase-8.1-qurban-domain-foundation` (resolve tag for commit).
-**8.0 and 8.1 complete / owner-approved; 8.2 next / not started. Overall Fasa 8 in progress; Fasa 9 not started.**
-No hosted resources or deployment touched. The explicit 8.2 admission gate remains unimplemented.
+At this historical 8.1 checkpoint: **8.0 and 8.1 complete / owner-approved; 8.2 next / not started**. See current status above.
+No hosted resources or deployment touched. The explicit 8.2 admission gate was unimplemented at that checkpoint.
 
 ## Fasa 8.0 — Architecture + Owner UX Prototype complete / owner-approved
 
@@ -333,7 +343,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **5** | Dynamic Content | **Siap** — 5.1/5.2/5.2A/5.2B dan 5.3A–5.3E siap, termasuk public `/kuliah` (5.3D) dan homepage lecture integration (5.3E) |
 | **6** | Admin Foundation | **6.0 dan 6.1 complete, owner-approved**; 6.1A/6.1B-1/6.1B-2/6.1B-2R complete; checkpoint `phase-6.1-admin-foundation-complete`; no production |
 | **7** | Feature Flags & Campaign Engine | **Complete / owner-approved** — 7.0–7.6 and 7.C complete; local foundation; `phase-7-campaign-engine-complete`; hosted/domain gates remain |
-| **8** | Qurban MVP | **In progress** — 8.0 and 8.1 complete / owner-approved; 8.2 next / not started; no public registration |
+| **8** | Qurban MVP | **In progress** — 8.0, 8.1 and 8.2 complete / owner-approved; 8.3 next / not started |
 | 9 | Payment & Receipt | Belum bermula |
 | 10 | Ramadan Iftar | Belum bermula |
 | 11 | Security & Production Hardening | Belum bermula |

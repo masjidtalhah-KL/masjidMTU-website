@@ -14,7 +14,7 @@ test('fresh reset-equivalent migration state: sole descriptor, zero campaigns/fl
  assert.deepEqual((await db.query('select type_key,config_version,module_flag_key,validator_name from private.campaign_type_descriptors')).rows,[{type_key:'qurban',config_version:1,module_flag_key:'qurban.enabled',validator_name:'qurban_config_v1_valid'}]);
  for(const t of ['campaigns','system_feature_flags',...tables])assert.equal((await db.query('select count(*)::int n from private.'+t)).rows[0].n,0);
  assert.equal((await db.query("select private.system_flag_effectively_enabled('qurban.enabled') ok")).rows[0].ok,false);
- assert.deepEqual((await db.query("select tablename from pg_tables where schemaname='private' and tablename like 'qurban_%' order by tablename")).rows.map(r=>r.tablename),[...tables].sort());
+ assert.deepEqual((await db.query("select tablename from pg_tables where schemaname='private' and tablename like 'qurban_%' order by tablename")).rows.map(r=>r.tablename),[...tables,'qurban_submission_audit','qurban_submission_idempotency'].sort());
 });
 for(const [name,value] of invalidConfigs)test('DB config rejects '+name,async()=>assert.equal((await db.query('select private.qurban_config_v1_valid($1) ok',[JSON.stringify(value)])).rows[0].ok,false));
 test('DB config accepts exact valid fixture / optional official URL; no current price defaults',async()=>{

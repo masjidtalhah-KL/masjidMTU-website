@@ -2,9 +2,10 @@ import type { NextConfig } from "next";
 import { dataset, projectId } from "./src/sanity/env";
 
 const nextConfig: NextConfig = {
-  // Temporary 8.0 review: Next 16.3's dev debug channel otherwise writes IndexedDB.
-  // Disable that framework persistence only for the explicitly enabled local demo.
-  ...(process.env.NODE_ENV === "development" && process.env.QURBAN_PROTOTYPE === "1"
+  // The real public form can contain PII in any development session. Next 16.3's
+  // React diagnostic channel writes IndexedDB, so disable it throughout development.
+  // This is a diagnostic setting only; all public admission remains DB-authorized.
+  ...(process.env.NODE_ENV === "development"
     ? { experimental: { reactDebugChannel: false }, devIndicators: false as const }
     : {}),
   images: {

@@ -3,18 +3,21 @@
 ## Current Project Status
 
 **Fasa 0–7 are complete / owner-approved.**
-**Fasa 8 has started; 8.0 and 8.1 are complete / owner-approved.**
-Next: **8.2 — Public Qurban registration submission** (not started).
+**Fasa 8 has started; 8.0, 8.1 and 8.2 are complete / owner-approved.**
+Next: **8.3 — Admin registration/participant management + Excel export** (not started).
 See the **[current roadmap](docs/ROADMAP.md)** for phase status and remaining gates.
 The **[Fasa 7 closeout](docs/CAMPAIGN-ENGINE-CLOSEOUT.md)** consolidates the local evidence.
 
-Current checkpoint: `phase-8.1-qurban-domain-foundation` (resolve the tag
+Current checkpoint: `phase-8.2-qurban-public-registration` (resolve the tag
 for the commit). Available capabilities: public website,
 Sanity Studio, protected `/admin`, generic Campaign Engine, protected campaign
 management, gated `/kempen/[slug]` and published editorial adapter.
 The [Qurban DB/RLS foundation](docs/QURBAN-DOMAIN-DATABASE.md) adds exactly one production
 Qurban descriptor and typed admin adapter, with private domain tables and no seeded annual data.
-No real Qurban public registration or production payment workflow exists yet.
+The [approved public Qurban registration](docs/QURBAN-PUBLIC-REGISTRATION.md) adds real local
+DB-backed submission, immutable quote/consent, idempotency and bounded domain audit.
+The local demo has ownership-proven selective cleanup. No payment/proof, receipt, allocation,
+volunteer persistence or Excel implementation exists yet; no hosted deployment is claimed.
 The [approved 8.0 architecture](docs/QURBAN-MVP-PLAN.md) locks Policy B and formal
 8.3 Excel export; the [local UX prototype](docs/QURBAN-PROTOTYPE-VALIDATION.md) is
 development-only and non-persistent. Overall Fasa 8 is in progress; Fasa 9 is not started.
