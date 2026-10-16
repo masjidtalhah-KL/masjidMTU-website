@@ -7,7 +7,7 @@ import {request,slug} from '../qurban-registration/fixtures.mjs';
 export function ownedFixtureSql(plan,evidence,statement,claims){
  // Reuse the exact locked ownership/fingerprint/Auth-dependency/guard preflight.
  // Stop BEFORE the first guard-disable/delete; this command never weakens a guard.
- const cleanup=cleanupSql(plan,evidence),boundary=cleanup.indexOf('alter table private.qurban_allocations disable trigger');
+ const cleanup=cleanupSql(plan,evidence),boundary=cleanup.search(/alter table private\.[a-z_]+ disable trigger/);
  if(boundary<0)throw Error('Fixture ownership preflight unavailable');
  const prefix=cleanup.slice(0,boundary).replace('return;',"raise exception 'Owned fixture campaign required';");
  if(prefix.includes("disable trigger")||prefix.includes("delete from"))throw Error("Unsafe fixture preflight boundary");

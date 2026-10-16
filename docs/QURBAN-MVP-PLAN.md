@@ -1,11 +1,18 @@
-# Qurban MVP — Fasa 8.0 complete / owner-approved
+# Qurban MVP Foundation — Fasa 8 complete / owner-approved
+
+**Current checkpoint: Fasa 8.0–8.5 complete / owner-approved.**
+16 October 2026 (+08:00): owner approved the 8.5 implementation without further functional changes, closing Fasa 8.
+Tag: `phase-8.5-qurban-volunteers` (resolve tag for commit). Fasa 9 — Payment & Receipt is next / not started.
+This is a local implementation foundation checkpoint, not hosted deployment or production launch readiness.
+
+## Historical Fasa 8.0 architecture and prototype checkpoint
 
 13 October 2026 (+08:00), final owner decision lock. **Fasa 8.0 complete / owner-approved.**
 Canonical baseline `abdcd9b929b2d705a9add07fc799f94a8eb6d10b`,
 tag `phase-7-campaign-engine-complete`. Fasa 7 is complete / owner-approved.
 **Architecture and local UX prototype checkpoint.** Owner manually tested the Qurban/Aqiqah registration + payment-proof dummy flow and volunteer flow, approving the current MVP UX direction. The decisions below are explicitly locked; no production schema/runtime domain implementation is included.
 
-Checkpoint: `phase-8.0-qurban-architecture-prototype` (resolve tag for commit). Overall Fasa 8 is in progress; **8.1 is next / not started**, Fasa 9 is not started. Stop after committing/tagging/pushing 8.0. The reviewed prototype remains non-persistent and is not production registration.
+At that historical 8.0 checkpoint: `phase-8.0-qurban-architecture-prototype` (resolve tag for commit), Fasa 8 was in progress and 8.1 was next / not started. See current status above. The reviewed prototype remains non-persistent and is not production registration.
 
 ## Evidence and provenance
 
@@ -240,21 +247,20 @@ Before public submission: transactional flag/window/config checks at write time,
 - Bank transfer while capacity fills: no automatic promise; Policy B is locked; finalise payment-admission/overflow/refund/waitlist handling before the relevant production/payment phase.
 - Reload/reset: all demo values, File references and submission/proof result disappear; no recovery mechanism by design.
 
-## Fasa 8 decomposition and acceptance gates
+## Fasa 8 decomposition and acceptance gates — current closeout
 
 | Phase | Scope / gate |
 | --- | --- |
 | 8.0 | **Complete / owner-approved** architecture + gated local UX prototype; manual participant/payment-proof and volunteer testing approved. |
-| 8.1 | **Next / not started:** Qurban DB/RLS + first production descriptor/typed adapter, approved config structure and immutable acceptance invariants; Policy B locked, no PII in generic engine, no invented annual values. |
-| 8.2 | Narrow public registration transaction, versioned consent, validation/idempotency/abuse controls and opaque references. No payment. |
-| 8.3 | Admin registration/participant management, controlled amendment/cancellation with minimised audit, and the **first protected Excel .xlsx workbook export**. |
-| 8.4 | Capacity + cattle/share allocation structure and protected operations under **locked Policy B**. Final payment-qualified eligibility depends on Fasa 9 verified payment; no false payment confirmation in Fasa 8. |
-| 8.5 | Independent simplified volunteer registration, informational participant name/manual reconciliation and protected admin assignments. |
-| 8.6 | Domain RLS/PII/abuse/security/concurrency and generic public/admin regression QA. |
-| 8.C | Owner checkpoint; define any payment-dependent operational readiness limitations clearly. |
+| 8.1 | **Complete / owner-approved:** Qurban DB/RLS + first production descriptor/typed adapter, approved config structure and immutable acceptance invariants; Policy B locked, no PII in generic engine, no invented annual values. |
+| 8.2 | **Complete / owner-approved:** Narrow public registration transaction, versioned consent, validation/idempotency/abuse controls and opaque references. No payment. |
+| 8.3 | **Complete / owner-approved:** Admin registration/participant management, controlled amendment/cancellation with minimised audit, and the **first protected Excel .xlsx workbook export**. |
+| 8.4 | **Complete / owner-approved:** Capacity + cattle/share allocation structure and protected operations under **locked Policy B**. Final payment-qualified eligibility depends on Fasa 9 verified payment; no false payment confirmation in Fasa 8. |
+| 8.5 | **Complete / owner-approved:** Independent simplified volunteer registration, informational participant name/manual reconciliation and protected admin assignments. |
+| Original planned 8.6 / 8.C gates | Security/concurrency/regression QA and owner checkpoint are consolidated into the approved cumulative 8.0–8.5 verification and this explicit owner Fasa 8 closeout; no separate new implementation phase is claimed. |
 | 9 | **Not started:** Payment & Receipt; private proofs/storage, manual verification, financial audit, receipts, final payment-qualified capacity integration and Bayaran/Resit export sheets. |
 
-The 8.4/Fasa 9 dependency is explicit: structure/protected operations can precede verified payment; payment-qualified eligibility cannot. This checkpoint authorises no external/manual bypass and does not begin 8.1.
+The 8.4/Fasa 9 dependency is explicit: structure/protected operations can precede verified payment; payment-qualified eligibility cannot. This checkpoint authorises no external/manual eligibility bypass and does not begin Fasa 9.
 
 ## Owner decision lock — final 8.0 checkpoint
 
@@ -326,4 +332,16 @@ Admin/super_admin may reassign existing allocations to empty same-campaign slots
 
 The [owner-approved 8.4 allocation checkpoint](QURBAN-ALLOCATION.md) documents private cattle/slot/allocation structure, deterministic admission, protected grid/reassignment, allocation-aware export and manifest-owned local synthetic review. Overflow/refund/waitlist/release details remain unresolved future policy. Fasa 9 is not started.
 
-Owner final export decision: five sheets — Ringkasan, Pendaftaran, Peserta, Susunan Lembu, Format Audit - Legacy View. Susunan Lembu is a separate print-friendly cattle/slot view including every configured empty slot as Kosong, using the same protected export snapshot. Legacy allocated rows sort cattle/slot; unallocated historical rows remain after them. No payment semantics. Fasa 8.4 complete / owner-approved; 8.5 next / not started; Fasa 9 not started.
+Owner final export decision: five sheets — Ringkasan, Pendaftaran, Peserta, Susunan Lembu, Format Audit - Legacy View. Susunan Lembu is a separate print-friendly cattle/slot view including every configured empty slot as Kosong, using the same protected export snapshot. Legacy allocated rows sort cattle/slot; unallocated historical rows remain after them. No payment semantics. At that historical checkpoint, Fasa 8.4 was complete / owner-approved and 8.5 was next / not started; see current status above. Fasa 9 remains not started.
+
+## Fasa 8.5 owner-approved volunteer refinement / final Fasa 8 checkpoint
+
+The [owner-approved volunteer checkpoint](QURBAN-VOLUNTEERS.md) implements an independent sibling workflow. Fixed shirt sizes: XS, S, M, L, XL, 2XL, 3XL, 4XL, 5XL. Public fields only name/phone/optional email/shirt size/also-participant answer/conditional informational participant name. No automatic identity/name/phone matching, FK to Registration/Participation, task preference, availability, shift or WhatsApp consent.
+
+The earlier conceptual VolunteerAssignment model is narrowed for this MVP to zero or one current campaign-scoped assignment-label FK on Volunteer plus immutable operational history. Admin creates/renames/archives labels; no task names are hardcoded or seeded. Staff reads approved operational fields only and receives no email or mutation/export capability. Admin/super_admin corrections and assignment changes use expected versions/Foundation gates. Cancellation is terminal and atomically clears current assignment with explicit audit. No public task assignment.
+
+Optional reviewed WhatsApp group URL is revealed after success; absent URL means no control. No joined/consent state. Public volunteer eligibility uses the existing Qurban registration window and DB clock/flags/lifecycle/config, without inventing a separate window or making volunteer acceptance an ibadah akad transaction. Participant admission retains all existing akad requirements.
+
+Excel now has six sheets: Ringkasan, Pendaftaran, Peserta, Sukarelawan, Susunan Lembu, Format Audit - Legacy View. Volunteer totals/active/cancelled/assignment/also-participant/shirt-size counts are separate; stock/assignment summaries count active volunteers only. One protected export snapshot and existing completion audit remain authoritative. Selective local cleanup adds the owned volunteer graph with unchanged fail-closed ownership guarantees. Fasa 8.5 complete / owner-approved. Fasa 8 — Qurban MVP Foundation complete / owner-approved. Fasa 9 is next / not started.
+
+Final checkpoint retains 1,439 unique automated cases and all ten previous migrations unchanged. No further functional changes were requested. Stop after the owner-authorized 8.5 commit/tag/push. Payment-qualified initial allocation, private proof/verification/receipt/refund/waitlist remain unimplemented; Policy B and future production/annual configuration gates are unchanged.

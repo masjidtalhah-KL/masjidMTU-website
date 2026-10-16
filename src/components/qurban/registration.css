@@ -29,3 +29,4 @@
 .qr-reference { display: block; overflow-wrap: anywhere; padding: 1rem; background: #e8eef7; letter-spacing: .02em; }
 .qr-account { font-size: clamp(1.2rem, 4vw, 1.7rem); font-weight: 650; }
 @media(max-width: 600px) { .qr-actions { flex-direction: column; } .qr-actions .button { width: 100%; } .qr-details { grid-template-columns: 1fr; gap: .25rem; } .qr-details dd { margin-bottom: .75rem; } .qr-steps { gap: .65rem; font-size: .75rem; } }
+.qr-field select { width:100%; min-width:0; font:inherit; color:inherit; padding:.8rem; border:1px solid #8895a6; border-radius:.4rem; background:white; } .qv-fields { min-width:0; border:0; padding:0; }

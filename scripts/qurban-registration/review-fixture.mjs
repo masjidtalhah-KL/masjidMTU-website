@@ -39,7 +39,9 @@ export function inspect(){reviewStack();const counts=rows(`select
  (select count(*) from private.qurban_operational_audit) operational_audit,
  (select count(*) from private.qurban_export_requests) export_requests,
  (select count(*) from private.qurban_cattle) cattle,(select count(*) from private.qurban_cattle_slots) cattle_slots,
- (select count(*) from private.qurban_allocations) allocations`)[0];
+ (select count(*) from private.qurban_allocations) allocations,
+ (select count(*) from private.qurban_volunteers) volunteers,(select count(*) from private.qurban_volunteer_assignment_labels) volunteer_labels,
+ (select count(*) from private.qurban_volunteer_audit) volunteer_audit,(select count(*) from private.qurban_volunteer_idempotency) volunteer_idempotency`)[0];
  const evidence=rows(`select r.public_reference,r.status,r.quoted_currency,r.quoted_price_per_share_minor,r.quoted_total_minor,r.quoted_participation_count,
  (select count(*) from private.qurban_participations p where p.registration_id=r.id) inserted_participations,
  (select count(*) from private.qurban_consent_acceptances a where a.registration_id=r.id) consent_count,

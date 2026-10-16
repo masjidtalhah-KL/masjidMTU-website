@@ -1,7 +1,7 @@
 import { QURBAN_BODY_BYTES, QurbanError } from "./registration-contract";
-export async function readQurbanBody(body: ReadableStream<Uint8Array> | null) {
+export async function readQurbanBody(body: ReadableStream<Uint8Array> | null, limit = QURBAN_BODY_BYTES) {
   if (!body) throw new QurbanError(422, "invalid");
-  const reader = body.getReader(), bytes = new Uint8Array(QURBAN_BODY_BYTES);
+  const reader = body.getReader(), bytes = new Uint8Array(limit);
   let length = 0;
   try {
     while (true) {

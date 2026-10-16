@@ -6,3 +6,4 @@
 .qa .qa-copy{display:block;margin-top:6px;padding:4px 8px;font-family:inherit;font-size:.8rem}
 
 .qa-cattle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}.qa-cattle{min-width:0;border:1px solid #c8d6df;border-radius:8px;padding:16px}.qa-slots{list-style:none;padding:0;display:grid;gap:12px}.qa-slot{border:1px solid #d6e0e5;border-radius:6px;padding:12px;min-width:0}.qa-slot.occupied{border-left:4px solid #183a50;background:#f1f6f8}.qa-slot p{margin:6px 0}.qa-move,.qa-grid-warning{border:1px solid #ad7b20;padding:16px;border-radius:8px}.qa-move{margin:20px 0}.qa-capacity .qa-summary{margin-bottom:20px}
+.qa-volunteers .qv-table th { width:auto; } .qa-volunteers .qv-table th:first-child { width:19%; } .qa-volunteers .qa-summary { margin:16px 0; } .qa-volunteers .qa-nav { margin:16px 0; } .qa-volunteers fieldset { min-width:0; }

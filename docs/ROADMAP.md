@@ -1,9 +1,29 @@
 # Roadmap Projek
 
+## Fasa 8 — Qurban MVP Foundation COMPLETE / owner-approved
+
+16 October 2026 (+08:00). Owner reviewed and approved [Fasa 8.5 volunteer registration/admin assignment](QURBAN-VOLUNTEERS.md), with no additional functional changes. Fasa 8.0–8.5 are complete / owner-approved. Cumulative security, regression and cleanup verification plus this owner checkpoint close the Fasa 8 foundation; this does not claim hosted deployment, production launch readiness or completed payment-qualified admission.
+
+| Subphase | Status |
+| --- | --- |
+| 8.0 Architecture + local UX prototype | Complete / owner-approved |
+| 8.1 Domain DB/RLS + typed adapter | Complete / owner-approved |
+| 8.2 Public Qurban registration | Complete / owner-approved |
+| 8.3 Admin management + Excel export | Complete / owner-approved |
+| 8.4 Cattle/share allocation foundation | Complete / owner-approved |
+| 8.5 Volunteer registration + admin assignment | Complete / owner-approved |
+| **Fasa 8 — Qurban MVP Foundation** | **COMPLETE / owner-approved** |
+| **Fasa 9 — Payment & Receipt** | **Next / not started** |
+
+## Fasa 8.5 — Qurban Volunteer Registration & Admin Assignment complete / owner-approved
+
+Independent public volunteer admission, exact XS–5XL shirt sizes, informational participant name only, masked/read-only staff projection, protected corrections/cancellation, campaign-scoped labels and one current assignment, six-sheet protected Excel and ownership-proven cleanup. **1,439 unique automated cases passed**; reruns are excluded. No public preferred-task/availability/shift/identity matching or payment/proof/receipt/refund/waitlist implementation. No hosted mutation/deployment.
+Checkpoint: `phase-8.5-qurban-volunteers` (resolve tag for commit). Stop after this checkpoint; do not begin Fasa 9.
+
 ## Fasa 8.4 — Qurban Cattle / Share Capacity & Allocation Foundation complete / owner-approved
 
 16 October 2026 (+08:00). [Private allocation foundation](QURBAN-ALLOCATION.md): grid/config freeze, deterministic trusted allocator, protected read/reassignment, allocation-aware Excel and cancellation safety. Policy B preserves zero allocation from public submissions; no production initial-allocation entry point exists before Fasa 9.
-**8.0–8.4 complete / owner-approved; 8.5 next / not started**. Fasa 8 remains in progress; Fasa 9 not started. Owner approved the five-sheet workbook, including print-friendly Susunan Lembu and cattle/slot-ordered Legacy View. No hosted deployment/mutation.
+At the historical 8.4 checkpoint: **8.0–8.4 complete / owner-approved; 8.5 next / not started**. See current status above. Fasa 8 remains in progress; Fasa 9 not started. Owner approved the five-sheet workbook, including print-friendly Susunan Lembu and cattle/slot-ordered Legacy View. No hosted deployment/mutation.
 Checkpoint: `phase-8.4-qurban-allocation-foundation` (resolve tag for commit). Stop after this checkpoint.
 
 ## Fasa 8.3 — Qurban Admin Registration Management + Excel Audit Export complete / owner-approved
@@ -356,8 +376,8 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **5** | Dynamic Content | **Siap** — 5.1/5.2/5.2A/5.2B dan 5.3A–5.3E siap, termasuk public `/kuliah` (5.3D) dan homepage lecture integration (5.3E) |
 | **6** | Admin Foundation | **6.0 dan 6.1 complete, owner-approved**; 6.1A/6.1B-1/6.1B-2/6.1B-2R complete; checkpoint `phase-6.1-admin-foundation-complete`; no production |
 | **7** | Feature Flags & Campaign Engine | **Complete / owner-approved** — 7.0–7.6 and 7.C complete; local foundation; `phase-7-campaign-engine-complete`; hosted/domain gates remain |
-| **8** | Qurban MVP | **In progress** — 8.0–8.4 complete / owner-approved; 8.5 next / not started |
-| 9 | Payment & Receipt | Belum bermula |
+| **8** | Qurban MVP Foundation | **COMPLETE / owner-approved** — 8.0–8.5 complete; `phase-8.5-qurban-volunteers` |
+| **9** | Payment & Receipt | **Next / not started** |
 | 10 | Ramadan Iftar | Belum bermula |
 | 11 | Security & Production Hardening | Belum bermula |
 | 12 | Production Launch | Belum bermula |

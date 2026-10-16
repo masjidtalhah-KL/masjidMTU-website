@@ -98,3 +98,19 @@ test('synthetic allocator command requires exact ownership preflight and never d
  const command=ownedFixtureSql(p,evidence,'perform 1;',claims);assert(!command.includes('disable trigger'));assert(!command.includes('delete from'));assert(command.includes('Fixture ownership evidence changed'));
  await q("update private.campaigns set title='Tampered review title' where id=$1",[p.campaign]);await assert.rejects(db.exec(command),/ownership evidence changed/);await db.exec('rollback');assert.equal((await counts()).campaigns,1);
 });
+
+test('owned volunteer/label/idempotency/audit cleanup is ordered atomic repeat-safe with all guards restored',async()=>{
+ const ctx=(await q('select public.public_qurban_volunteer_context($1) data',[slug]))[0].data;
+ const payload={slug,idempotency_key:randomUUID().replaceAll('-','')+randomUUID().replaceAll('-',''),expected_campaign_version:ctx.campaign_version,expected_global_flag_version:ctx.global_flag_version,expected_module_flag_version:ctx.module_flag_version,volunteer:{name:'LOCAL CLEANUP VOLUNTEER',phone:'0123456789',email:null,shirt_size:'2XL',also_participant:true,participant_name_information:'Informational only'}};
+ const receipt=(await q('select public.public_qurban_volunteer_submit($1) data',[JSON.stringify(payload)]))[0].data,v=(await q('select id from private.qurban_volunteers where public_reference=$1',[receipt.reference]))[0];
+ const label=(await q('select private.qurban_volunteer_label_command($1,$2) data',[p.campaign,JSON.stringify({action:'create',name:'Local cleanup label'})]))[0].data;
+ await q('select private.qurban_volunteer_assign($1,$2,1,$3,1)',[p.campaign,v.id,label.id]);await submit(2);
+ for(const t of ['qurban_volunteers','qurban_volunteer_assignment_labels','qurban_volunteer_audit','qurban_volunteer_idempotency'])assert((await q('select count(*)::int n from private.'+t))[0].n>0);
+ await cleanup();await cleanup();assert(Object.values(await counts()).every(n=>n===0));for(const t of ['qurban_volunteers','qurban_volunteer_assignment_labels','qurban_volunteer_audit','qurban_volunteer_idempotency'])assert.equal((await q('select count(*)::int n from private.'+t))[0].n,0);
+ for(const guard of ['qurban_volunteer_guard','qurban_volunteer_label_guard','qurban_volunteer_idempotency_guard','qurban_volunteer_audit_guard'])assert.equal((await q('select tgenabled from pg_trigger where tgname=$1',[guard]))[0].tgenabled,'O');
+});
+test('selective volunteer cleanup refuses unowned campaign/volunteers without partial deletion',async()=>{
+ const c=(await q("insert into private.campaigns(type_key,config_version,slug,title,configuration) select type_key,config_version,'unrelated-volunteer-campaign','Unrelated volunteer campaign',configuration from private.campaigns returning id"))[0];
+ await q("insert into private.qurban_volunteers(campaign_id,name,phone,shirt_size,also_participant) values($1,'UNRELATED VOLUNTEER','0123456789','XS',false)",[c.id]);
+ await assert.rejects(cleanup(),/another campaign/);await db.exec('rollback');assert.equal((await q('select count(*)::int n from private.qurban_volunteers where campaign_id=$1',[c.id]))[0].n,1);assert.equal((await counts()).campaigns,2);
+});

@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import ExcelJS from 'exceljs';import JSZip from 'jszip';import {mkdirSync,writeFileSync} from 'node:fs';
 import {buildQurbanWorkbook,generateQurbanExport,exportFilename,type ExportSnapshot} from '../../src/lib/qurban/export-workbook';
 const date='2026-10-15T14:00:00.000Z',r1='11111111-1111-4111-8111-111111111111',r2='22222222-2222-4222-8222-222222222222';
-export const snapshot:ExportSnapshot={campaign:{id:r1,title:'UJIAN TEMPATAN — Excel Audit',campaign_year:2044,hijri_display_label:'Label rekaan ujian',currency:'MYR',price_per_share_minor:12345,cattle_count:3,shares_per_cattle:5},summary:{registrations:2,submitted:1,cancelled:1,participants:4,qurban:2,aqiqah:2},
+export const snapshot:ExportSnapshot={volunteers:[],campaign:{id:r1,title:'UJIAN TEMPATAN — Excel Audit',campaign_year:2044,hijri_display_label:'Label rekaan ujian',currency:'MYR',price_per_share_minor:12345,cattle_count:3,shares_per_cattle:5},summary:{registrations:2,submitted:1,cancelled:1,participants:4,qurban:2,aqiqah:2},
  registrations:[{id:r1,public_reference:'QBN-'+'1'.repeat(64),applicant_name:'=SUM(1,1)',phone:'+60123456789',address:'Alamat rekaan\nBaris kedua',email:'dummy@example.test',attendance:'yes',same_cattle_preference:true,status:'submitted',participant_count:3,created_at:date,updated_at:date},{id:r2,public_reference:'QBN-'+'2'.repeat(64),applicant_name:'@Pemohon',phone:'0123456789',address:'Alamat rekaan lain',email:null,attendance:'unsure',same_cattle_preference:false,status:'cancelled',participant_count:1,created_at:date,updated_at:date}],
  participants:['=SUM(1,1)','+Peserta','-Peserta','@Peserta'].map((name,i)=>({id:String(i),registration_id:i<3?r1:r2,participant_name:name,purpose:i%2?'aqiqah':'qurban',created_at:date,cattle_number:null,slot_number:null})),
  allocation_summary:{initialized:false,capacity:0,allocated:0,empty:0},export_id:'33333333-3333-4333-8333-333333333333',snapshot_hash:'f'.repeat(64),generated_at:date,generated_by:r1};
@@ -11,7 +11,7 @@ test('genuine Office Open XML workbook saved as review artifact',async()=>{
  const zip=await JSZip.loadAsync(bytes);for(const file of ['[Content_Types].xml','xl/workbook.xml','xl/worksheets/sheet1.xml'])assert(zip.file(file));
  mkdirSync('.cache/qurban-83',{recursive:true});writeFileSync('.cache/qurban-83/'+exportFilename(snapshot),bytes);
  wb=new ExcelJS.Workbook();await wb.xlsx.load(bytes.buffer as ArrayBuffer);
- assert.deepEqual(wb.worksheets.map(w=>w.name),['Ringkasan','Pendaftaran','Peserta','Susunan Lembu','Format Audit - Legacy View']);
+ assert.deepEqual(wb.worksheets.map(w=>w.name),['Ringkasan','Pendaftaran','Peserta','Sukarelawan','Susunan Lembu','Format Audit - Legacy View']);
 });
 test('summary counts, configuration and exact displayed price reconcile',()=>{
  const s=wb.getWorksheet('Ringkasan')!;assert.equal(s.getCell('B3').value,2044);assert.equal(s.getCell('B6').value,123.45);assert.equal(s.getCell('B9').value,15);
@@ -56,7 +56,7 @@ test('completed export callback only after actual serialization succeeds; comple
 });
 test('phone plus/leading zero preserved in actual text cells; no hidden payment sheets',()=>{
  const r=wb.getWorksheet('Pendaftaran')!;assert.equal(r.getCell('D2').value,'+60123456789');assert.equal(r.getCell('D3').value,'0123456789');assert.equal(r.getCell('D2').type,ExcelJS.ValueType.String);assert.equal(r.getCell('D3').numFmt,'@');
- assert(!wb.worksheets.some(s=>['Bayaran','Resit','Sukarelawan'].includes(s.name)));
+ assert(!wb.worksheets.some(s=>['Bayaran','Resit'].includes(s.name)));
 });
 
 test("summary retains cancelled participants as historical records; all-cancelled and empty snapshots reconcile",async()=>{

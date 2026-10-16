@@ -4,7 +4,7 @@
 Owner-approved on 16 October 2026 (+08:00), including the three presentation/reporting refinements below. Baseline:
 8c15eea47b14b4a79d050bf5d929ce091573abb7, tag phase-8.2-qurban-public-registration.
 8.0–8.3 are owner-approved. Checkpoint: `phase-8.3-qurban-admin-management` (resolve tag for commit).
-At the historical 8.3 checkpoint, 8.4 was next / not started. The owner-approved 8.4 allocation/export refinement is documented below and in [Qurban allocation](QURBAN-ALLOCATION.md); 8.5 is now next / not started. No hosted mutation/deployment.
+At the historical 8.3 checkpoint, 8.4 was next / not started. The owner-approved 8.4 allocation/export refinement is documented below and in [Qurban allocation](QURBAN-ALLOCATION.md); 8.5 is now complete / owner-approved; see the current volunteer checkpoint below. No hosted mutation/deployment.
 Work uses the dedicated website repository, never the legacy colouring-book review checkout.
 Run every command below from the repository root.
 
@@ -56,7 +56,7 @@ Generic Campaign list/DTO/audit remain free of Qurban PII.
 ## Protected navigation and projections
 
 From /admin -> Kempen -> /admin/campaigns/[id], a Qurban-only link opens
-/admin/campaigns/[id]/qurban. Sections: Ringkasan; Pendaftaran / Peserta; Kapasiti / Lembu (8.4); Export; Aktiviti. Future 8.5/Fasa 9 entries are explanatory text only.
+/admin/campaigns/[id]/qurban. Sections: Ringkasan; Pendaftaran / Peserta; Kapasiti / Lembu (8.4); Export; Aktiviti. Sukarelawan is implemented in the approved 8.5 checkpoint; Fasa 9 entries remain explanatory text only.
 
 List default 20, maximum 50 registrations/page, page 1–10000; stable ID tiebreaker.
 Sort: newest/oldest submission, reference, applicant. Status: all/submitted/cancelled.
@@ -185,6 +185,7 @@ Sheets:
 - **Pendaftaran**: Bil; No. Rujukan; Nama Pemohon; No. Telefon; Alamat; Email; Kehadiran; Permintaan Lembu Sama;
   Status; Bil. Peserta; Tarikh Daftar; Tarikh Kemaskini.
 - **Peserta**: Bil; No. Rujukan; Nama Pemohon; Nama Peserta; Tujuan; Status Pendaftaran; Tarikh Daftar; No. Lembu; No. Bahagian. Keeps participant/registration-oriented ordering.
+- **Sukarelawan** (8.5 owner-approved): Bil; No. Rujukan; Nama; No. Telefon; Email; Saiz Baju; Juga Peserta; Nama Peserta (Maklumat); Tugasan; Status; Tarikh Daftar; Tarikh Kemaskini. Manager-only full export, current data/labels, historical cancelled records retained.
 - **Susunan Lembu**: print-friendly cattle blocks ascending; every configured Bahagian ascending. Columns: Bahagian; Nama Peserta; Tujuan; No. Rujukan (full); Nama Pemohon; No. Telefon. Empty slots explicitly show Kosong.
 - **Format Audit - Legacy View**: Bil; No. Rujukan; Nama Peserta; Qurban/Aqiqah; No. Lembu; No. Bahagian;
   No. Telefon; Tarikh Bayaran; Catatan. Existing allocation coordinates only; unallocated cells and payment dates are true blanks. Catatan only Dibatalkan or blank. Allocated rows sort cattle then slot; unallocated rows follow in created_at/id order.
@@ -197,7 +198,7 @@ no rows are inserted. A4 landscape, repeated identifying rows 1–3, wrapped nam
 and page breaks before subsequent cattle groups keep ordinary groups together where practical. Oversized groups or
 exceptionally long text may need native Excel print adjustment. All strings remain inert text, including formula-leading values.
 
-Sukarelawan omitted until 8.5. Bayaran/Resit deferred to Fasa 9. Flattening is export-only, not the normalized DB model.
+Sukarelawan was omitted at the historical 8.3/8.4 checkpoints and is now present in the approved 8.5 checkpoint. Bayaran/Resit remain deferred to Fasa 9. Flattening is export-only, not the normalized DB model.
 Filename: Qurban-MTU-YYYY-Export-YYYY-MM-DD-HHMMSS-UUID.xlsx; year comes from reviewed config, time from DB.
 Date cells are numeric Excel dates displayed in MYT; phone/reference/names/email/address are explicit string cells
 with text format @. Strings starting =,+,-,@,tab never become formula objects; no formula element is generated.
@@ -329,7 +330,7 @@ and local review workbook remain available for departmental print checks.
 8.5 separate volunteer registration/assignment. Fasa 9 private proof/payment verification/receipts/refunds.
 Annual price/year/Hijri/approved akad launch values, exact retention/export-ticket retention and higher-impact requote rules.
 No public PII lookup/recovery, real payment proof, payment verification, receipt, cattle/allocation, volunteer persistence,
-production hard-delete, hosted mutation/deployment or old migration edit. **This was the historical 8.3 STOP boundary; current 8.4 is complete / owner-approved. 8.5 and Fasa 9 have not started.**
+production hard-delete, hosted mutation/deployment or old migration edit. **This was the historical 8.3 STOP boundary; current 8.4 is complete / owner-approved. 8.5 is now complete / owner-approved; Fasa 9 has not started.**
 
 ## Final regression/check evidence
 
@@ -410,3 +411,11 @@ src/lib/qurban/export.ts
 src/lib/supabase/database.types.ts
 supabase/migrations/20261015140703_qurban_admin_management.sql
 ~~~
+
+## Fasa 8.5 owner-approved integration
+
+Protected Sukarelawan section has bounded list/search/filter, exact XS–5XL size counts, manager corrections, terminal cancellation, flexible campaign-scoped label management and one current assignment. Staff sees reference/name/phone/size/informational participant name/current label/status/time, with email omitted at DB/server projection; no edit/cancel/label mutation/assignment/audit/full-export capability. No matching or participant FK. Foundation live membership/MFA/recency remains mandatory.
+
+Full workbook adds Sukarelawan and a separate Ringkasan volunteer section. Total includes retained cancelled records; active=submitted. Assigned/unassigned, also-participant and all nine shirt-size counts are active-only. Volunteer row order: active assigned grouped by label, logical size, name/reference; active unassigned with logical size/name/reference; cancelled last. No coupling with Qurban participant/capacity/payment counters. All six sheets use one materialized protected snapshot, including current assignment label text; completed export audit adds safe volunteer_count only after successful serialization. Existing =,+,-,@,tab/control formula-injection defenses, +/leading-zero phone text and private export authorization remain.
+
+[Volunteer contract, RPCs, local review/cleanup and verification](QURBAN-VOLUNTEERS.md). 8.5 and Fasa 8 Qurban MVP Foundation are complete / owner-approved. Fasa 9 is next / not started. Stop after the owner-authorized 8.5 checkpoint.

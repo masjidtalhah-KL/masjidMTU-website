@@ -158,6 +158,54 @@ export type Database = {
         }
         Returns: Json
       }
+      admin_qurban_volunteer_activity: {
+        Args: { page_number: number; target_campaign: string }
+        Returns: Json
+      }
+      admin_qurban_volunteer_amend: {
+        Args: {
+          changes: Json
+          expected_version: number
+          target_campaign: string
+          target_volunteer: string
+        }
+        Returns: Json
+      }
+      admin_qurban_volunteer_assign: {
+        Args: {
+          expected_label_version: number
+          expected_version: number
+          label_id: string
+          target_campaign: string
+          target_volunteer: string
+        }
+        Returns: Json
+      }
+      admin_qurban_volunteer_cancel: {
+        Args: {
+          expected_version: number
+          reason: string
+          target_campaign: string
+          target_volunteer: string
+        }
+        Returns: Json
+      }
+      admin_qurban_volunteer_detail: {
+        Args: { target_campaign: string; target_volunteer: string }
+        Returns: Json
+      }
+      admin_qurban_volunteer_label_command: {
+        Args: { payload: Json; target_campaign: string }
+        Returns: Json
+      }
+      admin_qurban_volunteer_labels: {
+        Args: { page_number: number; target_campaign: string }
+        Returns: Json
+      }
+      admin_qurban_volunteer_list: {
+        Args: { options: Json; target_campaign: string }
+        Returns: Json
+      }
       admin_revoke_invite: {
         Args: { expected_version: number; invite_id: string }
         Returns: undefined
@@ -186,6 +234,11 @@ export type Database = {
         Args: { payload: Json }
         Returns: Json
       }
+      public_qurban_volunteer_context: {
+        Args: { target_slug: string }
+        Returns: Json
+      }
+      public_qurban_volunteer_submit: { Args: { payload: Json }; Returns: Json }
     }
     Enums: {
       [_ in never]: never
