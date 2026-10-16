@@ -67,7 +67,7 @@ export function setupSql(p, claims) {
  values(${quote(p.akad)},${quote(p.campaign)},${quote(config.approved_akad_version)},${quote(text)},${quote(p.users.admin.id)},${quote(marker(p))});
  ${evidenceSql(p)}; commit;`;
 }
-const guards=[['private.qurban_operational_audit','qurban_operational_audit_guard'],['private.qurban_export_requests','qurban_export_request_guard'],['private.qurban_submission_audit','qurban_submission_audit_guard'],['private.qurban_submission_idempotency','qurban_submission_idempotency_guard'],
+const guards=[['private.qurban_allocations','qurban_allocation_guard'],['private.qurban_cattle_slots','qurban_cattle_slot_guard'],['private.qurban_cattle','qurban_cattle_guard'],['private.qurban_operational_audit','qurban_operational_audit_guard'],['private.qurban_export_requests','qurban_export_request_guard'],['private.qurban_submission_audit','qurban_submission_audit_guard'],['private.qurban_submission_idempotency','qurban_submission_idempotency_guard'],
  ['private.qurban_consent_acceptances','qurban_consent_guard'],['private.qurban_participations','qurban_participation_guard'],['private.qurban_registrations','qurban_registration_guard'],
  ['private.qurban_akad_versions','qurban_akad_guard'],['private.campaigns','campaign_row_guard'],['private.system_feature_flags','system_flag_row_guard'],['private.admin_audit_log','immutable_admin_audit']];
 export function cleanupSql(p, evidence) {
@@ -105,6 +105,9 @@ export function cleanupSql(p, evidence) {
  ${checks}
  ${guards.map(([t,g])=>`alter table ${t} disable trigger ${g};`).join('\n')}
  delete from private.qurban_operational_audit where campaign_id=${quote(p.campaign)};
+ delete from private.qurban_allocations where campaign_id=${quote(p.campaign)};
+ delete from private.qurban_cattle_slots where campaign_id=${quote(p.campaign)};
+ delete from private.qurban_cattle where campaign_id=${quote(p.campaign)};
  delete from private.qurban_export_requests where campaign_id=${quote(p.campaign)};
  delete from private.qurban_submission_audit where registration_id in (${regs});
  delete from private.qurban_submission_idempotency where registration_id in (${regs});

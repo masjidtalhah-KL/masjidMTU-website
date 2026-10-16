@@ -82,3 +82,19 @@ test('setup refuses occupied DB and never overwrites current ownership',async()=
  const before=await counts();await assert.rejects(db.exec(setupSql(planSession(),{})),/empty local database/);await db.exec('rollback');assert.deepEqual(await counts(),before);
  assert.deepEqual((await q(evidenceSql(p)))[0].evidence,evidence);
 });
+
+test('owned grid/allocation/audit removed before parents, guards restored, repeat-safe',async()=>{
+ await submit(3);await q('select private.qurban_admin_initialize_grid($1)',[p.campaign]);
+ const r=(await q('select id from private.qurban_registrations where campaign_id=$1',[p.campaign]))[0].id,ps=(await q('select id from private.qurban_participations where registration_id=$1',[r])).map(p=>p.id);
+ await q('select private.qurban_allocate_registration($1,$2,$3::uuid[])',[p.campaign,r,'{'+ps.join(',')+'}']);
+ assert.equal((await q('select count(*)::int n from private.qurban_allocations'))[0].n,3);await cleanup();await cleanup();
+ for(const t of ['qurban_allocations','qurban_cattle_slots','qurban_cattle','qurban_operational_audit'])assert.equal((await q('select count(*)::int n from private.'+t))[0].n,0);
+ for(const name of ['qurban_allocation_guard','qurban_cattle_slot_guard','qurban_cattle_guard'])assert.equal((await q('select tgenabled from pg_trigger where tgname=$1',[name]))[0].tgenabled,'O');
+});
+test('synthetic allocator command requires exact ownership preflight and never disables guards',async()=>{
+ const {ownedFixtureSql}=await import('../qurban-allocation/review-fixture.mjs');
+ const claims={sub:p.users.owner.id,role:'authenticated',session_id:p.users.owner.session,aal:'aal2',amr:[{method:'totp',timestamp:Math.floor(Date.now()/1000)}]};
+ assert.throws(()=>ownedFixtureSql(p,null,'perform 1;',claims),/ownership evidence/);
+ const command=ownedFixtureSql(p,evidence,'perform 1;',claims);assert(!command.includes('disable trigger'));assert(!command.includes('delete from'));assert(command.includes('Fixture ownership evidence changed'));
+ await q("update private.campaigns set title='Tampered review title' where id=$1",[p.campaign]);await assert.rejects(db.exec(command),/ownership evidence changed/);await db.exec('rollback');assert.equal((await counts()).campaigns,1);
+});

@@ -136,8 +136,26 @@ export type Database = {
         Args: { target_campaign: string }
         Returns: Json
       }
+      admin_qurban_grid: {
+        Args: { page_number: number; target_campaign: string }
+        Returns: Json
+      }
+      admin_qurban_initialize_grid: {
+        Args: { target_campaign: string }
+        Returns: Json
+      }
       admin_qurban_list: {
         Args: { options: Json; target_campaign: string }
+        Returns: Json
+      }
+      admin_qurban_reassign_allocation: {
+        Args: {
+          allocation_id: string
+          expected_version: number
+          target_campaign: string
+          target_cattle: string
+          target_slot: string
+        }
         Returns: Json
       }
       admin_revoke_invite: {

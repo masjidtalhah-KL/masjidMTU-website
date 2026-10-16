@@ -10,7 +10,7 @@ export function reviewStack(){
  return localStack();
 }
 export const manifestPath=path.join(root,'.cache/qurban-review-session.json');
-function exclusive(fn){
+export function exclusive(fn){
  mkdirSync(path.dirname(manifestPath),{recursive:true});
  let fd;try{fd=openSync(manifestPath+'.lock','wx');}catch{throw Error('Another fixture command is active (or its local lock needs manual inspection)');}
  try{return fn();}finally{closeSync(fd);unlinkSync(manifestPath+'.lock');}
@@ -37,7 +37,9 @@ export function inspect(){reviewStack();const counts=rows(`select
  (select count(*) from private.qurban_submission_audit) audit,(select count(*) from private.qurban_submission_idempotency) idempotency,
  (select count(*) from auth.users) auth_fixture_users,
  (select count(*) from private.qurban_operational_audit) operational_audit,
- (select count(*) from private.qurban_export_requests) export_requests`)[0];
+ (select count(*) from private.qurban_export_requests) export_requests,
+ (select count(*) from private.qurban_cattle) cattle,(select count(*) from private.qurban_cattle_slots) cattle_slots,
+ (select count(*) from private.qurban_allocations) allocations`)[0];
  const evidence=rows(`select r.public_reference,r.status,r.quoted_currency,r.quoted_price_per_share_minor,r.quoted_total_minor,r.quoted_participation_count,
  (select count(*) from private.qurban_participations p where p.registration_id=r.id) inserted_participations,
  (select count(*) from private.qurban_consent_acceptances a where a.registration_id=r.id) consent_count,

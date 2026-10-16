@@ -3,6 +3,7 @@ import Link from "next/link";
 import {useEffect,useRef,useState,type FormEvent} from "react";
 import {attendanceLabels,cancellationReasons,activityLabels,type ListView,type Detail,type Participant,type Activity,type Attendance,type Purpose} from "@/lib/qurban/admin-contract";
 import {registrationStatusLabels,compactQurbanReference} from "@/lib/qurban/admin-presentation";
+import {QurbanCapacity} from "./qurban-capacity";
 import "./qurban-admin.css";
 const time=(v:string)=>new Date(v).toLocaleString("ms-MY",{timeZone:"Asia/Kuala_Lumpur"});
 const money=(v:number)=>new Intl.NumberFormat("ms-MY",{style:"currency",currency:"MYR"}).format(v/100);
@@ -27,7 +28,9 @@ export function QurbanAdminPanel({initial}:{initial:ListView}){
  async function open(id:string){await run(async()=>{const d=await result(await fetch(base+"/registrations/"+id,{cache:"no-store"}));if(!d)throw Error("Rekod tidak tersedia.");setSelected(d);setBlocked(false);});}
  async function refresh(){await run(async()=>{if(selected){const d=await result(await fetch(base+"/registrations/"+selected.id,{cache:"no-store"}));setSelected(d);}await list();setBlocked(false);setMessage("Rekod terkini dimuatkan. Semak borang sebelum membuat perubahan.");});}
  async function mutate(body:unknown,cancel=false){if(!selected||!view.can_manage||disabled)return;await run(async()=>{
-  await result(await fetch(base+"/registrations/"+selected.id+(cancel?"/cancel":""),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}));
+  const response=await fetch(base+"/registrations/"+selected.id+(cancel?"/cancel":""),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+  if(cancel&&response.status===409){setBlocked(true);throw Error("Rekod berubah atau pendaftaran mempunyai allocation. Pembatalan dengan allocation belum tersedia; tiada slot dilepaskan. Muat semula dan semak.");}
+  await result(response);
   const d=await result(await fetch(base+"/registrations/"+selected.id,{cache:"no-store"}));setSelected(d);await list();setMessage(cancel?"Pendaftaran dibatalkan. Sejarah peserta dan akad dikekalkan.":"Perubahan disimpan. Akad dan quote asal kekal.");
  });}
  async function showActivity(page=1){await run(async()=>{const data=await result(await fetch(base+"/activity?page="+page,{cache:"no-store"}));setActivity(data);setTab("activity");setSelected(null);});}
@@ -47,16 +50,18 @@ export function QurbanAdminPanel({initial}:{initial:ListView}){
  <p>{c.campaign_year} · {c.hijri_display_label} · {view.can_manage?"Pengurus operasi":"Staff — baca sahaja"}</p>
  <nav className="qa-nav" aria-label="Bahagian Qurban">
  <button aria-current={tab==="summary"?"page":undefined} onClick={()=>section("summary")}>Ringkasan</button>
+ <button aria-current={tab==="capacity"?"page":undefined} onClick={()=>section("capacity")}>Kapasiti / Lembu</button>
  <button aria-current={tab==="registrations"?"page":undefined} onClick={()=>section("registrations")}>Pendaftaran / Peserta</button>
  {view.can_manage&&<><button aria-current={tab==="export"?"page":undefined} onClick={()=>section("export")}>Export</button><button aria-current={tab==="activity"?"page":undefined} disabled={busy} onClick={()=>void showActivity()}>Aktiviti</button></>}
  </nav>
  <p ref={feedback} tabIndex={-1} role="status" aria-live="polite" className="qa-feedback">{message}</p>
  {blocked&&<button onClick={()=>void refresh()} disabled={busy}>Muat semula rekod</button>}
  {view.can_manage&&!view.recent_mfa&&<p><Link href={"/admin/mfa?next=/admin/campaigns/"+c.id} prefetch={false}>Sahkan authenticator</Link> sebelum perubahan atau eksport.</p>}
+ {tab==="capacity"&&<QurbanCapacity campaign={c.id}/>}
  {tab==="summary"&&<section className="admin-card"><h2>Ringkasan operasi</h2><dl className="qa-summary">
  {[["Pendaftaran",view.summary.registrations],["Dihantar",view.summary.submitted],["Dibatalkan",view.summary.cancelled],["Peserta — semua rekod",view.summary.participants],["Qurban — semua rekod",view.summary.qurban],["Aqiqah — semua rekod",view.summary.aqiqah]].map(([label,n])=><div key={label}><dt>{label}</dt><dd>{n}</dd></div>)}
- </dl><p>Harga konfigurasi: {money(c.price_per_share_minor)} / bahagian.</p><p>Kapasiti teori konfigurasi: {c.cattle_count} × {c.shares_per_cattle} = {c.cattle_count*c.shares_per_cattle} bahagian.</p><p>Pendaftaran tidak menempah kapasiti. Tiada pengesahan bayaran atau agihan lembu dalam fasa ini.</p>
- <p className="admin-muted">Kapasiti / Lembu — Fasa 8.4 · Sukarelawan — Fasa 8.5 · Bayaran / Resit — Fasa 9.</p></section>}
+ </dl><p>Harga konfigurasi: {money(c.price_per_share_minor)} / bahagian.</p><p>Kapasiti teori konfigurasi: {c.cattle_count} × {c.shares_per_cattle} = {c.cattle_count*c.shares_per_cattle} bahagian.</p><p>Pendaftaran tidak menempah kapasiti. Grid dan susunan bahagian diurus berasingan; tiada pengesahan bayaran dalam fasa ini.</p>
+ <p className="admin-muted">Sukarelawan — Fasa 8.5 · Bayaran / Resit — Fasa 9.</p></section>}
  {tab==="registrations"&&<>
  <section className="admin-card"><h2>Pendaftaran</h2><form onSubmit={search} className="qa-filters">
  <label>Carian rujukan tepat / awalan nama atau telefon<input value={query.search} maxLength={100} onChange={e=>setQuery({...query,search:e.target.value})}/></label>
@@ -84,10 +89,11 @@ export function QurbanAdminPanel({initial}:{initial:ListView}){
  <button disabled={busy} onClick={()=>void refresh()}>Muat semula rekod</button>
  </section>}
  </>}
- {tab==="export"&&view.can_manage&&<section className="admin-card"><h2>Export Excel audit</h2><p>Empat helaian: Ringkasan, Pendaftaran, Peserta dan Format Audit - Legacy View. Mengandungi data peribadi operasi; untuk kegunaan urus setia yang dibenarkan.</p><p>Snapshot titik masa sahaja. Mengedit workbook tidak mengubah database. Lembu, bahagian dan tarikh bayaran dibiarkan kosong.</p><button className="admin-button" disabled={disabled} onClick={()=>void download()}>Muat turun Excel (.xlsx)</button></section>}
+ {tab==="export"&&view.can_manage&&<section className="admin-card"><h2>Export Excel audit</h2><p>Lima helaian: Ringkasan, Pendaftaran, Peserta, Susunan Lembu dan Format Audit - Legacy View. Mengandungi data peribadi operasi; untuk kegunaan urus setia yang dibenarkan.</p><p>Snapshot titik masa sahaja. Mengedit workbook tidak mengubah database. Lembu dan bahagian diisi hanya bagi allocation sedia ada; tarikh bayaran kekal kosong.</p><button className="admin-button" disabled={disabled} onClick={()=>void download()}>Muat turun Excel (.xlsx)</button></section>}
  {tab==="activity"&&view.can_manage&&<section className="admin-card"><h2>Aktiviti Qurban</h2>{activity?.items.length?<ol className="admin-audit">{activity.items.map(a=><li key={a.id}><strong>{activityLabels[a.action]??a.action}</strong><time dateTime={a.occurred_at}>{time(a.occurred_at)}</time><span className="qa-reference">Petugas: {a.actor_id}</span>
  {a.expected_version!==null&&<span>{a.participation_id?"Versi peserta":"Versi pendaftaran"}: {a.expected_version} → {a.resulting_version}</span>}
  {!!a.changed_fields.length&&<span>Kategori: {a.changed_fields.map(k=>({applicant_name:"Nama pemohon",phone:"Telefon",address:"Alamat",email:"Email",attendance:"Kehadiran",same_cattle_preference:"Permintaan lembu sama",participant_name:"Nama peserta",purpose:"Tujuan",status:"Status pendaftaran"} as Record<string,string>)[k]??k).join(", ")}</span>}{a.reason&&<span>Sebab: {cancellationReasons[a.reason as keyof typeof cancellationReasons]}</span>}
+ {a.cattle_number!=null&&<span>{a.previous_cattle_number!=null?"Lembu "+a.previous_cattle_number+" / Bahagian "+a.previous_slot_number+" → ":""}Lembu {a.cattle_number} / Bahagian {a.slot_number}</span>}{a.grid_cattle_count!=null&&<span>Grid: {a.grid_cattle_count} lembu × {a.grid_shares_per_cattle} bahagian</span>}
  {a.export_id&&<span>Eksport: {a.registration_count} pendaftaran / {a.participation_count} peserta</span>}</li>)}</ol>:<p>Belum ada aktiviti operasi.</p>}
  <div className="admin-row-actions"><button disabled={busy||!activity||activity.page<=1} onClick={()=>void showActivity((activity?.page??1)-1)}>Aktiviti sebelumnya</button><button disabled={busy||activity?.items.length!==50} onClick={()=>void showActivity((activity?.page??1)+1)}>Aktiviti seterusnya</button></div></section>}
  </div>;

@@ -83,8 +83,9 @@ for(const table of ['qurban_operational_audit','qurban_export_requests'])for(con
  for(const op of ['SELECT','INSERT','UPDATE','DELETE'])assert.equal((await q("select has_table_privilege($1,$2,$3) ok",[role,'private.'+table,op]))[0].ok,false);
  assert.equal((await q("select relrowsecurity ok from pg_class where oid=$1::regclass",['private.'+table]))[0].ok,true);
 });
-test('no payment/allocation/volunteer tables, no private runtime EXECUTE or public grant',async()=>{
- assert.equal((await q("select count(*)::int n from pg_tables where schemaname='private' and tablename ~ '^qurban_(payment|proof|receipt|cattle|allocation|volunteer)'"))[0].n,0);
+test('no payment/volunteer tables; reviewed allocation structure remains empty for public submissions, no private runtime EXECUTE or public grant',async()=>{
+ assert.equal((await q("select count(*)::int n from pg_tables where schemaname='private' and tablename ~ '^qurban_(payment|proof|receipt|volunteer)'"))[0].n,0);
+ for(const table of ['qurban_cattle','qurban_cattle_slots','qurban_allocations'])assert.equal((await q('select count(*)::int n from private.'+table))[0].n,0);
  const f=await q("select n.nspname,p.proname,p.prosecdef,p.proconfig,has_function_privilege('anon',p.oid,'EXECUTE') anon,has_function_privilege('authenticated',p.oid,'EXECUTE') auth from pg_proc p join pg_namespace n on n.oid=p.pronamespace where p.proname like 'qurban_admin_%' or p.proname like 'admin_qurban_%'");
  for(const r of f){assert(r.proconfig.includes('search_path=""'));assert.equal(r.anon,false);assert.equal(r.auth,r.nspname==='public');assert.equal(r.prosecdef,r.nspname==='public');}
 });

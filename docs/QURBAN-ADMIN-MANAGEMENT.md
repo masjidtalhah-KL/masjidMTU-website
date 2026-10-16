@@ -4,7 +4,7 @@
 Owner-approved on 16 October 2026 (+08:00), including the three presentation/reporting refinements below. Baseline:
 8c15eea47b14b4a79d050bf5d929ce091573abb7, tag phase-8.2-qurban-public-registration.
 8.0–8.3 are owner-approved. Checkpoint: `phase-8.3-qurban-admin-management` (resolve tag for commit).
-No hosted mutation or deployment; 8.4 is next / not started.
+At the historical 8.3 checkpoint, 8.4 was next / not started. The owner-approved 8.4 allocation/export refinement is documented below and in [Qurban allocation](QURBAN-ALLOCATION.md); 8.5 is now next / not started. No hosted mutation/deployment.
 Work uses the dedicated website repository, never the legacy colouring-book review checkout.
 Run every command below from the repository root.
 
@@ -56,7 +56,7 @@ Generic Campaign list/DTO/audit remain free of Qurban PII.
 ## Protected navigation and projections
 
 From /admin -> Kempen -> /admin/campaigns/[id], a Qurban-only link opens
-/admin/campaigns/[id]/qurban. Sections: Ringkasan; Pendaftaran / Peserta; Export; Aktiviti. Future 8.4/8.5/Fasa 9 entries are explanatory text only.
+/admin/campaigns/[id]/qurban. Sections: Ringkasan; Pendaftaran / Peserta; Kapasiti / Lembu (8.4); Export; Aktiviti. Future 8.5/Fasa 9 entries are explanatory text only.
 
 List default 20, maximum 50 registrations/page, page 1–10000; stable ID tiebreaker.
 Sort: newest/oldest submission, reference, applicant. Status: all/submitted/cancelled.
@@ -184,9 +184,18 @@ Sheets:
   all-record, active and cancelled participant counts, all-record/active Qurban/Aqiqah counts; generated time/actor/reference.
 - **Pendaftaran**: Bil; No. Rujukan; Nama Pemohon; No. Telefon; Alamat; Email; Kehadiran; Permintaan Lembu Sama;
   Status; Bil. Peserta; Tarikh Daftar; Tarikh Kemaskini.
-- **Peserta**: Bil; No. Rujukan; Nama Pemohon; Nama Peserta; Tujuan; Status Pendaftaran; Tarikh Daftar.
+- **Peserta**: Bil; No. Rujukan; Nama Pemohon; Nama Peserta; Tujuan; Status Pendaftaran; Tarikh Daftar; No. Lembu; No. Bahagian. Keeps participant/registration-oriented ordering.
+- **Susunan Lembu**: print-friendly cattle blocks ascending; every configured Bahagian ascending. Columns: Bahagian; Nama Peserta; Tujuan; No. Rujukan (full); Nama Pemohon; No. Telefon. Empty slots explicitly show Kosong.
 - **Format Audit - Legacy View**: Bil; No. Rujukan; Nama Peserta; Qurban/Aqiqah; No. Lembu; No. Bahagian;
-  No. Telefon; Tarikh Bayaran; Catatan. Allocation/payment cells are true blanks. Catatan only Dibatalkan or blank.
+  No. Telefon; Tarikh Bayaran; Catatan. Existing allocation coordinates only; unallocated cells and payment dates are true blanks. Catatan only Dibatalkan or blank. Allocated rows sort cattle then slot; unallocated rows follow in created_at/id order.
+
+Owner explicitly requires Susunan Lembu for departmental operational printing. It uses the same protected materialized
+snapshot, not a second DB read. Current allocation/current participant data only; no address/email/akad/payment extras.
+Top note: “Susunan operasi allocation sahaja. Bukan bukti bayaran atau pengesahan pembayaran.”
+Configured slots are displayed even before grid initialization, with an explicit uninitialized/configuration-only label;
+no rows are inserted. A4 landscape, repeated identifying rows 1–3, wrapped names/references, bold cattle headings,
+and page breaks before subsequent cattle groups keep ordinary groups together where practical. Oversized groups or
+exceptionally long text may need native Excel print adjustment. All strings remain inert text, including formula-leading values.
 
 Sukarelawan omitted until 8.5. Bayaran/Resit deferred to Fasa 9. Flattening is export-only, not the normalized DB model.
 Filename: Qurban-MTU-YYYY-Export-YYYY-MM-DD-HHMMSS-UUID.xlsx; year comes from reviewed config, time from DB.
@@ -294,9 +303,9 @@ cross-actor/expired export completion, export-after-serialization failure, OOXML
 
 Actual DB-backed browser download: .cache/qurban-83/admin-live-export.xlsx.
 Independent adversarial workbook: .cache/qurban-83/Qurban-MTU-2044-Export-2026-10-15-220000-33333333-3333-4333-8333-333333333333.xlsx.
-Validated: PK/Office Open XML package, four sheet names, row counts/relationships/statuses/summary, blank future cells,
+Historical 8.3 validation: PK/Office Open XML package, four sheet names, row counts/relationships/statuses/summary, blank future cells,
 inert string cells/no formula XML, phone plus/leading zero, print headers/panes/filters/formats and safe filename.
-All four sheets were imported/inspected/rendered with bundled spreadsheet tooling.
+All four historical 8.3 sheets were imported/inspected/rendered with bundled spreadsheet tooling. The 8.4 checkpoint additionally verifies the fifth sheet, cattle/slot ordering, empty slots, print properties and same-snapshot coordinate agreement; see its verification evidence.
 Its renderer normalizes numeric-looking text in previews (phone plus/zero); actual saved OOXML and ExcelJS round-trip
 verify the source workbook retains the exact typed strings. Native Excel opening/printing remains part of owner manual review.
 
@@ -320,7 +329,7 @@ and local review workbook remain available for departmental print checks.
 8.5 separate volunteer registration/assignment. Fasa 9 private proof/payment verification/receipts/refunds.
 Annual price/year/Hijri/approved akad launch values, exact retention/export-ticket retention and higher-impact requote rules.
 No public PII lookup/recovery, real payment proof, payment verification, receipt, cattle/allocation, volunteer persistence,
-production hard-delete, hosted mutation/deployment or old migration edit. **8.4 has not started. STOP after the 8.3 checkpoint.**
+production hard-delete, hosted mutation/deployment or old migration edit. **This was the historical 8.3 STOP boundary; current 8.4 is complete / owner-approved. 8.5 and Fasa 9 have not started.**
 
 ## Final regression/check evidence
 

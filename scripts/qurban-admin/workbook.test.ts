@@ -3,15 +3,15 @@ import {buildQurbanWorkbook,generateQurbanExport,exportFilename,type ExportSnaps
 const date='2026-10-15T14:00:00.000Z',r1='11111111-1111-4111-8111-111111111111',r2='22222222-2222-4222-8222-222222222222';
 export const snapshot:ExportSnapshot={campaign:{id:r1,title:'UJIAN TEMPATAN — Excel Audit',campaign_year:2044,hijri_display_label:'Label rekaan ujian',currency:'MYR',price_per_share_minor:12345,cattle_count:3,shares_per_cattle:5},summary:{registrations:2,submitted:1,cancelled:1,participants:4,qurban:2,aqiqah:2},
  registrations:[{id:r1,public_reference:'QBN-'+'1'.repeat(64),applicant_name:'=SUM(1,1)',phone:'+60123456789',address:'Alamat rekaan\nBaris kedua',email:'dummy@example.test',attendance:'yes',same_cattle_preference:true,status:'submitted',participant_count:3,created_at:date,updated_at:date},{id:r2,public_reference:'QBN-'+'2'.repeat(64),applicant_name:'@Pemohon',phone:'0123456789',address:'Alamat rekaan lain',email:null,attendance:'unsure',same_cattle_preference:false,status:'cancelled',participant_count:1,created_at:date,updated_at:date}],
- participants:['=SUM(1,1)','+Peserta','-Peserta','@Peserta'].map((name,i)=>({id:String(i),registration_id:i<3?r1:r2,participant_name:name,purpose:i%2?'aqiqah':'qurban',created_at:date})),
- export_id:'33333333-3333-4333-8333-333333333333',snapshot_hash:'f'.repeat(64),generated_at:date,generated_by:r1};
+ participants:['=SUM(1,1)','+Peserta','-Peserta','@Peserta'].map((name,i)=>({id:String(i),registration_id:i<3?r1:r2,participant_name:name,purpose:i%2?'aqiqah':'qurban',created_at:date,cattle_number:null,slot_number:null})),
+ allocation_summary:{initialized:false,capacity:0,allocated:0,empty:0},export_id:'33333333-3333-4333-8333-333333333333',snapshot_hash:'f'.repeat(64),generated_at:date,generated_by:r1};
 let bytes:Uint8Array,wb:ExcelJS.Workbook;
 test('genuine Office Open XML workbook saved as review artifact',async()=>{
  bytes=await buildQurbanWorkbook(snapshot);assert.equal(Buffer.from(bytes).subarray(0,2).toString(),'PK');
  const zip=await JSZip.loadAsync(bytes);for(const file of ['[Content_Types].xml','xl/workbook.xml','xl/worksheets/sheet1.xml'])assert(zip.file(file));
  mkdirSync('.cache/qurban-83',{recursive:true});writeFileSync('.cache/qurban-83/'+exportFilename(snapshot),bytes);
  wb=new ExcelJS.Workbook();await wb.xlsx.load(bytes.buffer as ArrayBuffer);
- assert.deepEqual(wb.worksheets.map(w=>w.name),['Ringkasan','Pendaftaran','Peserta','Format Audit - Legacy View']);
+ assert.deepEqual(wb.worksheets.map(w=>w.name),['Ringkasan','Pendaftaran','Peserta','Susunan Lembu','Format Audit - Legacy View']);
 });
 test('summary counts, configuration and exact displayed price reconcile',()=>{
  const s=wb.getWorksheet('Ringkasan')!;assert.equal(s.getCell('B3').value,2044);assert.equal(s.getCell('B6').value,123.45);assert.equal(s.getCell('B9').value,15);
@@ -34,7 +34,7 @@ test('formula-leading values are inert typed text, never OOXML formulas',async()
  const control=structuredClone(snapshot);control.participants[0].participant_name='\t=SUM(2,2)';const b=await buildQurbanWorkbook(control),w=new ExcelJS.Workbook();await w.xlsx.load(b.buffer as ArrayBuffer);assert.equal(w.getWorksheet('Peserta')!.getCell('D2').type,ExcelJS.ValueType.String);
 });
 test('frozen bold headers, filters, widths, dates, print titles and landscape preserved',()=>{
- for(const w of wb.worksheets){assert.equal(w.views[0].state,'frozen');assert.equal(w.getRow(1).font.bold,true);assert.equal(w.pageSetup.printTitlesRow,'1:1');assert(w.getColumn(2).width!>20);if(w.name!=='Ringkasan'){assert(w.autoFilter);assert.equal(w.pageSetup.orientation,'landscape');}}
+ for(const w of wb.worksheets){assert.equal(w.views[0].state,'frozen');assert.equal(w.getRow(1).font.bold,true);assert.equal(w.pageSetup.printTitlesRow,w.name==='Susunan Lembu'?'1:3':'1:1');assert(w.getColumn(2).width!>20);if(w.name!=='Ringkasan'){if(w.name!=='Susunan Lembu')assert(w.autoFilter);assert.equal(w.pageSetup.orientation,'landscape');}}
  assert(wb.getWorksheet('Pendaftaran')!.getCell('K2').value instanceof Date);assert.match(wb.getWorksheet('Pendaftaran')!.getCell('K2').numFmt,/MYT/);
 });
 test('filename cannot include user title/path, repeat exports are unique by reference',()=>{

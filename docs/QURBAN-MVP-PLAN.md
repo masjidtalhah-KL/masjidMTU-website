@@ -316,4 +316,14 @@ Owner explicitly authorises the approved checkpoint commit, tag `phase-8.0-qurba
 
 Ordinary authorised participant-name/purpose correction does not require new akad acceptance. Original consent remains immutable proof of the original submission, and current participant data may differ with bounded structural audit. The earlier reacceptance candidate is superseded.
 Staff operational read is now locked to reference/name/phone/participants/purpose/attendance/group preference/status/time/safe campaign context; address/email/consent evidence internals/operational audit/full Excel export are omitted or denied at DB/server boundaries. No mutation/cancellation/export for staff.
-The [owner-approved 8.3 checkpoint](QURBAN-ADMIN-MANAGEMENT.md) implements existing-participant corrections only (no add/remove/requote), soft cancellation and four-sheet Excel: Ringkasan, Pendaftaran, Peserta, Format Audit - Legacy View. Sukarelawan waits for 8.5; Bayaran/Resit for Fasa 9. Fasa 8.3 is complete / owner-approved; 8.4 is next / not started.
+The [owner-approved 8.3 checkpoint](QURBAN-ADMIN-MANAGEMENT.md) implements existing-participant corrections only (no add/remove/requote), soft cancellation and four-sheet Excel: Ringkasan, Pendaftaran, Peserta, Format Audit - Legacy View. Sukarelawan waits for 8.5; Bayaran/Resit for Fasa 9. At that historical checkpoint, Fasa 8.3 was complete / owner-approved and 8.4 was next / not started; see current 8.4 below.
+
+## Fasa 8.4 owner-locked allocation direction
+
+Future verified-payment admission automatically allocates the earliest suitable free slots. Same-cattle preference applies to the eligible transaction set: choose the lowest suitable cattle with enough free slots, otherwise split by cattle then slot number. It is best-effort, never a public guarantee; do not reshuffle existing allocations.
+
+Admin/super_admin may reassign existing allocations to empty same-campaign slots with expected versions and bounded coordinate audit; staff is read-only. Initial allocation has no production admin/public entry point until Fasa 9 verifies payment atomically with capacity admission. No fake eligibility/payment field is introduced. Grid initialization locks cattle_count/shares_per_cattle; no expansion/shrink workflow. Ordinary cancellation of a Registration with an allocation fails closed, without release/refund.
+
+The [owner-approved 8.4 allocation checkpoint](QURBAN-ALLOCATION.md) documents private cattle/slot/allocation structure, deterministic admission, protected grid/reassignment, allocation-aware export and manifest-owned local synthetic review. Overflow/refund/waitlist/release details remain unresolved future policy. Fasa 9 is not started.
+
+Owner final export decision: five sheets — Ringkasan, Pendaftaran, Peserta, Susunan Lembu, Format Audit - Legacy View. Susunan Lembu is a separate print-friendly cattle/slot view including every configured empty slot as Kosong, using the same protected export snapshot. Legacy allocated rows sort cattle/slot; unallocated historical rows remain after them. No payment semantics. Fasa 8.4 complete / owner-approved; 8.5 next / not started; Fasa 9 not started.
