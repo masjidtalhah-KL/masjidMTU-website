@@ -23,7 +23,7 @@ port = 54323
 enabled = false
 
 [storage]
-enabled = false
+enabled = true
 
 [auth]
 enabled = true

@@ -1,0 +1,3 @@
+// Local test/review provisioning only. Never import into src/application runtime.
+import {createHmac,randomUUID} from 'node:crypto';
+export function localStorageToken(stack){if(stack.url!=='http://127.0.0.1:54321')throw Error('Local Storage provisioning only');const now=Math.floor(Date.now()/1000);const b=v=>Buffer.from(JSON.stringify(v)).toString('base64url');const data=b({alg:'HS256',typ:'JWT'})+'.'+b({iss:stack.url+'/auth/v1',aud:'authenticated',sub:randomUUID(),role:'qurban_proof_storage_worker',iat:now,exp:now+3600});return data+'.'+createHmac('sha256',stack.jwt).update(data).digest('base64url');}

@@ -1,5 +1,11 @@
 # Roadmap Projek
 
+## Fasa 9 in progress — 9.0 complete / owner-approved
+
+[Private payment-proof intake](QURBAN-PAYMENT-PROOF.md): separate payment capability, owner-approved pre-issued Storage-only token/RLS, participant/admin-assisted uploads, immutable pending evidence, protected individual/segmented ZIP downloads and seven-sheet Excel. Owner approved existing-registration proof intake after the registration window closes. No service-role/signing key in application runtime. No payment verification/rejection, payment-qualified allocation, receipt/refund/waitlist/gateway. **9.1 next / not started.** No hosted mutation/deployment.
+
+17 October 2026 (+08:00). Owner reviewed and approved **Fasa 9.0 — Payment Proof Intake + Private Evidence Storage**, with no further functional changes. Checkpoint: `phase-9.0-qurban-payment-proof` (resolve tag for commit). **1,568 unique automated cases passed**; reruns excluded. The eight unmanifested synthetic orphan backing files remain untouched and unadopted under the documented local-only limitation. Stop after the authorised 9.0 commit/tag/push; do not begin 9.1.
+
 ## Fasa 8 — Qurban MVP Foundation COMPLETE / owner-approved
 
 16 October 2026 (+08:00). Owner reviewed and approved [Fasa 8.5 volunteer registration/admin assignment](QURBAN-VOLUNTEERS.md), with no additional functional changes. Fasa 8.0–8.5 are complete / owner-approved. Cumulative security, regression and cleanup verification plus this owner checkpoint close the Fasa 8 foundation; this does not claim hosted deployment, production launch readiness or completed payment-qualified admission.
@@ -13,7 +19,7 @@
 | 8.4 Cattle/share allocation foundation | Complete / owner-approved |
 | 8.5 Volunteer registration + admin assignment | Complete / owner-approved |
 | **Fasa 8 — Qurban MVP Foundation** | **COMPLETE / owner-approved** |
-| **Fasa 9 — Payment & Receipt** | **Next / not started** |
+| **Fasa 9 — Payment & Receipt** | **In progress — 9.0 complete / owner-approved; 9.1 next / not started** |
 
 ## Fasa 8.5 — Qurban Volunteer Registration & Admin Assignment complete / owner-approved
 
@@ -377,7 +383,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **6** | Admin Foundation | **6.0 dan 6.1 complete, owner-approved**; 6.1A/6.1B-1/6.1B-2/6.1B-2R complete; checkpoint `phase-6.1-admin-foundation-complete`; no production |
 | **7** | Feature Flags & Campaign Engine | **Complete / owner-approved** — 7.0–7.6 and 7.C complete; local foundation; `phase-7-campaign-engine-complete`; hosted/domain gates remain |
 | **8** | Qurban MVP Foundation | **COMPLETE / owner-approved** — 8.0–8.5 complete; `phase-8.5-qurban-volunteers` |
-| **9** | Payment & Receipt | **Next / not started** |
+| **9** | Payment & Receipt | **In progress** — 9.0 complete / owner-approved; `phase-9.0-qurban-payment-proof`; 9.1 next / not started |
 | 10 | Ramadan Iftar | Belum bermula |
 | 11 | Security & Production Hardening | Belum bermula |
 | 12 | Production Launch | Belum bermula |

@@ -1,0 +1,3 @@
+// Local synthetic file generator only. No payment, registration or storage mutation.
+import {mkdirSync,writeFileSync}from'node:fs';import path from'node:path';import {reviewStack}from'../qurban-registration/review-fixture.mjs';import {proofFiles}from'./fixtures.mjs';
+reviewStack();if(process.argv[2]!=="files")throw Error('Use files (local synthetic evidence only)');const dir=path.resolve('.cache/qurban-review-proofs');mkdirSync(dir,{recursive:true});for(const [ext,bytes]of Object.entries(await proofFiles())){const file=path.join(dir,'LOCAL-SYNTHETIC-NOT-PAYMENT.'+ext);writeFileSync(file,bytes);console.log(file);}

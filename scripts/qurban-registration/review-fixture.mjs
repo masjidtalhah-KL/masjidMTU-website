@@ -1,7 +1,7 @@
 import {execFileSync} from 'node:child_process';import {pathToFileURL} from 'node:url';
 import {mkdirSync,readFileSync,writeFileSync,renameSync,openSync,closeSync,unlinkSync} from 'node:fs';import path from 'node:path';
 import {root} from '../admin-foundation/database.mjs';
-import {localStack,sql,rows,signedToken} from '../admin-foundation/local-stack.mjs';import {slug} from './fixtures.mjs';
+import {localStack,sql,rows,signedToken,quote} from '../admin-foundation/local-stack.mjs';import {slug} from './fixtures.mjs';
 import {assertLocalEnvironment,assertLocalDockerEndpoint,planSession,setupSql,cleanupSql,validatePlan} from './fixture-session.mjs';
 export function reviewStack(){
  assertLocalEnvironment();
@@ -41,6 +41,13 @@ export function inspect(){reviewStack();const counts=rows(`select
  (select count(*) from private.qurban_cattle) cattle,(select count(*) from private.qurban_cattle_slots) cattle_slots,
  (select count(*) from private.qurban_allocations) allocations,
  (select count(*) from private.qurban_volunteers) volunteers,(select count(*) from private.qurban_volunteer_assignment_labels) volunteer_labels,
+ (select count(*) from private.qurban_payment_access) payment_access,
+ (select count(*) from private.qurban_payment_sessions) payment_sessions,
+ (select count(*) from private.qurban_proof_intents) proof_intents,
+ (select count(*) from private.qurban_payment_proofs) payment_proofs,
+ (select count(*) from private.qurban_payment_audit) payment_audit,
+ (select count(*) from private.qurban_proof_download_grants) proof_download_grants,
+ (select count(*) from storage.objects where bucket_id='qurban-payment-proofs') proof_objects,
  (select count(*) from private.qurban_volunteer_audit) volunteer_audit,(select count(*) from private.qurban_volunteer_idempotency) volunteer_idempotency`)[0];
  const evidence=rows(`select r.public_reference,r.status,r.quoted_currency,r.quoted_price_per_share_minor,r.quoted_total_minor,r.quoted_participation_count,
  (select count(*) from private.qurban_participations p where p.registration_id=r.id) inserted_participations,
@@ -62,7 +69,17 @@ export function cleanup(){
  return exclusive(()=>{
   let manifest;try{const raw=readFileSync(manifestPath,'utf8');if(Buffer.byteLength(raw)>32768)throw Error();manifest=JSON.parse(raw);}catch{throw Error('No valid fixture ownership manifest; nothing deleted. Untracked/legacy fixtures require the explicit local reset fallback');}
   if(Object.keys(manifest).sort().join()!=='evidence,plan')throw Error('Invalid fixture manifest');
-  validatePlan(manifest.plan);sql(cleanupSql(manifest.plan,manifest.evidence));
+  validatePlan(manifest.plan);
+  const cleanup=cleanupSql(manifest.plan,manifest.evidence);
+  // Dry-run ALL ownership/guard/Auth checks before touching a byte in separate Storage.
+  sql(cleanup.replace(/commit;$/, 'rollback;'));
+  const graph=`select encode(sha256(convert_to(coalesce(jsonb_agg(to_jsonb(i) order by i.id),'[]'::jsonb)::text,'UTF8')),'hex') fingerprint from private.qurban_proof_intents i where campaign_id=${quote(manifest.plan.campaign)}`;
+  const fingerprint=rows(graph)[0].fingerprint;
+  const objects=rows(`select id,object_key,content_hash,byte_size,content_type from private.qurban_proof_intents where campaign_id=${quote(manifest.plan.campaign)} order by id`);
+  execFileSync(process.execPath,['scripts/qurban-payment/storage-cleanup.mjs'],{input:JSON.stringify({campaign:manifest.plan.campaign,objects}),stdio:['pipe','pipe','pipe'],timeout:180000});
+  // A concurrent changed intent graph fails closed; retained DB evidence permits retry.
+  const assertion=`do $$begin if (${graph.replace(' fingerprint','')})<>${quote(fingerprint)} then raise exception 'Fixture proof graph changed during cleanup';end if;end $$;`;
+  sql(cleanup.replace(' do $cleanup$', ()=> ' '+assertion+' do $cleanup$'));
   return {session:manifest.plan.session,cleanup:'complete (repeat calls are safe no-ops)'};
  });
 }

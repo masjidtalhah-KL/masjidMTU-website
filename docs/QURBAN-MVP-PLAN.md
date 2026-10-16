@@ -1,8 +1,8 @@
 # Qurban MVP Foundation — Fasa 8 complete / owner-approved
 
-**Current checkpoint: Fasa 8.0–8.5 complete / owner-approved.**
+**Current checkpoint: Fasa 9.0 complete / owner-approved — Payment Proof Intake + Private Evidence Storage. Fasa 8 COMPLETE / owner-approved.**
 16 October 2026 (+08:00): owner approved the 8.5 implementation without further functional changes, closing Fasa 8.
-Tag: `phase-8.5-qurban-volunteers` (resolve tag for commit). Fasa 9 — Payment & Receipt is next / not started.
+Last approved tag: `phase-9.0-qurban-payment-proof` (resolve tag for commit). **Fasa 9 in progress; 9.0 complete / owner-approved; 9.1 next / not started.** See [payment-proof gate](QURBAN-PAYMENT-PROOF.md).
 This is a local implementation foundation checkpoint, not hosted deployment or production launch readiness.
 
 ## Historical Fasa 8.0 architecture and prototype checkpoint
@@ -342,6 +342,21 @@ The earlier conceptual VolunteerAssignment model is narrowed for this MVP to zer
 
 Optional reviewed WhatsApp group URL is revealed after success; absent URL means no control. No joined/consent state. Public volunteer eligibility uses the existing Qurban registration window and DB clock/flags/lifecycle/config, without inventing a separate window or making volunteer acceptance an ibadah akad transaction. Participant admission retains all existing akad requirements.
 
-Excel now has six sheets: Ringkasan, Pendaftaran, Peserta, Sukarelawan, Susunan Lembu, Format Audit - Legacy View. Volunteer totals/active/cancelled/assignment/also-participant/shirt-size counts are separate; stock/assignment summaries count active volunteers only. One protected export snapshot and existing completion audit remain authoritative. Selective local cleanup adds the owned volunteer graph with unchanged fail-closed ownership guarantees. Fasa 8.5 complete / owner-approved. Fasa 8 — Qurban MVP Foundation complete / owner-approved. Fasa 9 is next / not started.
+At the approved 8.5 checkpoint Excel had six sheets: Ringkasan, Pendaftaran, Peserta, Sukarelawan, Susunan Lembu, Format Audit - Legacy View. Volunteer totals/active/cancelled/assignment/also-participant/shirt-size counts are separate; stock/assignment summaries count active volunteers only. One protected export snapshot and existing completion audit remain authoritative. Selective local cleanup adds the owned volunteer graph with unchanged fail-closed ownership guarantees. Fasa 8.5 complete / owner-approved. Fasa 8 — Qurban MVP Foundation complete / owner-approved. At that checkpoint Fasa 9 was next / not started; see the current 9.0 checkpoint above.
 
 Final checkpoint retains 1,439 unique automated cases and all ten previous migrations unchanged. No further functional changes were requested. Stop after the owner-authorized 8.5 commit/tag/push. Payment-qualified initial allocation, private proof/verification/receipt/refund/waitlist remain unimplemented; Policy B and future production/annual configuration gates are unchanged.
+
+
+## Fasa 9.0 owner scope / credential gate
+
+Owner now authorizes private payment-proof intake, secure Registration-scoped payment capability, participant/admin-assisted uploads, protected individual/ZIP download, operational views and future seven-sheet evidence export. Bank Islam transfer only remains locked. WhatsApp/physical assistance is an approved fallback through the same admin upload pipeline; it does not replace the normal website flow or permit storing conversations/sender metadata. No mark-paid-without-proof.
+
+[Payment-proof security decision](QURBAN-PAYMENT-PROOF.md) records the owner-approved pre-issued Storage-only custom role, with no application signing key/service_role. The owner-approved 9.0 checkpoint implements private evidence intake and seven-sheet export; Fasa 8 remains complete and 9.1 not started.
+
+Future 9.1 verification must require exact original quoted amount without force override and atomically verify + admit full capacity + allocate the complete eligible set + issue immutable receipt. Insufficient capacity rolls back all financial/allocation/receipt changes; proof remains pending/action-required. No automatic refund/waitlist. Future receipt pattern `QUR-<campaign_year>-000001`; no receipt implementation now.
+
+## Fasa 9.0 complete / owner-approved — private payment-proof intake
+
+[Payment-proof contract](QURBAN-PAYMENT-PROOF.md) records owner approval of the narrow pre-issued Storage-only JWT (no service_role/runtime signing key) and post-window intake for existing submitted registrations while flags ON/campaign not archived. Private participant/admin-assisted proof intake, minimal staff status, manager-only individual/segmented ZIP downloads and seven-sheet Excel are complete / owner-approved on 17 October 2026 (+08:00). Bayaran contains declared evidence only; Legacy Tarikh Bayaran remains blank. Cancellation with submitted proof fails closed. No verification/rejection, allocation admission, receipt/refund/waitlist/gateway; 9.1 not started. All Fasa 8 decisions and historical checkpoints remain intact.
+
+Owner approved the current 9.0 implementation with no additional functional changes. The checkpoint retains 1,568 unique passing automated cases and unchanged prior migrations. The documented eight unmanifested synthetic orphan backing files remain untouched; their ownership is not adopted and no broad deletion bypass exists. Fasa 9 remains in progress; 9.1 is next / not started. Stop after the authorised 9.0 commit/tag/push.

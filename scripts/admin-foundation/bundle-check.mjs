@@ -9,9 +9,9 @@ async function scan(directory) {
     if(entry.isDirectory()) await scan(file);
     else if(/\.(js|map)$/.test(entry.name)) {
       const source=await readFile(file,'utf8'); files++;
-      for(const secret of [process.env.SUPABASE_SECRET_KEY,process.env.SUPABASE_SERVICE_ROLE_KEY,process.env.ADMIN_TEST_SECRET_SENTINEL].filter(Boolean)) assert(!source.includes(secret),`Privileged secret in public chunk ${entry.name}`);
+      for(const secret of [process.env.SUPABASE_SECRET_KEY,process.env.SUPABASE_SERVICE_ROLE_KEY,process.env.ADMIN_TEST_SECRET_SENTINEL,process.env.QURBAN_PROOF_STORAGE_TOKEN].filter(Boolean)) assert(!source.includes(secret),`Privileged secret in public chunk ${entry.name}`);
       assert(!/sb_secret_[A-Za-z0-9_-]{10,}/.test(source),`Secret key literal in ${entry.name}`);
-      assert(!source.includes('SUPABASE_SECRET_KEY') && !source.includes('SUPABASE_SERVICE_ROLE_KEY'),`Server-only secret env reference in ${entry.name}`);
+      assert(!source.includes('SUPABASE_SECRET_KEY') && !source.includes('SUPABASE_SERVICE_ROLE_KEY') && !source.includes('QURBAN_PROOF_STORAGE_TOKEN'),`Server-only secret env reference in ${entry.name}`);
     }
   }
 }

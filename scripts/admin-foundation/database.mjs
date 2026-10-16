@@ -14,7 +14,12 @@ export async function database({ migrationThrough } = {}) {
     create role service_role nologin bypassrls;
     create role supabase_auth_admin nologin;
     -- Test-only analogue of PostgREST's real connection role.
-    create role authenticator nologin;
+    create role authenticator nologin noinherit;
+    -- Test-only managed Storage analogue; genuine Storage is tested separately.
+    create schema storage;
+    create table storage.buckets(id text primary key,name text not null,public boolean default false,file_size_limit bigint,allowed_mime_types text[]);
+    create table storage.objects(id uuid primary key default gen_random_uuid(),bucket_id text references storage.buckets(id),name text,metadata jsonb,user_metadata jsonb,owner_id text,version text,unique(bucket_id,name));
+    alter table storage.buckets enable row level security;alter table storage.objects enable row level security;
     create schema auth;
     create table auth.users(id uuid primary key, email text, email_confirmed_at timestamptz, is_anonymous boolean default false, raw_user_meta_data jsonb default '{}');
     create table auth.identities(id uuid primary key default gen_random_uuid(), user_id uuid references auth.users(id), provider text, provider_id text, identity_data jsonb);

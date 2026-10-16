@@ -12,7 +12,9 @@ const pkg=JSON.parse(await readFile(path.join(root,'node_modules/supabase/packag
 const bin=path.join(root,'node_modules/supabase',pkg.bin.supabase);
 const command=bin.endsWith('.js')?process.execPath:bin;
 const cliArgs=bin.endsWith('.js')?[bin,...args]:args;
+const isReset=args.join(' ')==='db reset --local --no-seed';let resetOutput='';
 const child=spawn(command,cliArgs,{
-  cwd:root, stdio:'inherit',env:{...process.env,SUPABASE_HOME:cliHome,SUPABASE_TELEMETRY_DISABLED:'true',SUPABASE_NO_UPDATE_NOTIFIER:'true'},
+  cwd:root, stdio:isReset?['inherit','pipe','pipe']:'inherit',env:{...process.env,SUPABASE_HOME:cliHome,SUPABASE_TELEMETRY_DISABLED:'true',SUPABASE_NO_UPDATE_NOTIFIER:'true'},
 });
-child.on('exit',code=>{process.exitCode=code??1;});
+if(isReset){for(const [stream,target]of [[child.stdout,process.stdout],[child.stderr,process.stderr]])stream.on('data',data=>{resetOutput=(resetOutput+data.toString()).slice(-1024*1024);target.write(data);});}
+child.on(isReset?'close':'exit',async code=>{if(isReset&&code!==0){try{const {recoverLocalReset}=await import('./local-reset-health.mjs');if(await recoverLocalReset(resetOutput)){process.exitCode=0;return;}}catch{/*Unknown failure stays failed; never infer successful reset.*/}}process.exitCode=code??1;});

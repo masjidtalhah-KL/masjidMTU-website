@@ -148,6 +148,30 @@ export type Database = {
         Args: { options: Json; target_campaign: string }
         Returns: Json
       }
+      admin_qurban_payment_activity: {
+        Args: { page_number: number; target_campaign: string }
+        Returns: Json
+      }
+      admin_qurban_payment_list: {
+        Args: { options: Json; target_campaign: string }
+        Returns: Json
+      }
+      admin_qurban_proof_commit: {
+        Args: { target_campaign: string; target_proof: string }
+        Returns: Json
+      }
+      admin_qurban_proof_download: {
+        Args: { payload: Json; target_campaign: string }
+        Returns: Json
+      }
+      admin_qurban_proof_prepare: {
+        Args: {
+          payload: Json
+          target_campaign: string
+          target_registration: string
+        }
+        Returns: Json
+      }
       admin_qurban_reassign_allocation: {
         Args: {
           allocation_id: string
@@ -226,6 +250,23 @@ export type Database = {
       }
       campaign_foundation_list: { Args: { page_size?: number }; Returns: Json }
       public_campaign_page: { Args: { target_slug: string }; Returns: Json }
+      public_qurban_payment_context: {
+        Args: { session_secret: string; target_slug: string }
+        Returns: Json
+      }
+      public_qurban_payment_exchange: { Args: { payload: Json }; Returns: Json }
+      public_qurban_proof_commit: {
+        Args: {
+          session_secret: string
+          target_proof: string
+          target_slug: string
+        }
+        Returns: Json
+      }
+      public_qurban_proof_prepare: {
+        Args: { payload: Json; session_secret: string; target_slug: string }
+        Returns: Json
+      }
       public_qurban_registration_context: {
         Args: { target_slug: string }
         Returns: Json

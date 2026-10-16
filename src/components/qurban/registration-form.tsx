@@ -19,6 +19,7 @@ export function QurbanRegistrationForm({ context: c }: { context: RegistrationCo
   const [errors, setErrors] = useState<Errors>({}), [pending, setPending] = useState(false), [message, setMessage] = useState("");
   const [retryOnly, setRetryOnly] = useState(false);
   const [conflict, setConflict] = useState(false), [result, setResult] = useState<RegistrationResult | null>(null);
+  const [paymentLink,setPaymentLink]=useState("");
   const [participantFocus, setParticipantFocus] = useState("");
   const inFlight = useRef(false), frozenRequest = useRef<RegistrationRequest | null>(null);
   const heading = useRef<HTMLHeadingElement>(null), summary = useRef<HTMLDivElement>(null);
@@ -53,7 +54,7 @@ export function QurbanRegistrationForm({ context: c }: { context: RegistrationCo
       if (!frozenRequest.current) {
         const idempotencyKey = Array.from(crypto.getRandomValues(new Uint8Array(32)), n => n.toString(16).padStart(2, "0")).join("");
         frozenRequest.current = registrationRequest({ slug: c.slug, idempotency_key: idempotencyKey,
-          expected_campaign_version: c.campaign_version, expected_global_flag_version: c.global_flag_version, expected_module_flag_version: c.module_flag_version,
+          payment_access_secret:Array.from(crypto.getRandomValues(new Uint8Array(32)),x=>x.toString(16).padStart(2,"0")).join(""), expected_campaign_version: c.campaign_version, expected_global_flag_version: c.global_flag_version, expected_module_flag_version: c.module_flag_version,
           expected_akad_reference: c.akad_reference, expected_akad_hash: c.akad_hash, applicant: cleanApplicant(),
           participants: participants.map(p => ({ name: p.name.trim(), purpose: p.purpose })), attendance, same_cattle_preference: together, accepted_akad: accepted });
       }
@@ -62,8 +63,8 @@ export function QurbanRegistrationForm({ context: c }: { context: RegistrationCo
       if (response.status === 409) { setConflict(true); setMessage("Maklumat atau ketersediaan kempen telah berubah. Muat semula dan semak maklumat terkini sebelum menghantar pendaftaran."); return; }
       if (response.status === 422 || response.status === 413) { frozenRequest.current = null; setRetryOnly(false); setMessage("Maklumat tidak dapat diterima. Kembali dan semak borang anda."); return; }
       if (!response.ok) throw new Error("unavailable");
-      setResult(registrationResult(await response.json()));
-      // Success state retains the non-PII receipt only; no storage, URL identity or lookup.
+      const confirmation=registrationResult(await response.json());setResult(confirmation);setPaymentLink(`/kempen/${c.slug}/bayaran#${confirmation.payment_access_id}.${frozenRequest.current.payment_access_secret}`);
+      // Success retains confirmation and the private bearer link in UI memory only; no browser storage or reference-only lookup.
       frozenRequest.current = null; setApplicant(blankApplicant()); setParticipants([]); setAttendance(""); setAccepted(false); setTogether(false);
     } catch { setMessage("Sambungan tidak dapat disahkan. Cuba hantar semula dari halaman ini; permintaan yang sama tidak akan diduplikasi."); }
     finally { inFlight.current = false; setPending(false); }
@@ -74,7 +75,7 @@ export function QurbanRegistrationForm({ context: c }: { context: RegistrationCo
     <p>Jumlah bahagian: <strong>{result.participant_count}</strong></p><p>Jumlah perlu dibayar: <strong>{money(result.total_minor)}</strong></p>
     <p className="qr-notice">Pendaftaran ini belum mengesahkan bayaran dan belum menempah bahagian.</p>
     <section aria-label="Maklumat pindahan bank"><h3>Bayaran melalui Bank Islam</h3><p className="qr-account">1227 0010 0045 60</p><p>MASJID TALHAH BIN UBAIDILLAH</p></section>
-    <p>Simpan nombor rujukan ini untuk urusan dengan urus setia. Halaman ini tidak menyediakan carian maklumat peribadi.</p>
+    <section aria-label="Pautan bayaran selamat"><h3>Hantar bukti bayaran</h3><p>Simpan pautan selamat ini untuk kembali kemudian. Sesiapa yang memilikinya boleh mengakses urusan bukti pendaftaran ini; simpan secara peribadi.</p><a className="button button--primary" href={paymentLink} rel="noreferrer">Hantar bukti bayaran</a><button type="button" className="button button--secondary" onClick={()=>void navigator.clipboard.writeText(new URL(paymentLink,window.location.origin).href).then(()=>setMessage("Pautan selamat disalin."),()=>setMessage("Pautan tidak dapat disalin. Gunakan pautan Hantar bukti bayaran."))}>Salin pautan selamat</button>{message&&<p role="status">{message}</p>}</section><p>Simpan nombor rujukan ini untuk urusan dengan urus setia. Halaman ini tidak menyediakan carian maklumat peribadi.</p>
     <Link className="button button--secondary" href={`/kempen/${c.slug}`} prefetch={false}>Kembali ke kempen</Link>
   </section>;
   return <div className="qr-registration">

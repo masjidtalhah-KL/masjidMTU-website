@@ -4,11 +4,12 @@
 
 **Fasa 0–7 are complete / owner-approved.**
 **Fasa 8 — Qurban MVP Foundation complete / owner-approved (8.0–8.5).**
-Next: **Fasa 9 — Payment & Receipt / not started.**
+**Fasa 9 in progress — Fasa 9.0 complete / owner-approved — Payment Proof Intake + Private Evidence Storage.**
+The [owner-approved 9.0 checkpoint](docs/QURBAN-PAYMENT-PROOF.md) uses the owner-approved pre-issued Storage-only token, private evidence intake, admin assistance/downloads and seven-sheet Excel. No verification/rejection/receipt or payment-qualified allocation exists. **9.1 next / not started.**
 See the **[current roadmap](docs/ROADMAP.md)** for phase status and remaining gates.
 The **[Fasa 7 closeout](docs/CAMPAIGN-ENGINE-CLOSEOUT.md)** consolidates the local evidence.
 
-Current checkpoint: `phase-8.5-qurban-volunteers` (resolve the tag
+Current checkpoint: `phase-9.0-qurban-payment-proof` (resolve the tag
 for the commit). Available capabilities: public website,
 Sanity Studio, protected `/admin`, generic Campaign Engine, protected campaign
 management, gated `/kempen/[slug]` and published editorial adapter.
@@ -16,7 +17,7 @@ The [Qurban DB/RLS foundation](docs/QURBAN-DOMAIN-DATABASE.md) adds exactly one 
 Qurban descriptor and typed admin adapter, with private domain tables and no seeded annual data.
 The [approved public Qurban registration](docs/QURBAN-PUBLIC-REGISTRATION.md) adds real local
 DB-backed submission, immutable quote/consent, idempotency and bounded domain audit.
-The local demo has ownership-proven selective cleanup. No payment/proof or receipt exists; no hosted deployment is claimed.
+The local demo has ownership-proven selective cleanup. Payment-proof intake is complete / owner-approved in 9.0; no verification/receipt or hosted deployment is claimed.
 The [owner-approved 8.5 checkpoint](docs/QURBAN-VOLUNTEERS.md) adds separate volunteer persistence/admin assignment and six-sheet Excel.
 The [owner-approved 8.3 checkpoint](docs/QURBAN-ADMIN-MANAGEMENT.md) adds protected admin management and Excel export.
 The [owner-approved 8.4 checkpoint](docs/QURBAN-ALLOCATION.md) adds the protected capacity grid,
@@ -24,7 +25,7 @@ private deterministic allocator, existing-allocation reassignment and five-sheet
 Public registration creates zero allocations; initial production allocation awaits Fasa 9 verified-payment admission.
 The [approved 8.0 architecture](docs/QURBAN-MVP-PLAN.md) locks Policy B and formal
 8.3 Excel export; the [local UX prototype](docs/QURBAN-PROTOTYPE-VALIDATION.md) is
-development-only and non-persistent. Fasa 8 is complete / owner-approved; Fasa 9 is next / not started.
+development-only and non-persistent. Fasa 8 is complete / owner-approved; Fasa 9 is in progress (9.0 complete / owner-approved; 9.1 next / not started).
 This status does not claim a production deployment or production readiness;
 Fasa 7 is a local implementation foundation.
 

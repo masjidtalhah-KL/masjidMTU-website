@@ -1,0 +1,8 @@
+import {Readable} from "node:stream";
+import JSZip from "jszip";
+import type {NextRequest} from "next/server";
+import {proofDownload,proofFilename} from "@/lib/qurban/payment";
+import {paymentHeaders,paymentFailure} from "@/lib/qurban/payment-http";
+import {QurbanError} from "@/lib/qurban/registration-contract";
+export const dynamic="force-dynamic";
+export async function GET(request:NextRequest,{params}:{params:Promise<{id:string}>}){try{if(request.headers.get("sec-fetch-site")==="cross-site")throw new QurbanError(404,"denied");const q=request.nextUrl.searchParams;if([...q.keys()].some(k=>!["proof","cursor"].includes(k))||[...q.keys()].length!==new Set(q.keys()).size||q.has("proof")&&q.has("cursor"))throw new QurbanError(422,"invalid");const d=await proofDownload((await params).id,q.get("proof"),q.get("cursor"));if(q.has("proof")){const item=d.items[0],bytes=await d.read(item);return new Response(new Uint8Array(bytes),{headers:{...paymentHeaders,"Content-Type":item.content_type,"Content-Disposition":'attachment; filename="'+proofFilename(item)+'"'}});}const zip=new JSZip();for(const item of d.items){const stream=Readable.from((async function*(){yield await d.read(item);})());zip.file(proofFilename(item),stream,{date:new Date("2000-01-01T00:00:00Z"),binary:true,compression:"STORE"});}const stream=zip.generateNodeStream({streamFiles:true,compression:"STORE"});return new Response(Readable.toWeb(stream as Readable) as ReadableStream<Uint8Array>,{headers:{...paymentHeaders,"Content-Type":"application/zip","Content-Disposition":'attachment; filename="Qurban-Bukti-'+(await params).id+'.zip"',"X-Qurban-Next-Cursor":d.next_cursor??"","X-Qurban-File-Count":String(d.file_count)}});}catch(e){return paymentFailure(e);}}

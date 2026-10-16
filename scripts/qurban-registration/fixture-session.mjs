@@ -67,7 +67,7 @@ export function setupSql(p, claims) {
  values(${quote(p.akad)},${quote(p.campaign)},${quote(config.approved_akad_version)},${quote(text)},${quote(p.users.admin.id)},${quote(marker(p))});
  ${evidenceSql(p)}; commit;`;
 }
-const guards=[['private.qurban_volunteer_audit','qurban_volunteer_audit_guard'],['private.qurban_volunteer_idempotency','qurban_volunteer_idempotency_guard'],['private.qurban_volunteers','qurban_volunteer_guard'],['private.qurban_volunteer_assignment_labels','qurban_volunteer_label_guard'],['private.qurban_allocations','qurban_allocation_guard'],['private.qurban_cattle_slots','qurban_cattle_slot_guard'],['private.qurban_cattle','qurban_cattle_guard'],['private.qurban_operational_audit','qurban_operational_audit_guard'],['private.qurban_export_requests','qurban_export_request_guard'],['private.qurban_submission_audit','qurban_submission_audit_guard'],['private.qurban_submission_idempotency','qurban_submission_idempotency_guard'],
+const guards=[['private.qurban_proof_download_grants','qurban_proof_download_grants_guard'],['private.qurban_payment_audit','qurban_payment_audit_guard'],['private.qurban_payment_proofs','qurban_payment_proofs_guard'],['private.qurban_proof_intents','qurban_proof_intents_guard'],['private.qurban_payment_sessions','qurban_payment_sessions_guard'],['private.qurban_payment_access','qurban_payment_access_guard'],['private.qurban_volunteer_audit','qurban_volunteer_audit_guard'],['private.qurban_volunteer_idempotency','qurban_volunteer_idempotency_guard'],['private.qurban_volunteers','qurban_volunteer_guard'],['private.qurban_volunteer_assignment_labels','qurban_volunteer_label_guard'],['private.qurban_allocations','qurban_allocation_guard'],['private.qurban_cattle_slots','qurban_cattle_slot_guard'],['private.qurban_cattle','qurban_cattle_guard'],['private.qurban_operational_audit','qurban_operational_audit_guard'],['private.qurban_export_requests','qurban_export_request_guard'],['private.qurban_submission_audit','qurban_submission_audit_guard'],['private.qurban_submission_idempotency','qurban_submission_idempotency_guard'],
  ['private.qurban_consent_acceptances','qurban_consent_guard'],['private.qurban_participations','qurban_participation_guard'],['private.qurban_registrations','qurban_registration_guard'],
  ['private.qurban_akad_versions','qurban_akad_guard'],['private.campaigns','campaign_row_guard'],['private.system_feature_flags','system_flag_row_guard'],['private.admin_audit_log','immutable_admin_audit']];
 export function cleanupSql(p, evidence) {
@@ -97,13 +97,20 @@ export function cleanupSql(p, evidence) {
  for c in select conrelid::regclass relation,a.attname column_name,confrelid::regclass parent from pg_constraint k
  join pg_attribute a on a.attrelid=k.conrelid and a.attnum=k.conkey[1]
  where contype='f' and confrelid in ('auth.users'::regclass,'auth.sessions'::regclass,'auth.mfa_factors'::regclass,'auth.identities'::regclass)
- and conrelid not in ('public.admin_profiles'::regclass,'auth.identities'::regclass,'auth.sessions'::regclass,'auth.mfa_factors'::regclass,'auth.mfa_amr_claims'::regclass) loop
+ and conrelid not in ('public.admin_profiles'::regclass,'auth.identities'::regclass,'auth.sessions'::regclass,'auth.mfa_factors'::regclass,'auth.mfa_amr_claims'::regclass,'private.qurban_proof_intents'::regclass,'private.qurban_payment_audit'::regclass,'private.qurban_proof_download_grants'::regclass) loop
  execute format('select exists(select 1 from %s where %I::text = any($1))',c.relation,c.column_name) into found
  using array[${[...names.flatMap(n=>[p.users[n].id,p.users[n].session,p.users[n].identity]),p.factor].map(quote).join(',')}]::text[];
  if found then raise exception 'Unknown Auth dependency; refusing cleanup'; end if;
  end loop;
+ if exists(select 1 from private.qurban_proof_intents where actor_id in ${users} and campaign_id<>${quote(p.campaign)}) or exists(select 1 from private.qurban_payment_audit where actor_id in ${users} and campaign_id<>${quote(p.campaign)}) or exists(select 1 from private.qurban_proof_download_grants g join private.qurban_payment_proofs f on f.id=g.proof_id where g.actor_id in ${users} and f.campaign_id<>${quote(p.campaign)}) then raise exception 'Unowned payment Auth dependency';end if;
  ${checks}
  ${guards.map(([t,g])=>`alter table ${t} disable trigger ${g};`).join('\n')}
+ delete from private.qurban_proof_download_grants where proof_id in(select id from private.qurban_payment_proofs where campaign_id=${quote(p.campaign)});
+ delete from private.qurban_payment_audit where campaign_id=${quote(p.campaign)};
+ delete from private.qurban_payment_proofs where campaign_id=${quote(p.campaign)};
+ delete from private.qurban_proof_intents where campaign_id=${quote(p.campaign)};
+ delete from private.qurban_payment_sessions where access_id in(select id from private.qurban_payment_access where campaign_id=${quote(p.campaign)});
+ delete from private.qurban_payment_access where campaign_id=${quote(p.campaign)};
  delete from private.qurban_volunteer_audit where campaign_id=${quote(p.campaign)};
  delete from private.qurban_volunteer_idempotency where volunteer_id in (select id from private.qurban_volunteers where campaign_id=${quote(p.campaign)});
  delete from private.qurban_volunteers where campaign_id=${quote(p.campaign)};

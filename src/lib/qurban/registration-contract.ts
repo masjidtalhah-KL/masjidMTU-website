@@ -13,13 +13,13 @@ export type RegistrationContext = {
 export type Applicant = { name: string; phone: string; address: string; email: string | null };
 export type Participant = { name: string; purpose: Purpose };
 export type RegistrationRequest = {
-  slug: string; idempotency_key: string; expected_campaign_version: number;
+  slug: string; idempotency_key: string; payment_access_secret: string; expected_campaign_version: number;
   expected_global_flag_version: number; expected_module_flag_version: number;
   expected_akad_reference: string; expected_akad_hash: string;
   applicant: Applicant; participants: Participant[]; attendance: Attendance;
   same_cattle_preference: boolean; accepted_akad: true;
 };
-export type RegistrationResult = { reference: string; participant_count: number; currency: "MYR"; price_per_share_minor: number; total_minor: number };
+export type RegistrationResult = { payment_access_id: string; reference: string; participant_count: number; currency: "MYR"; price_per_share_minor: number; total_minor: number };
 export class QurbanError extends Error {
   constructor(public status: number, public reason: "invalid" | "conflict" | "unavailable" | "denied") { super(reason); }
 }
@@ -36,8 +36,8 @@ export function validApplicant(v: unknown): v is Applicant {
     (v.email === null || boundedText(v.email, 254) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email));
 }
 export function registrationRequest(v: unknown): RegistrationRequest {
-  if (!exact(v, ["slug", "idempotency_key", "expected_campaign_version", "expected_global_flag_version", "expected_module_flag_version", "expected_akad_reference", "expected_akad_hash", "applicant", "participants", "attendance", "same_cattle_preference", "accepted_akad"]) ||
-    !publicCampaignSlug(v.slug) || !boundedText(v.slug, 100) || !hash(v.idempotency_key) || !integer(v.expected_campaign_version) || !integer(v.expected_global_flag_version) || !integer(v.expected_module_flag_version) ||
+  if (!exact(v, ["slug", "idempotency_key", "payment_access_secret", "expected_campaign_version", "expected_global_flag_version", "expected_module_flag_version", "expected_akad_reference", "expected_akad_hash", "applicant", "participants", "attendance", "same_cattle_preference", "accepted_akad"]) ||
+    !publicCampaignSlug(v.slug) || !boundedText(v.slug, 100) || !hash(v.idempotency_key) || !hash(v.payment_access_secret) || !integer(v.expected_campaign_version) || !integer(v.expected_global_flag_version) || !integer(v.expected_module_flag_version) ||
     !reference(v.expected_akad_reference) || !hash(v.expected_akad_hash) || !validApplicant(v.applicant) || !["yes", "no", "unsure"].includes(String(v.attendance)) ||
     typeof v.same_cattle_preference !== "boolean" || v.accepted_akad !== true || !Array.isArray(v.participants) || v.participants.length < 1 || v.participants.length > 100 ||
     v.participants.some(p => !exact(p, ["name", "purpose"]) || !boundedText(p.name, 160) || !["qurban", "aqiqah"].includes(String(p.purpose))) ||
@@ -55,7 +55,7 @@ export function registrationContext(v: unknown, slug: string): RegistrationConte
   return v as RegistrationContext;
 }
 export function registrationResult(v: unknown): RegistrationResult {
-  if (!exact(v, ["reference", "participant_count", "currency", "price_per_share_minor", "total_minor"]) || typeof v.reference !== "string" || !/^QBN-[0-9a-f]{64}$/.test(v.reference) || v.reference.length !== 68 ||
+  if (!exact(v, ["payment_access_id", "reference", "participant_count", "currency", "price_per_share_minor", "total_minor"]) || typeof v.payment_access_id !== "string" || !/^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/.test(v.payment_access_id) || typeof v.reference !== "string" || !/^QBN-[0-9a-f]{64}$/.test(v.reference) || v.reference.length !== 68 ||
     !integer(v.participant_count, 1, 100) || v.currency !== "MYR" || !integer(v.price_per_share_minor, 1, 1000000000) || !integer(v.total_minor, 1, 100000000000) || v.total_minor !== v.price_per_share_minor * v.participant_count) throw new QurbanError(503, "unavailable");
   return v as RegistrationResult;
 }

@@ -1,15 +1,17 @@
 import { spawn } from 'node:child_process';
 import path from 'node:path';
+import {localStorageToken} from '../qurban-payment/local-storage.mjs';
 import { root } from './database.mjs';
 export async function nextProbe(stack) {
   const origin='http://localhost:3038';
   const child=spawn(process.execPath,[path.join(root,'node_modules/next/dist/bin/next'),'start','-p','3038','-H','localhost'],{
-    cwd:root,stdio:'ignore',env:{...process.env,
+    cwd:root,stdio:['ignore','pipe','pipe'],env:{...process.env,
       NEXT_PUBLIC_SANITY_PROJECT_ID:'2o95jmms',NEXT_PUBLIC_SANITY_DATASET:'production',NEXT_PUBLIC_SANITY_API_VERSION:'2026-09-01',
       ADMIN_SUPABASE_ENV:'local',ADMIN_APP_ORIGIN:origin,NEXT_PUBLIC_SUPABASE_URL:stack.url,
-      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:stack.anon,SUPABASE_SECRET_KEY:'',SUPABASE_SERVICE_ROLE_KEY:'',
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:stack.anon,QURBAN_PROOF_STORAGE_TOKEN:localStorageToken(stack),SUPABASE_SECRET_KEY:'',SUPABASE_SERVICE_ROLE_KEY:'',
     },
   });
+  let captured='';for(const stream of [child.stdout,child.stderr])stream.on('data',b=>{captured=(captured+b.toString()).slice(-512*1024);});
   let started=false;
   const close=async()=>{
     if(child.exitCode!==null)return;
@@ -25,6 +27,7 @@ export async function nextProbe(stack) {
     }
     return {
       close,
+      assertNoSensitive(values){if(values.some(v=>v&&captured.includes(v)))throw Error('Sensitive value appeared in local application logs');},
       async request(route,{token,method='GET',body}={}){
         let cookie;
         if(token){

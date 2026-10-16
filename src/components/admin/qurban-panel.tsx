@@ -3,6 +3,7 @@ import Link from "next/link";
 import {useEffect,useRef,useState,type FormEvent} from "react";
 import {attendanceLabels,cancellationReasons,activityLabels,type ListView,type Detail,type Participant,type Activity,type Attendance,type Purpose} from "@/lib/qurban/admin-contract";
 import {registrationStatusLabels,compactQurbanReference} from "@/lib/qurban/admin-presentation";
+import {QurbanPayments} from "./qurban-payments";
 import {QurbanVolunteers} from "./qurban-volunteers";
 import {QurbanCapacity} from "./qurban-capacity";
 import "./qurban-admin.css";
@@ -30,7 +31,7 @@ export function QurbanAdminPanel({initial}:{initial:ListView}){
  async function refresh(){await run(async()=>{if(selected){const d=await result(await fetch(base+"/registrations/"+selected.id,{cache:"no-store"}));setSelected(d);}await list();setBlocked(false);setMessage("Rekod terkini dimuatkan. Semak borang sebelum membuat perubahan.");});}
  async function mutate(body:unknown,cancel=false){if(!selected||!view.can_manage||disabled)return;await run(async()=>{
   const response=await fetch(base+"/registrations/"+selected.id+(cancel?"/cancel":""),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
-  if(cancel&&response.status===409){setBlocked(true);throw Error("Rekod berubah atau pendaftaran mempunyai allocation. Pembatalan dengan allocation belum tersedia; tiada slot dilepaskan. Muat semula dan semak.");}
+  if(cancel&&response.status===409){setBlocked(true);throw Error("Rekod berubah, mempunyai allocation atau bukti bayaran telah dihantar. Selesaikan semakan operasi/bayaran terlebih dahulu; tiada slot atau bukti dipadam. Muat semula dan semak.");}
   await result(response);
   const d=await result(await fetch(base+"/registrations/"+selected.id,{cache:"no-store"}));setSelected(d);await list();setMessage(cancel?"Pendaftaran dibatalkan. Sejarah peserta dan akad dikekalkan.":"Perubahan disimpan. Akad dan quote asal kekal.");
  });}
@@ -51,6 +52,7 @@ export function QurbanAdminPanel({initial}:{initial:ListView}){
  <p>{c.campaign_year} · {c.hijri_display_label} · {view.can_manage?"Pengurus operasi":"Staff — baca sahaja"}</p>
  <nav className="qa-nav" aria-label="Bahagian Qurban">
  <button aria-current={tab==="summary"?"page":undefined} onClick={()=>section("summary")}>Ringkasan</button>
+ <button aria-current={tab==="payments"?"page":undefined} onClick={()=>section("payments")}>Bayaran</button>
  <button aria-current={tab==="volunteers"?"page":undefined} onClick={()=>section("volunteers")}>Sukarelawan</button>
  <button aria-current={tab==="capacity"?"page":undefined} onClick={()=>section("capacity")}>Kapasiti / Lembu</button>
  <button aria-current={tab==="registrations"?"page":undefined} onClick={()=>section("registrations")}>Pendaftaran / Peserta</button>
@@ -59,11 +61,12 @@ export function QurbanAdminPanel({initial}:{initial:ListView}){
  <p ref={feedback} tabIndex={-1} role="status" aria-live="polite" className="qa-feedback">{message}</p>
  {blocked&&<button onClick={()=>void refresh()} disabled={busy}>Muat semula rekod</button>}
  {view.can_manage&&!view.recent_mfa&&<p><Link href={"/admin/mfa?next=/admin/campaigns/"+c.id} prefetch={false}>Sahkan authenticator</Link> sebelum perubahan atau eksport.</p>}
+ {tab==="payments"&&<QurbanPayments campaign={c.id}/>}
  {tab==="capacity"&&<QurbanCapacity campaign={c.id}/>}
  {tab==="summary"&&<section className="admin-card"><h2>Ringkasan operasi</h2><dl className="qa-summary">
  {[["Pendaftaran",view.summary.registrations],["Dihantar",view.summary.submitted],["Dibatalkan",view.summary.cancelled],["Peserta — semua rekod",view.summary.participants],["Qurban — semua rekod",view.summary.qurban],["Aqiqah — semua rekod",view.summary.aqiqah]].map(([label,n])=><div key={label}><dt>{label}</dt><dd>{n}</dd></div>)}
  </dl><p>Harga konfigurasi: {money(c.price_per_share_minor)} / bahagian.</p><p>Kapasiti teori konfigurasi: {c.cattle_count} × {c.shares_per_cattle} = {c.cattle_count*c.shares_per_cattle} bahagian.</p><p>Pendaftaran tidak menempah kapasiti. Grid dan susunan bahagian diurus berasingan; tiada pengesahan bayaran dalam fasa ini.</p>
- <p className="admin-muted">Bayaran / Resit — Fasa 9.</p></section>}
+ <p className="admin-muted">Bukti bayaran — Fasa 9.0. Pengesahan / Resit belum tersedia.</p></section>}
  {tab==="registrations"&&<>
  <section className="admin-card"><h2>Pendaftaran</h2><form onSubmit={search} className="qa-filters">
  <label>Carian rujukan tepat / awalan nama atau telefon<input value={query.search} maxLength={100} onChange={e=>setQuery({...query,search:e.target.value})}/></label>
