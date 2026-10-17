@@ -10,8 +10,8 @@ async function insert(table, data) {
  const keys=Object.keys(data);return (await db.query('insert into private.'+table+'('+keys.join(',')+') values('+keys.map((_,i)=>'$'+(i+1)).join(',')+') returning *',keys.map(k=>typeof data[k]==='object'&&data[k]!==null?JSON.stringify(data[k]):data[k]))).rows[0];
 }
 before(async()=>{db=await database();});after(async()=>db?.close());
-test('fresh reset-equivalent migration state: sole descriptor, zero campaigns/flags/domain rows',async()=>{
- assert.deepEqual((await db.query('select type_key,config_version,module_flag_key,validator_name from private.campaign_type_descriptors')).rows,[{type_key:'qurban',config_version:1,module_flag_key:'qurban.enabled',validator_name:'qurban_config_v1_valid'}]);
+test('fresh reset-equivalent migration state: sole Qurban descriptor, zero campaigns/flags/domain rows',async()=>{
+ assert.deepEqual((await db.query('select type_key,config_version,module_flag_key,validator_name from private.campaign_type_descriptors where type_key=\'qurban\'')).rows,[{type_key:'qurban',config_version:1,module_flag_key:'qurban.enabled',validator_name:'qurban_config_v1_valid'}]);
  for(const t of ['campaigns','system_feature_flags',...tables])assert.equal((await db.query('select count(*)::int n from private.'+t)).rows[0].n,0);
  assert.equal((await db.query("select private.system_flag_effectively_enabled('qurban.enabled') ok")).rows[0].ok,false);
  assert.deepEqual((await db.query("select tablename from pg_tables where schemaname='private' and tablename like 'qurban_%' order by tablename")).rows.map(r=>r.tablename),[...tables,'qurban_payments','qurban_receipts','qurban_receipt_counters','qurban_payment_access','qurban_payment_sessions','qurban_proof_intents','qurban_payment_proofs','qurban_payment_audit','qurban_proof_download_grants','qurban_operational_audit','qurban_export_requests','qurban_submission_audit','qurban_submission_idempotency','qurban_cattle','qurban_cattle_slots','qurban_allocations','qurban_volunteers','qurban_volunteer_assignment_labels','qurban_volunteer_idempotency','qurban_volunteer_audit'].sort());

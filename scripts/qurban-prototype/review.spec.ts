@@ -267,13 +267,13 @@ test("proof types, replacement, unsafe filename as text and unsupported file rej
   await checkPrivacy();
 });
 
-test("temporary source has no persistence or integration imports; only reviewed production Qurban adapter", async () => {
+test("temporary source has no persistence or integration imports; only reviewed production domain adapters", async () => {
   const source = readFileSync("src/app/%5F%5Freview/qurban/prototype.tsx", "utf8");
   expect(source).not.toMatch(/localStorage|sessionStorage|indexedDB|FileReader|createObjectURL|arrayBuffer|fetch\s*\(|XMLHttpRequest|sendBeacon|supabase|sanity|use server|console\./i);
   expect(source).not.toMatch(/from\s+["'][^"']*(?:campaigns|supabase|sanity)/i);
   const routeSource = readFileSync("src/app/%5F%5Freview/qurban/page.tsx", "utf8");
   expect(routeSource).toContain('process.env.NODE_ENV !== "development"');
   expect(routeSource).toContain('process.env.QURBAN_PROTOTYPE !== "1"');
-  expect(readFileSync("src/lib/campaigns/admin-registry.ts", "utf8")).toContain("Object.freeze([qurbanAdminAdapter])");
+  expect(readFileSync("src/lib/campaigns/admin-registry.ts", "utf8")).toContain("Object.freeze([qurbanAdminAdapter, ramadanAdminAdapter])");
   expect(readdirSync("src/app/%5F%5Freview/qurban").sort()).toEqual(["page.tsx", "prototype.css", "prototype.tsx"]);
 });

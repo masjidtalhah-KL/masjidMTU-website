@@ -1,6 +1,7 @@
 import { createElement, type ComponentType } from "react";
 import { AdminError } from "@/lib/admin/policy";
 import { qurbanAdapterDefinition } from "@/lib/qurban/admin-adapter";
+import { ramadanAdapterDefinition } from "@/lib/ramadan/admin-adapter";
 import type { Json } from "@/lib/supabase/database.types";
 
 export type Configuration = { [key: string]: Json };
@@ -30,9 +31,10 @@ export function defineCampaignAdminAdapter<C extends Configuration, F extends Co
   } };
   return adapter;
 }
-// Exactly one reviewed production tuple; no environment/test switch or dynamic registry.
+// Reviewed production tuples only; no environment/test switch or dynamic registry.
 export const qurbanAdminAdapter = defineCampaignAdminAdapter(qurbanAdapterDefinition);
-export const campaignAdminAdapters: readonly CampaignAdminAdapter[] = Object.freeze([qurbanAdminAdapter]);
+export const ramadanAdminAdapter = defineCampaignAdminAdapter(ramadanAdapterDefinition);
+export const campaignAdminAdapters: readonly CampaignAdminAdapter[] = Object.freeze([qurbanAdminAdapter, ramadanAdminAdapter]);
 
 function canonicalConfiguration(value: unknown): string {
   const visit = (item: unknown): unknown => {

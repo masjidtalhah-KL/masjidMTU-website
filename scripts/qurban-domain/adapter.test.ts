@@ -15,7 +15,7 @@ const alsoTyped:QurbanConfiguration|null=parseAdapterConfiguration(qurbanAdminAd
 const invalidTypedPurpose:QurbanPurpose='ramadan';void invalidTypedPurpose;
 test('concrete persisted config type survives factory + parser',()=>{assert.equal(typed?.price_per_cattle_share_minor,123456);assert.deepEqual(typed,alsoTyped);});
 test('sole production Qurban tuple, frozen registry, exact DB intersection',()=>{
- assert(Object.isFrozen(campaignAdminAdapters));assert.equal(campaignAdminAdapters.length,1);assert.equal(availableCampaignTypes([descriptor])[0],qurbanAdminAdapter);
+ assert(Object.isFrozen(campaignAdminAdapters));assert.equal(campaignAdminAdapters.length,2);assert.equal(campaignAdminAdapters.filter(a=>a.type_key==='qurban').length,1);assert.equal(availableCampaignTypes([descriptor])[0],qurbanAdminAdapter);
  for(const c of [[],[{...descriptor,config_version:2}],[{...descriptor,module_flag_key:'other.enabled'}]])assert.deepEqual(availableCampaignTypes(c),[]);
  assert.deepEqual(availableCampaignTypes([descriptor],[qurbanAdminAdapter,qurbanAdminAdapter]),[]);
 });

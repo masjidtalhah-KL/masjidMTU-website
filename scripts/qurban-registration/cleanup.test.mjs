@@ -42,7 +42,7 @@ test('ownership plan rejects unknown keys, duplicated IDs and malformed identiti
 });
 test('two genuine registrations and all dependencies removed; descriptor and guards retained; repeat is a no-op',async()=>{
  await submit(3);await submit(1);assert.deepEqual(await counts(),{campaigns:1,flags:2,registrations:2,participations:4,consents:2,audit:2,idempotency:2,akad:1,users:9,profiles:5,admin_audit:1});
- await cleanup();assert(Object.values(await counts()).every(v=>v===0));assert.equal((await q('select count(*)::int n from private.campaign_type_descriptors'))[0].n,1);
+ await cleanup();assert(Object.values(await counts()).every(v=>v===0));assert.equal((await q('select count(*)::int n from private.campaign_type_descriptors'))[0].n,2);
  assert.equal((await q("select count(*)::int n from pg_trigger where not tgisinternal and tgenabled<>'O'"))[0].n,0);
  await cleanup();assert(Object.values(await counts()).every(v=>v===0));
 });

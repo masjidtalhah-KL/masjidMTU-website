@@ -1,0 +1,4 @@
+import test from'node:test';import assert from'node:assert/strict';import{assertLocalReviewContext}from'./review-fixture.mjs';
+test('review accepts only local Unix/Windows Docker sockets',()=>{for(const endpoint of ['unix:///var/run/docker.sock','npipe:////./pipe/dockerDesktopLinuxEngine'])assert.doesNotThrow(()=>assertLocalReviewContext({ADMIN_SUPABASE_ENV:'local'},endpoint));});
+for(const env of [{NODE_ENV:'production'},{VERCEL:'1'},{ADMIN_SUPABASE_ENV:'hosted'},{DOCKER_HOST:'ssh://remote'}])test('review fails closed before DB access '+JSON.stringify(env),()=>assert.throws(()=>assertLocalReviewContext(env,'unix:///var/run/docker.sock')));
+for(const endpoint of ['ssh://host','tcp://127.0.0.1:2375','https://example.test',null])test('review denies nonlocal/unproven Docker endpoint '+endpoint,()=>assert.throws(()=>assertLocalReviewContext({},endpoint)));

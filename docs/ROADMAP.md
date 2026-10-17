@@ -1,5 +1,18 @@
 # Roadmap Projek
 
+## Fasa 10 — Ramadan Sponsorship IN PROGRESS
+
+18 October 2026 (+08:00). Owner reviewed and approved **Fasa 10.0 — Ramadan Sponsorship Domain Foundation**, with no functional changes requested. Checkpoint: `phase-10.0-ramadan-domain-foundation`. Typed FIXED_SLOT/OPEN_AMOUNT foundation, private payer/public-display separation, immutable quote and activity locks are approved. No public submission, reservation, payment or hosted deployment. Fasa 10 remains in progress; 10.1 is next / not started.
+
+[Typed Ramadan architecture](RAMADAN-SPONSORSHIP-ARCHITECTURE.md), based on the approved Fasa 9 checkpoint. No future annual values, offerings, flags or campaign seeds. Private foundation only; no public sponsorship, slot reservation/assignment, payment, receipt, reporting or hosted deployment. Fasa 8 and Fasa 9 remain COMPLETE / owner-approved.
+
+| Subphase | Scope / current status |
+| --- | --- |
+| 10.0 | Ramadan Domain Foundation — **complete / owner-approved** |
+| 10.1 | Admin Offering/Schedule Management + Public Schedule + Public Sponsorship Submission — **next / not started** |
+| 10.2 | Private Payment Proof + Admin Verification + Atomic Slot Assignment + Ramadan Receipt — **not started** |
+| 10.3 | Reporting + Excel + Operational Polish + Final Ramadan Checkpoint — **not started** |
+
 ## Fasa 9 — Payment & Receipt COMPLETE / owner-approved
 
 17 October 2026 (+08:00). Owner reviewed and approved Fasa 9.1, including the final native A4 blue/white receipt visual, with no further functional or design changes. [Payment verification / receipt](QURBAN-PAYMENT-VERIFICATION.md) closes the approved Fasa 9 MVP: controlled proof rejection/resubmission, exact integer amount enforcement, atomic complete capacity admission through the unchanged trusted allocator, immutable payment/receipt evidence and participant/admin PDF access. Policy B remains locked. Legacy Tarikh Bayaran is verified-only.
@@ -10,9 +23,9 @@
 | 9.0 Secure payment access / private proof intake and downloads | Complete / owner-approved |
 | 9.1 Verification / atomic allocation / immutable receipt | Complete / owner-approved; receipt visual approved |
 | Fasa 9 — Payment & Receipt | **COMPLETE / owner-approved** |
-| Fasa 10 | **Next / not started** |
+| Fasa 10 | **In progress — 10.0 complete / owner-approved; 10.1 next / not started** |
 
-Checkpoint: `phase-9.1-qurban-payment-verification` (resolve tag for commit), representing Fasa 9 completion. No redundant aggregate completion tag. Refund/waitlist, partial payment, instalment, overpayment handling, financial cancellation, receipt correction/reissue, gateway/card/FPX and multiple payment transactions per Registration are future enhancements and do not block this MVP closeout. No hosted mutation/deployment or Fasa 10 implementation.
+Checkpoint: `phase-9.1-qurban-payment-verification` (resolve tag for commit), representing Fasa 9 completion. No redundant aggregate completion tag. Refund/waitlist, partial payment, instalment, overpayment handling, financial cancellation, receipt correction/reissue, gateway/card/FPX and multiple payment transactions per Registration are future enhancements and do not block this MVP closeout. At that checkpoint, no hosted mutation/deployment or Fasa 10 implementation. See the current owner-approved 10.0 checkpoint above.
 
 ## Historical Fasa 9.0 checkpoint — complete / owner-approved
 
@@ -34,7 +47,7 @@ Checkpoint: `phase-9.1-qurban-payment-verification` (resolve tag for commit), re
 | 8.5 Volunteer registration + admin assignment | Complete / owner-approved |
 | **Fasa 8 — Qurban MVP Foundation** | **COMPLETE / owner-approved** |
 | **Fasa 9 — Payment & Receipt** | **COMPLETE / owner-approved — 9.0 and 9.1** |
-| **Fasa 10** | **Next / not started** |
+| **Fasa 10** | **In progress — 10.0 complete / owner-approved; 10.1 next / not started** |
 
 ## Fasa 8.5 — Qurban Volunteer Registration & Admin Assignment complete / owner-approved
 
@@ -399,7 +412,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **7** | Feature Flags & Campaign Engine | **Complete / owner-approved** — 7.0–7.6 and 7.C complete; local foundation; `phase-7-campaign-engine-complete`; hosted/domain gates remain |
 | **8** | Qurban MVP Foundation | **COMPLETE / owner-approved** — 8.0–8.5 complete; `phase-8.5-qurban-volunteers` |
 | **9** | Payment & Receipt | **COMPLETE / owner-approved** — 9.0–9.1; `phase-9.1-qurban-payment-verification` |
-| **10** | Ramadan Iftar | **Next / not started** |
+| **10** | Ramadan Sponsorship | **IN PROGRESS** — 10.0 complete / owner-approved; 10.1 next / not started; 10.1–10.3 not started |
 | 11 | Security & Production Hardening | Belum bermula |
 | 12 | Production Launch | Belum bermula |
 

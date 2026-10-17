@@ -87,7 +87,7 @@ after(async()=>{
   await probe?.close();await ownerClient?.auth.stopAutoRefresh();await otherOwnerClient?.auth.stopAutoRefresh();
   if(created){
     execFileSync(process.execPath,['scripts/admin-foundation/local-cli.mjs','db','reset','--local','--no-seed'],{stdio:'pipe'});
-    for(const table of ['campaign_type_descriptors','campaigns','system_feature_flags'])assert.equal(sql('select count(*) from private.'+table),table==='campaign_type_descriptors'?'1':'0');
+    for(const table of ['campaign_type_descriptors','campaigns','system_feature_flags'])assert.equal(sql('select count(*) from private.'+table),table==='campaign_type_descriptors'?'2':'0');
     assert.equal(sql('select count(*) from auth.users'),'0');
     assert.equal(sql("select count(*) from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='private' and p.proname like 'local_fixture%'"),'0');
   }
@@ -95,9 +95,9 @@ after(async()=>{
 test('real empty migration state: missing foundation flag reads effective OFF/version 0 without seeds',async()=>{
   for(const auth of [token('staff'),token('admin'),ownerToken]){
     const result=await snapshot(auth);assert.equal(result.status,200);
-    assert.deepEqual(result.data,[{key:'campaigns.enabled',present:false,enabled:false,version:0},{key:'qurban.enabled',present:false,enabled:false,version:0}]);
+    assert.deepEqual(result.data,[{key:'campaigns.enabled',present:false,enabled:false,version:0},{key:'qurban.enabled',present:false,enabled:false,version:0},{key:'ramadan.enabled',present:false,enabled:false,version:0}]);
   }
-  assert.equal(sql('select count(*) from private.campaign_type_descriptors'),'1');
+  assert.equal(sql('select count(*) from private.campaign_type_descriptors'),'2');
 });
 for(const name of [null,'outsider','disabled','revoked','staff','admin','owner']){
   test('real flag read authorization '+(name??'anon'),async()=>{
@@ -120,7 +120,7 @@ test('missing supported flag disable is no row/no version/no audit; stale missin
   await unchanged(()=>set(ownerToken,false,1),409);
 });
 test('unknown/future unregistered flags fail closed without creating rows or leaking registry data',async()=>{
-  for(const key of ['unregistered.enabled','ramadan.enabled','volunteer.enabled','generic.enabled','unknown.enabled']){
+  for(const key of ['unregistered.enabled','unreviewed_ramadan.enabled','volunteer.enabled','generic.enabled','unknown.enabled']){
     await unchanged(()=>set(ownerToken,true,0,key),400);
     assert.deepEqual(composeAvailability((await snapshot(ownerToken)).data,key),{available:false,reason:'unsupported'});
   }
@@ -145,7 +145,7 @@ test('ON -> OFF increments once and audit metadata records exact transition',asy
   assert.deepEqual(flag(),{enabled:false,version:2});assert.equal(count(),audits+1);
   const event=rows("select * from private.admin_audit_log where action='system_flag.disable'")[0];
   assert.deepEqual(event.metadata,{before_enabled:true,after_enabled:false});assert.equal(event.expected_version,1);assert.equal(event.resulting_version,2);
-  const read=await snapshot(token('admin'));assert.deepEqual(read.data,[{key:'campaigns.enabled',present:true,enabled:false,version:2},{key:'qurban.enabled',present:false,enabled:false,version:0}]);
+  const read=await snapshot(token('admin'));assert.deepEqual(read.data,[{key:'campaigns.enabled',present:true,enabled:false,version:2},{key:'qurban.enabled',present:false,enabled:false,version:0},{key:'ramadan.enabled',present:false,enabled:false,version:0}]);
 });
 test('already OFF disable is idempotent with no version/audit',async()=>{
   const audits=count();const result=await set(ownerToken,false,2);assert.equal(result.status,200);assert.equal(result.data.changed,false);

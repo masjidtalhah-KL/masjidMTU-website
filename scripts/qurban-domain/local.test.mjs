@@ -7,9 +7,9 @@ const token=name=>signedToken(stack,users[name]);
 before(()=>{stack=localStack();users=fixtures();});
 after(()=>{execFileSync(process.execPath,['scripts/admin-foundation/local-cli.mjs','db','reset','--local','--no-seed'],{stdio:'pipe'});});
 test('real descriptor and global/module OFF without seeds',async()=>{
- assert.deepEqual(rows('select type_key,config_version,module_flag_key,validator_name from private.campaign_type_descriptors'),[{type_key:'qurban',config_version:1,module_flag_key:'qurban.enabled',validator_name:'qurban_config_v1_valid'}]);
+ assert.deepEqual(rows("select type_key,config_version,module_flag_key,validator_name from private.campaign_type_descriptors where type_key='qurban'"),[{type_key:'qurban',config_version:1,module_flag_key:'qurban.enabled',validator_name:'qurban_config_v1_valid'}]);
  assert.equal(sql("select private.system_flag_effectively_enabled('qurban.enabled')"),'f');assert.equal(sql('select count(*) from private.system_feature_flags'),'0');
- const r=await rpc(stack,'admin_campaign_types',token('admin'));assert.equal(r.status,200);assert.deepEqual(r.data,[{type_key:'qurban',config_version:1,module_flag_key:'qurban.enabled'}]);
+ const r=await rpc(stack,'admin_campaign_types',token('admin'));assert.equal(r.status,200);assert.deepEqual(r.data,[{type_key:'qurban',config_version:1,module_flag_key:'qurban.enabled'},{type_key:'ramadan',config_version:1,module_flag_key:'ramadan.enabled'}]);
 });
 for(const [name,c] of invalidConfigs)test('real validator denies '+name,()=>assert.equal(sql('select private.qurban_config_v1_valid('+quote(JSON.stringify(c))+'::jsonb)'),'f'));
 for(const table of tables)for(const role of ['anon','authenticated','service_role','supabase_auth_admin','authenticator','campaign_scheduler'])test('real '+role+' denies raw CRUD '+table,()=>{

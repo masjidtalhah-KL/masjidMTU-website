@@ -30,7 +30,7 @@ export function setup(){
  });
 }
 export function inspect(){reviewStack();const counts=rows(`select
- (select count(*) from private.campaign_type_descriptors) descriptors,
+ (select count(*) from private.campaign_type_descriptors where type_key='qurban') descriptors,
  (select count(*) from private.campaigns) campaigns,(select count(*) from private.system_feature_flags) flags,
  (select count(*) from private.qurban_registrations) registrations,(select count(*) from private.qurban_participations) participations,
  (select count(*) from private.qurban_akad_versions) akad_versions,(select count(*) from private.qurban_consent_acceptances) consents,
