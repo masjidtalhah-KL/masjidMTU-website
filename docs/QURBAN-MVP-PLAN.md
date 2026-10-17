@@ -1,8 +1,8 @@
 # Qurban MVP Foundation — Fasa 8 complete / owner-approved
 
-**Current checkpoint: Fasa 9.0 complete / owner-approved — Payment Proof Intake + Private Evidence Storage. Fasa 8 COMPLETE / owner-approved.**
+**Current checkpoint: Fasa 9.1 complete / owner-approved. Fasa 8 COMPLETE / owner-approved. Fasa 9 — Payment & Receipt COMPLETE / owner-approved. Fasa 10 next / not started.**
 16 October 2026 (+08:00): owner approved the 8.5 implementation without further functional changes, closing Fasa 8.
-Last approved tag: `phase-9.0-qurban-payment-proof` (resolve tag for commit). **Fasa 9 in progress; 9.0 complete / owner-approved; 9.1 next / not started.** See [payment-proof gate](QURBAN-PAYMENT-PROOF.md).
+Current approved checkpoint tag: `phase-9.1-qurban-payment-verification` (resolve tag for commit). **9.0 and 9.1 complete / owner-approved**, including the final receipt visual. See [payment proof](QURBAN-PAYMENT-PROOF.md) and [verification / receipt](QURBAN-PAYMENT-VERIFICATION.md).
 This is a local implementation foundation checkpoint, not hosted deployment or production launch readiness.
 
 ## Historical Fasa 8.0 architecture and prototype checkpoint
@@ -258,9 +258,10 @@ Before public submission: transactional flag/window/config checks at write time,
 | 8.4 | **Complete / owner-approved:** Capacity + cattle/share allocation structure and protected operations under **locked Policy B**. Final payment-qualified eligibility depends on Fasa 9 verified payment; no false payment confirmation in Fasa 8. |
 | 8.5 | **Complete / owner-approved:** Independent simplified volunteer registration, informational participant name/manual reconciliation and protected admin assignments. |
 | Original planned 8.6 / 8.C gates | Security/concurrency/regression QA and owner checkpoint are consolidated into the approved cumulative 8.0–8.5 verification and this explicit owner Fasa 8 closeout; no separate new implementation phase is claimed. |
-| 9 | **Not started:** Payment & Receipt; private proofs/storage, manual verification, financial audit, receipts, final payment-qualified capacity integration and Bayaran/Resit export sheets. |
+| 9 | **COMPLETE / owner-approved:** 9.0 private proof intake/downloads + 9.1 exact verification, atomic payment-qualified allocation, immutable receipts/PDF and verified-payment Excel reporting. |
+| 10 | **Next / not started.** |
 
-The 8.4/Fasa 9 dependency is explicit: structure/protected operations can precede verified payment; payment-qualified eligibility cannot. This checkpoint authorises no external/manual eligibility bypass and does not begin Fasa 9.
+The 8.4/Fasa 9 dependency is explicit: structure/protected operations can precede verified payment; payment-qualified eligibility cannot. The historical Fasa 8 checkpoint authorised no external/manual eligibility bypass and did not begin Fasa 9. The approved 9.1 transaction now fulfills the payment-qualified admission dependency; no manual allocation bypass is introduced.
 
 ## Owner decision lock — final 8.0 checkpoint
 
@@ -347,7 +348,7 @@ At the approved 8.5 checkpoint Excel had six sheets: Ringkasan, Pendaftaran, Pes
 Final checkpoint retains 1,439 unique automated cases and all ten previous migrations unchanged. No further functional changes were requested. Stop after the owner-authorized 8.5 commit/tag/push. Payment-qualified initial allocation, private proof/verification/receipt/refund/waitlist remain unimplemented; Policy B and future production/annual configuration gates are unchanged.
 
 
-## Fasa 9.0 owner scope / credential gate
+## Historical Fasa 9.0 owner scope / credential gate
 
 Owner now authorizes private payment-proof intake, secure Registration-scoped payment capability, participant/admin-assisted uploads, protected individual/ZIP download, operational views and future seven-sheet evidence export. Bank Islam transfer only remains locked. WhatsApp/physical assistance is an approved fallback through the same admin upload pipeline; it does not replace the normal website flow or permit storing conversations/sender metadata. No mark-paid-without-proof.
 
@@ -355,8 +356,14 @@ Owner now authorizes private payment-proof intake, secure Registration-scoped pa
 
 Future 9.1 verification must require exact original quoted amount without force override and atomically verify + admit full capacity + allocate the complete eligible set + issue immutable receipt. Insufficient capacity rolls back all financial/allocation/receipt changes; proof remains pending/action-required. No automatic refund/waitlist. Future receipt pattern `QUR-<campaign_year>-000001`; no receipt implementation now.
 
-## Fasa 9.0 complete / owner-approved — private payment-proof intake
+## Historical Fasa 9.0 complete / owner-approved — private payment-proof intake
 
 [Payment-proof contract](QURBAN-PAYMENT-PROOF.md) records owner approval of the narrow pre-issued Storage-only JWT (no service_role/runtime signing key) and post-window intake for existing submitted registrations while flags ON/campaign not archived. Private participant/admin-assisted proof intake, minimal staff status, manager-only individual/segmented ZIP downloads and seven-sheet Excel are complete / owner-approved on 17 October 2026 (+08:00). Bayaran contains declared evidence only; Legacy Tarikh Bayaran remains blank. Cancellation with submitted proof fails closed. No verification/rejection, allocation admission, receipt/refund/waitlist/gateway; 9.1 not started. All Fasa 8 decisions and historical checkpoints remain intact.
 
 Owner approved the current 9.0 implementation with no additional functional changes. The checkpoint retains 1,568 unique passing automated cases and unchanged prior migrations. The documented eight unmanifested synthetic orphan backing files remain untouched; their ownership is not adopted and no broad deletion bypass exists. Fasa 9 remains in progress; 9.1 is next / not started. Stop after the authorised 9.0 commit/tag/push.
+
+## Current checkpoint — Fasa 9.1 and Fasa 9 complete / owner-approved
+
+[Payment verification and immutable receipt](QURBAN-PAYMENT-VERIFICATION.md) is complete / owner-approved, including the final A4 blue/white native receipt visual. Controlled rejection/resubmission, exact-amount verification plus all-or-nothing allocation, immutable financial/receipt snapshots (including accepted price_per_share_minor) and scoped participant/admin PDF download complete the Fasa 9 MVP. Current operational arrangement may differ from the original receipt after authorised reassignment. Excel Legacy payment date is verified-only. Earlier phase scopes/not-started statements above describe their historical checkpoints. **Fasa 8 COMPLETE / owner-approved; Fasa 9 — Payment & Receipt COMPLETE / owner-approved; Fasa 10 next / not started.** Checkpoint: `phase-9.1-qurban-payment-verification` (resolve tag for commit). No hosted mutation/deployment.
+
+Refund/waitlist, partial payment, instalment, overpayment handling, financial cancellation, receipt correction/reissue, gateway/card/FPX and multiple payments per Registration remain future enhancements; they do not block closure of the approved Fasa 9 MVP.

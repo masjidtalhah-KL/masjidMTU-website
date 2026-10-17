@@ -31,7 +31,7 @@ export function QurbanAdminPanel({initial}:{initial:ListView}){
  async function refresh(){await run(async()=>{if(selected){const d=await result(await fetch(base+"/registrations/"+selected.id,{cache:"no-store"}));setSelected(d);}await list();setBlocked(false);setMessage("Rekod terkini dimuatkan. Semak borang sebelum membuat perubahan.");});}
  async function mutate(body:unknown,cancel=false){if(!selected||!view.can_manage||disabled)return;await run(async()=>{
   const response=await fetch(base+"/registrations/"+selected.id+(cancel?"/cancel":""),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
-  if(cancel&&response.status===409){setBlocked(true);throw Error("Rekod berubah, mempunyai allocation atau bukti bayaran telah dihantar. Selesaikan semakan operasi/bayaran terlebih dahulu; tiada slot atau bukti dipadam. Muat semula dan semak.");}
+  if(cancel&&response.status===409){setBlocked(true);const denial=await response.json().catch(()=>({}));if(denial.error==="verified_financial")throw Error("Bayaran telah disahkan. Gunakan proses kewangan yang berasingan.");throw Error("Rekod berubah, mempunyai allocation atau bukti bayaran telah dihantar. Selesaikan semakan operasi/bayaran terlebih dahulu; tiada slot atau bukti dipadam. Muat semula dan semak.");}
   await result(response);
   const d=await result(await fetch(base+"/registrations/"+selected.id,{cache:"no-store"}));setSelected(d);await list();setMessage(cancel?"Pendaftaran dibatalkan. Sejarah peserta dan akad dikekalkan.":"Perubahan disimpan. Akad dan quote asal kekal.");
  });}

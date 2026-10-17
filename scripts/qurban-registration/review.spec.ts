@@ -85,12 +85,18 @@ for (const [n, attendance] of [[1, "Tidak"], [7, "Belum pasti"], [12, "Ya"]] as 
 test("stale context asks to reload and creates no registration", async ({ page }) => {
   await page.goto(path); await applicant(page); await participants(page);
   const before = count();
-  // Local migration-owner fixture change; no production authorization bypass is installed.
-  sql("begin;alter table private.campaigns disable trigger campaign_row_guard;update private.campaigns set version=version+1 where slug=" + quote(slug) + ";alter table private.campaigns enable trigger campaign_row_guard;commit;");
-  await page.getByRole("button", { name: "Hantar pendaftaran", exact: true }).click();
-  await expect(page.locator(".qr-errors[role=alert]")).toContainText("Maklumat atau ketersediaan kempen telah berubah");
-  await expect(page.getByRole("link", { name: "Muat semula maklumat kempen", exact: true })).toBeVisible();
-  expect(count()).toBe(before);
+  // Local migration-owner perturbation; restore the exact known revision so manifest cleanup remains usable.
+  const originalVersion = Number(sql("select version from private.campaigns where slug=" + quote(slug)));
+  try {
+    sql("begin;alter table private.campaigns disable trigger campaign_row_guard;update private.campaigns set version=version+1 where slug=" + quote(slug) + ";alter table private.campaigns enable trigger campaign_row_guard;commit;");
+    await page.getByRole("button", { name: "Hantar pendaftaran", exact: true }).click();
+    await expect(page.locator(".qr-errors[role=alert]")).toContainText("Maklumat atau ketersediaan kempen telah berubah");
+    await expect(page.getByRole("link", { name: "Muat semula maklumat kempen", exact: true })).toBeVisible();
+    expect(count()).toBe(before);
+  } finally {
+    const restored = sql("begin;alter table private.campaigns disable trigger campaign_row_guard;with restored as(update private.campaigns set version=" + originalVersion + " where slug=" + quote(slug) + " and version=" + (originalVersion + 1) + " returning id)select count(*) from restored;alter table private.campaigns enable trigger campaign_row_guard;commit;");
+    expect(Number(restored)).toBe(1); // Concurrent/unrecognised edits remain refused; never adopt a new fingerprint.
+  }
 });
 test("technical request limits and exact HTTP boundary", async ({ request }) => {
   for (const [headers, data, status] of [

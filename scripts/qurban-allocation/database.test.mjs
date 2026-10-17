@@ -33,10 +33,10 @@ for(const role of ['anon','authenticated','service_role','supabase_auth_admin','
  for(const table of ['qurban_cattle','qurban_cattle_slots','qurban_allocations']){assert.equal((await q("select relrowsecurity rls from pg_class where oid=$1::regclass",['private.'+table]))[0].rls,true);
  for(const privilege of ['SELECT','INSERT','UPDATE','DELETE'])assert.equal((await q('select has_table_privilege($1,$2,$3) ok',[role,'private.'+table,privilege]))[0].ok,false);}
 });
-test('private primitive fixed path/invoker; no public initial allocation wrapper or payment verification/receipt tables',async()=>{
+test('private primitive fixed path/invoker; no public initial allocation wrapper or refund/waitlist tables',async()=>{
  const p=(await q("select prosecdef,proconfig from pg_proc where oid='private.qurban_allocate_registration(uuid,uuid,uuid[])'::regprocedure"))[0];assert.equal(p.prosecdef,false);assert(p.proconfig.includes('search_path=""'));
  assert.equal((await q("select count(*)::int n from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='public' and p.proname ~ 'allocate|eligible|reserve'"))[0].n,0);
- for(const table of ['qurban_payment','qurban_payments','qurban_receipts','qurban_volunteer_registrations'])assert.equal((await q('select to_regclass($1) t',['private.'+table]))[0].t,null);
+ for(const table of ['qurban_payment','qurban_refunds','qurban_waitlist','qurban_volunteer_registrations'])assert.equal((await q('select to_regclass($1) t',['private.'+table]))[0].t,null);
 });
 test('earliest cattle then earliest slot and deterministic participant created/id order',async()=>{const x=await scenario({counts:[4]});await init(x);await admit(x,0,x.regs[0].ps.map(p=>p.id).reverse());const a=await allocated(x);assert.deepEqual(a.map(a=>[a.cattle_number,a.slot_number]),[[1,1],[1,2],[1,3],[1,4]]);assert.deepEqual(a.map(a=>a.participation_id),x.regs[0].ps.map(p=>p.id));});
 test('same-cattle chooses lowest suitable cattle instead of earlier fragmented free slots',async()=>{const x=await scenario({counts:[3,4],same:true});await init(x);await admit(x,0);await admit(x,1);const a=(await allocated(x)).filter(a=>a.registration_id===x.regs[1].r.id);assert.deepEqual(a.map(a=>[a.cattle_number,a.slot_number]),[[2,1],[2,2],[2,3],[2,4]]);});

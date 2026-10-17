@@ -51,6 +51,6 @@ assert.equal((await q("select has_function_privilege('service_role','public.publ
 test('six new functions fixed paths/trusted owner ACL; no PUBLIC execute; no forbidden tables',async()=>{
 const names=['qurban_submission_evidence_guard','qurban_submission_payload_valid','qurban_registration_context','qurban_registration_submit','public_qurban_registration_context','public_qurban_registration_submit'];
 const f=await q("select n.nspname,p.proname,p.prosecdef,p.proconfig,exists(select 1 from aclexplode(coalesce(p.proacl,acldefault('f',p.proowner))) a where a.grantee=0) public_grant from pg_proc p join pg_namespace n on n.oid=p.pronamespace where p.proname=any($1)",[names]);assert.equal(f.length,6);for(const row of f){assert(row.proconfig.includes('search_path=""'));assert.equal(row.public_grant,false);assert.equal(row.prosecdef,row.nspname==='public');}
-assert.equal((await q("select count(*)::int n from pg_tables where schemaname='private' and tablename ~ '^qurban_(receipt|payment_verification)'"))[0].n,0);
+assert.equal((await q("select count(*)::int n from pg_tables where schemaname='private' and tablename ~ '^qurban_(refund|waitlist|payment_verification)'"))[0].n,0);
 assert.equal((await q('select count(*)::int n from private.qurban_allocations'))[0].n,0);
 });

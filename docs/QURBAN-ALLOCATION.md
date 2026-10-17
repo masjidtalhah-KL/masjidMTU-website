@@ -3,7 +3,7 @@
 **Fasa 8.4 complete / owner-approved — Qurban Cattle / Share Capacity & Allocation Foundation.**
 Baseline: 8be077af6a246f2de0b3d54c39e8c1402d209230, tag phase-8.3-qurban-admin-management.
 16 October 2026 (+08:00). Work is in the dedicated Masjid website repository.
-8.0–8.4 complete / owner-approved. Fasa 8 remains in progress; 8.5 next / not started. Fasa 9 has not started.
+At the historical 8.4 checkpoint, 8.0–8.4 were complete and 8.5 was next / not started. Current Fasa 8 and Fasa 9 are COMPLETE / owner-approved; Fasa 10 next / not started. See current checkpoint below.
 Owner authorizes the checkpoint commit and tag phase-8.4-qurban-allocation-foundation, then canonical main/tag push without force. No hosted Supabase/Sanity/Vercel changes or deployment.
 
 Contracts: [owner architecture](QURBAN-MVP-PLAN.md), [private domain](QURBAN-DOMAIN-DATABASE.md),
@@ -23,7 +23,7 @@ No flags, campaign, annual config, registrations, eligibility or allocation rows
 - Admin/super_admin may reassign an existing allocation to an empty slot; staff is read-only.
 - No swapping, reshuffling to fit a group, initial manual assignment, release, refund, waitlist or reopening workflow.
 
-## Policy B and the missing Fasa 9 boundary
+## Historical Policy B boundary — fulfilled by approved Fasa 9.1
 
 Registration submission != reservation. Proof submission != reservation or verified funds.
 Ordinary public registration continues creating Registration/Participations/ConsentAcceptance/submission audit/idempotency
@@ -258,7 +258,7 @@ Unknown dependencies cause atomic refusal. Legacy pre-manifest data still requir
 node scripts/admin-foundation/local-cli.mjs db reset --local --no-seed.
 Never reset owner demo data automatically.
 
-## Fasa 9 integration contract — not implemented
+## Historical Fasa 9 integration contract — fulfilled by approved Fasa 9.1
 
 Future authorized financial verification must:
 1. Authenticate through Foundation and lock its reviewed payment verification context in a consistent global lock order.
@@ -383,3 +383,9 @@ src/lib/qurban/export-workbook.ts
 src/lib/supabase/database.types.ts
 supabase/migrations/20261016004640_qurban_allocation_foundation.sql
 ~~~
+
+## Current checkpoint — Fasa 9.1 and Fasa 9 complete / owner-approved
+
+[Payment verification and immutable receipt](QURBAN-PAYMENT-VERIFICATION.md) is complete / owner-approved, including the final A4 blue/white native receipt visual. Controlled rejection/resubmission, exact-amount verification plus all-or-nothing allocation, immutable financial/receipt snapshots (including accepted price_per_share_minor) and scoped participant/admin PDF download complete the Fasa 9 MVP. Current operational arrangement may differ from the original receipt after authorised reassignment. Excel Legacy payment date is verified-only. Earlier phase scopes/not-started statements above describe their historical checkpoints. **Fasa 8 COMPLETE / owner-approved; Fasa 9 — Payment & Receipt COMPLETE / owner-approved; Fasa 10 next / not started.** Checkpoint: `phase-9.1-qurban-payment-verification` (resolve tag for commit). No hosted mutation/deployment.
+
+Refund/waitlist, partial payment, instalment, overpayment handling, financial cancellation, receipt correction/reissue, gateway/card/FPX and multiple payments per Registration remain future enhancements; they do not block closure of the approved Fasa 9 MVP.

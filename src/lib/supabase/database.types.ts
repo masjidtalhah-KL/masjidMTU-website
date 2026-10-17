@@ -152,8 +152,35 @@ export type Database = {
         Args: { page_number: number; target_campaign: string }
         Returns: Json
       }
+      admin_qurban_payment_detail: {
+        Args: {
+          page_number: number
+          target_campaign: string
+          target_registration: string
+        }
+        Returns: Json
+      }
       admin_qurban_payment_list: {
         Args: { options: Json; target_campaign: string }
+        Returns: Json
+      }
+      admin_qurban_payment_reject: {
+        Args: {
+          expected_proof_version: number
+          expected_registration_version: number
+          reason: string
+          target_campaign: string
+          target_proof: string
+        }
+        Returns: Json
+      }
+      admin_qurban_payment_verify: {
+        Args: {
+          expected_proof_version: number
+          expected_registration_version: number
+          target_campaign: string
+          target_proof: string
+        }
         Returns: Json
       }
       admin_qurban_proof_commit: {
@@ -180,6 +207,10 @@ export type Database = {
           target_cattle: string
           target_slot: string
         }
+        Returns: Json
+      }
+      admin_qurban_receipt_download: {
+        Args: { target_campaign: string; target_registration: string }
         Returns: Json
       }
       admin_qurban_volunteer_activity: {
@@ -265,6 +296,10 @@ export type Database = {
       }
       public_qurban_proof_prepare: {
         Args: { payload: Json; session_secret: string; target_slug: string }
+        Returns: Json
+      }
+      public_qurban_receipt_download: {
+        Args: { session_secret: string; target_slug: string }
         Returns: Json
       }
       public_qurban_registration_context: {

@@ -1,6 +1,6 @@
 # Fasa 8.3 — Qurban Admin Registration Management + Excel Audit Export
 
-**Fasa 8.3 complete / owner-approved — Qurban Admin Registration Management + Excel Audit Export.**
+**Fasa 8.3 complete / owner-approved — Qurban Admin Registration Management + Excel Audit Export. Current Fasa 8 and Fasa 9 COMPLETE / owner-approved; Fasa 10 next / not started.**
 Owner-approved on 16 October 2026 (+08:00), including the three presentation/reporting refinements below. Baseline:
 8c15eea47b14b4a79d050bf5d929ce091573abb7, tag phase-8.2-qurban-public-registration.
 8.0–8.3 are owner-approved. Checkpoint: `phase-8.3-qurban-admin-management` (resolve tag for commit).
@@ -56,7 +56,7 @@ Generic Campaign list/DTO/audit remain free of Qurban PII.
 ## Protected navigation and projections
 
 From /admin -> Kempen -> /admin/campaigns/[id], a Qurban-only link opens
-/admin/campaigns/[id]/qurban. Sections: Ringkasan; Pendaftaran / Peserta; Kapasiti / Lembu (8.4); Export; Aktiviti. Sukarelawan is implemented in the approved 8.5 checkpoint; Bayaran proof intake/downloads are implemented in the approved 9.0 checkpoint below. Verification/Resit remain deferred.
+/admin/campaigns/[id]/qurban. Sections: Ringkasan; Pendaftaran / Peserta; Kapasiti / Lembu (8.4); Export; Aktiviti. Sukarelawan is implemented in the approved 8.5 checkpoint; Bayaran proof intake/downloads are implemented in the approved 9.0 checkpoint below. Verification/Resit were deferred at the 9.0 checkpoint; both are implemented in the approved 9.1 checkpoint below.
 
 List default 20, maximum 50 registrations/page, page 1–10000; stable ID tiebreaker.
 Sort: newest/oldest submission, reference, applicant. Status: all/submitted/cancelled.
@@ -198,7 +198,7 @@ no rows are inserted. A4 landscape, repeated identifying rows 1–3, wrapped nam
 and page breaks before subsequent cattle groups keep ordinary groups together where practical. Oversized groups or
 exceptionally long text may need native Excel print adjustment. All strings remain inert text, including formula-leading values.
 
-Sukarelawan was omitted at the historical 8.3/8.4 checkpoints and is now present in the approved 8.5 checkpoint. At the 8.5 checkpoint Bayaran/Resit were deferred; the owner-approved 9.0 checkpoint below adds proof-intake Bayaran only. Verification/Resit remain deferred. Flattening is export-only, not the normalized DB model.
+Sukarelawan was omitted at the historical 8.3/8.4 checkpoints and is now present in the approved 8.5 checkpoint. At the 8.5 checkpoint Bayaran/Resit were deferred; the owner-approved 9.0 checkpoint below adds proof-intake Bayaran only. Verification/Resit were deferred at the 9.0 checkpoint; both are implemented in the approved 9.1 checkpoint below. Flattening is export-only, not the normalized DB model.
 Filename: Qurban-MTU-YYYY-Export-YYYY-MM-DD-HHMMSS-UUID.xlsx; year comes from reviewed config, time from DB.
 Date cells are numeric Excel dates displayed in MYT; phone/reference/names/email/address are explicit string cells
 with text format @. Strings starting =,+,-,@,tab never become formula objects; no formula element is generated.
@@ -424,3 +424,9 @@ Full workbook adds Sukarelawan and a separate Ringkasan volunteer section. Total
 ## Fasa 9.0 complete / owner-approved — private payment-proof intake
 
 [Payment-proof contract](QURBAN-PAYMENT-PROOF.md) records owner approval of the narrow pre-issued Storage-only JWT (no service_role/runtime signing key) and post-window intake for existing submitted registrations while flags ON/campaign not archived. Private participant/admin-assisted proof intake, minimal staff status, manager-only individual/segmented ZIP downloads and seven-sheet Excel are complete / owner-approved on 17 October 2026 (+08:00). Bayaran contains declared evidence only; Legacy Tarikh Bayaran remains blank. Cancellation with submitted proof fails closed. No verification/rejection, allocation admission, receipt/refund/waitlist/gateway; 9.1 not started. All Fasa 8 decisions and historical checkpoints remain intact.
+
+## Current checkpoint — Fasa 9.1 and Fasa 9 complete / owner-approved
+
+[Payment verification and immutable receipt](QURBAN-PAYMENT-VERIFICATION.md) is complete / owner-approved, including the final A4 blue/white native receipt visual. Controlled rejection/resubmission, exact-amount verification plus all-or-nothing allocation, immutable financial/receipt snapshots (including accepted price_per_share_minor) and scoped participant/admin PDF download complete the Fasa 9 MVP. Current operational arrangement may differ from the original receipt after authorised reassignment. Excel Legacy payment date is verified-only. Earlier phase scopes/not-started statements above describe their historical checkpoints. **Fasa 8 COMPLETE / owner-approved; Fasa 9 — Payment & Receipt COMPLETE / owner-approved; Fasa 10 next / not started.** Checkpoint: `phase-9.1-qurban-payment-verification` (resolve tag for commit). No hosted mutation/deployment.
+
+Refund/waitlist, partial payment, instalment, overpayment handling, financial cancellation, receipt correction/reissue, gateway/card/FPX and multiple payments per Registration remain future enhancements; they do not block closure of the approved Fasa 9 MVP.
