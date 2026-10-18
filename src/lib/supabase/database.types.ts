@@ -261,6 +261,34 @@ export type Database = {
         Args: { options: Json; target_campaign: string }
         Returns: Json
       }
+      admin_ramadan_activity: {
+        Args: { page_number: number; target_campaign: string }
+        Returns: Json
+      }
+      admin_ramadan_detail: {
+        Args: { target_campaign: string; target_sponsorship: string }
+        Returns: Json
+      }
+      admin_ramadan_offering: {
+        Args: { payload: Json; target_campaign: string }
+        Returns: Json
+      }
+      admin_ramadan_schedule: {
+        Args: { payload: Json; target_campaign: string }
+        Returns: Json
+      }
+      admin_ramadan_slots: {
+        Args: { target_campaign: string; target_schedule: string }
+        Returns: Json
+      }
+      admin_ramadan_sponsorships: {
+        Args: { options: Json; target_campaign: string }
+        Returns: Json
+      }
+      admin_ramadan_workspace: {
+        Args: { target_campaign: string }
+        Returns: Json
+      }
       admin_revoke_invite: {
         Args: { expected_version: number; invite_id: string }
         Returns: undefined
@@ -315,6 +343,8 @@ export type Database = {
         Returns: Json
       }
       public_qurban_volunteer_submit: { Args: { payload: Json }; Returns: Json }
+      public_ramadan_context: { Args: { target_slug: string }; Returns: Json }
+      public_ramadan_submit: { Args: { payload: Json }; Returns: Json }
     }
     Enums: {
       [_ in never]: never
