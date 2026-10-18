@@ -1,0 +1,4 @@
+import{adminContext}from'@/lib/admin/dal';import{campaignManager}from'@/lib/campaigns/lifecycle-contract';
+import type{NextRequest}from'next/server';import{readProof,submitProof}from'@/lib/ramadan/payment';import{proofMultipart,paymentJson,paymentFailure}from'@/lib/ramadan/payment-http';export const dynamic='force-dynamic';
+export async function GET(_r:NextRequest,{params}:{params:Promise<{id:string;sponsorship:string}>}){try{const{id,sponsorship}=await params;return paymentJson(await readProof(id,sponsorship));}catch(e){return paymentFailure(e);}}
+export async function POST(r:NextRequest,{params}:{params:Promise<{id:string;sponsorship:string}>}){try{const{state}=await adminContext('operational',true);campaignManager(state);const{id,sponsorship}=await params;return paymentJson(await submitProof(await proofMultipart(r),{campaign:id,sponsorship}),201);}catch(e){return paymentFailure(e);}}

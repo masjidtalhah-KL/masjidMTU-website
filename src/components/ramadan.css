@@ -3,3 +3,5 @@
 .ramadan [role=status]{background:#eef8f0;border-left:4px solid #37794c;padding:.75rem 1rem;border-radius:.4rem}
 
 .ramadan label.ramadan-check{display:flex;align-items:center;gap:.6rem}.ramadan label.ramadan-check input{flex:none;margin:0}
+
+.ramadan-fields{border:0;padding:0;min-width:0}.ramadan-field{min-width:0}.ramadan-field input[type=file]{max-width:100%;min-width:0}.ramadan dd,.ramadan li,.ramadan-note strong{overflow-wrap:anywhere}.ramadan-help{font-size:.9rem}

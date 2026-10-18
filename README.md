@@ -5,13 +5,13 @@
 **Fasa 0–7 are complete / owner-approved.**
 **Fasa 8 — Qurban MVP Foundation complete / owner-approved (8.0–8.5).**
 **Fasa 9 — Payment & Receipt COMPLETE / owner-approved (9.0–9.1), including the final receipt visual.**
-**Fasa 10 — Ramadan Sponsorship in progress; 10.0 and 10.1 complete / owner-approved; 10.2 next / NOT STARTED; 10.3 NOT STARTED.**
-[Ramadan architecture](docs/RAMADAN-SPONSORSHIP-ARCHITECTURE.md) describes the approved private typed foundation. [Ramadan management/public registration](docs/RAMADAN-SPONSORSHIP-MANAGEMENT.md) is complete / owner-approved, including final Malay UX and server/DB-derived public-name snapshot; 10.2–10.3 have not started. Checkpoint: `phase-10.1-ramadan-management-submission`.
+**Fasa 10 — Ramadan Sponsorship in progress; 10.0 and 10.1 complete / owner-approved; 10.2a COMPLETE / owner-approved; 10.2b NEXT / NOT STARTED; 10.3 NOT STARTED.**
+[Ramadan architecture](docs/RAMADAN-SPONSORSHIP-ARCHITECTURE.md) describes the approved private typed foundation. [Ramadan management/public registration](docs/RAMADAN-SPONSORSHIP-MANAGEMENT.md) is complete / owner-approved, including final Malay UX and server/DB-derived public-name snapshot; 10.2a adds [private Ramadan evidence intake](docs/RAMADAN-PAYMENT-PROOF.md) as a complete / owner-approved checkpoint; 10.2b/10.3 have not started. Checkpoint: `phase-10.2a-ramadan-payment-proof`.
 The [owner-approved 9.0 checkpoint](docs/QURBAN-PAYMENT-PROOF.md) uses the owner-approved pre-issued Storage-only token, private evidence intake, admin assistance/downloads and seven-sheet Excel. The [owner-approved 9.1 checkpoint](docs/QURBAN-PAYMENT-VERIFICATION.md) adds controlled rejection, exact-amount atomic verification/allocation and immutable downloadable receipts. Refund/waitlist/gateway remain out of scope.
 See the **[current roadmap](docs/ROADMAP.md)** for phase status and remaining gates.
 The **[Fasa 7 closeout](docs/CAMPAIGN-ENGINE-CLOSEOUT.md)** consolidates the local evidence.
 
-Current checkpoint: `phase-10.1-ramadan-management-submission` (resolve the tag
+Current checkpoint: `phase-10.2a-ramadan-payment-proof` (resolve the tag
 for the commit). Available capabilities: public website,
 Sanity Studio, protected `/admin`, generic Campaign Engine, protected campaign
 management, gated `/kempen/[slug]` and published editorial adapter.
@@ -27,7 +27,7 @@ private deterministic allocator, existing-allocation reassignment and five-sheet
 Public registration creates zero allocations; only authorised exact-amount payment verification atomically admits the complete participant set and issues its immutable receipt.
 The [approved 8.0 architecture](docs/QURBAN-MVP-PLAN.md) locks Policy B and formal
 8.3 Excel export; the [local UX prototype](docs/QURBAN-PROTOTYPE-VALIDATION.md) is
-development-only and non-persistent. Fasa 8 is complete / owner-approved; Fasa 9 is complete / owner-approved (9.0–9.1); Fasa 10 is in progress with 10.0 complete / owner-approved and 10.1 complete / owner-approved; 10.2 next / NOT STARTED; 10.3 NOT STARTED.
+development-only and non-persistent. Fasa 8 is complete / owner-approved; Fasa 9 is complete / owner-approved (9.0–9.1); Fasa 10 is in progress with 10.0 complete / owner-approved and 10.1 complete / owner-approved; 10.2a COMPLETE / owner-approved; 10.2b NEXT / NOT STARTED; 10.3 NOT STARTED.
 This status does not claim a production deployment or production readiness;
 Fasa 7 is a local implementation foundation.
 

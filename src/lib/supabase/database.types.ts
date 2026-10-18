@@ -273,6 +273,30 @@ export type Database = {
         Args: { payload: Json; target_campaign: string }
         Returns: Json
       }
+      admin_ramadan_proof_commit: {
+        Args: { target_campaign: string; target_proof: string }
+        Returns: Json
+      }
+      admin_ramadan_proof_detail: {
+        Args: { target_campaign: string; target_sponsorship: string }
+        Returns: Json
+      }
+      admin_ramadan_proof_download: {
+        Args: {
+          grant_secret: string
+          target_campaign: string
+          target_proof: string
+        }
+        Returns: Json
+      }
+      admin_ramadan_proof_prepare: {
+        Args: {
+          payload: Json
+          target_campaign: string
+          target_sponsorship: string
+        }
+        Returns: Json
+      }
       admin_ramadan_schedule: {
         Args: { payload: Json; target_campaign: string }
         Returns: Json
@@ -344,6 +368,26 @@ export type Database = {
       }
       public_qurban_volunteer_submit: { Args: { payload: Json }; Returns: Json }
       public_ramadan_context: { Args: { target_slug: string }; Returns: Json }
+      public_ramadan_payment_context: {
+        Args: { session_secret: string; target_slug: string }
+        Returns: Json
+      }
+      public_ramadan_payment_exchange: {
+        Args: { payload: Json }
+        Returns: Json
+      }
+      public_ramadan_proof_commit: {
+        Args: {
+          session_secret: string
+          target_proof: string
+          target_slug: string
+        }
+        Returns: Json
+      }
+      public_ramadan_proof_prepare: {
+        Args: { payload: Json; session_secret: string; target_slug: string }
+        Returns: Json
+      }
       public_ramadan_submit: { Args: { payload: Json }; Returns: Json }
     }
     Enums: {

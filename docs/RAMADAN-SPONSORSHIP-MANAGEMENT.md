@@ -1,6 +1,6 @@
 # Fasa 10.1 — Ramadan Offering Management, Public Schedule & Sponsorship Registration
 
-**Fasa 10.1 COMPLETE / OWNER-APPROVED — Ramadan Offering Management, Public Schedule & Sponsorship Registration.** Owner approval: 18 October 2026 (+08:00), including final Malay UX and public-name contract, with no further functional or visual changes. Approved baseline: 69b221f2e83b5a2f949cdf7a914e295c7a36812c / phase-10.0-ramadan-domain-foundation. Checkpoint: `phase-10.1-ramadan-management-submission` (resolve tag for commit). Fasa 8/9/10.0 remain owner-approved. Fasa 10 overall remains IN PROGRESS; 10.2 next / NOT STARTED and 10.3 NOT STARTED. No hosted mutation/deployment.
+**Fasa 10.1 COMPLETE / OWNER-APPROVED — Ramadan Offering Management, Public Schedule & Sponsorship Registration.** Owner approval: 18 October 2026 (+08:00), including final Malay UX and public-name contract, with no further functional or visual changes. Approved baseline: 69b221f2e83b5a2f949cdf7a914e295c7a36812c / phase-10.0-ramadan-domain-foundation. Checkpoint: `phase-10.1-ramadan-management-submission` (resolve tag for commit). Fasa 8/9/10.0 remain owner-approved. Fasa 10 overall remains IN PROGRESS; 10.2a complete / owner-approved; 10.2b NOT STARTED and 10.3 NOT STARTED. No hosted mutation/deployment.
 
 ## Owner decisions and immutable meaning
 
@@ -136,3 +136,9 @@ Owner-approved verification evidence: **1,944 unique automated cases passed; zer
 10.2 owns separate Ramadan payment capability/private proof, financial eligibility, verified all-or-nothing capacity admission, deterministic earliest slots and Ramadan receipt. Its transaction must respect accepted quotes/labels and not invalidate a prior commitment solely due to offering/schedule deactivation. 10.3 owns reporting/Excel/public operational refinement. No partial assignment, pending reservation, verified sponsor simulation, gateway/cash/cheque/CDM workflow, receipt or reporting exists in 10.1.
 
 Final checkpoint verification reruns all 1,175 isolated Ramadan/Qurban/Campaign/Foundation contracts/domain/upgrade cases, 29 real Ramadan foundation/management Auth/PostgREST cases, 37 responsive Qurban/prototype/Ramadan browser cases and eight native Qurban receipt PDF checks (1,249 cases). The 695 prior real Qurban/Campaign/Foundation regression cases remain valid from the unchanged approved candidate; all non-document candidate file hashes are preserved during closeout. The combined unique coverage remains 1,944 cases, with reruns excluded. Fresh local reset/type parity/build/security/docs/diff/integrity and empty-state checks are repeated. No additional business or visual behavior is changed.
+
+## Fasa 10.2a COMPLETE / owner-approved
+
+Owner manually retested and approved sponsorship registration, successful proof intake and the local-only token-renewal fix. Verification remains intentionally unavailable. Checkpoint: `phase-10.2a-ramadan-payment-proof`; 10.2b NEXT / NOT STARTED and 10.3 NOT STARTED.
+
+[Private Ramadan proof intake](RAMADAN-PAYMENT-PROOF.md) additively binds a separate hashed capability to new idempotent submissions, provides trusted Bank Islam instructions and private pending evidence. Existing accepted sponsorships remain eligible after new-intake closure while submitted, flags ON and campaign not archived, as explicitly owner-approved. No slot occupation, verification, receipt or reporting is added; 10.2b/10.3 are not started. Named/anonymous accepted identity and deactivation/quote locks remain unchanged.

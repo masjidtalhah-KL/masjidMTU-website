@@ -6,7 +6,7 @@ Additive migration: `supabase/migrations/20261017153123_ramadan_domain_foundatio
 
 ## Fasa 10.1 COMPLETE / OWNER-APPROVED
 
-[Management/public submission contract](RAMADAN-SPONSORSHIP-MANAGEMENT.md): complete / owner-approved, including final Malay UX and server/DB-derived public-name snapshot. Owner approval: 18 October 2026 (+08:00), with no further functional or visual changes. Checkpoint: `phase-10.1-ramadan-management-submission` (resolve tag for commit). Fasa 10 remains IN PROGRESS; 10.2 next / NOT STARTED and 10.3 NOT STARTED. Owner locks deactivation as close-new-intake only; accepted sponsorships/quotes remain valid and retained, and future payment verification must not deny solely for later offering/schedule deactivation. Accepted offering labels are immutable snapshots; date/day/price/count remain activity-locked. The following foundation/no-runtime statements describe the approved **10.0 checkpoint**. 10.1 adds bounded management/public submission only; 10.2/10.3 remain not started.
+[Management/public submission contract](RAMADAN-SPONSORSHIP-MANAGEMENT.md): complete / owner-approved, including final Malay UX and server/DB-derived public-name snapshot. Owner approval: 18 October 2026 (+08:00), with no further functional or visual changes. Checkpoint: `phase-10.1-ramadan-management-submission` (resolve tag for commit). Fasa 10 remains IN PROGRESS; 10.2a complete / owner-approved; 10.2b NOT STARTED and 10.3 NOT STARTED. Owner locks deactivation as close-new-intake only; accepted sponsorships/quotes remain valid and retained, and future payment verification must not deny solely for later offering/schedule deactivation. Accepted offering labels are immutable snapshots; date/day/price/count remain activity-locked. The following foundation/no-runtime statements describe the approved **10.0 checkpoint**. 10.1 adds bounded management/public submission only; 10.2a is now the owner-approved private-proof checkpoint described below; 10.2b/10.3 remain not started.
 
 ## Owner decisions 1–14
 
@@ -143,7 +143,8 @@ Synthetic year 2048 and label LOCAL REVIEW ONLY are never app defaults/seeds. Th
 | --- | --- |
 | 10.0 | Architecture + private domain foundation — complete / owner-approved |
 | 10.1 | Admin offering/schedule management + public schedule + public sponsorship submission — complete / owner-approved |
-| 10.2 | Private proof + admin verification + atomic slot assignment + Ramadan receipt — next / NOT STARTED |
+| 10.2a | Private Ramadan proof intake — complete / owner-approved |
+| 10.2b | Admin verification + atomic slot assignment + Ramadan receipt — NOT STARTED |
 | 10.3 | Reporting + Excel + operational polish + final Ramadan checkpoint — NOT STARTED |
 
 Actual annual values, offering/date/price/count decisions, public display copy, admission/retention/privacy operational policies and future cancellation/refund/overflow handling require their reviewed phase. No historical amount/slot/day/year is a production default.
@@ -151,3 +152,9 @@ Actual annual values, offering/date/price/count decisions, public display copy, 
 ## Verification evidence
 
 **1,793 unique automated cases passed; zero final failures, reruns excluded.** This includes 95 Ramadan DB cases, 14 typed-adapter cases, five upgrade cases, nine local-fixture gate cases, eleven real PostgreSQL/API cases, responsive annual-editor coverage and all predecessor regressions. TypeScript, lint, final production Webpack, generated public-type parity, 291-chunk security scans, 69-document/447-link checks and git diff --check passed. Fresh fourteen-migration reset leaves exactly Qurban/Ramadan descriptors, zero flags/campaigns/business/Auth fixture rows; all thirteen historical migration byte hashes and eight known unmanifested backing files are unchanged. New suites: `scripts/ramadan-domain/database.test.mjs`, `adapter.test.ts`, `upgrade.test.mjs`, `fixture.test.mjs`, `local.test.mjs`. They cover exact descriptor/config/blank draft, 95 foundation DB cases, historical migration/function/ACL preservation, real PostgreSQL materialization/mixed checkout/rollback, RLS/private Data API denial and zero-business-data cleanup. Previous Qurban/Campaign/Foundation, production build/type parity/security/link/diff checks were rerun for the owner-approved checkpoint. The known eight unmanifested synthetic Qurban Storage backing files remain untouched/unadopted; Ramadan adds no Storage implementation or hosted operation. Local Qurban regression cleanup remains ownership-proven and excludes those eight files.
+
+## Fasa 10.2a COMPLETE / owner-approved
+
+Owner manually retested and approved sponsorship registration, successful proof intake and the local-only token-renewal fix. Verification remains intentionally unavailable. Checkpoint: `phase-10.2a-ramadan-payment-proof`; 10.2b NEXT / NOT STARTED and 10.3 NOT STARTED.
+
+[Private Ramadan proof intake](RAMADAN-PAYMENT-PROOF.md) additively binds a separate hashed capability to new idempotent submissions, provides trusted Bank Islam instructions and private pending evidence. Existing accepted sponsorships remain eligible after new-intake closure while submitted, flags ON and campaign not archived, as explicitly owner-approved. No slot occupation, verification, receipt or reporting is added; 10.2b/10.3 are not started. Named/anonymous accepted identity and deactivation/quote locks remain unchanged.
