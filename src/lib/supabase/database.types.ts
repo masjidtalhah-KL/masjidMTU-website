@@ -273,6 +273,34 @@ export type Database = {
         Args: { payload: Json; target_campaign: string }
         Returns: Json
       }
+      admin_ramadan_payment_reject: {
+        Args: {
+          expected_proof_version: number
+          expected_sponsorship_version: number
+          rejection_reason: string
+          target_campaign: string
+          target_proof: string
+        }
+        Returns: Json
+      }
+      admin_ramadan_payment_review: {
+        Args: {
+          page_number: number
+          target_campaign: string
+          target_sponsorship: string
+        }
+        Returns: Json
+      }
+      admin_ramadan_payment_verify: {
+        Args: {
+          bank_payment_confirmed: boolean
+          expected_proof_version: number
+          expected_sponsorship_version: number
+          target_campaign: string
+          target_proof: string
+        }
+        Returns: Json
+      }
       admin_ramadan_proof_commit: {
         Args: { target_campaign: string; target_proof: string }
         Returns: Json
@@ -295,6 +323,10 @@ export type Database = {
           target_campaign: string
           target_sponsorship: string
         }
+        Returns: Json
+      }
+      admin_ramadan_receipt: {
+        Args: { target_campaign: string; target_sponsorship: string }
         Returns: Json
       }
       admin_ramadan_schedule: {
@@ -367,6 +399,15 @@ export type Database = {
         Returns: Json
       }
       public_qurban_volunteer_submit: { Args: { payload: Json }; Returns: Json }
+      public_ramadan_confirmed_sponsors: {
+        Args: {
+          page_number: number
+          target_offering: string
+          target_schedule: string
+          target_slug: string
+        }
+        Returns: Json
+      }
       public_ramadan_context: { Args: { target_slug: string }; Returns: Json }
       public_ramadan_payment_context: {
         Args: { session_secret: string; target_slug: string }
@@ -386,6 +427,10 @@ export type Database = {
       }
       public_ramadan_proof_prepare: {
         Args: { payload: Json; session_secret: string; target_slug: string }
+        Returns: Json
+      }
+      public_ramadan_receipt: {
+        Args: { session_secret: string; target_slug: string }
         Returns: Json
       }
       public_ramadan_submit: { Args: { payload: Json }; Returns: Json }

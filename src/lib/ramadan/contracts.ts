@@ -1,6 +1,7 @@
-export type Offering={id:string;name:string;mode:"FIXED_SLOT"|"OPEN_AMOUNT";version:number;active?:boolean;display_order?:number;has_activity?:boolean;has_references?:boolean};
-export type Schedule={id:string;offering_id:string;version:number;ramadan_day_number:number;service_date:string;unit_price_minor:number;slot_count:number;confirmed_occupied:number;available:number;active?:boolean;has_activity?:boolean};
-export type Context={slug:string;title:string;campaign_year:number;hijri_display_label:string;currency:"MYR";campaign_version:number;global_flag_version:number;module_flag_version:number;context_token:string;registration_closes_at:string|null;offerings:Offering[];schedules:Schedule[]};
+export type Offering={id:string;name:string;mode:"FIXED_SLOT"|"OPEN_AMOUNT";version:number;active?:boolean;accepting_new?:boolean;display_order?:number;has_activity?:boolean;has_references?:boolean};
+export type Schedule={id:string;offering_id:string;version:number;ramadan_day_number:number;service_date:string;unit_price_minor:number;slot_count:number;confirmed_occupied:number;available:number;accepting_new?:boolean;active?:boolean;has_activity?:boolean};
+export type SponsorPage={rows:Array<{slot_number:number|null;display_name:string|null}>;page:number;has_more:boolean};
+export type Context={sponsor_pages?:Record<string,SponsorPage>;slug:string;title:string;campaign_year:number;hijri_display_label:string;currency:"MYR";campaign_version:number;global_flag_version:number;module_flag_version:number;context_token:string;registration_closes_at:string|null;offerings:Offering[];schedules:Schedule[]};
 export type QuoteItem={offering_name:string;mode:string;service_date:string|null;ramadan_day_number:number|null;quantity:number|null;unit_price_minor:number|null;line_total_minor:number};
 export type Result={payment_access_id:string;reference:string;currency:"MYR";total_minor:number;items:QuoteItem[]};
 export type Workspace={id:string;title:string;can_manage:boolean;offerings:Offering[];schedules:Schedule[]};

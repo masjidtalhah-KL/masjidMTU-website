@@ -1,6 +1,10 @@
 # Ramadan Private Payment Proof — Fasa 10.2a
 
-**Fasa 10.2a COMPLETE / OWNER-APPROVED — Ramadan Private Payment Proof Intake.** Owner manually retested synthetic sponsorship registration and proof upload, confirmed verification is intentionally unavailable, and approved the resolved local Storage-worker expiry issue. No further functional changes requested. Baseline `32f563ae7e2160f77a0dec3dc3aedd7b621dfa88`, tag `phase-10.1-ramadan-management-submission`. Checkpoint: `phase-10.2a-ramadan-payment-proof` (resolve tag for commit). Fasa 10.0/10.1 remain complete / owner-approved; Fasa 10 remains IN PROGRESS; 10.2b NEXT / NOT STARTED and 10.3 NOT STARTED. No hosted mutation/deployment or production-launch claim.
+## Fasa 10.2b — COMPLETE / OWNER-APPROVED
+
+[Ramadan verification, all-or-nothing slot admission and immutable receipt](RAMADAN-PAYMENT-VERIFICATION.md) adds exact-amount manager review, controlled proof rejection/resubmission, a non-financial capacity exception, protected native PDF receipt and verified-only safe public names/occupancy. Accepted deactivated offerings/schedules remain eligible. No pending reservation, amount override, partial financial/slot approval, refund, waitlist, gateway or 10.3 reporting/Excel is added. The historical 10.0/10.1/10.2a scope and test evidence below describe those approved checkpoints. Fasa 10 remains IN PROGRESS; 10.3 NOT STARTED. No hosted mutation/deployment. Owner-approved checkpoint: `phase-10.2b-ramadan-payment-verification`. 10.2c official Ramadan calendar change management is NEXT / NOT STARTED.
+
+**Fasa 10.2a COMPLETE / OWNER-APPROVED — Ramadan Private Payment Proof Intake.** Owner manually retested synthetic sponsorship registration and proof upload, confirmed verification is intentionally unavailable, and approved the resolved local Storage-worker expiry issue. No further functional changes requested. Baseline `32f563ae7e2160f77a0dec3dc3aedd7b621dfa88`, tag `phase-10.1-ramadan-management-submission`. Checkpoint: `phase-10.2a-ramadan-payment-proof` (resolve tag for commit). Fasa 10.0/10.1 remain complete / owner-approved; Fasa 10 remains IN PROGRESS; 10.2b COMPLETE / owner-approved; 10.2c NEXT / NOT STARTED and 10.3 NOT STARTED. No hosted mutation/deployment or production-launch claim.
 
 ## Scope and owner decisions
 
@@ -141,9 +145,9 @@ node scripts/admin-foundation/local-cli.mjs db reset --local --no-seed
 
 The eight known unrelated Qurban synthetic orphan backing files are preserved, not adopted or deleted. No runtime cleanup touches them.
 
-## Future 10.2b — not implemented
+## 10.2b — complete / owner-approved; historical 10.2a gate retained
 
-Authorized admin verification must compare claimed amount with the immutable aggregate quote exactly, inspect submitted evidence, and atomically admit **all** fixed items through deterministic earliest-free slots or none. OPEN_AMOUNT consumes no slots. Payment can become verified and one immutable RAM receipt issued only with full successful capacity admission. Offering/schedule deactivation after acceptance is not itself a rejection condition. No force override, partial approval/allocation, automatic refund or waitlist. Future controlled rejection/resubmission retains old proof attempts/files. Existing Qurban verification/receipts remain isolated and unchanged.
+[Owner-approved payment verification](RAMADAN-PAYMENT-VERIFICATION.md) implements the separately reviewed 10.2b boundary. The following describes the gate retained at the approved 10.2a checkpoint. Authorized admin verification must compare claimed amount with the immutable aggregate quote exactly, inspect submitted evidence, and atomically admit **all** fixed items through deterministic earliest-free slots or none. OPEN_AMOUNT consumes no slots. Payment can become verified and one immutable RAM receipt issued only with full successful capacity admission. Offering/schedule deactivation after acceptance is not itself a rejection condition. No force override, partial approval/allocation, automatic refund or waitlist. Future controlled rejection/resubmission retains old proof attempts/files. Existing Qurban verification/receipts remain isolated and unchanged.
 
 ## Verification evidence
 

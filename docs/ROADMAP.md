@@ -1,13 +1,17 @@
 # Roadmap Projek
 
+## Fasa 10.2b — COMPLETE / OWNER-APPROVED
+
+[Ramadan verification, all-or-nothing slot admission and immutable receipt](RAMADAN-PAYMENT-VERIFICATION.md) adds exact-amount manager review, controlled proof rejection/resubmission, a non-financial capacity exception, protected native PDF receipt and verified-only safe public names/occupancy. Accepted deactivated offerings/schedules remain eligible. No pending reservation, amount override, partial financial/slot approval, refund, waitlist, gateway or 10.3 reporting/Excel is added. The historical 10.0/10.1/10.2a scope and test evidence below describe those approved checkpoints. Fasa 10 remains IN PROGRESS; 10.3 NOT STARTED. No hosted mutation/deployment. Owner-approved checkpoint: `phase-10.2b-ramadan-payment-verification`. 10.2c official Ramadan calendar change management is NEXT / NOT STARTED.
+
 ## Fasa 10.2a — COMPLETE / OWNER-APPROVED
 
-[Ramadan private payment proof intake](RAMADAN-PAYMENT-PROOF.md) is complete / owner-approved. Owner manually retested synthetic sponsorship registration and proof upload, confirmed that verification is intentionally unavailable, and approved the resolved local Storage-worker expiry issue. Separate capability/session, trusted Bank Islam instructions, private participant/admin-assisted evidence and protected manager download are preserved. The local-only runner renews the one-hour scoped credential every 45 minutes without restarting the app or changing demo records; production retains externally issued credentials. Checkpoint: `phase-10.2a-ramadan-payment-proof` (resolve tag for commit). Submitted proof never reserves a slot or verifies payment. Fasa 8/9 and 10.0/10.1 remain complete / owner-approved; Fasa 10 remains IN PROGRESS; 10.2b NEXT / NOT STARTED and 10.3 NOT STARTED. No hosted mutation/deployment.
+[Ramadan private payment proof intake](RAMADAN-PAYMENT-PROOF.md) is complete / owner-approved. Owner manually retested synthetic sponsorship registration and proof upload, confirmed that verification is intentionally unavailable, and approved the resolved local Storage-worker expiry issue. Separate capability/session, trusted Bank Islam instructions, private participant/admin-assisted evidence and protected manager download are preserved. The local-only runner renews the one-hour scoped credential every 45 minutes without restarting the app or changing demo records; production retains externally issued credentials. Checkpoint: `phase-10.2a-ramadan-payment-proof` (resolve tag for commit). Submitted proof never reserves a slot or verifies payment. Fasa 8/9 and 10.0/10.1 remain complete / owner-approved; Fasa 10 remains IN PROGRESS; 10.2b COMPLETE / owner-approved; 10.2c NEXT / NOT STARTED and 10.3 NOT STARTED. No hosted mutation/deployment.
 
 
 ## Fasa 10.1 — COMPLETE / OWNER-APPROVED
 
-[Ramadan offering/schedule management, safe public schedule and multi-item sponsorship submission](RAMADAN-SPONSORSHIP-MANAGEMENT.md). Deactivation closes new intake without invalidating accepted commitments. Submission does not reserve slots. Owner reviewed and approved the implementation and final Malay UX/public-name contract on 18 October 2026 (+08:00), with no further functional or visual changes. Checkpoint: `phase-10.1-ramadan-management-submission` (resolve tag for commit). Fasa 8/9 and 10.0 remain complete / owner-approved; Fasa 10 overall remains IN PROGRESS; 10.2a complete / owner-approved; 10.2b NOT STARTED and 10.3 NOT STARTED. At the historical 10.1 checkpoint there was no Ramadan proof/verification, slot assignment, receipt or hosted mutation/deployment; the approved 10.2a checkpoint above adds private proof intake only.
+[Ramadan offering/schedule management, safe public schedule and multi-item sponsorship submission](RAMADAN-SPONSORSHIP-MANAGEMENT.md). Deactivation closes new intake without invalidating accepted commitments. Submission does not reserve slots. Owner reviewed and approved the implementation and final Malay UX/public-name contract on 18 October 2026 (+08:00), with no further functional or visual changes. Checkpoint: `phase-10.1-ramadan-management-submission` (resolve tag for commit). Fasa 8/9 and 10.0 remain complete / owner-approved; Fasa 10 overall remains IN PROGRESS; 10.2a complete / owner-approved; 10.2b COMPLETE / owner-approved; 10.2c NEXT / NOT STARTED and 10.3 NOT STARTED. At the historical 10.1 checkpoint there was no Ramadan proof/verification, slot assignment, receipt or hosted mutation/deployment; the approved 10.2a checkpoint above adds private proof intake only.
 
 ## Fasa 10 — Ramadan Sponsorship IN PROGRESS
 
@@ -20,7 +24,8 @@
 | 10.0 | Ramadan Domain Foundation — **complete / owner-approved** |
 | 10.1 | Admin Offering/Schedule Management + Public Schedule + Public Sponsorship Submission — **complete / owner-approved** |
 | 10.2a | Ramadan Private Payment Proof Intake — **complete / owner-approved** |
-| 10.2b | Admin Verification + Atomic Slot Assignment + Ramadan Receipt — **NEXT / NOT STARTED** |
+| 10.2b | Admin Verification + Atomic Slot Assignment + Ramadan Receipt — **COMPLETE / owner-approved** |
+| 10.2c | Official Ramadan Calendar Change Management — **NEXT / NOT STARTED** |
 | 10.3 | Reporting + Excel + Operational Polish + Final Ramadan Checkpoint — **NOT STARTED** |
 
 ## Fasa 9 — Payment & Receipt COMPLETE / owner-approved
@@ -33,7 +38,7 @@
 | 9.0 Secure payment access / private proof intake and downloads | Complete / owner-approved |
 | 9.1 Verification / atomic allocation / immutable receipt | Complete / owner-approved; receipt visual approved |
 | Fasa 9 — Payment & Receipt | **COMPLETE / owner-approved** |
-| Fasa 10 | **In progress — 10.0 complete / owner-approved; 10.1 complete / owner-approved; 10.2a complete / owner-approved; 10.2b next / NOT STARTED; 10.3 NOT STARTED** |
+| Fasa 10 | **In progress — 10.0 complete / owner-approved; 10.1 complete / owner-approved; 10.2a complete / owner-approved; 10.2b COMPLETE / owner-approved; 10.2c NEXT / NOT STARTED; 10.3 NOT STARTED** |
 
 Checkpoint: `phase-9.1-qurban-payment-verification` (resolve tag for commit), representing Fasa 9 completion. No redundant aggregate completion tag. Refund/waitlist, partial payment, instalment, overpayment handling, financial cancellation, receipt correction/reissue, gateway/card/FPX and multiple payment transactions per Registration are future enhancements and do not block this MVP closeout. At that checkpoint, no hosted mutation/deployment or Fasa 10 implementation. See the current owner-approved 10.1 checkpoint above.
 
@@ -57,7 +62,7 @@ Checkpoint: `phase-9.1-qurban-payment-verification` (resolve tag for commit), re
 | 8.5 Volunteer registration + admin assignment | Complete / owner-approved |
 | **Fasa 8 — Qurban MVP Foundation** | **COMPLETE / owner-approved** |
 | **Fasa 9 — Payment & Receipt** | **COMPLETE / owner-approved — 9.0 and 9.1** |
-| **Fasa 10** | **In progress — 10.0 complete / owner-approved; 10.1 complete / owner-approved; 10.2a complete / owner-approved; 10.2b NEXT / NOT STARTED** |
+| **Fasa 10** | **In progress — 10.0 complete / owner-approved; 10.1 complete / owner-approved; 10.2a complete / owner-approved; 10.2b COMPLETE / owner-approved; 10.2c NEXT / NOT STARTED** |
 
 ## Fasa 8.5 — Qurban Volunteer Registration & Admin Assignment complete / owner-approved
 
@@ -422,7 +427,7 @@ Selesaikan dan semak setiap fasa sebelum memulakan fasa seterusnya.
 | **7** | Feature Flags & Campaign Engine | **Complete / owner-approved** — 7.0–7.6 and 7.C complete; local foundation; `phase-7-campaign-engine-complete`; hosted/domain gates remain |
 | **8** | Qurban MVP Foundation | **COMPLETE / owner-approved** — 8.0–8.5 complete; `phase-8.5-qurban-volunteers` |
 | **9** | Payment & Receipt | **COMPLETE / owner-approved** — 9.0–9.1; `phase-9.1-qurban-payment-verification` |
-| **10** | Ramadan Sponsorship | **IN PROGRESS** — 10.0 complete / owner-approved; 10.1 complete / owner-approved; 10.2a complete / owner-approved; 10.2b NEXT / NOT STARTED; 10.3 NOT STARTED |
+| **10** | Ramadan Sponsorship | **IN PROGRESS** — 10.0 complete / owner-approved; 10.1 complete / owner-approved; 10.2a complete / owner-approved; 10.2b COMPLETE / owner-approved; 10.2c NEXT / NOT STARTED; 10.3 NOT STARTED |
 | 11 | Security & Production Hardening | Belum bermula |
 | 12 | Production Launch | Belum bermula |
 
