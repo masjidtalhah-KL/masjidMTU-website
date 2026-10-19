@@ -1,8 +1,12 @@
 # Fasa 10.0 — Ramadan Sponsorship Domain Foundation
 
+## Fasa 10.2c — COMPLETE / owner-approved
+
+[Official Ramadan calendar and safe schedule amendments](RAMADAN-CALENDAR-AMENDMENTS.md) adds typed private proposals/revisions, bounded impact preview, super-admin AAL2/recent-TOTP publication, current versus accepted dates and day-30 operational exceptions. Original quote/payment/slot/receipt history remains unchanged. Fasa 10.0/10.1/10.2a/10.2b remain COMPLETE / owner-approved; 10.3 NEXT / NOT STARTED. Fasa 10 remains IN PROGRESS. Checkpoint: `phase-10.2c-ramadan-calendar-amendments` (resolve tag for commit). No hosted deployment, automatic date feed, refund, receipt reissue or automatic notifications.
+
 ## Fasa 10.2b — COMPLETE / OWNER-APPROVED
 
-[Ramadan verification, all-or-nothing slot admission and immutable receipt](RAMADAN-PAYMENT-VERIFICATION.md) adds exact-amount manager review, controlled proof rejection/resubmission, a non-financial capacity exception, protected native PDF receipt and verified-only safe public names/occupancy. Accepted deactivated offerings/schedules remain eligible. No pending reservation, amount override, partial financial/slot approval, refund, waitlist, gateway or 10.3 reporting/Excel is added. The historical 10.0/10.1/10.2a scope and test evidence below describe those approved checkpoints. Fasa 10 remains IN PROGRESS; 10.3 NOT STARTED. No hosted mutation/deployment. Owner-approved checkpoint: `phase-10.2b-ramadan-payment-verification`. 10.2c official Ramadan calendar change management is NEXT / NOT STARTED.
+[Ramadan verification, all-or-nothing slot admission and immutable receipt](RAMADAN-PAYMENT-VERIFICATION.md) adds exact-amount manager review, controlled proof rejection/resubmission, a non-financial capacity exception, protected native PDF receipt and verified-only safe public names/occupancy. Accepted deactivated offerings/schedules remain eligible. No pending reservation, amount override, partial financial/slot approval, refund, waitlist, gateway or 10.3 reporting/Excel is added. The historical 10.0/10.1/10.2a scope and test evidence below describe those approved checkpoints. Fasa 10 remains IN PROGRESS; 10.3 NEXT / NOT STARTED. No hosted mutation/deployment. Owner-approved checkpoint: `phase-10.2b-ramadan-payment-verification`. 10.2c official Ramadan calendar change management is COMPLETE / owner-approved.
 
 **Fasa 10.0 complete / owner-approved — Ramadan Sponsorship Domain Foundation.** Owner approval: 18 October 2026 (+08:00), with no functional changes requested. Checkpoint: `phase-10.0-ramadan-domain-foundation` (resolve tag for commit). Baseline `a96fd5b640e043d4e5c08639794689d8ca61a58a`, tag `phase-9.1-qurban-payment-verification`. Fasa 8 and Fasa 9 remain complete / owner-approved. This approved foundation creates only architecture, typed annual Campaign registration and private domain constraints. It does not implement 10.1–10.3 or claim production launch readiness.
 
@@ -10,7 +14,7 @@ Additive migration: `supabase/migrations/20261017153123_ramadan_domain_foundatio
 
 ## Fasa 10.1 COMPLETE / OWNER-APPROVED
 
-[Management/public submission contract](RAMADAN-SPONSORSHIP-MANAGEMENT.md): complete / owner-approved, including final Malay UX and server/DB-derived public-name snapshot. Owner approval: 18 October 2026 (+08:00), with no further functional or visual changes. Checkpoint: `phase-10.1-ramadan-management-submission` (resolve tag for commit). Fasa 10 remains IN PROGRESS; 10.2a complete / owner-approved; 10.2b COMPLETE / owner-approved; 10.2c NEXT / NOT STARTED and 10.3 NOT STARTED. Owner locks deactivation as close-new-intake only; accepted sponsorships/quotes remain valid and retained, and future payment verification must not deny solely for later offering/schedule deactivation. Accepted offering labels are immutable snapshots; date/day/price/count remain activity-locked. The following foundation/no-runtime statements describe the approved **10.0 checkpoint**. 10.1 adds bounded management/public submission only; 10.2a is now the owner-approved private-proof checkpoint described below; 10.2b is the current uncommitted verification/receipt candidate; 10.3 remains not started.
+[Management/public submission contract](RAMADAN-SPONSORSHIP-MANAGEMENT.md): complete / owner-approved, including final Malay UX and server/DB-derived public-name snapshot. Owner approval: 18 October 2026 (+08:00), with no further functional or visual changes. Checkpoint: `phase-10.1-ramadan-management-submission` (resolve tag for commit). Fasa 10 remains IN PROGRESS; 10.2a complete / owner-approved; 10.2b COMPLETE / owner-approved; 10.2c COMPLETE / owner-approved and 10.3 NEXT / NOT STARTED. Owner locks deactivation as close-new-intake only; accepted sponsorships/quotes remain valid and retained, and future payment verification must not deny solely for later offering/schedule deactivation. Accepted offering labels are immutable snapshots; date/day/price/count remain activity-locked. The following foundation/no-runtime statements describe the approved **10.0 checkpoint**. 10.1 adds bounded management/public submission only; 10.2a is now the owner-approved private-proof checkpoint described below; 10.2b is COMPLETE / owner-approved; 10.3 remains not started.
 
 ## Owner decisions 1–14
 
@@ -148,8 +152,8 @@ Synthetic year 2048 and label LOCAL REVIEW ONLY are never app defaults/seeds. Th
 | 10.0 | Architecture + private domain foundation — complete / owner-approved |
 | 10.1 | Admin offering/schedule management + public schedule + public sponsorship submission — complete / owner-approved |
 | 10.2a | Private Ramadan proof intake — complete / owner-approved |
-| 10.2b | Admin verification + atomic slot assignment + Ramadan receipt — implementation candidate awaiting owner review |
-| 10.3 | Reporting + Excel + operational polish + final Ramadan checkpoint — NOT STARTED |
+| 10.2b | Admin verification + atomic slot assignment + Ramadan receipt — COMPLETE / owner-approved |
+| 10.3 | Reporting + Excel + operational polish + final Ramadan checkpoint — NEXT / NOT STARTED |
 
 Actual annual values, offering/date/price/count decisions, public display copy, admission/retention/privacy operational policies and future cancellation/refund/overflow handling require their reviewed phase. No historical amount/slot/day/year is a production default.
 
@@ -159,6 +163,6 @@ Actual annual values, offering/date/price/count decisions, public display copy, 
 
 ## Fasa 10.2a COMPLETE / owner-approved
 
-Owner manually retested and approved sponsorship registration, successful proof intake and the local-only token-renewal fix. Verification was intentionally unavailable at that checkpoint. Checkpoint: `phase-10.2a-ramadan-payment-proof`; 10.2b COMPLETE / owner-approved; 10.2c NEXT / NOT STARTED and 10.3 NOT STARTED.
+Owner manually retested and approved sponsorship registration, successful proof intake and the local-only token-renewal fix. Verification was intentionally unavailable at that checkpoint. Checkpoint: `phase-10.2a-ramadan-payment-proof`; 10.2b COMPLETE / owner-approved; 10.2c COMPLETE / owner-approved and 10.3 NEXT / NOT STARTED.
 
 [Private Ramadan proof intake](RAMADAN-PAYMENT-PROOF.md) additively binds a separate hashed capability to new idempotent submissions, provides trusted Bank Islam instructions and private pending evidence. Existing accepted sponsorships remain eligible after new-intake closure while submitted, flags ON and campaign not archived, as explicitly owner-approved. At the approved 10.2a checkpoint no slot occupation, verification, receipt or reporting was added, and 10.2b/10.3 had not started; see the current owner-approved 10.2b checkpoint above. Named/anonymous accepted identity and deactivation/quote locks remain unchanged.

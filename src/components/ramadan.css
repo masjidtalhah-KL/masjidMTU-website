@@ -5,3 +5,6 @@
 .ramadan label.ramadan-check{display:flex;align-items:center;gap:.6rem}.ramadan label.ramadan-check input{flex:none;margin:0}
 
 .ramadan-fields{border:0;padding:0;min-width:0}.ramadan-field{min-width:0}.ramadan-field input[type=file]{max-width:100%;min-width:0}.ramadan dd,.ramadan li,.ramadan-note strong{overflow-wrap:anywhere}.ramadan-help{font-size:.9rem}
+
+.ramadan-calendar-list .ramadan-card{content-visibility:auto;contain-intrinsic-size:auto 20rem}.ramadan-calendar-list dd{font-variant-numeric:tabular-nums}.ramadan .ramadan-calendar-warning[role=status]{background:#fff7e8;border-left-color:#a56c12}
+.ramadan-calendar-panel{min-width:0}.ramadan-calendar-panel p,.ramadan-calendar-panel h3,.ramadan-calendar-panel h4{overflow-wrap:anywhere}

@@ -1,0 +1,4 @@
+import type{NextRequest}from'next/server';import{json,failure,sameOrigin}from'@/lib/admin/http';import{AdminError}from'@/lib/admin/policy';import{body,RamadanError}from'@/lib/ramadan/contracts';import{calendarWorkspace,calendarCommand}from'@/lib/ramadan/calendar';
+export const dynamic='force-dynamic';
+export async function GET(r:NextRequest,{params}:{params:Promise<{id:string}>}){try{if(r.nextUrl.search)throw new AdminError(422,'invalid');return json(await calendarWorkspace((await params).id));}catch(e){return failure(e);}}
+export async function POST(r:NextRequest,{params}:{params:Promise<{id:string}>}){try{sameOrigin(r);if(r.nextUrl.search||r.headers.get('content-type')!=='application/json')throw new AdminError(422,'invalid');return json(await calendarCommand((await params).id,await body(r.body)));}catch(e){return failure(e instanceof RamadanError?new AdminError(422,'invalid'):e);}}

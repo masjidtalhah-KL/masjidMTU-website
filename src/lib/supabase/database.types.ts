@@ -265,6 +265,36 @@ export type Database = {
         Args: { page_number: number; target_campaign: string }
         Returns: Json
       }
+      admin_ramadan_calendar: {
+        Args: { target_campaign: string }
+        Returns: Json
+      }
+      admin_ramadan_calendar_preview: {
+        Args: { payload: Json; target_campaign: string }
+        Returns: Json
+      }
+      admin_ramadan_calendar_proposal: {
+        Args: { target_campaign: string; target_proposal: string }
+        Returns: Json
+      }
+      admin_ramadan_calendar_propose: {
+        Args: {
+          expected_preview: string
+          idempotency_key: string
+          payload: Json
+          target_campaign: string
+        }
+        Returns: Json
+      }
+      admin_ramadan_calendar_publish: {
+        Args: {
+          expected_preview: string
+          expected_revision: number
+          target_campaign: string
+          target_proposal: string
+        }
+        Returns: Json
+      }
       admin_ramadan_detail: {
         Args: { target_campaign: string; target_sponsorship: string }
         Returns: Json
