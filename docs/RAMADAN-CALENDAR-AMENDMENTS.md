@@ -1,6 +1,14 @@
 # Ramadan Calendar Amendments — Fasa 10.2c
 
-**Fasa 10.2c COMPLETE / owner-approved.** Baseline: `9cbbe8e3213abb7ead693c0033e748469bc57ac2` / `phase-10.2b-ramadan-payment-verification`. Fasa 10.0/10.1/10.2a/10.2b remain COMPLETE / owner-approved. Fasa 10 remains IN PROGRESS; 10.3 NEXT / NOT STARTED. Owner approved the final checkpoint on 20 October 2026 (+08:00); only the isolated 34-file candidate is authorized for commit/tag/push. No hosted deployment.
+## Fasa 10.3 — COMPLETE / owner-approved
+
+Owner approved the dashboard, three independently reviewed five-sheet workbooks and the three-page A4 operating schedule. Checkpoint: `phase-10.3-ramadan-reporting-excel`. Fasa 10.0/10.1/10.2a/10.2b/10.2c/10.3 are COMPLETE / owner-approved. Fasa 11 — Security Hardening NEXT (not implemented); Fasa 12 — Production Launch Preparation NOT STARTED. MVP completion does not claim production readiness. Open follow-ups: Foundation mobile Menu accessibility; explicit manual calendar/financial-exception resolution and sponsor notification; low-priority repeated Masjid header on every printed schedule page. None is implemented or suppressed by this checkpoint.
+
+
+[Ramadan dashboard, reporting and protected Excel](RAMADAN-REPORTING-EXCEL.md) reads authoritative verified payments, items, assignments and approved current calendar dates. It adds bounded role-masked reports, a consistent five-sheet XLSX and a safe print schedule. No financial/receipt/slot mutation or new source of financial truth. Fasa 10.0–10.2c remain COMPLETE / owner-approved; Fasa 10 — Ramadan Sponsorship MVP COMPLETE / owner-approved. Fasa 11 — Security Hardening NEXT; Fasa 12 — Production Launch Preparation NOT STARTED. Owner authorized the final checkpoint commit/tag/push only; no hosted service mutation/deployment.
+
+
+**Fasa 10.2c COMPLETE / owner-approved.** Baseline: `9cbbe8e3213abb7ead693c0033e748469bc57ac2` / `phase-10.2b-ramadan-payment-verification`. Fasa 10.0/10.1/10.2a/10.2b remain COMPLETE / owner-approved. Fasa 10 is COMPLETE / owner-approved; 10.3 COMPLETE / owner-approved. Owner approved the final checkpoint on 20 October 2026 (+08:00); only the isolated 34-file candidate is authorized for commit/tag/push. No hosted deployment.
 
 ## Calendar authority and decisions
 
@@ -144,7 +152,7 @@ Actual calendar before/after/participant PDF downloads are byte-identical; the v
 
 ## Owner-approved final checkpoint — 20 October 2026 (+08:00)
 
-**Fasa 10.2c COMPLETE / owner-approved.** Checkpoint tag: `phase-10.2c-ramadan-calendar-amendments` (resolve tag for exact SHA). Fasa 10.0/10.1/10.2a/10.2b remain COMPLETE / owner-approved. Fasa 10 overall remains IN PROGRESS; 10.3 NEXT / NOT STARTED. No functional or financial changes were requested at approval. Only the 34 calendar candidate files are included; five independent tooling files remain outside the checkpoint and byte-identical to preflight.
+**Fasa 10.2c COMPLETE / owner-approved.** Checkpoint tag: `phase-10.2c-ramadan-calendar-amendments` (resolve tag for exact SHA). Fasa 10.0/10.1/10.2a/10.2b remain COMPLETE / owner-approved. Fasa 10 overall is COMPLETE / owner-approved; 10.3 COMPLETE / owner-approved. No functional or financial changes were requested at approval. Only the 34 calendar candidate files are included; five independent tooling files remain outside the checkpoint and byte-identical to preflight.
 
 Final checks reuse the existing synthetic environment and immutable publication history: no new duplicate fixture, calendar revision, payment or sponsorship is needed. Fresh contract/DB/upgrade tests use an isolated database, never reset the owner stack. Real Auth/PostgREST checks exercise authorized terminal publication replay, denied roles/AAL/stale-TOTP, read-only impact preview, invalid-day submission denial, blocked mixed verification and original receipt bytes. Earlier successful proposal-save/publication and actual concurrent calendar/payment race evidence is explicitly retained rather than rerun by creating more business data. Exact fresh/retained counts and preservation fingerprints are recorded with final checkpoint evidence.
 

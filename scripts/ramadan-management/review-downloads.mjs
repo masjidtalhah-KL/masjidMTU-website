@@ -13,7 +13,7 @@ export function reviewRequestAllowed(value) {
     if (['http://localhost:3082', 'http://127.0.0.1:54321'].includes(url.origin)) return true;
     if (url.protocol !== 'file:' || url.hostname || url.search || url.hash) return false;
     const file = fileURLToPath(url), directory = path.join(root, '.cache', 'ramadan-review-downloads');
-    if (path.dirname(file) !== directory || !/^(?:Bukti-Bayaran-RPF-[0-9a-f]{64}\.(?:png|jpg|pdf)|RAM-[0-9]{4}-[0-9]{6}\.pdf)$/.test(path.basename(file))) return false;
+    if (path.dirname(file) !== directory || !/^(?:Bukti-Bayaran-RPF-[0-9a-f]{64}\.(?:png|jpg|pdf)|RAM-[0-9]{4}-[0-9]{6}\.pdf|Laporan-Tajaan-Ramadan-[0-9]{4}-[0-9]{8}(?: \([1-9][0-9]{0,4}\))?\.xlsx)$/.test(path.basename(file))) return false;
     return fs.lstatSync(file).isFile() && !fs.lstatSync(file).isSymbolicLink() && fs.realpathSync(file) === file;
   } catch { return false; }
 }

@@ -359,6 +359,26 @@ export type Database = {
         Args: { target_campaign: string; target_sponsorship: string }
         Returns: Json
       }
+      admin_ramadan_report: {
+        Args: { filters: Json; target_campaign: string }
+        Returns: Json
+      }
+      admin_ramadan_report_export: {
+        Args: { filters: Json; target_campaign: string }
+        Returns: Json
+      }
+      admin_ramadan_report_export_complete: {
+        Args: {
+          export_reference: string
+          snapshot_fingerprint: string
+          target_campaign: string
+        }
+        Returns: Json
+      }
+      admin_ramadan_report_print: {
+        Args: { filters: Json; target_campaign: string }
+        Returns: Json
+      }
       admin_ramadan_schedule: {
         Args: { payload: Json; target_campaign: string }
         Returns: Json
